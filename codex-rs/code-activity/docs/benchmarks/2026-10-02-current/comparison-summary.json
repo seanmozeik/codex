@@ -1,0 +1,898 @@
+[
+  {
+    "case": "python-direct-1",
+    "byteIdentical": true,
+    "originalReportSha256": "fc9f17de2ae8fcaa70a169b2f385c675882c158ba20e2a2d29b336c09b96fb93",
+    "currentReportSha256": "fc9f17de2ae8fcaa70a169b2f385c675882c158ba20e2a2d29b336c09b96fb93",
+    "originalCounts": {
+      "operations": 2,
+      "unresolved": 0,
+      "sources": 1
+    },
+    "currentCounts": {
+      "operations": 2,
+      "unresolved": 0,
+      "sources": 1
+    },
+    "originalMicroseconds": {
+      "p50": 12.834,
+      "p95": 18.75,
+      "mean": 13.954133333333333,
+      "populationStddev": 2.1754487772002866
+    },
+    "currentMicroseconds": {
+      "p50": 13.957999999999998,
+      "p95": 19.75,
+      "mean": 14.773666666666667,
+      "populationStddev": 2.0225276979287306
+    }
+  },
+  {
+    "case": "python-direct-128",
+    "byteIdentical": true,
+    "originalReportSha256": "5a82fc02bf311253e96a4931c44d9f25197a8180ba821f0e827bbdf1c386ab9e",
+    "currentReportSha256": "5a82fc02bf311253e96a4931c44d9f25197a8180ba821f0e827bbdf1c386ab9e",
+    "originalCounts": {
+      "operations": 256,
+      "unresolved": 0,
+      "sources": 1
+    },
+    "currentCounts": {
+      "operations": 256,
+      "unresolved": 0,
+      "sources": 1
+    },
+    "originalMicroseconds": {
+      "p50": 1316.375,
+      "p95": 1411.1670000000001,
+      "mean": 1325.6403333333333,
+      "populationStddev": 52.21964107200363
+    },
+    "currentMicroseconds": {
+      "p50": 1350.0,
+      "p95": 1423.916,
+      "mean": 1351.0680666666667,
+      "populationStddev": 38.13057651888077
+    }
+  },
+  {
+    "case": "python-vars-functions-1",
+    "byteIdentical": false,
+    "originalReportSha256": "d82ac0beed32a2bb0fe490b7f905d63380732e5597a1dd858bcff6d3a4c5ee3d",
+    "currentReportSha256": "1a2f7ee0a92bb595f6bffc2d350d49790623bea18538842d00dc1e76f59fd1a7",
+    "originalCounts": {
+      "operations": 0,
+      "unresolved": 3,
+      "sources": 1
+    },
+    "currentCounts": {
+      "operations": 1,
+      "unresolved": 1,
+      "sources": 1
+    },
+    "originalMicroseconds": {
+      "p50": 19.667,
+      "p95": 22.25,
+      "mean": 19.986133333333335,
+      "populationStddev": 0.9036830466977287
+    },
+    "currentMicroseconds": {
+      "p50": 29.458000000000002,
+      "p95": 33.167,
+      "mean": 30.084766666666667,
+      "populationStddev": 2.525763999048385
+    }
+  },
+  {
+    "case": "python-vars-functions-128",
+    "byteIdentical": false,
+    "originalReportSha256": "f6ff1584df261f6c8777d949d15c54d83c982e2e84bc16acc758954ee513e66a",
+    "currentReportSha256": "ede0a822c7e218cad83d31ab1eb68ad1774a8578f542549a965024795a62df6c",
+    "originalCounts": {
+      "operations": 0,
+      "unresolved": 130,
+      "sources": 1
+    },
+    "currentCounts": {
+      "operations": 128,
+      "unresolved": 1,
+      "sources": 1
+    },
+    "originalMicroseconds": {
+      "p50": 926.542,
+      "p95": 1025.375,
+      "mean": 936.8347666666667,
+      "populationStddev": 40.80027502414115
+    },
+    "currentMicroseconds": {
+      "p50": 1676.208,
+      "p95": 1761.875,
+      "mean": 1675.1916,
+      "populationStddev": 64.34530495050385
+    }
+  },
+  {
+    "case": "python-closure-1",
+    "byteIdentical": false,
+    "originalReportSha256": "1e3a2dcf4290073e76525df35c6c0fa2bdc8106fbafd4c0f4832f924415d61b5",
+    "currentReportSha256": "4742322f8f6df1a30fed87b23829cdf2ff1f7092f9878df686dc474d7e2194dc",
+    "originalCounts": {
+      "operations": 0,
+      "unresolved": 4,
+      "sources": 1
+    },
+    "currentCounts": {
+      "operations": 1,
+      "unresolved": 1,
+      "sources": 1
+    },
+    "originalMicroseconds": {
+      "p50": 20.583,
+      "p95": 22.125,
+      "mean": 20.8402,
+      "populationStddev": 0.6405580067409977
+    },
+    "currentMicroseconds": {
+      "p50": 29.083,
+      "p95": 29.584,
+      "mean": 29.112566666666666,
+      "populationStddev": 0.30585145450401624
+    }
+  },
+  {
+    "case": "python-closure-128",
+    "byteIdentical": false,
+    "originalReportSha256": "f1b53123479b607dddd218a5dcc5c7e1710a3a3c9946f8cff7294a4e3e9f3104",
+    "currentReportSha256": "eb65d8750a277c04a81b03a34c6aa60d9215005c85ecc367bb4ad8ae59fc2dca",
+    "originalCounts": {
+      "operations": 0,
+      "unresolved": 131,
+      "sources": 1
+    },
+    "currentCounts": {
+      "operations": 128,
+      "unresolved": 1,
+      "sources": 1
+    },
+    "originalMicroseconds": {
+      "p50": 325.91700000000003,
+      "p95": 353.291,
+      "mean": 329.1888666666667,
+      "populationStddev": 16.993858692153726
+    },
+    "currentMicroseconds": {
+      "p50": 683.917,
+      "p95": 747.333,
+      "mean": 690.4651666666666,
+      "populationStddev": 26.72604895613182
+    }
+  },
+  {
+    "case": "javascript-direct-1",
+    "byteIdentical": true,
+    "originalReportSha256": "0d4beca343c3b95307692936aba7057ab5f3a434ac77a0f6b91c9d9f76f23a80",
+    "currentReportSha256": "0d4beca343c3b95307692936aba7057ab5f3a434ac77a0f6b91c9d9f76f23a80",
+    "originalCounts": {
+      "operations": 1,
+      "unresolved": 0,
+      "sources": 1
+    },
+    "currentCounts": {
+      "operations": 1,
+      "unresolved": 0,
+      "sources": 1
+    },
+    "originalMicroseconds": {
+      "p50": 12.916,
+      "p95": 14.0,
+      "mean": 13.0723,
+      "populationStddev": 0.8796004452780439
+    },
+    "currentMicroseconds": {
+      "p50": 13.75,
+      "p95": 15.25,
+      "mean": 14.031866666666666,
+      "populationStddev": 0.8722989446794537
+    }
+  },
+  {
+    "case": "javascript-direct-128",
+    "byteIdentical": true,
+    "originalReportSha256": "8b57dda5ea25a71e6e8996990fb86c6c5e688d6c1b9ddc0ee489cb9aff528ff6",
+    "currentReportSha256": "8b57dda5ea25a71e6e8996990fb86c6c5e688d6c1b9ddc0ee489cb9aff528ff6",
+    "originalCounts": {
+      "operations": 128,
+      "unresolved": 0,
+      "sources": 1
+    },
+    "currentCounts": {
+      "operations": 128,
+      "unresolved": 0,
+      "sources": 1
+    },
+    "originalMicroseconds": {
+      "p50": 796.7090000000001,
+      "p95": 865.5,
+      "mean": 802.664,
+      "populationStddev": 29.20110986132775
+    },
+    "currentMicroseconds": {
+      "p50": 804.0830000000001,
+      "p95": 909.6659999999999,
+      "mean": 812.4472,
+      "populationStddev": 35.93764310524551
+    }
+  },
+  {
+    "case": "javascript-closure-1",
+    "byteIdentical": false,
+    "originalReportSha256": "d0bebac7d9af18d71f90602967f48c300e6138db07321663fdd2ddcd920c0471",
+    "currentReportSha256": "c8d894390980db4c5c7b5ca414dd6e61d564b740be789ded86e98f6feeb13fe6",
+    "originalCounts": {
+      "operations": 0,
+      "unresolved": 3,
+      "sources": 1
+    },
+    "currentCounts": {
+      "operations": 1,
+      "unresolved": 0,
+      "sources": 1
+    },
+    "originalMicroseconds": {
+      "p50": 21.084,
+      "p95": 28.375,
+      "mean": 22.175,
+      "populationStddev": 4.341477828266929
+    },
+    "currentMicroseconds": {
+      "p50": 29.166,
+      "p95": 30.333,
+      "mean": 29.038966666666667,
+      "populationStddev": 0.8569672682716005
+    }
+  },
+  {
+    "case": "javascript-closure-128",
+    "byteIdentical": false,
+    "originalReportSha256": "55caf3060adf50a5f38105c6cbe3abe4ea3de1ab80abd372b564a32949697cb3",
+    "currentReportSha256": "ab709282ffc99727248fd8d6ad8593cd38c08c7902639267df56b5ef89c858b2",
+    "originalCounts": {
+      "operations": 0,
+      "unresolved": 130,
+      "sources": 1
+    },
+    "currentCounts": {
+      "operations": 128,
+      "unresolved": 0,
+      "sources": 1
+    },
+    "originalMicroseconds": {
+      "p50": 319.33299999999997,
+      "p95": 342.20799999999997,
+      "mean": 322.53616666666665,
+      "populationStddev": 8.533268471433177
+    },
+    "currentMicroseconds": {
+      "p50": 541.333,
+      "p95": 577.0,
+      "mean": 546.9401666666666,
+      "populationStddev": 18.652611306165376
+    }
+  },
+  {
+    "case": "javascript-callback-1",
+    "byteIdentical": false,
+    "originalReportSha256": "f1afea8ee36b5dce66b8e249aea273b2f3a25022dcc1d1ef4d2ef4df80617931",
+    "currentReportSha256": "0479aa37cc457aa6d3543962b757475c52da2b081fd762ed48943bca710dd087",
+    "originalCounts": {
+      "operations": 0,
+      "unresolved": 2,
+      "sources": 1
+    },
+    "currentCounts": {
+      "operations": 2,
+      "unresolved": 0,
+      "sources": 1
+    },
+    "originalMicroseconds": {
+      "p50": 15.957999999999998,
+      "p95": 17.167,
+      "mean": 16.125066666666665,
+      "populationStddev": 0.6188236654240762
+    },
+    "currentMicroseconds": {
+      "p50": 23.375,
+      "p95": 23.75,
+      "mean": 23.408366666666666,
+      "populationStddev": 0.2247523797921219
+    }
+  },
+  {
+    "case": "javascript-callback-128",
+    "byteIdentical": false,
+    "originalReportSha256": "8c03c47408b9191be07419098b54269cfe365492d667bdf7afc442c22a716d67",
+    "currentReportSha256": "f937c0c5de7e2588ed67ce9e0e78def05a2a445340a522db844e5f9ea16fb0df",
+    "originalCounts": {
+      "operations": 0,
+      "unresolved": 256,
+      "sources": 1
+    },
+    "currentCounts": {
+      "operations": 247,
+      "unresolved": 17,
+      "sources": 1
+    },
+    "originalMicroseconds": {
+      "p50": 1166.125,
+      "p95": 1312.9170000000001,
+      "mean": 1186.5889,
+      "populationStddev": 53.937795084924765
+    },
+    "currentMicroseconds": {
+      "p50": 2044.667,
+      "p95": 2222.833,
+      "mean": 2053.254266666667,
+      "populationStddev": 94.84605218350187
+    }
+  },
+  {
+    "case": "typescript-functions-1",
+    "byteIdentical": false,
+    "originalReportSha256": "12f54a33fc6adbda66317e96bf951e1ad50cb7097c26cdaf6d184abad5aaadd2",
+    "currentReportSha256": "1344371f458d526605fc6cf92d9b712306a4516d50076dac6af24e9ff7570035",
+    "originalCounts": {
+      "operations": 0,
+      "unresolved": 2,
+      "sources": 1
+    },
+    "currentCounts": {
+      "operations": 1,
+      "unresolved": 0,
+      "sources": 1
+    },
+    "originalMicroseconds": {
+      "p50": 23.5,
+      "p95": 24.292,
+      "mean": 23.5805,
+      "populationStddev": 0.30028450398469364
+    },
+    "currentMicroseconds": {
+      "p50": 32.375,
+      "p95": 33.5,
+      "mean": 32.37226666666667,
+      "populationStddev": 0.4692894581764613
+    }
+  },
+  {
+    "case": "typescript-functions-128",
+    "byteIdentical": false,
+    "originalReportSha256": "feffed4942beb69a5a8bebc6def0e3b0598d67978a5204668f3e7ffbb9f07dfa",
+    "currentReportSha256": "5230cce37a9ebea4cb28eadc71398caa5a14fb35c91f201b700e8d329b439136",
+    "originalCounts": {
+      "operations": 0,
+      "unresolved": 129,
+      "sources": 1
+    },
+    "currentCounts": {
+      "operations": 128,
+      "unresolved": 0,
+      "sources": 1
+    },
+    "originalMicroseconds": {
+      "p50": 420.0,
+      "p95": 454.75,
+      "mean": 422.84853333333336,
+      "populationStddev": 12.205065098101233
+    },
+    "currentMicroseconds": {
+      "p50": 745.125,
+      "p95": 821.0,
+      "mean": 753.7778666666667,
+      "populationStddev": 31.254533559931563
+    }
+  },
+  {
+    "case": "javascript-process-1",
+    "byteIdentical": true,
+    "originalReportSha256": "7a0290da8a0b0176c6d3709c54e224548533b5754bd86b24dbd630fe90fceec0",
+    "currentReportSha256": "7a0290da8a0b0176c6d3709c54e224548533b5754bd86b24dbd630fe90fceec0",
+    "originalCounts": {
+      "operations": 1,
+      "unresolved": 1,
+      "sources": 1
+    },
+    "currentCounts": {
+      "operations": 1,
+      "unresolved": 1,
+      "sources": 1
+    },
+    "originalMicroseconds": {
+      "p50": 13.875,
+      "p95": 17.083,
+      "mean": 14.202766666666667,
+      "populationStddev": 1.121472950582799
+    },
+    "currentMicroseconds": {
+      "p50": 14.625,
+      "p95": 15.167,
+      "mean": 14.697266666666668,
+      "populationStddev": 0.1687285657169198
+    }
+  },
+  {
+    "case": "javascript-process-128",
+    "byteIdentical": true,
+    "originalReportSha256": "1851add0b75d57d85ad6d228907fbb4836c64ab8ac50b169b1b9b7dc473c8196",
+    "currentReportSha256": "1851add0b75d57d85ad6d228907fbb4836c64ab8ac50b169b1b9b7dc473c8196",
+    "originalCounts": {
+      "operations": 128,
+      "unresolved": 128,
+      "sources": 1
+    },
+    "currentCounts": {
+      "operations": 128,
+      "unresolved": 128,
+      "sources": 1
+    },
+    "originalMicroseconds": {
+      "p50": 897.875,
+      "p95": 999.2919999999999,
+      "mean": 910.1653666666666,
+      "populationStddev": 41.76702779664307
+    },
+    "currentMicroseconds": {
+      "p50": 964.75,
+      "p95": 1043.875,
+      "mean": 965.8500333333334,
+      "populationStddev": 29.858606519710335
+    }
+  },
+  {
+    "case": "shell-direct-1",
+    "byteIdentical": false,
+    "originalReportSha256": "caac32fe06742298da850f92773752ed52573d1ca65284adde3c7a77c2efce88",
+    "currentReportSha256": "368242c32abdeeef973210863ebe38eda273b952885bcb1d099d03356fba114c",
+    "originalCounts": {
+      "operations": 1,
+      "unresolved": 1,
+      "sources": 1
+    },
+    "currentCounts": {
+      "operations": 1,
+      "unresolved": 2,
+      "sources": 1
+    },
+    "originalMicroseconds": {
+      "p50": 4.958,
+      "p95": 5.209,
+      "mean": 4.9860999999999995,
+      "populationStddev": 0.12704417866763246
+    },
+    "currentMicroseconds": {
+      "p50": 6.792000000000001,
+      "p95": 7.707999999999999,
+      "mean": 6.865233333333333,
+      "populationStddev": 0.4563864359168541
+    }
+  },
+  {
+    "case": "shell-direct-128",
+    "byteIdentical": false,
+    "originalReportSha256": "25cdb60cba7f0862bcd34c8db05b54bd424a6e743e62a8c3073ddc242caad601",
+    "currentReportSha256": "47441d43bb5aab6350e04afd994255c35de8a55aef2d3d215ce983fc9a40343d",
+    "originalCounts": {
+      "operations": 128,
+      "unresolved": 128,
+      "sources": 1
+    },
+    "currentCounts": {
+      "operations": 128,
+      "unresolved": 256,
+      "sources": 1
+    },
+    "originalMicroseconds": {
+      "p50": 468.834,
+      "p95": 550.875,
+      "mean": 477.90836666666667,
+      "populationStddev": 31.424031773451492
+    },
+    "currentMicroseconds": {
+      "p50": 738.9169999999999,
+      "p95": 777.0840000000001,
+      "mean": 737.8083333333333,
+      "populationStddev": 17.760146062337313
+    }
+  },
+  {
+    "case": "shell-nested-node-1",
+    "byteIdentical": true,
+    "originalReportSha256": "31211105b5fbaaf30df94172593e9783030be2c58c1449488f9d941dbd619923",
+    "currentReportSha256": "31211105b5fbaaf30df94172593e9783030be2c58c1449488f9d941dbd619923",
+    "originalCounts": {
+      "operations": 1,
+      "unresolved": 0,
+      "sources": 2
+    },
+    "currentCounts": {
+      "operations": 1,
+      "unresolved": 0,
+      "sources": 2
+    },
+    "originalMicroseconds": {
+      "p50": 15.291999999999998,
+      "p95": 16.125,
+      "mean": 15.5291,
+      "populationStddev": 0.7998131177552247
+    },
+    "currentMicroseconds": {
+      "p50": 17.75,
+      "p95": 18.458,
+      "mean": 17.906933333333335,
+      "populationStddev": 0.8517016274624716
+    }
+  },
+  {
+    "case": "shell-nested-node-32",
+    "byteIdentical": true,
+    "originalReportSha256": "f224ff198621be16bec8adcd6aff0f4a122cc30756fc5e52fdcbac0c13f4f24f",
+    "currentReportSha256": "f224ff198621be16bec8adcd6aff0f4a122cc30756fc5e52fdcbac0c13f4f24f",
+    "originalCounts": {
+      "operations": 32,
+      "unresolved": 0,
+      "sources": 33
+    },
+    "currentCounts": {
+      "operations": 32,
+      "unresolved": 0,
+      "sources": 33
+    },
+    "originalMicroseconds": {
+      "p50": 451.29200000000003,
+      "p95": 503.041,
+      "mean": 457.7776666666667,
+      "populationStddev": 22.84413788456217
+    },
+    "currentMicroseconds": {
+      "p50": 538.917,
+      "p95": 556.084,
+      "mean": 539.8222333333333,
+      "populationStddev": 13.747660275317953
+    }
+  },
+  {
+    "case": "shell-nested-python-1",
+    "byteIdentical": true,
+    "originalReportSha256": "cd9215fe082f886a80522d5247df095ac554f23b43d4888cdb4fa9c259952b85",
+    "currentReportSha256": "cd9215fe082f886a80522d5247df095ac554f23b43d4888cdb4fa9c259952b85",
+    "originalCounts": {
+      "operations": 2,
+      "unresolved": 0,
+      "sources": 2
+    },
+    "currentCounts": {
+      "operations": 2,
+      "unresolved": 0,
+      "sources": 2
+    },
+    "originalMicroseconds": {
+      "p50": 15.417000000000002,
+      "p95": 16.375,
+      "mean": 15.876466666666667,
+      "populationStddev": 2.1465345363062656
+    },
+    "currentMicroseconds": {
+      "p50": 17.875,
+      "p95": 18.333,
+      "mean": 17.906966666666666,
+      "populationStddev": 0.2634651758561055
+    }
+  },
+  {
+    "case": "shell-nested-python-32",
+    "byteIdentical": true,
+    "originalReportSha256": "01b29f5331051b603e0e0274287c0a06092421d6083aba8dda33d51472e808a8",
+    "currentReportSha256": "01b29f5331051b603e0e0274287c0a06092421d6083aba8dda33d51472e808a8",
+    "originalCounts": {
+      "operations": 64,
+      "unresolved": 0,
+      "sources": 33
+    },
+    "currentCounts": {
+      "operations": 64,
+      "unresolved": 0,
+      "sources": 33
+    },
+    "originalMicroseconds": {
+      "p50": 488.91600000000005,
+      "p95": 538.167,
+      "mean": 492.1333,
+      "populationStddev": 16.192088710540094
+    },
+    "currentMicroseconds": {
+      "p50": 516.125,
+      "p95": 563.458,
+      "mean": 522.7958333333333,
+      "populationStddev": 31.609406708640094
+    }
+  },
+  {
+    "case": "python-lazy-generator-1",
+    "byteIdentical": false,
+    "originalReportSha256": "df34cbb78fde79861db1dd0d5b88166c3306be8902eb83e0f1176f7aa5be4ba2",
+    "currentReportSha256": "51e6f8b8fda2fadf09d5ae4579e0aea0d26c11005d509a2988247ce34247e246",
+    "originalCounts": {
+      "operations": 1,
+      "unresolved": 1,
+      "sources": 1
+    },
+    "currentCounts": {
+      "operations": 0,
+      "unresolved": 1,
+      "sources": 1
+    },
+    "originalMicroseconds": {
+      "p50": 18.5,
+      "p95": 19.042,
+      "mean": 18.552766666666667,
+      "populationStddev": 0.4982674438045852
+    },
+    "currentMicroseconds": {
+      "p50": 13.833,
+      "p95": 14.375,
+      "mean": 13.905533333333333,
+      "populationStddev": 0.18128205157219018
+    }
+  },
+  {
+    "case": "python-lazy-generator-128",
+    "byteIdentical": false,
+    "originalReportSha256": "37e3c48bc2e9a46d8e186a6511788ef813879e1b54fea759866ad9fe9011da43",
+    "currentReportSha256": "0d76b750be91bd2af0f8b1b0095a6f0fe384bbc972c3e8d0bf5ddfcc8f023d5f",
+    "originalCounts": {
+      "operations": 128,
+      "unresolved": 128,
+      "sources": 1
+    },
+    "currentCounts": {
+      "operations": 0,
+      "unresolved": 128,
+      "sources": 1
+    },
+    "originalMicroseconds": {
+      "p50": 2058.667,
+      "p95": 2210.0420000000004,
+      "mean": 2070.1318666666666,
+      "populationStddev": 63.12171222631899
+    },
+    "currentMicroseconds": {
+      "p50": 1487.833,
+      "p95": 1658.25,
+      "mean": 1507.8735333333334,
+      "populationStddev": 66.47154525796901
+    }
+  },
+  {
+    "case": "javascript-deferred-import-1",
+    "byteIdentical": false,
+    "originalReportSha256": "4d71e64155a41bc7b7083813adedab6ca6e0650bb67a63e6fa24da5ce4b9d1fa",
+    "currentReportSha256": "8be8e27e043d489f5d8a28d5fa84e1083f2a1c12a8f8b961b5e5b518054fabee",
+    "originalCounts": {
+      "operations": 1,
+      "unresolved": 0,
+      "sources": 1
+    },
+    "currentCounts": {
+      "operations": 0,
+      "unresolved": 1,
+      "sources": 1
+    },
+    "originalMicroseconds": {
+      "p50": 11.0,
+      "p95": 11.583,
+      "mean": 11.043066666666666,
+      "populationStddev": 0.18267200722120025
+    },
+    "currentMicroseconds": {
+      "p50": 12.667,
+      "p95": 13.416,
+      "mean": 12.755466666666667,
+      "populationStddev": 1.0461941098837992
+    }
+  },
+  {
+    "case": "javascript-deferred-import-128",
+    "byteIdentical": false,
+    "originalReportSha256": "e0a9eb5e01055720c9f83b08c786e4927a6927ba74f37fa288790a561b5aed50",
+    "currentReportSha256": "3b661b8460562e020f3d991912776d9ae9722331fb572660b670b1abcd2463b7",
+    "originalCounts": {
+      "operations": 128,
+      "unresolved": 0,
+      "sources": 1
+    },
+    "currentCounts": {
+      "operations": 0,
+      "unresolved": 128,
+      "sources": 1
+    },
+    "originalMicroseconds": {
+      "p50": 591.041,
+      "p95": 667.541,
+      "mean": 596.8083,
+      "populationStddev": 27.567322415195385
+    },
+    "currentMicroseconds": {
+      "p50": 595.625,
+      "p95": 745.5419999999999,
+      "mean": 604.3832666666666,
+      "populationStddev": 47.210123270285514
+    }
+  },
+  {
+    "case": "javascript-awaited-promises-1",
+    "byteIdentical": true,
+    "originalReportSha256": "80d1525d6f90d9e0d550847d51687931e43e27659d07b73ace6e2e28e4362180",
+    "currentReportSha256": "80d1525d6f90d9e0d550847d51687931e43e27659d07b73ace6e2e28e4362180",
+    "originalCounts": {
+      "operations": 2,
+      "unresolved": 0,
+      "sources": 1
+    },
+    "currentCounts": {
+      "operations": 2,
+      "unresolved": 0,
+      "sources": 1
+    },
+    "originalMicroseconds": {
+      "p50": 22.375,
+      "p95": 22.667,
+      "mean": 22.413899999999998,
+      "populationStddev": 0.19598254173947943
+    },
+    "currentMicroseconds": {
+      "p50": 23.5,
+      "p95": 23.958,
+      "mean": 23.491666666666667,
+      "populationStddev": 0.25876866545666294
+    }
+  },
+  {
+    "case": "javascript-awaited-promises-128",
+    "byteIdentical": true,
+    "originalReportSha256": "3a683820b048d83e29d915ede8ae39c2ab473a73f4fb4773a96453a88e566c14",
+    "currentReportSha256": "3a683820b048d83e29d915ede8ae39c2ab473a73f4fb4773a96453a88e566c14",
+    "originalCounts": {
+      "operations": 256,
+      "unresolved": 0,
+      "sources": 1
+    },
+    "currentCounts": {
+      "operations": 256,
+      "unresolved": 0,
+      "sources": 1
+    },
+    "originalMicroseconds": {
+      "p50": 2074.417,
+      "p95": 2190.9590000000003,
+      "mean": 2091.0666,
+      "populationStddev": 57.36739054468723
+    },
+    "currentMicroseconds": {
+      "p50": 2060.292,
+      "p95": 2191.292,
+      "mean": 2074.7805,
+      "populationStddev": 64.60757271649098
+    }
+  },
+  {
+    "case": "python-alias-expansion-1",
+    "byteIdentical": true,
+    "originalReportSha256": "e1e2bca86ac79e7f0ee120e04e025abb941a18928f0105554c8c898649c8077b",
+    "currentReportSha256": "e1e2bca86ac79e7f0ee120e04e025abb941a18928f0105554c8c898649c8077b",
+    "originalCounts": {
+      "operations": 0,
+      "unresolved": 0,
+      "sources": 1
+    },
+    "currentCounts": {
+      "operations": 0,
+      "unresolved": 0,
+      "sources": 1
+    },
+    "originalMicroseconds": {
+      "p50": 84.375,
+      "p95": 86.25,
+      "mean": 84.75833333333334,
+      "populationStddev": 0.918655478886883
+    },
+    "currentMicroseconds": {
+      "p50": 83.834,
+      "p95": 94.0,
+      "mean": 84.71523333333333,
+      "populationStddev": 3.2947051024670206
+    }
+  },
+  {
+    "case": "javascript-alias-expansion-1",
+    "byteIdentical": true,
+    "originalReportSha256": "1c36af73346b5f17584354879961e0441149fe840460cbc6d5850c14b605dec3",
+    "currentReportSha256": "1c36af73346b5f17584354879961e0441149fe840460cbc6d5850c14b605dec3",
+    "originalCounts": {
+      "operations": 0,
+      "unresolved": 0,
+      "sources": 1
+    },
+    "currentCounts": {
+      "operations": 0,
+      "unresolved": 0,
+      "sources": 1
+    },
+    "originalMicroseconds": {
+      "p50": 85.875,
+      "p95": 88.917,
+      "mean": 86.30973333333333,
+      "populationStddev": 1.166893680770543
+    },
+    "currentMicroseconds": {
+      "p50": 87.708,
+      "p95": 91.0,
+      "mean": 88.40133333333333,
+      "populationStddev": 1.3795419126974322
+    }
+  },
+  {
+    "case": "python-alias-expansion-128",
+    "byteIdentical": false,
+    "originalReportSha256": "4443739a677575768789477a97ae54efd9f99c738e4c27febd68d0d4f05e1153",
+    "currentReportSha256": "e1cd264cac96320f37be7814c5417da454bef31d06f786825219b39a383e3bff",
+    "originalCounts": {
+      "operations": 0,
+      "unresolved": 0,
+      "sources": 1
+    },
+    "currentCounts": {
+      "operations": 0,
+      "unresolved": 1,
+      "sources": 1
+    },
+    "originalMicroseconds": {
+      "p50": 340.58299999999997,
+      "p95": 351.291,
+      "mean": 341.8611666666667,
+      "populationStddev": 6.925114083697268
+    },
+    "currentMicroseconds": {
+      "p50": 302.416,
+      "p95": 350.75,
+      "mean": 307.0514,
+      "populationStddev": 16.149374868396603
+    }
+  },
+  {
+    "case": "javascript-alias-expansion-128",
+    "byteIdentical": false,
+    "originalReportSha256": "a9156add437f61de27ebd6d647cd9263ac85d6c4dba61133116cb960a90e38f2",
+    "currentReportSha256": "af7010babed0fad194add4ef46facef7ee4c3dfa82f06978ee9ca8c93b57badf",
+    "originalCounts": {
+      "operations": 0,
+      "unresolved": 0,
+      "sources": 1
+    },
+    "currentCounts": {
+      "operations": 0,
+      "unresolved": 1,
+      "sources": 1
+    },
+    "originalMicroseconds": {
+      "p50": 312.208,
+      "p95": 390.166,
+      "mean": 317.0513,
+      "populationStddev": 23.59875030893232
+    },
+    "currentMicroseconds": {
+      "p50": 265.91700000000003,
+      "p95": 296.91700000000003,
+      "mean": 271.3334,
+      "populationStddev": 20.271698964484123
+    }
+  }
+]

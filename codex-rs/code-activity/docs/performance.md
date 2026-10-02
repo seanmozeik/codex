@@ -83,15 +83,19 @@ counts; they are not hard wall-clock or native tree-sitter memory limits.
 
 ## Actual run receipt
 
-Actual measurements cover **111 cases / 222 pipeline runs**, on Apple M1 Ultra,
+The final current-base measurements cover **111 cases / 222 pipeline runs**, on Apple M1 Ultra,
 20 logical CPUs, 64 GiB RAM, macOS 27.0.1 (26A434), native arm64, Rust/Cargo
 1.95.0. Measured code commit:
-`59d2071a84ffb2f1040d0d1fe4dfa2fb50c2840c`. Later receipt/document additions
+`0b499de7367f947a082bc4560bcf1d5775d44846`. It includes official Codex base
+`c5d242fa7907bff1b7a7e26e95febc548c0a6963`. Later receipt/document additions
 do not change its compiled parser, tests or benchmark examples; the receipt
 hashes every measured Rust file, dataset and driver. The inherited release
 profile uses opt-level 3, thin LTO, four codegen units, line-table debug info and
 no stripping. Grammar/runtime versions are tree-sitter 0.25.10, Python 0.25.0,
 TypeScript 0.23.2 and Bash 0.25.1 (actual locks).
+
+The earlier receipt remains separately in `benchmarks/2026-10-02`, anchored to
+`59d2071…` on base `ca466061…`; it is not relabeled as the final build.
 
 Runs were serial at `nice -n 10`, after compilation finished. No Juno release
 compiler was observed before the measurements. This was a desktop with ordinary
@@ -100,10 +104,10 @@ statistical isolation. A one-sample consumer pilot selected measured/warmup
 counts: mean above 50 ms → 3/1, above 5 ms → 10/2, otherwise 30/3. Counts and
 every raw sample are retained; p95 with three samples is simply the maximum.
 
-The complete [run receipt](benchmarks/2026-10-02/run-receipt.json),
-[raw measurements](benchmarks/2026-10-02/measurements.jsonl),
-[pilot](benchmarks/2026-10-02/pilot-consumer.jsonl) and
-[exact compressed source corpus](benchmarks/2026-10-02/corpus-v1.jsonl.gz)
+The complete [run receipt](benchmarks/2026-10-02-current/run-receipt.json),
+[raw measurements](benchmarks/2026-10-02-current/measurements.jsonl),
+[pilot](benchmarks/2026-10-02-current/pilot-consumer.jsonl) and
+[exact compressed source corpus](benchmarks/2026-10-02-current/corpus-v1.jsonl.gz)
 are versioned. Expanded corpus SHA-256:
 `e3fbada8bf267f2a027e2e38c3a7e4bd2a8f3a95a761033210b215ad27b2dbaf`.
 Calls/sec and input bytes/sec use measured iteration count / summed timed
@@ -111,24 +115,24 @@ duration; they include ownership, analysis and consumer work, not stdout.
 
 | Consumer case | Input bytes | Median / p95, ms | Ops / gaps / sources | Samples | Calls/sec |
 |---|---:|---:|---:|---:|---:|
-| Python direct, 1 | 39 | 0.0177 / 0.0219 | 2 / 0 / 1 | 30 | 53,437 |
-| Python direct, 16 | 624 | 0.2278 / 0.2513 | 32 / 0 / 1 | 30 | 4,360 |
-| Python direct, 128 | 4,992 | 1.8421 / 1.9292 | 256 / 0 / 1 | 30 | 541 |
-| Python direct, 512 | 19,968 | 5.8115 / 6.0272 | 256 / 256 / 1 | 10 | 172 |
-| JavaScript direct, 128 | 5,144 | 1.0495 / 1.1674 | 128 / 0 / 1 | 30 | 941 |
-| Typed TS function, 128 | 1,906 | 0.9579 / 1.0248 | 128 / 0 / 1 | 30 | 1,036 |
-| Shell → Node, 32 | 1,984 | 0.5862 / 0.6030 | 32 / 0 / 33 | 30 | 1,699 |
-| TS tool → shell → Python, 32 | 3,776 | 1.0749 / 1.1381 | 62 / 1 / 64 | 30 | 919 |
-| Python comments, 8,192 | 311,321 | 6,031.1010 / 6,040.1104 | 1 / 0 / 1 | 3 | 0.17 |
-| Accepted single-comment source cap | 1,048,576 | 7.3165 / 7.5228 | 0 / 0 / 1 | 10 | 136 |
-| Rejected source over cap | 1,048,577 | 0.0235 / 0.0258 | 0 / 1 / 1 | 30 | 41,885 |
+| Python direct, 1 | 39 | 0.0173 / 0.0206 | 2 / 0 / 1 | 30 | 55,693 |
+| Python direct, 16 | 624 | 0.2200 / 0.2308 | 32 / 0 / 1 | 30 | 4,517 |
+| Python direct, 128 | 4,992 | 1.7556 / 1.8395 | 256 / 0 / 1 | 30 | 564 |
+| Python direct, 512 | 19,968 | 5.6094 / 5.7601 | 256 / 256 / 1 | 10 | 177 |
+| JavaScript direct, 128 | 5,144 | 1.0263 / 1.2268 | 128 / 0 / 1 | 30 | 949 |
+| Typed TS function, 128 | 1,906 | 0.9557 / 1.0337 | 128 / 0 / 1 | 30 | 1,035 |
+| Shell → Node, 32 | 1,984 | 0.5895 / 0.6522 | 32 / 0 / 33 | 30 | 1,674 |
+| TS tool → shell → Python, 32 | 3,776 | 1.0750 / 1.1977 | 62 / 1 / 64 | 30 | 920 |
+| Python comments, 8,192 | 311,321 | 6,171.4136 / 6,275.4962 | 1 / 0 / 1 | 3 | 0.16 |
+| Accepted single-comment source cap | 1,048,576 | 7.7345 / 7.9120 | 0 / 0 / 1 | 10 | 129 |
+| Rejected source over cap | 1,048,577 | 0.0287 / 0.0333 | 0 / 1 / 1 | 30 | 34,323 |
 
 These are descriptive host measurements, not performance guarantees. Python
 direct-512 hits report caps, and nested tool-32 hits the source cap; their output
 is incomplete. Over-cap throughput measures rejection. Empty comment-only
 reports are opaque, not evidence of safety. In the separate parse/emission
-pipeline, Python direct-1 measured 12.7/17.1 µs median/p95; adding the tested
-local consumer measured 17.7/21.9 µs. This is not a live Codex dispatch/event/UI
+pipeline, Python direct-1 measured 12.5/19.0 µs median/p95; adding the tested
+local consumer measured 17.2/20.6 µs. This is not a live Codex dispatch/event/UI
 benchmark and does not include AI inference or permission handling.
 
 ## Original parser comparison and memory
@@ -136,27 +140,27 @@ benchmark and does not include AI inference or permission handling.
 The original commit is `125f907ca4ea38ee3c59f20b60d46d9f7e0a4acc`.
 A [source-only archive with its Apache-2.0 license](benchmarks/2026-10-02/baseline-125f907.tar.gz)
 makes it reproducible without private guidance or discussion files.
-[Baseline metadata](benchmarks/2026-10-02/baseline-metadata.json) records archive,
+[Baseline metadata](benchmarks/2026-10-02-current/baseline-metadata.json) records archive,
 identical harness and binary hashes/sizes/profiles. Both use the exact
 `examples/compare.rs` source, locked parser dependency versions, Rust 1.95.0,
 owned requests, a reused parser, original Report JSON and output destruction,
 with 30 measured iterations / three warmups. Setup/input decoding/startup are
 outside the timing window.
 
-Of [32 common cases](benchmarks/2026-10-02/common-case-ids.json), **14 reports are
+Of [32 common cases](benchmarks/2026-10-02-current/common-case-ids.json), **14 reports are
 byte-identical**. The other 18 retain their timings/counts as semantic deltas,
 not equivalent-work speed comparisons. See
-[report equivalence hashes](benchmarks/2026-10-02/common-equivalence.json),
-[summary and variance](benchmarks/2026-10-02/comparison-summary.json),
-[original raw samples](benchmarks/2026-10-02/common-original-125f907.jsonl) and
-[current raw samples](benchmarks/2026-10-02/common-current.jsonl).
+[report equivalence hashes](benchmarks/2026-10-02-current/common-equivalence.json),
+[summary and variance](benchmarks/2026-10-02-current/comparison-summary.json),
+[original raw samples](benchmarks/2026-10-02-current/common-original-125f907.jsonl) and
+[current raw samples](benchmarks/2026-10-02-current/common-current.jsonl).
 
 | Byte-identical case | Original median / p95, ms | Current median / p95, ms |
-|---|---:|---:|
-| Python direct, 128 | 1.2108 / 1.2853 | 1.6495 / 2.2957 |
-| JavaScript direct, 128 | 0.7299 / 0.7630 | 0.7754 / 0.8134 |
-| Shell → Node, 32 | 0.4166 / 0.4277 | 0.5024 / 0.5368 |
-| Awaited JS promises, 128 | 1.9455 / 2.1960 | 1.9918 / 2.0538 |
+|---|---:|---:|---:|
+| Python direct, 128 | 1.3164 / 1.4112 | 1.3500 / 1.4239 |
+| JavaScript direct, 128 | 0.7967 / 0.8655 | 0.8041 / 0.9097 |
+| Shell → Node, 32 | 0.4513 / 0.5030 | 0.5389 / 0.5561 |
+| Awaited JS promises, 128 | 2.0744 / 2.1910 | 2.0603 / 2.1913 |
 
 The current parser generally costs more in these samples; this is a correctness,
 resource-control and output-contract change, **not a demonstrated speedup**.
@@ -165,9 +169,9 @@ not infer statistically significant regressions from this single-host run or
 subtract unlike pipelines as exact per-stage costs.
 
 Fresh-process `/usr/bin/time -l` logs cover 12 selected consumer cases.
-Their peak RSS ranges from **17,104,896 to 20,430,848 bytes** (16.3–19.5 MiB).
+Their peak RSS ranges from **17,121,280 to 22,560,768 bytes** (16.3–21.5 MiB).
 Both common comparison processes use the same 32-input corpus and timed scope:
-original peak **7,651,328 bytes**, current **11,894,784 bytes**. Binary sizes are
+original peak **7,831,552 bytes**, current **11,845,632 bytes**. Binary sizes are
 4,412,664 and 13,707,912 bytes respectively; the current in-tree build also has
 Codex dependency/adapter code. These are process footprint observations,
 including setup/input buffers/allocator retention and build graph differences,
@@ -177,7 +181,7 @@ common logs and selected `<case>.time.txt` files are in the receipt directory.
 ## Native parsing limit found by the stress run
 
 The repeated Python comment case grows from 38,937 bytes / 1,024 comment lines
-at about 94 ms to 311,321 bytes / 8,192 lines at about **6.03 seconds** in the
+at about 96 ms to 311,321 bytes / 8,192 lines at about **6.17 seconds** in the
 consumer run. A separate [parse-only diagnostic](benchmarks/2026-10-02/parse-only.rs),
 with the same pinned grammar/runtime and profile, measured native parsing,
 root metadata queries and tree destruction at **101 ms / 6.509 seconds**

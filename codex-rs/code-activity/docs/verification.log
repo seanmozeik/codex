@@ -1,932 +1,201 @@
-Standalone gate
-cargo fmt --all --check
-cargo check --all-targets --locked
-    Checking codex-code-activity v0.1.0 (<review-workspace>/code-activity)
-    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.81s
-just clippy
-cargo clippy --all-targets --locked -- -D warnings
-    Checking codex-code-activity v0.1.0 (<review-workspace>/code-activity)
-    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.82s
-just rust-line-counts
-just test-runtime
-cargo nextest run --all-targets --locked --no-fail-fast --run-ignored all
-   Compiling codex-code-activity v0.1.0 (<review-workspace>/code-activity)
-    Finished `test` profile [unoptimized + debuginfo] target(s) in 1.55s
+Current validation code: 0b499de7367f947a082bc4560bcf1d5775d44846
+Official Codex base: c5d242fa7907bff1b7a7e26e95febc548c0a6963
+Commands and scope: docs/verification.md; exact benchmark commands: final run receipt.
+
+Current formatting
+Warning: can't set `imports_granularity = Item`, unstable features are only available in nightly channel.
+Warning: can't set `imports_granularity = Item`, unstable features are only available in nightly channel.
+Warning: can't set `imports_granularity = Item`, unstable features are only available in nightly channel.
+Warning: can't set `imports_granularity = Item`, unstable features are only available in nightly channel.
+Warning: can't set `imports_granularity = Item`, unstable features are only available in nightly channel.
+Warning: can't set `imports_granularity = Item`, unstable features are only available in nightly channel.
+Warning: can't set `imports_granularity = Item`, unstable features are only available in nightly channel.
+Warning: can't set `imports_granularity = Item`, unstable features are only available in nightly channel.
+Warning: can't set `imports_granularity = Item`, unstable features are only available in nightly channel.
+Warning: can't set `imports_granularity = Item`, unstable features are only available in nightly channel.
+Warning: can't set `imports_granularity = Item`, unstable features are only available in nightly channel.
+Warning: can't set `imports_granularity = Item`, unstable features are only available in nightly channel.
+Warning: can't set `imports_granularity = Item`, unstable features are only available in nightly channel.
+Warning: can't set `imports_granularity = Item`, unstable features are only available in nightly channel.
+Warning: can't set `imports_granularity = Item`, unstable features are only available in nightly channel.
+Warning: can't set `imports_granularity = Item`, unstable features are only available in nightly channel.
+Warning: can't set `imports_granularity = Item`, unstable features are only available in nightly channel.
+Warning: can't set `imports_granularity = Item`, unstable features are only available in nightly channel.
+Warning: can't set `imports_granularity = Item`, unstable features are only available in nightly channel.
+Warning: can't set `imports_granularity = Item`, unstable features are only available in nightly channel.
+Warning: can't set `imports_granularity = Item`, unstable features are only available in nightly channel.
+Warning: can't set `imports_granularity = Item`, unstable features are only available in nightly channel.
+Warning: can't set `imports_granularity = Item`, unstable features are only available in nightly channel.
+Warning: can't set `imports_granularity = Item`, unstable features are only available in nightly channel.
+Warning: can't set `imports_granularity = Item`, unstable features are only available in nightly channel.
+Warning: can't set `imports_granularity = Item`, unstable features are only available in nightly channel.
+Warning: can't set `imports_granularity = Item`, unstable features are only available in nightly channel.
+
+Current all-target strict Clippy
+Checking codex-protocol v0.0.0 (<WORKSPACE>/codex-fork/codex-rs/protocol)
+    Checking codex-shell-command v0.0.0 (<WORKSPACE>/codex-fork/codex-rs/shell-command)
+    Checking codex-code-activity v0.0.0 (<WORKSPACE>/codex-fork/codex-rs/code-activity)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 13.27s
+
+Current all-target nextest, including ignored fixtures
+Compiling codex-protocol v0.0.0 (<WORKSPACE>/codex-fork/codex-rs/protocol)
+   Compiling codex-shell-command v0.0.0 (<WORKSPACE>/codex-fork/codex-rs/shell-command)
+   Compiling codex-code-activity v0.0.0 (<WORKSPACE>/codex-fork/codex-rs/code-activity)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 22.98s
 ────────────
- Nextest run ID 272ffabd-d152-40da-ba11-40aaf96ef53c with nextest profile: default
-    Starting 88 tests across 16 binaries
-        PASS [   0.018s] ( 1/88) codex-code-activity::analysis different_destination_is_write_not_edit
-        PASS [   0.019s] ( 2/88) codex-code-activity::analysis branch_operations_are_conditional_intent
-        PASS [   0.019s] ( 3/88) codex-code-activity::analysis snapshots_diff_noop_and_partial_failure_are_independent_of_intent
-        PASS [   0.020s] ( 4/88) codex-code-activity::analysis heredoc_written_as_data_is_not_executed
-        PASS [   0.020s] ( 5/88) codex-code-activity::analysis typescript_namespace_and_dynamic_import
-        PASS [   0.020s] ( 6/88) codex-code-activity::analysis regex_intent_is_not_a_computed_diff
-        PASS [   0.020s] ( 7/88) codex-code-activity::analysis builtin_open_tracks_dataflow
-        PASS [   0.020s] ( 8/88) codex-code-activity::analysis typescript_import_alias_and_await
-        PASS [   0.020s] ( 9/88) codex-code-activity::analysis subprocess_alias_has_argv_and_no_execution_claim
-        PASS [   0.020s] (10/88) codex-code-activity::analysis omitted_snapshot_inputs_remain_visible
-        PASS [   0.020s] (11/88) codex-code-activity::analysis syntax_errors_do_not_produce_partial_claims
-        PASS [   0.020s] (12/88) codex-code-activity::analysis comments_and_strings_are_not_calls
-        PASS [   0.020s] (13/88) codex-code-activity::analysis nested_codex_envelope_unwraps_both_languages
-        PASS [   0.020s] (14/88) codex-code-activity::analysis python_slice_splice_preserves_origin_without_evaluating_indices
-        PASS [   0.021s] (15/88) codex-code-activity::analysis typescript_subprocess_and_bun
-        PASS [   0.022s] (16/88) codex-code-activity::analysis shadowed_builtin_is_not_file_access
-        PASS [   0.022s] (17/88) codex-code-activity::analysis sessions_do_not_share_bindings
-        PASS [   0.022s] (18/88) codex-code-activity::analysis python_alias_and_chained_edit
-        PASS [   0.025s] (19/88) codex-code-activity::analysis expanding_constants_and_arrays_abstain_before_growth
-        PASS [   0.030s] (20/88) codex-code-activity::analysis source_and_operation_budgets
-        PASS [   0.014s] (21/88) codex-code-activity::analysis unknown_call_invalidates_known_paths
-        PASS [   0.015s] (22/88) codex-code-activity::analysis uninvoked_functions_do_not_emit_edits
-        PASS [   0.014s] (23/88) codex-code-activity::analysis unquoted_heredoc_is_unresolved
-        PASS [   0.016s] (24/88) codex-code-activity::analysis with_handles_and_append_mode
-        PASS [   0.016s] (25/88) codex-code-activity::function_limits called_body_spans_and_repeated_counts_are_preserved
-        PASS [   0.017s] (26/88) codex-code-activity::budget_review typescript_type_only_imports_supply_no_runtime_api
-        PASS [   0.016s] (27/88) codex-code-activity::function_limits a_recursive_result_cannot_restore_a_literal_target
-        PASS [   0.017s] (28/88) codex-code-activity::budget_review nested_tool_execution_context_is_never_silently_assumed
-        PASS [   0.016s] (29/88) codex-code-activity::language_review inert_json_options_keep_independent_file_targets
-        PASS [   0.015s] (30/88) codex-code-activity::language_review python_defaults_execute_at_definition_without_executing_body
-        PASS [   0.016s] (31/88) codex-code-activity::language_review javascript_callback_options_invalidate_enclosing_paths
-        PASS [   0.017s] (32/88) codex-code-activity::language_review implicit_javascript_callbacks_inside_objects_invalidate_paths
-        PASS [   0.017s] (33/88) codex-code-activity::language_review python_callback_keywords_do_not_preserve_old_paths
-        PASS [   0.020s] (34/88) codex-code-activity::budget_review malformed_children_cannot_overflow_a_saturated_report
-        PASS [   0.019s] (35/88) codex-code-activity::language_review literal_callbacks_have_explicit_iteration_limits
-        PASS [   0.013s] (36/88) codex-code-activity::language_review typed_wrapper_preserves_nested_tool_source_and_workdir
-        PASS [   0.019s] (37/88) codex-code-activity::language_review tripwire_outputs_do_not_override_language_semantics
-        PASS [   0.024s] (38/88) codex-code-activity::function_goldens local_functions_preserve_exact_effects_and_source_evidence
-        PASS [   0.013s] (39/88) codex-code-activity::lifecycle capture::a_change_after_failed_start_is_not_attributed_to_the_tool
-        PASS [   0.027s] (40/88) codex-code-activity::function_limits function_and_scope_growth_abstain_with_explicit_budgets
-        PASS [   0.014s] (41/88) codex-code-activity::language_review unknown_javascript_callback_values_invalidate_paths
-        PASS [   0.013s] (42/88) codex-code-activity::lifecycle capture::capture_byte_limit_is_reported_without_extra_reads
-        PASS [   0.015s] (43/88) codex-code-activity::language_review uncalled_unsupported_bodies_do_not_emit_file_activity
-        PASS [   0.013s] (44/88) codex-code-activity::lifecycle capture::capture_path_limit_is_reported_without_extra_reads
-        PASS [   0.014s] (45/88) codex-code-activity::lifecycle capture::dynamic_targets_are_visible_and_host_paths_can_supply_observation
-        PASS [   0.014s] (46/88) codex-code-activity::lifecycle capture::prepare_captures_at_dispatch_and_keeps_original_text_out_of_events
-        PASS [   0.015s] (47/88) codex-code-activity::lifecycle capture::empty_creation_deletion_and_read_observations_remain_distinct
-        PASS [   0.015s] (48/88) codex-code-activity::lifecycle capture::symlinks_are_not_followed
-        PASS [   0.015s] (49/88) codex-code-activity::lifecycle capture::provider_limits_and_unknown_baselines_prevent_false_diffs
-        PASS [   0.017s] (50/88) codex-code-activity::lifecycle capture::mutation_on_open_is_observed_without_a_write_call
-        PASS [   0.017s] (51/88) codex-code-activity::lifecycle capture::success_unchanged_failure_unchanged_and_failed_start_are_separate
-        PASS [   0.017s] (52/88) codex-code-activity::lifecycle capture::unsupported_paths_and_content_are_unknown_not_unchanged
-        PASS [   0.013s] (53/88) codex-code-activity::lifecycle streaming::incomplete_call_preserves_prior_intent_then_finishes
-        PASS [   0.012s] (54/88) codex-code-activity::lifecycle streaming::oversized_stream_cannot_be_prepared_from_a_retained_prefix
-        PASS [   0.017s] (55/88) codex-code-activity::lifecycle streaming::incomplete_final_call_retracts_all_pending_intent
-        PASS [   0.015s] (56/88) codex-code-activity::lifecycle streaming::later_tokens_can_retract_a_valid_preview
-        PASS [   0.015s] (57/88) codex-code-activity::lifecycle streaming::terminal_result_adapter_rejects_running_sessions_and_stdout_status_guesses
-        PASS [   0.043s] (58/88) codex-code-activity::function_goldens function_streams_rebuild_the_same_final_report_at_utf8_boundaries
-        PASS [   0.017s] (59/88) codex-code-activity::parity_controls changing_loop_alias_does_not_reuse_first_iteration_meaning
-        PASS [   0.017s] (60/88) codex-code-activity::parity_controls child_options_do_not_supply_a_false_execution_context
-        PASS [   0.015s] (61/88) codex-code-activity::parity_controls differing_branch_paths_remain_unresolved_after_merge
-        PASS [   0.017s] (62/88) codex-code-activity::parity_controls deletion_and_truncation_targets_enter_capture_without_execution
-        PASS [   0.016s] (63/88) codex-code-activity::parity_controls explicit_modes_remain_distinct_from_empty_output
-        PASS [   0.014s] (64/88) codex-code-activity::parity_controls read_with_mutating_flag_emits_open_intent
-        PASS [   0.014s] (65/88) codex-code-activity::parity_controls shell_option_values_and_script_arguments_are_not_code
-        PASS [   0.015s] (66/88) codex-code-activity::parity_controls python_and_node_path_join_keep_their_own_absolute_component_rules
-        PASS [   0.016s] (67/88) codex-code-activity::parity_controls nested_child_interpreter_retains_process_and_file_intent
-        PASS [   0.013s] (68/88) codex-code-activity::review_regressions dynamic_tool_workdir_does_not_fall_back_to_parent_directory
-        PASS [   0.019s] (69/88) codex-code-activity::parity_controls loop_and_json_support_is_stable_across_stream_revisions
-        PASS [   0.014s] (70/88) codex-code-activity::review_regressions branch_alternatives_inherit_condition_side_effects
-        PASS [   0.011s] (71/88) codex-code-activity::review_regressions python_loop_else_effects_are_inspected
-        PASS [   0.013s] (72/88) codex-code-activity::review_regressions path_operations_preserve_language_specific_filesystem_meaning
-        PASS [   0.011s] (73/88) codex-code-activity::review_regressions unknown_comprehension_code_does_not_restore_prior_bindings
-        PASS [   0.012s] (74/88) codex-code-activity::shell_review conditional_directory_changes_join_to_unknown
-        PASS [   0.014s] (75/88) codex-code-activity::shell_review competing_input_redirects_never_supply_interpreter_source
-        PASS [   0.012s] (76/88) codex-code-activity::shell_review directory_flags_never_become_path_components
-        PASS [   0.012s] (77/88) codex-code-activity::shell_review deno_eval_options_belong_to_the_eval_subcommand
-        PASS [   0.012s] (78/88) codex-code-activity::shell_review pipeline_stages_do_not_change_sibling_or_caller_directories
-        PASS [   0.014s] (79/88) codex-code-activity::shell_review inline_environment_assignments_keep_source_context_uncertain
-        PASS [   0.013s] (80/88) codex-code-activity::shell_review quoted_paths_are_distinct_from_tilde_and_brace_expansions
-        PASS [   0.014s] (81/88) codex-code-activity::shell_review stdout_redirects_remain_uncertain_alongside_literal_input
-        PASS [   0.015s] (82/88) codex-code-activity::shell_review unresolved_shell_definitions_do_not_reassert_interpreter_identity
-        PASS [   0.042s] (83/88) codex-code-activity::lifecycle streaming::every_utf8_fragment_boundary_produces_the_same_final_analysis
-        PASS [   0.022s] (84/88) codex-code-activity::tripwire_parity unsupported_inputs_are_described_or_marked_uncertain
-        PASS [   0.030s] (85/88) codex-code-activity::tripwire_parity rust_recognizes_every_resolved_tripwire_operation
-        PASS [   0.070s] (86/88) codex-code-activity::lifecycle runtime::real_python_regex_edit_survives_later_process_failure
-        PASS [   0.046s] (87/88) codex-code-activity::tripwire_parity shell_carriers_preserve_tripwire_source_operations
-        PASS [   0.142s] (88/88) codex-code-activity::lifecycle runtime::real_javascript_regex_callback_uses_observed_content
+ Nextest run ID 206de054-065c-428d-98e6-faf19f820a58 with nextest profile: default
+    Starting 139 tests across 27 binaries
+        PASS [   0.014s] (  1/139) codex-code-activity::analysis branch_operations_are_conditional_intent
+        PASS [   0.019s] (  2/139) codex-code-activity interpret::calls::process::tests::repeated_payload_aliases_bound_the_pending_queue
+        PASS [   0.011s] (  3/139) codex-code-activity::analysis builtin_open_tracks_dataflow
+        PASS [   0.011s] (  4/139) codex-code-activity::analysis comments_and_strings_are_not_calls
+        PASS [   0.011s] (  5/139) codex-code-activity::analysis different_destination_is_write_not_edit
+        PASS [   0.016s] (  6/139) codex-code-activity::analysis expanding_constants_and_arrays_abstain_before_growth
+        PASS [   0.011s] (  7/139) codex-code-activity::analysis heredoc_written_as_data_is_not_executed
+        PASS [   0.012s] (  8/139) codex-code-activity::analysis nested_codex_envelope_unwraps_both_languages
+        PASS [   0.010s] (  9/139) codex-code-activity::analysis omitted_snapshot_inputs_remain_visible
+        PASS [   0.011s] ( 10/139) codex-code-activity::analysis python_slice_splice_preserves_origin_without_evaluating_indices
+        PASS [   0.011s] ( 11/139) codex-code-activity::analysis python_alias_and_chained_edit
+        PASS [   0.012s] ( 12/139) codex-code-activity::analysis regex_intent_is_not_a_computed_diff
+        PASS [   0.012s] ( 13/139) codex-code-activity::analysis sessions_do_not_share_bindings
+        PASS [   0.012s] ( 14/139) codex-code-activity::analysis shadowed_builtin_is_not_file_access
+        PASS [   0.012s] ( 15/139) codex-code-activity::analysis snapshots_diff_noop_and_partial_failure_are_independent_of_intent
+        PASS [   0.012s] ( 16/139) codex-code-activity::analysis subprocess_alias_has_argv_and_no_execution_claim
+        PASS [   0.020s] ( 17/139) codex-code-activity::analysis source_and_operation_budgets
+        PASS [   0.011s] ( 18/139) codex-code-activity::analysis syntax_errors_do_not_produce_partial_claims
+        PASS [   0.011s] ( 19/139) codex-code-activity::analysis typescript_import_alias_and_await
+        PASS [   0.011s] ( 20/139) codex-code-activity::analysis typescript_namespace_and_dynamic_import
+        PASS [   0.011s] ( 21/139) codex-code-activity::analysis typescript_subprocess_and_bun
+        PASS [   0.010s] ( 22/139) codex-code-activity::analysis uninvoked_functions_do_not_emit_edits
+        PASS [   0.010s] ( 23/139) codex-code-activity::analysis unquoted_heredoc_is_unresolved
+        PASS [   0.011s] ( 24/139) codex-code-activity::analysis unknown_call_invalidates_known_paths
+        PASS [   0.011s] ( 25/139) codex-code-activity::analysis with_handles_and_append_mode
+        PASS [   0.016s] ( 26/139) codex-code-activity::budget_review malformed_children_cannot_overflow_a_saturated_report
+        PASS [   0.011s] ( 27/139) codex-code-activity::budget_review nested_tool_execution_context_is_never_silently_assumed
+        PASS [   0.020s] ( 28/139) codex-code-activity::budget_review nested_source_capacity_is_reported_before_queued_children_are_parsed
+        PASS [   0.011s] ( 29/139) codex-code-activity::budget_review typescript_type_only_imports_supply_no_runtime_api
+        PASS [   0.013s] ( 30/139) codex-code-activity::codex_adapter direct_python_argv_and_missing_source_are_explicitly_unsupported
+        PASS [   0.013s] ( 31/139) codex-code-activity::codex_adapter executor_uris_are_retained_without_host_path_resolution
+        PASS [   0.012s] ( 32/139) codex-code-activity::codex_adapter invalid_final_shell_source_has_no_predicted_operations
+        PASS [   0.012s] ( 33/139) codex-code-activity::codex_adapter lifecycle_status_never_turns_intent_into_observed_changes
+        PASS [   0.011s] ( 34/139) codex-code-activity::codex_adapter mixed_known_and_unknown_source_keeps_gaps_and_legacy_unknown
+        PASS [   0.012s] ( 35/139) codex-code-activity::codex_adapter nested_typescript_child_source_remains_static_provenance
+        PASS [   0.010s] ( 36/139) codex-code-activity::codex_adapter original_item_and_conservative_actions_are_preserved
+        PASS [   0.011s] ( 37/139) codex-code-activity::codex_adapter powershell_carriers_explicitly_abstain_instead_of_using_bash
+        PASS [   0.011s] ( 38/139) codex-code-activity::codex_adapter real_codex_extractor_preserves_shell_and_nested_source_intent
+        PASS [   0.011s] ( 39/139) codex-code-activity::codex_adapter serialized_prototype_keeps_independent_status_and_static_basis
+        PASS [   0.011s] ( 40/139) codex-code-activity::codex_adapter source_mentions_in_comments_and_strings_do_not_invent_file_effects
+        PASS [   0.013s] ( 41/139) codex-code-activity::contract actual_codex_item_remains_independent_of_consumer_contract
+        PASS [   0.011s] ( 42/139) codex-code-activity::contract envelope_preserves_legacy_records_and_exposes_versioned_shape
+        PASS [   0.011s] ( 43/139) codex-code-activity::contract repeated_analysis_emits_identical_bytes_and_report_local_ids
+        PASS [   0.012s] ( 44/139) codex-code-activity::contract representative_languages_flow_through_records_to_typed_ui_rows
+        PASS [   0.011s] ( 45/139) codex-code-activity::contract schema_artifact_matches_emitted_variants_and_resource_caps
+        PASS [   0.011s] ( 46/139) codex-code-activity::contract unknown_contract_version_is_rejected_instead_of_assumed_compatible
+        PASS [   0.010s] ( 47/139) codex-code-activity::contract unknown_targets_and_gaps_remain_visible_even_with_known_rows
+        PASS [   0.010s] ( 48/139) codex-code-activity::contract unsupported_core_carrier_is_explicit_and_never_an_empty_success
+        PASS [   0.157s] ( 49/139) codex-code-activity::codex_adapter oversized_source_abstains_before_copying_or_parsing
+        PASS [   0.039s] ( 50/139) codex-code-activity::function_goldens function_streams_rebuild_the_same_final_report_at_utf8_boundaries
+        PASS [   0.019s] ( 51/139) codex-code-activity::function_goldens local_functions_preserve_exact_effects_and_source_evidence
+        PASS [   0.013s] ( 52/139) codex-code-activity::function_limits a_recursive_result_cannot_restore_a_literal_target
+        PASS [   0.011s] ( 53/139) codex-code-activity::function_limits called_body_spans_and_repeated_counts_are_preserved
+        PASS [   0.013s] ( 54/139) codex-code-activity::language_review implicit_javascript_callbacks_inside_objects_invalidate_paths
+        PASS [   0.023s] ( 55/139) codex-code-activity::function_limits function_and_scope_growth_abstain_with_explicit_budgets
+        PASS [   0.013s] ( 56/139) codex-code-activity::language_review inert_json_options_keep_independent_file_targets
+        PASS [   0.013s] ( 57/139) codex-code-activity::language_review javascript_callback_options_invalidate_enclosing_paths
+        PASS [   0.014s] ( 58/139) codex-code-activity::language_review literal_callbacks_have_explicit_iteration_limits
+        PASS [   0.012s] ( 59/139) codex-code-activity::language_review python_callback_keywords_do_not_preserve_old_paths
+        PASS [   0.012s] ( 60/139) codex-code-activity::language_review python_defaults_execute_at_definition_without_executing_body
+        PASS [   0.011s] ( 61/139) codex-code-activity::language_review tripwire_outputs_do_not_override_language_semantics
+        PASS [   0.012s] ( 62/139) codex-code-activity::language_review typed_wrapper_preserves_nested_tool_source_and_workdir
+        PASS [   0.011s] ( 63/139) codex-code-activity::language_review uncalled_unsupported_bodies_do_not_emit_file_activity
+        PASS [   0.011s] ( 64/139) codex-code-activity::language_review unknown_javascript_callback_values_invalidate_paths
+        PASS [   0.013s] ( 65/139) codex-code-activity::lifecycle capture::a_change_after_failed_start_is_not_attributed_to_the_tool
+        PASS [   0.012s] ( 66/139) codex-code-activity::lifecycle capture::capture_byte_limit_is_reported_without_extra_reads
+        PASS [   0.012s] ( 67/139) codex-code-activity::lifecycle capture::capture_path_limit_is_reported_without_extra_reads
+        PASS [   0.012s] ( 68/139) codex-code-activity::lifecycle capture::dynamic_targets_are_visible_and_host_paths_can_supply_observation
+        PASS [   0.013s] ( 69/139) codex-code-activity::lifecycle capture::empty_creation_deletion_and_read_observations_remain_distinct
+        PASS [   0.012s] ( 70/139) codex-code-activity::lifecycle capture::mutation_on_open_is_observed_without_a_write_call
+        PASS [   0.010s] ( 71/139) codex-code-activity::lifecycle capture::provider_limits_and_unknown_baselines_prevent_false_diffs
+        PASS [   0.012s] ( 72/139) codex-code-activity::lifecycle capture::prepare_captures_at_dispatch_and_keeps_original_text_out_of_events
+        PASS [   0.012s] ( 73/139) codex-code-activity::lifecycle capture::symlinks_are_not_followed
+        PASS [   0.013s] ( 74/139) codex-code-activity::lifecycle capture::success_unchanged_failure_unchanged_and_failed_start_are_separate
+        PASS [   0.014s] ( 75/139) codex-code-activity::lifecycle capture::unsupported_paths_and_content_are_unknown_not_unchanged
+        PASS [   0.062s] ( 76/139) codex-code-activity::lifecycle runtime::real_python_regex_edit_survives_later_process_failure
+        PASS [   0.040s] ( 77/139) codex-code-activity::lifecycle streaming::every_utf8_fragment_boundary_produces_the_same_final_analysis
+        PASS [   0.012s] ( 78/139) codex-code-activity::lifecycle streaming::incomplete_call_preserves_prior_intent_then_finishes
+        PASS [   0.132s] ( 79/139) codex-code-activity::lifecycle runtime::real_javascript_regex_callback_uses_observed_content
+        PASS [   0.011s] ( 80/139) codex-code-activity::lifecycle streaming::incomplete_final_call_retracts_all_pending_intent
+        PASS [   0.011s] ( 81/139) codex-code-activity::lifecycle streaming::later_tokens_can_retract_a_valid_preview
+        PASS [   0.010s] ( 82/139) codex-code-activity::lifecycle streaming::oversized_stream_cannot_be_prepared_from_a_retained_prefix
+        PASS [   0.011s] ( 83/139) codex-code-activity::lifecycle streaming::terminal_result_adapter_rejects_running_sessions_and_stdout_status_guesses
+        PASS [   0.013s] ( 84/139) codex-code-activity::object_review skipped_object_children_cannot_retain_cwd_after_a_fresh_api_import
+        PASS [   0.011s] ( 85/139) codex-code-activity::object_review skipped_spread_and_computed_properties_cannot_retain_a_stale_target
+        PASS [   0.012s] ( 86/139) codex-code-activity::parity_controls changing_loop_alias_does_not_reuse_first_iteration_meaning
+        PASS [   0.011s] ( 87/139) codex-code-activity::parity_controls child_options_do_not_supply_a_false_execution_context
+        PASS [   0.012s] ( 88/139) codex-code-activity::parity_controls deletion_and_truncation_targets_enter_capture_without_execution
+        PASS [   0.010s] ( 89/139) codex-code-activity::parity_controls differing_branch_paths_remain_unresolved_after_merge
+        PASS [   0.013s] ( 90/139) codex-code-activity::parity_controls explicit_modes_remain_distinct_from_empty_output
+        PASS [   0.014s] ( 91/139) codex-code-activity::parity_controls loop_and_json_support_is_stable_across_stream_revisions
+        PASS [   0.012s] ( 92/139) codex-code-activity::parity_controls nested_child_interpreter_retains_process_and_file_intent
+        PASS [   0.011s] ( 93/139) codex-code-activity::parity_controls python_and_node_path_join_keep_their_own_absolute_component_rules
+        PASS [   0.012s] ( 94/139) codex-code-activity::parity_controls read_with_mutating_flag_emits_open_intent
+        PASS [   0.011s] ( 95/139) codex-code-activity::parity_controls shell_option_values_and_script_arguments_are_not_code
+        PASS [   0.012s] ( 96/139) codex-code-activity::policy force_push_rule_respects_end_of_flags_and_exact_option_names
+        PASS [   0.013s] ( 97/139) codex-code-activity::policy absence_of_selected_rules_never_supplies_permission
+        PASS [   0.012s] ( 98/139) codex-code-activity::policy inert_rule_mentions_do_not_create_policy_hits
+        PASS [   0.012s] ( 99/139) codex-code-activity::policy later_dangerous_operation_blocks_earlier_benign_operation_before_dispatch
+        PASS [   0.011s] (100/139) codex-code-activity::policy oversized_raw_source_is_not_copied_or_mock_dispatched
+        PASS [   0.011s] (101/139) codex-code-activity::policy root_deletion_rule_uses_actual_rm_flags_and_direct_language_effects
+        PASS [   0.012s] (102/139) codex-code-activity::policy uncertain_opaque_recursive_and_malformed_sources_escalate_without_dispatch
+        PASS [   0.015s] (103/139) codex-code-activity::resource_construction aggregate_alias_expansion_abstains_before_a_binding_is_required
+        PASS [   0.013s] (104/139) codex-code-activity::resource_construction oversized_direct_values_abstain_without_a_binding
+        PASS [   0.013s] (105/139) codex-code-activity::review_regressions branch_alternatives_inherit_condition_side_effects
+        PASS [   0.011s] (106/139) codex-code-activity::review_regressions dynamic_tool_workdir_does_not_fall_back_to_parent_directory
+        PASS [   0.011s] (107/139) codex-code-activity::review_regressions path_operations_preserve_language_specific_filesystem_meaning
+        PASS [   0.011s] (108/139) codex-code-activity::review_regressions python_loop_else_effects_are_inspected
+        PASS [   0.011s] (109/139) codex-code-activity::review_regressions unknown_comprehension_code_does_not_restore_prior_bindings
+        PASS [   0.013s] (110/139) codex-code-activity::semantic_review callback_file_reads_and_binary_buffers_do_not_supply_text_edit_content
+        PASS [   0.012s] (111/139) codex-code-activity::semantic_review consuming_an_unsupported_generator_abstains_instead_of_eagerly_running_it
+        PASS [   0.012s] (112/139) codex-code-activity::semantic_review dynamic_import_requires_await_before_module_api_access
+        PASS [   0.011s] (113/139) codex-code-activity::semantic_review generator_creation_retains_only_outer_iterable_effects
+        PASS [   0.014s] (114/139) codex-code-activity::semantic_review import_binding_budget_is_enforced_before_out_of_budget_alias_use
+        PASS [   0.020s] (115/139) codex-code-activity::semantic_review preseed_binding_exhaustion_never_exposes_an_enclosing_builtin
+        PASS [   0.012s] (116/139) codex-code-activity::semantic_review promise_file_content_requires_await_before_text_edit_inference
+        PASS [   0.011s] (117/139) codex-code-activity::semantic_review promise_namespace_has_no_sync_methods
+        PASS [   0.011s] (118/139) codex-code-activity::semantic_review unused_generator_never_reports_lazy_body_effects
+        PASS [   0.013s] (119/139) codex-code-activity::shell_review competing_input_redirects_never_supply_interpreter_source
+        PASS [   0.011s] (120/139) codex-code-activity::shell_review conditional_directory_changes_join_to_unknown
+        PASS [   0.012s] (121/139) codex-code-activity::shell_review deno_eval_options_belong_to_the_eval_subcommand
+        PASS [   0.011s] (122/139) codex-code-activity::shell_review directory_flags_never_become_path_components
+        PASS [   0.012s] (123/139) codex-code-activity::shell_review inline_environment_assignments_keep_source_context_uncertain
+        PASS [   0.012s] (124/139) codex-code-activity::shell_review pipeline_stages_do_not_change_sibling_or_caller_directories
+        PASS [   0.011s] (125/139) codex-code-activity::shell_review quoted_paths_are_distinct_from_tilde_and_brace_expansions
+        PASS [   0.012s] (126/139) codex-code-activity::shell_review stdout_redirects_remain_uncertain_alongside_literal_input
+        PASS [   0.012s] (127/139) codex-code-activity::shell_review unresolved_shell_definitions_do_not_reassert_interpreter_identity
+        PASS [   0.023s] (128/139) codex-code-activity::stress a_single_recursive_call_retains_only_unresolved_target_intent
+        PASS [   0.022s] (129/139) codex-code-activity::stress dynamic_targets_remain_explicitly_unresolved_in_the_scaling_corpus
+        PASS [   0.017s] (130/139) codex-code-activity::stress repeated_awaited_tools_preserve_all_child_sources_before_source_caps
+        PASS [   0.070s] (131/139) codex-code-activity::stress recursive_malformed_and_callback_limit_inputs_abstain_explicitly
+        PASS [   0.030s] (132/139) codex-code-activity::stress small_representative_programs_preserve_expected_action_multiplicity
+        PASS [   0.012s] (133/139) codex-code-activity::stress source_programs_cannot_write_a_real_host_sentinel
+        PASS [   0.022s] (134/139) codex-code-activity::stress unawaited_promise_content_never_establishes_a_text_edit
+        PASS [   0.031s] (135/139) codex-code-activity::tripwire_parity rust_recognizes_every_resolved_tripwire_operation
+        PASS [   0.044s] (136/139) codex-code-activity::tripwire_parity shell_carriers_preserve_tripwire_source_operations
+        PASS [   0.020s] (137/139) codex-code-activity::tripwire_parity unsupported_inputs_are_described_or_marked_uncertain
+        PASS [   0.011s] (138/139) codex-code-activity::example/benchmark tests::descriptive_statistics_preserve_samples_and_use_nearest_rank
+        SLOW [> 30.000s] (───────) codex-code-activity::stress scaling_corpus_remains_deterministic_and_report_counts_bounded
+        PASS [  43.051s] (139/139) codex-code-activity::stress scaling_corpus_remains_deterministic_and_report_counts_bounded
 ────────────
-     Summary [   0.183s] 88 tests run: 88 passed, 0 skipped
-just test-doc
-cargo test --doc --locked
-    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.03s
-   Doc-tests codex_code_activity
+     Summary [  44.060s] 139 tests run: 139 passed (1 slow), 0 skipped
 
-running 1 test
-test src/lib.rs - (line 7) ... ok
-
-test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
-
-
-running 3 tests
-test src/lifecycle.rs - lifecycle::PreparedCall (line 39) - compile fail ... ok
-test src/identity.rs - identity::OperationId (line 46) - compile fail ... ok
-test src/stream.rs - stream::ActivityStream (line 40) - compile fail ... ok
-
-test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.10s
-
-all doctests ran in 0.61s; merged doctests compilation took 0.30s
-just doc
-RUSTDOCFLAGS="-D warnings" cargo doc --no-deps --locked
- Documenting codex-code-activity v0.1.0 (<review-workspace>/code-activity)
-    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.77s
-   Generated <review-workspace>/code-activity/target/doc/codex_code_activity/index.html and 1 other file
-just build-release
-cargo build --release --all-targets --locked
-   Compiling codex-code-activity v0.1.0 (<review-workspace>/code-activity)
-    Finished `release` profile [optimized + debuginfo] target(s) in 13.18s
-
-
-In-tree100tests
- Downloading crates ...
-  Downloaded aead v0.5.2
-  Downloaded atoi v2.0.0
-  Downloaded async-stream-impl v0.3.6
-  Downloaded async-stream v0.3.6
-  Downloaded atomic v0.6.1
-  Downloaded atomic_refcell v0.1.14
-  Downloaded asn1-rs-derive v0.5.1
-  Downloaded assert-json-diff v2.0.2
-  Downloaded approx v0.5.1
-  Downloaded assert_matches v1.5.0
-  Downloaded gix-lock v21.0.2
-  Downloaded gix-glob v0.24.0
-  Downloaded gix-submodule v0.28.0
-  Downloaded audioadapter-sample v5.2.0
-  Downloaded gix-hashtable v0.13.0
-  Downloaded aws-smithy-runtime-api-macros v1.0.0
-  Downloaded assert_cmd v2.1.2
-  Downloaded condtype v1.3.0
-  Downloaded block-buffer v0.12.0
-  Downloaded bit-set v0.5.3
-  Downloaded base16ct v0.2.0
-  Downloaded hmac v0.12.1
-  Downloaded castaway v0.2.4
-  Downloaded bytecheck_derive v0.8.3
-  Downloaded gix-error v0.2.1
-  Downloaded audio-codec-algorithms v0.8.1
-  Downloaded audioadapter v5.0.0
-  Downloaded async-broadcast v0.7.2
-  Downloaded cached_proc_macro_types v0.1.1
-  Downloaded gix-utils v0.3.1
-  Downloaded aws-smithy-query v0.60.9
-  Downloaded block-padding v0.3.3
-  Downloaded cached_proc_macro v0.25.0
-  Downloaded gix-negotiate v0.29.0
-  Downloaded base64-simd v0.8.0
-  Downloaded age-core v0.12.0
-  Downloaded gix-quote v0.7.0
-  Downloaded protoc-bin-vendored v3.2.0
-  Downloaded bytecheck v0.8.3
-  Downloaded chunked_transfer v1.5.0
-  Downloaded color-spantrace v0.3.0
-  Downloaded by_address v1.2.1
-  Downloaded aws-smithy-observability v0.1.5
-  Downloaded rand_xorshift v0.4.0
-  Downloaded cipher v0.4.4
-  Downloaded cexpr v0.6.0
-  Downloaded aws-smithy-http v0.62.6
-  Downloaded base64ct v1.8.3
-  Downloaded ratatui-termion v0.1.2
-  Downloaded aws-smithy-xml v0.60.13
-  Downloaded audioadapter-buffers v5.2.0
-  Downloaded concurrent-queue v2.5.0
-  Downloaded const-hex v1.17.0
-  Downloaded cmov v0.5.3
-  Downloaded bm25 v2.3.2
-  Downloaded async-channel v2.5.0
-  Downloaded ascii v1.1.0
-  Downloaded addr2line v0.25.1
-  Downloaded aws-smithy-json v0.61.9
-  Downloaded aws-smithy-async v1.2.14
-  Downloaded gix-revwalk v0.29.0
-  Downloaded clru v0.6.3
-  Downloaded chacha20 v0.9.1
-  Downloaded rust-embed-utils v8.11.0
-  Downloaded cidr v0.3.2
-  Downloaded headers-core v0.3.0
-  Downloaded const-oid v0.9.6
-  Downloaded block2 v0.6.2
-  Downloaded kem v0.3.0-pre.0
-  Downloaded siphasher v1.0.3
-  Downloaded keccak v0.1.6
-  Downloaded console v0.15.11
-  Downloaded hash32 v0.3.1
-  Downloaded gix-shallow v0.10.0
-  Downloaded clap_complete v4.5.65
-  Downloaded strum v0.28.0
-  Downloaded strck v1.0.0
-  Downloaded http-body v0.4.6
-  Downloaded arboard v3.6.1
-  Downloaded test-log-macros v0.2.19
-  Downloaded inout v0.1.4
-  Downloaded clatter v2.2.0
-  Downloaded test-log v0.2.19
-  Downloaded simple_asn1 v0.6.4
-  Downloaded basic-toml v0.1.10
-  Downloaded crc32c v0.6.8
-  Downloaded cached v0.56.0
-  Downloaded darling_macro v0.24.0
-  Downloaded darling_macro v0.23.0
-  Downloaded darling_macro v0.20.11
-  Downloaded aws-smithy-http-client v1.1.12
-  Downloaded xmlparser v0.13.6
-  Downloaded whoami v2.1.2
-  Downloaded aws-sigv4 v1.3.7
-  Downloaded oid-registry v0.7.1
-  Downloaded smawk v0.3.2
-  Downloaded self_cell v1.2.2
-  Downloaded schemars_derive v1.2.1
-  Downloaded ratatui-termina v0.1.0
-  Downloaded crypto_secretbox v0.1.1
-  Downloaded sqlx-macros v0.9.0
-  Downloaded aws-config v1.8.12
-  Downloaded web-time v1.1.0
-  Downloaded axum v0.8.8
-  Downloaded sqlx-macros-core v0.9.0
-  Downloaded rkyv v0.8.18
-  Downloaded deadpool v0.12.3
-  Downloaded sqlx-mysql v0.9.0
-  Downloaded sentry v0.46.1
-  Downloaded rtc-ice v0.20.3
-  Downloaded sqlx-sqlite v0.9.0
-  Downloaded age v0.12.1
-  Downloaded dns-lookup v3.0.1
-  Downloaded dirs-next v2.0.0
-  Downloaded rtc-dtls v0.20.3
-  Downloaded pastey v0.2.1
-  Downloaded diplomat v0.15.0
-  Downloaded group v0.13.0
-  Downloaded pbkdf2 v0.12.2
-  Downloaded gix-tempfile v21.0.2
-  Downloaded phf_codegen v0.11.3
-  Downloaded parking v2.2.1
-  Downloaded bindgen v0.72.1
-  Downloaded predicates-core v1.0.9
-  Downloaded divan-macros v0.1.21
-  Downloaded supports-color v2.1.0
-  Downloaded dirs-sys-next v0.1.2
-  Downloaded crypto-bigint v0.5.5
-  Downloaded unicode-bom v2.0.3
-  Downloaded temporal_rs v0.2.3
-  Downloaded gobject-sys v0.22.6
-  Downloaded glob v0.3.3
-  Downloaded gix-ignore v0.19.1
-  Downloaded aws-sdk-sts v1.95.0
-  Downloaded webbrowser v1.2.4
-  Downloaded ucd-trie v0.1.7
-  Downloaded zip v2.4.2
-  Downloaded gix-revision v0.43.0
-  Downloaded gix-packetline v0.21.2
-  Downloaded tonic-build v0.14.3
-  Downloaded tonic v0.14.3
-  Downloaded event-listener-strategy v0.5.4
-  Downloaded unicode-linebreak v0.1.5
-  Downloaded tracing-error v0.2.1
-  Downloaded tonic-prost v0.14.3
-  Downloaded opaque-debug v0.3.1
-  Downloaded unic-langid v0.9.6
-  Downloaded tonic-prost-build v0.14.3
-  Downloaded diplomat-runtime v0.15.1
-  Downloaded supports-color v3.0.2
-  Downloaded substring v1.4.5
-  Downloaded gix-refspec v0.39.0
-  Downloaded fixedbitset v0.4.2
-  Downloaded zlib-rs v0.6.3
-  Downloaded pest_generator v2.8.7
-  Downloaded opentelemetry-appender-tracing v0.31.1
-  Downloaded phf v0.11.3
-  Downloaded objc2-encode v4.1.0
-  Downloaded gix-worktree-stream v0.30.0
-  Downloaded tracing-appender v0.2.4
-  Downloaded dispatch2 v0.3.0
-  Downloaded fixedbitset v0.5.7
-  Downloaded rand_chacha v0.3.1
-  Downloaded ccm v0.5.0
-  Downloaded unicode-properties v0.1.4
-  Downloaded toml_writer v1.0.6+spec-1.1.0
-  Downloaded unicode-general-category v1.1.0
-  Downloaded pest_meta v2.8.7
-  Downloaded pest_derive v2.8.7
-  Downloaded der-parser v9.0.0
-  Downloaded gix-date v0.15.1
-  Downloaded num-rational v0.4.2
-  Downloaded gix-worktree v0.50.0
-  Downloaded p256 v0.13.2
-  Downloaded rand_core v0.6.4
-  Downloaded pkcs8 v0.10.2
-  Downloaded terminal_size v0.4.3
-  Downloaded signal-hook-mio v0.2.5
-  Downloaded sha1_smol v1.0.1
-  Downloaded unicode-bidi v0.3.18
-  Downloaded gix-features v0.46.2
-  Downloaded pin-project-internal v1.1.10
-  Downloaded divan v0.1.21
-  Downloaded toml_edit v0.24.0+spec-1.1.0
-  Downloaded termion v4.0.6
-  Downloaded fluent v0.17.0
-  Downloaded numtoa v0.2.4
-  Downloaded memmem v0.1.1
-  Downloaded fluent-langneg v0.13.1
-  Downloaded opentelemetry-semantic-conventions v0.31.0
-  Downloaded universal-hash v0.5.1
-  Downloaded finl_unicode v1.4.0
-  Downloaded sha2 v0.11.0
-  Downloaded plist v1.9.0
-  Downloaded terminfo v0.9.0
-  Downloaded unic-langid-impl v0.9.6
-  Downloaded gix-protocol v0.59.0
-  Downloaded rend v0.5.4
-  Downloaded fluent-syntax v0.12.0
-  Downloaded filetime v0.2.27
-  Downloaded phf_generator v0.11.3
-  Downloaded diplomat_core v0.15.0
-  Downloaded predicates v3.1.3
-  Downloaded sqlx v0.9.0
-  Downloaded gstreamer-app-sys v0.25.0
-  Downloaded convert_case v0.10.0
-  Downloaded gix-status v0.28.0
-  Downloaded der v0.7.10
-  Downloaded pem-rfc7468 v0.7.0
-  Downloaded strum_macros v0.27.2
-  Downloaded shell-words v1.1.1
-  Downloaded opentelemetry-proto v0.31.0
-  Downloaded line-clipping v0.3.7
-  Downloaded float-cmp v0.10.0
-  Downloaded sse-stream v0.2.5
-  Downloaded opentelemetry-otlp v0.31.0
-  Downloaded rustc-demangle v0.1.27
-  Downloaded libloading v0.8.9
-  Downloaded sqlx-core v0.9.0
-  Downloaded wait-timeout v0.2.1
-  Downloaded same-file v1.0.6
-  Downloaded salsa20 v0.10.2
-  Downloaded ctor-proc-macro v0.0.7
-  Downloaded predicates-tree v1.0.12
-  Downloaded normalize-line-endings v0.3.0
-  Downloaded filedescriptor v0.8.3
-  Downloaded file-id v0.2.3
-  Downloaded serde_path_to_error v0.1.20
-  Downloaded gix-filter v0.28.0
-  Downloaded fax_derive v0.2.0
-  Downloaded walkdir v2.5.0
-  Downloaded rtc-datachannel v0.20.3
-  Downloaded ixdtf v0.6.4
-  Downloaded i18n-embed-fl v0.10.1
-  Downloaded hmac v0.13.0
-  Downloaded windows-result v0.2.0
-  Downloaded muldiv v1.0.1
-  Downloaded thiserror-impl v1.0.69
-  Downloaded rtc-shared v0.20.3
-  Downloaded system-deps v7.0.8
-  Downloaded rtc-media v0.20.3
-  Downloaded ed25519 v2.2.3
-  Downloaded dotenvy v0.15.7
-  Downloaded rtc-mdns v0.20.3
-  Downloaded ratatui-macros v0.7.2
-  Downloaded gix-object v0.58.0
-  Downloaded rtc-rtp v0.20.3
-  Downloaded gstreamer-app v0.25.2
-  Downloaded rtc-rtcp v0.20.3
-  Downloaded extended v0.1.0
-  Downloaded webrtc v0.20.3
-  Downloaded ratatui-crossterm v0.1.2
-  Downloaded portable-pty v0.9.0
-  Downloaded phf_macros v0.11.3
-  Downloaded temporal_capi v0.2.3
-  Downloaded libm v0.2.16
-  Downloaded unicode-truncate v2.0.1
-  Downloaded cpufeatures v0.3.0
-  Downloaded proc-macro-error-attr3 v3.1.1
-  Downloaded gethostname v1.1.0
-  Downloaded zeroize_derive v1.4.3
-  Downloaded objc2-core-foundation v0.3.2
-  Downloaded jsonwebtoken v9.3.1
-  Downloaded prodash v31.0.0
-  Downloaded ecdsa v0.16.9
-  Downloaded gix-index v0.49.0
-  Downloaded unicode-normalization v0.1.25
-  Downloaded target-lexicon v0.13.5
-  Downloaded prettyplease v0.2.37
-  Downloaded polyval v0.6.2
-  Downloaded poly1305 v0.8.0
-  Downloaded cookie-factory v0.3.3
-  Downloaded munge v0.4.7
-  Downloaded whoami v1.6.1
-  Downloaded gix-diff v0.61.0
-  Downloaded fax v0.2.6
-  Downloaded p384 v0.13.1
-  Downloaded lzma-rs v0.3.0
-  Downloaded gstreamer-base-sys v0.25.3
-  Downloaded thiserror-impl-no-std v2.0.2
-  Downloaded md-5 v0.10.6
-  Downloaded munge_macro v0.4.7
-  Downloaded ignore v0.4.25
-  Downloaded zerocopy-derive v0.8.37
-  Downloaded gix-config-value v0.17.1
-  Downloaded gix-transport v0.55.1
-  Downloaded gix-ref v0.61.0
-  Downloaded nonempty v0.12.0
-  Downloaded gix-chunk v0.7.0
-  Downloaded gix-discover v0.49.0
-  Downloaded symphonia-format-riff v0.6.0
-  Downloaded tar v0.4.45
-  Downloaded deadpool-runtime v0.1.4
-  Downloaded md-5 v0.11.0
-  Downloaded lab v0.11.0
-  Downloaded gix-commitgraph v0.35.0
-  Downloaded primeorder v0.13.6
-  Downloaded ptr_meta_derive v0.3.2
-  Downloaded unsafe-libyaml v0.2.11
-  Downloaded rustversion v1.0.22
-  Downloaded gix-odb v0.78.0
-  Downloaded symphonia-format-ogg v0.6.0
-  Downloaded palette v0.7.6
-  Downloaded symphonia-metadata v0.6.0
-  Downloaded windows-strings v0.1.0
-  Downloaded windows-core v0.58.0
-  Downloaded sentry-core v0.46.1
-  Downloaded ctor v0.6.3
-  Downloaded debugid v0.8.0
-  Downloaded pulldown-cmark-escape v0.10.1
-  Downloaded windows-targets v0.52.6
-  Downloaded proc-macro-error3 v3.1.1
-  Downloaded opentelemetry_sdk v0.31.0
-  Downloaded symphonia-format-mkv v0.6.0
-  Downloaded jsonptr v0.7.1
-  Downloaded termios v0.3.3
-  Downloaded symphonia-common v0.6.0
-  Downloaded serial_test v3.3.1
-  Downloaded ml-kem v0.2.3
-  Downloaded coreaudio-rs v0.14.2
-  Downloaded glib-sys v0.22.8
-  Downloaded toml_datetime v1.1.1+spec-1.1.0
-  Downloaded keyring v3.6.3
-  Downloaded xz2 v0.1.7
-  Downloaded wezterm-input-types v0.1.0
-  Downloaded num_threads v0.1.7
-  Downloaded simdutf8 v0.1.5
-  Downloaded vsimd v0.8.0
-  Downloaded symphonia v0.6.0
-  Downloaded crossbeam-queue v0.3.12
-  Downloaded sonora-common-audio v0.2.0
-  Downloaded zune-core v0.4.12
-  Downloaded sonora-aec3 v0.2.0
-  Downloaded dasp_sample v0.11.0
-  Downloaded num_cpus v1.17.0
-  Downloaded num-derive v0.4.2
-  Downloaded ctr v0.9.2
-  Downloaded sha1 v0.11.0
-  Downloaded serial2 v0.2.33
-  Downloaded quick-xml v0.39.4
-  Downloaded ghash v0.5.1
-  Downloaded serde_spanned v1.0.4
-  Downloaded gstreamer-audio v0.25.3
-  Downloaded toml v0.5.11
-  Downloaded scrypt v0.11.0
-  Downloaded gix-config v0.54.0
-  Downloaded sec1 v0.7.3
-  Downloaded elliptic-curve v0.13.8
-  Downloaded zopfli v0.8.3
-  Downloaded vte v0.15.0
-  Downloaded gix-pack v0.68.0
-  Downloaded darling v0.24.0
-  Downloaded toml v1.0.6+spec-1.1.0
-  Downloaded ratatui v0.30.2
-  Downloaded symphonia-format-isomp4 v0.6.0
-  Downloaded symphonia-bundle-mp3 v0.6.0
-  Downloaded sdd v3.0.10
-  Downloaded jiff-static v0.2.23
-  Downloaded x509-parser v0.16.0
-  Downloaded euclid v0.22.14
-  Downloaded reqwest v0.13.4
-  Downloaded rayon v1.11.0
-  Downloaded zoneinfo64 v0.3.0
-  Downloaded textwrap v0.16.2
-  Downloaded num-complex v0.4.6
-  Downloaded rkyv_derive v0.8.18
-  Downloaded secrecy v0.10.3
-  Downloaded proptest v1.9.0
-  Downloaded sansio v1.0.1
-  Downloaded process-wrap v10.0.0
-  Downloaded heapless v0.8.0
-  Downloaded csscolorparser v0.6.2
-  Downloaded which v6.0.3
-  Downloaded vt100 v0.16.2
-  Downloaded memmap2 v0.9.10
-  Downloaded toml v0.9.11+spec-1.1.0
-  Downloaded headers v0.4.1
-  Downloaded rtc-turn v0.20.3
-  Downloaded gio-sys v0.22.8
-  Downloaded gix-dir v0.23.0
-  Downloaded timezone_provider v0.2.3
-  Downloaded insta v1.46.3
-  Downloaded prost-types v0.14.3
-  Downloaded zune-jpeg v0.4.21
-  Downloaded darling_core v0.20.11
-  Downloaded fancy-regex v0.11.0
-  Downloaded stop-words v0.9.0
-  Downloaded darling_core v0.23.0
-  Downloaded gstreamer-sys v0.25.2
-  Downloaded futures-intrusive v0.5.0
-  Downloaded objc2-foundation v0.3.2
-  Downloaded http v0.2.12
-  Downloaded glib-macros v0.22.6
-  Downloaded symphonia-core v0.6.0
-  Downloaded ed25519-dalek v2.2.0
-  Downloaded pulldown-cmark v0.10.3
-  Downloaded nix v0.29.0
-  Downloaded hashbrown v0.15.5
-  Downloaded color-eyre v0.6.5
-  Downloaded bzip2-sys v0.1.13+1.0.8
-  Downloaded cpal v0.18.2
-  Downloaded imara-diff v0.1.8
-  Downloaded itertools v0.13.0
-  Downloaded gix-command v0.8.0
-  Downloaded thiserror-no-std v2.0.2
-  Downloaded gix v0.81.0
-  Downloaded hkdf v0.13.0
-  Downloaded vcpkg v0.2.15
-  Downloaded itertools v0.15.0
-  Downloaded imara-diff v0.2.0
-  Downloaded hkdf v0.12.4
-  Downloaded thiserror v1.0.69
-  Downloaded sonora v0.2.0
-  Downloaded event-listener v5.4.1
-  Downloaded object v0.37.3
-  Downloaded termtree v0.5.1
-  Downloaded rfc6979 v0.4.0
-  Downloaded darling_core v0.24.0
-  Downloaded prost-derive v0.14.3
-  Downloaded sentry-types v0.46.1
-  Downloaded gstreamer-base v0.25.3
-  Downloaded half v2.7.1
-  Downloaded test-case v3.3.1
-  Downloaded gstreamer-audio-sys v0.25.3
-  Downloaded objc2-audio-toolbox v0.3.2
-  Downloaded scc v2.4.0
-  Downloaded resb v0.1.2
-  Downloaded rtc-interceptor v0.20.3
-  Downloaded deunicode v1.6.2
-  Downloaded i18n-embed v0.16.0
-  Downloaded windows-interface v0.58.0
-  Downloaded windows-implement v0.58.0
-  Downloaded utf-8 v0.7.6
-  Downloaded foldhash v0.1.5
-  Downloaded ff v0.13.1
-  Downloaded deflate64 v0.1.10
-  Downloaded darling v0.23.0
-  Downloaded darling v0.20.11
-  Downloaded rtc-srtp v0.20.3
-  Downloaded ratatui-core v0.1.2
-  Downloaded x25519-dalek v2.0.1
-  Downloaded rubato v5.0.0
-  Downloaded gimli v0.32.3
-  Downloaded objc2 v0.6.3
-  Downloaded nix v0.31.3
-  Downloaded ratatui-widgets v0.3.2
-  Downloaded hybrid-array v0.4.12
-  Downloaded fluent-bundle v0.16.0
-  Downloaded signature v2.2.0
-  Downloaded rand v0.8.6
-  Downloaded pest v2.8.7
-  Downloaded termwiz v0.23.3
-  Downloaded vtparse v0.6.2
-  Downloaded test-case-macros v3.3.1
-  Downloaded test-case-core v3.3.1
-  Downloaded wiremock v0.6.5
-  Downloaded signal-hook v0.3.18
-  Downloaded serde_yaml v0.9.34+deprecated
-  Downloaded objc2-core-graphics v0.3.2
-  Downloaded oauth2 v5.0.0
-  Downloaded hybrid-array v0.2.3
-  Downloaded hashlink v0.11.0
-  Downloaded owo-colors v4.3.0
-  Downloaded kasuari v0.4.12
-  Downloaded indoc v2.0.7
-  Downloaded phf_shared v0.11.3
-  Downloaded kstring v2.0.2
-  Downloaded hyper-timeout v0.5.2
-  Downloaded sqlx-postgres v0.9.0
-  Downloaded palette_derive v0.7.6
-  Downloaded ordered-float v4.6.0
-  Downloaded opus v0.4.0
-  Downloaded option-operations v0.6.1
-  Downloaded opentelemetry-http v0.31.0
-  Downloaded onig v6.5.1
-  Downloaded objc2-core-audio-types v0.3.2
-  Downloaded objc2-core-audio v0.3.2
-  Downloaded gix-worktree-state v0.28.0
-  Downloaded find-crate v0.6.3
-  Downloaded eventsource-stream v0.2.3
-  Downloaded wezterm-dynamic-derive v0.1.1
-  Downloaded sonora-ns v0.2.0
-  Downloaded rtc-stun v0.20.3
-  Downloaded gix-blame v0.11.0
-  Downloaded serial_test_derive v3.3.1
-  Downloaded crypto-common v0.2.2
-  Downloaded core_maths v0.1.1
-  Downloaded wezterm-dynamic v0.2.1
-  Downloaded wezterm-color-types v0.3.0
-  Downloaded unarray v0.1.4
-  Downloaded type-map v0.5.1
-  Downloaded tracing-test-macro v0.2.5
-  Downloaded tracing-test v0.2.5
-  Downloaded tracing-serde v0.2.0
-  Downloaded sonora-fft v0.2.0
-  Downloaded quinn-udp v0.6.1
-  Downloaded pin-project v1.1.10
-  Downloaded intl_pluralrules v7.0.2
-  Downloaded glib v0.22.8
-  Downloaded include_dir v0.7.4
-  Downloaded unicode-width v0.2.1
-  Downloaded sha3 v0.10.9
-  Downloaded onig_sys v69.9.1
-  Downloaded curve25519-dalek v4.1.3
-  Downloaded i18n-config v0.4.8
-  Downloaded rancor v0.1.3
-  Downloaded ptr_meta v0.3.2
-  Downloaded prost-build v0.14.3
-  Downloaded prost v0.14.3
-  Downloaded nix v0.30.1
-  Downloaded gstreamer v0.25.3
-  Downloaded pathdiff v0.2.3
-  Downloaded outref v0.5.2
-  Downloaded os_info v3.14.0
-  Downloaded rustix v0.38.44
-  Downloaded objc2-local-authentication v0.3.2
-  Downloaded objc2-io-surface v0.3.2
-  Downloaded notify-types v2.1.0
-  Downloaded notify v8.2.0
-  Downloaded maybe-async v0.2.10
-  Downloaded petgraph v0.8.3
-  Downloaded matchit v0.8.4
-  Downloaded mach2 v0.6.0
-  Downloaded mac_address v1.1.8
-  Downloaded gix-attributes v0.31.0
-  Downloaded gix-archive v0.30.0
-  Downloaded fast-srgb8 v1.0.0
-  Downloaded diffy v0.4.2
-  Downloaded ctutils v0.4.2
-  Downloaded wezterm-bidi v0.2.3
-  Downloaded tiny_http v0.12.0
-  Downloaded termina v0.3.3
-  Downloaded rtc-sctp v0.20.3
-  Downloaded gzip-header v1.0.0
-  Downloaded objc2-app-kit v0.3.2
-  Downloaded backtrace v0.3.76
-  Downloaded aws-smithy-types v1.4.7
-  Downloaded aws-smithy-runtime v1.9.5
-  Downloaded aws-sdk-ssooidc v1.93.0
-  Downloaded aws-sdk-sso v1.91.0
-  Downloaded aes-gcm v0.10.3
-  Downloaded aes v0.8.4
-  Downloaded gix-bitmap v0.3.0
-  Downloaded gix-actor v0.40.0
-  Downloaded fslock v0.2.1
-  Downloaded fsevent-sys v4.1.0
-  Downloaded faster-hex v0.10.0
-  Downloaded dtor-proc-macro v0.0.6
-  Downloaded dtor v0.1.1
-  Downloaded downcast-rs v1.2.1
-  Downloaded digest v0.11.3
-  Downloaded difflib v0.4.0
-  Downloaded crypto_box v0.9.1
-  Downloaded is_ci v1.2.0
-  Downloaded is-terminal v0.4.17
-  Downloaded io-close v0.3.7
-  Downloaded intl-memoizer v0.5.3
-  Downloaded include_dir_macros v0.7.4
-  Downloaded i18n-embed-impl v0.8.4
-  Downloaded gix-sec v0.13.2
-  Downloaded compact_str v0.9.1
-  Downloaded stringprep v0.1.5
-  Downloaded io_tee v0.1.1
-  Downloaded base64 v0.23.0
-  Downloaded aws-smithy-runtime-api v1.12.0
-  Downloaded bech32 v0.11.1
-  Downloaded aws-sdk-signin v1.2.0
-  Downloaded aws-runtime v1.5.17
-  Downloaded asn1-rs v0.6.2
-  Downloaded arc-swap v1.9.0
-  Downloaded windowfunctions v0.1.1
-  Downloaded wezterm-blob-leases v0.1.1
-  Downloaded visibility v0.1.1
-  Downloaded version-compare v0.2.1
-  Downloaded spki v0.7.3
-  Downloaded rtc-sdp v0.20.3
-  Downloaded instability v0.3.11
-  Downloaded icu_calendar_data v2.2.0
-  Downloaded gix-pathspec v0.16.1
-  Downloaded gix-fs v0.19.2
-  Downloaded sha1-checked v0.10.0
-  Downloaded chacha20 v0.10.2
-  Downloaded calendrical_calculations v0.2.4
-  Downloaded gix-traverse v0.55.0
-  Downloaded gix-hash v0.23.0
-  Downloaded chacha20poly1305 v0.10.1
-  Downloaded axum-core v0.5.6
-  Downloaded sonora-simd v0.2.0
-  Downloaded bzip2 v0.5.2
-  Downloaded blake2 v0.10.6
-  Downloaded clang-sys v1.8.1
-  Downloaded syntect v5.3.0
-  Downloaded gix-merge v0.14.0
-  Downloaded lzma-sys v0.1.20
-  Downloaded cfg-expr v0.20.9
-  Downloaded ansi-to-tui v8.0.1
-  Downloaded aws-types v1.3.11
-  Downloaded cbc v0.1.2
-  Downloaded rust-embed-impl v8.11.0
-  Downloaded rtc-interceptor-derive v0.20.3
-  Downloaded ratatui-termwiz v0.1.2
-  Downloaded caseless v0.2.2
-  Downloaded bytes-utils v0.1.4
-  Downloaded bincode v1.3.3
-  Downloaded aws-credential-types v1.2.11
-  Downloaded bit-vec v0.6.3
-  Downloaded jiff v0.2.23
-  Downloaded icu_calendar v2.2.1
-  Downloaded rust-embed v8.11.0
-  Downloaded tiff v0.10.3
-  Downloaded hpke v0.12.0
-  Downloaded deltae v0.3.2
-  Downloaded rust-stemmers v1.2.0
-  Downloaded protoc-bin-vendored-macos-aarch_64 v3.2.0
-  Downloaded protoc-bin-vendored-macos-x86_64 v3.2.0
-  Downloaded protoc-bin-vendored-linux-aarch_64 v3.2.0
-  Downloaded protoc-bin-vendored-win32 v3.2.0
-  Downloaded protoc-bin-vendored-linux-x86_64 v3.2.0
-  Downloaded protoc-bin-vendored-linux-ppcle_64 v3.2.0
-  Downloaded protoc-bin-vendored-linux-x86_32 v3.2.0
-  Downloaded two-face v0.5.1
-  Downloaded protoc-bin-vendored-linux-s390_64 v3.2.0
-  Downloaded libsqlite3-sys v0.37.0
-  Downloaded deno_core_icudata v0.77.0
-  Downloaded sonora-agc2 v0.2.0
-  Downloaded rtc v0.20.3
-  Downloaded windows v0.58.0
-  Downloaded opusic-sys v0.7.5
-  Downloaded v8 v150.4.0
-   Compiling codex-code-activity v0.0.0 (<review-workspace>/codex-fork/codex-rs/code-activity)
-    Finished `test` profile [unoptimized + debuginfo] target(s) in 9.03s
-────────────
- Nextest run ID 220975c7-6a12-4d99-9583-203734c2482c with nextest profile: default
-    Starting 100 tests across 18 binaries
-        PASS [   0.020s] (  1/100) codex-code-activity::analysis omitted_snapshot_inputs_remain_visible
-        PASS [   0.021s] (  2/100) codex-code-activity::analysis subprocess_alias_has_argv_and_no_execution_claim
-        PASS [   0.021s] (  3/100) codex-code-activity::analysis snapshots_diff_noop_and_partial_failure_are_independent_of_intent
-        PASS [   0.022s] (  4/100) codex-code-activity::analysis typescript_namespace_and_dynamic_import
-        PASS [   0.022s] (  5/100) codex-code-activity::analysis comments_and_strings_are_not_calls
-        PASS [   0.022s] (  6/100) codex-code-activity::analysis sessions_do_not_share_bindings
-        PASS [   0.022s] (  7/100) codex-code-activity::analysis python_slice_splice_preserves_origin_without_evaluating_indices
-        PASS [   0.022s] (  8/100) codex-code-activity::analysis typescript_subprocess_and_bun
-        PASS [   0.022s] (  9/100) codex-code-activity::analysis different_destination_is_write_not_edit
-        PASS [   0.023s] ( 10/100) codex-code-activity::analysis branch_operations_are_conditional_intent
-        PASS [   0.023s] ( 11/100) codex-code-activity::analysis typescript_import_alias_and_await
-        PASS [   0.023s] ( 12/100) codex-code-activity::analysis python_alias_and_chained_edit
-        PASS [   0.023s] ( 13/100) codex-code-activity::analysis nested_codex_envelope_unwraps_both_languages
-        PASS [   0.024s] ( 14/100) codex-code-activity::analysis syntax_errors_do_not_produce_partial_claims
-        PASS [   0.024s] ( 15/100) codex-code-activity::analysis builtin_open_tracks_dataflow
-        PASS [   0.024s] ( 16/100) codex-code-activity::analysis regex_intent_is_not_a_computed_diff
-        PASS [   0.024s] ( 17/100) codex-code-activity::analysis heredoc_written_as_data_is_not_executed
-        PASS [   0.026s] ( 18/100) codex-code-activity::analysis shadowed_builtin_is_not_file_access
-        PASS [   0.030s] ( 19/100) codex-code-activity::analysis expanding_constants_and_arrays_abstain_before_growth
-        PASS [   0.032s] ( 20/100) codex-code-activity::analysis source_and_operation_budgets
-        PASS [   0.016s] ( 21/100) codex-code-activity::analysis uninvoked_functions_do_not_emit_edits
-        PASS [   0.016s] ( 22/100) codex-code-activity::analysis with_handles_and_append_mode
-        PASS [   0.018s] ( 23/100) codex-code-activity::analysis unknown_call_invalidates_known_paths
-        PASS [   0.020s] ( 24/100) codex-code-activity::analysis unquoted_heredoc_is_unresolved
-        PASS [   0.020s] ( 25/100) codex-code-activity::budget_review typescript_type_only_imports_supply_no_runtime_api
-        PASS [   0.020s] ( 26/100) codex-code-activity::codex_adapter direct_python_argv_and_missing_source_are_explicitly_unsupported
-        PASS [   0.020s] ( 27/100) codex-code-activity::codex_adapter invalid_final_shell_source_has_no_predicted_operations
-        PASS [   0.019s] ( 28/100) codex-code-activity::codex_adapter powershell_carriers_explicitly_abstain_instead_of_using_bash
-        PASS [   0.022s] ( 29/100) codex-code-activity::budget_review nested_tool_execution_context_is_never_silently_assumed
-        PASS [   0.021s] ( 30/100) codex-code-activity::codex_adapter mixed_known_and_unknown_source_keeps_gaps_and_legacy_unknown
-        PASS [   0.024s] ( 31/100) codex-code-activity::budget_review malformed_children_cannot_overflow_a_saturated_report
-        PASS [   0.024s] ( 32/100) codex-code-activity::codex_adapter lifecycle_status_never_turns_intent_into_observed_changes
-        PASS [   0.024s] ( 33/100) codex-code-activity::codex_adapter nested_typescript_child_source_remains_static_provenance
-        PASS [   0.018s] ( 34/100) codex-code-activity::codex_adapter source_mentions_in_comments_and_strings_do_not_invent_file_effects
-        PASS [   0.026s] ( 35/100) codex-code-activity::codex_adapter executor_uris_are_retained_without_host_path_resolution
-        PASS [   0.025s] ( 36/100) codex-code-activity::codex_adapter original_item_and_conservative_actions_are_preserved
-        PASS [   0.023s] ( 37/100) codex-code-activity::codex_adapter serialized_prototype_keeps_independent_status_and_static_basis
-        PASS [   0.026s] ( 38/100) codex-code-activity::codex_adapter real_codex_extractor_preserves_shell_and_nested_source_intent
-        PASS [   0.018s] ( 39/100) codex-code-activity::function_limits a_recursive_result_cannot_restore_a_literal_target
-        PASS [   0.017s] ( 40/100) codex-code-activity::function_limits called_body_spans_and_repeated_counts_are_preserved
-        PASS [   0.017s] ( 41/100) codex-code-activity::language_review implicit_javascript_callbacks_inside_objects_invalidate_paths
-        PASS [   0.019s] ( 42/100) codex-code-activity::language_review inert_json_options_keep_independent_file_targets
-        PASS [   0.018s] ( 43/100) codex-code-activity::language_review python_defaults_execute_at_definition_without_executing_body
-        PASS [   0.020s] ( 44/100) codex-code-activity::language_review python_callback_keywords_do_not_preserve_old_paths
-        PASS [   0.017s] ( 45/100) codex-code-activity::language_review uncalled_unsupported_bodies_do_not_emit_file_activity
-        PASS [   0.027s] ( 46/100) codex-code-activity::function_goldens local_functions_preserve_exact_effects_and_source_evidence
-        PASS [   0.017s] ( 47/100) codex-code-activity::language_review unknown_javascript_callback_values_invalidate_paths
-        PASS [   0.018s] ( 48/100) codex-code-activity::language_review typed_wrapper_preserves_nested_tool_source_and_workdir
-        PASS [   0.022s] ( 49/100) codex-code-activity::language_review literal_callbacks_have_explicit_iteration_limits
-        PASS [   0.020s] ( 50/100) codex-code-activity::language_review tripwire_outputs_do_not_override_language_semantics
-        PASS [   0.023s] ( 51/100) codex-code-activity::language_review javascript_callback_options_invalidate_enclosing_paths
-        PASS [   0.018s] ( 52/100) codex-code-activity::lifecycle capture::a_change_after_failed_start_is_not_attributed_to_the_tool
-        PASS [   0.018s] ( 53/100) codex-code-activity::lifecycle capture::capture_path_limit_is_reported_without_extra_reads
-        PASS [   0.019s] ( 54/100) codex-code-activity::lifecycle capture::capture_byte_limit_is_reported_without_extra_reads
-        PASS [   0.020s] ( 55/100) codex-code-activity::lifecycle capture::dynamic_targets_are_visible_and_host_paths_can_supply_observation
-        PASS [   0.032s] ( 56/100) codex-code-activity::function_limits function_and_scope_growth_abstain_with_explicit_budgets
-        PASS [   0.019s] ( 57/100) codex-code-activity::lifecycle capture::mutation_on_open_is_observed_without_a_write_call
-        PASS [   0.018s] ( 58/100) codex-code-activity::lifecycle capture::prepare_captures_at_dispatch_and_keeps_original_text_out_of_events
-        PASS [   0.021s] ( 59/100) codex-code-activity::lifecycle capture::empty_creation_deletion_and_read_observations_remain_distinct
-        PASS [   0.016s] ( 60/100) codex-code-activity::lifecycle capture::provider_limits_and_unknown_baselines_prevent_false_diffs
-        PASS [   0.017s] ( 61/100) codex-code-activity::lifecycle capture::success_unchanged_failure_unchanged_and_failed_start_are_separate
-        PASS [   0.018s] ( 62/100) codex-code-activity::lifecycle capture::symlinks_are_not_followed
-        PASS [   0.050s] ( 63/100) codex-code-activity::function_goldens function_streams_rebuild_the_same_final_report_at_utf8_boundaries
-        PASS [   0.019s] ( 64/100) codex-code-activity::lifecycle streaming::incomplete_call_preserves_prior_intent_then_finishes
-        PASS [   0.018s] ( 65/100) codex-code-activity::lifecycle streaming::terminal_result_adapter_rejects_running_sessions_and_stdout_status_guesses
-        PASS [   0.020s] ( 66/100) codex-code-activity::lifecycle streaming::oversized_stream_cannot_be_prepared_from_a_retained_prefix
-        PASS [   0.022s] ( 67/100) codex-code-activity::lifecycle capture::unsupported_paths_and_content_are_unknown_not_unchanged
-        PASS [   0.021s] ( 68/100) codex-code-activity::lifecycle streaming::later_tokens_can_retract_a_valid_preview
-        PASS [   0.016s] ( 69/100) codex-code-activity::parity_controls child_options_do_not_supply_a_false_execution_context
-        PASS [   0.022s] ( 70/100) codex-code-activity::lifecycle streaming::incomplete_final_call_retracts_all_pending_intent
-        PASS [   0.019s] ( 71/100) codex-code-activity::parity_controls changing_loop_alias_does_not_reuse_first_iteration_meaning
-        PASS [   0.016s] ( 72/100) codex-code-activity::parity_controls deletion_and_truncation_targets_enter_capture_without_execution
-        PASS [   0.016s] ( 73/100) codex-code-activity::parity_controls explicit_modes_remain_distinct_from_empty_output
-        PASS [   0.017s] ( 74/100) codex-code-activity::parity_controls nested_child_interpreter_retains_process_and_file_intent
-        PASS [   0.020s] ( 75/100) codex-code-activity::parity_controls differing_branch_paths_remain_unresolved_after_merge
-        PASS [   0.016s] ( 76/100) codex-code-activity::parity_controls python_and_node_path_join_keep_their_own_absolute_component_rules
-        PASS [   0.021s] ( 77/100) codex-code-activity::parity_controls loop_and_json_support_is_stable_across_stream_revisions
-        PASS [   0.019s] ( 78/100) codex-code-activity::parity_controls read_with_mutating_flag_emits_open_intent
-        PASS [   0.018s] ( 79/100) codex-code-activity::parity_controls shell_option_values_and_script_arguments_are_not_code
-        PASS [   0.018s] ( 80/100) codex-code-activity::review_regressions dynamic_tool_workdir_does_not_fall_back_to_parent_directory
-        PASS [   0.018s] ( 81/100) codex-code-activity::review_regressions path_operations_preserve_language_specific_filesystem_meaning
-        PASS [   0.019s] ( 82/100) codex-code-activity::review_regressions branch_alternatives_inherit_condition_side_effects
-        PASS [   0.018s] ( 83/100) codex-code-activity::review_regressions python_loop_else_effects_are_inspected
-        PASS [   0.017s] ( 84/100) codex-code-activity::review_regressions unknown_comprehension_code_does_not_restore_prior_bindings
-        PASS [   0.019s] ( 85/100) codex-code-activity::shell_review deno_eval_options_belong_to_the_eval_subcommand
-        PASS [   0.020s] ( 86/100) codex-code-activity::shell_review competing_input_redirects_never_supply_interpreter_source
-        PASS [   0.020s] ( 87/100) codex-code-activity::shell_review conditional_directory_changes_join_to_unknown
-        PASS [   0.019s] ( 88/100) codex-code-activity::shell_review directory_flags_never_become_path_components
-        PASS [   0.016s] ( 89/100) codex-code-activity::shell_review inline_environment_assignments_keep_source_context_uncertain
-        PASS [   0.016s] ( 90/100) codex-code-activity::shell_review quoted_paths_are_distinct_from_tilde_and_brace_expansions
-        PASS [   0.016s] ( 91/100) codex-code-activity::shell_review stdout_redirects_remain_uncertain_alongside_literal_input
-        PASS [   0.017s] ( 92/100) codex-code-activity::shell_review pipeline_stages_do_not_change_sibling_or_caller_directories
-        PASS [   0.014s] ( 93/100) codex-code-activity::shell_review unresolved_shell_definitions_do_not_reassert_interpreter_identity
-        PASS [   0.048s] ( 94/100) codex-code-activity::lifecycle streaming::every_utf8_fragment_boundary_produces_the_same_final_analysis
-        PASS [   0.023s] ( 95/100) codex-code-activity::tripwire_parity unsupported_inputs_are_described_or_marked_uncertain
-        PASS [   0.033s] ( 96/100) codex-code-activity::tripwire_parity rust_recognizes_every_resolved_tripwire_operation
-        PASS [   0.084s] ( 97/100) codex-code-activity::lifecycle runtime::real_python_regex_edit_survives_later_process_failure
-        PASS [   0.050s] ( 98/100) codex-code-activity::tripwire_parity shell_carriers_preserve_tripwire_source_operations
-        PASS [   0.177s] ( 99/100) codex-code-activity::codex_adapter oversized_source_abstains_before_copying_or_parsing
-        PASS [   0.241s] (100/100) codex-code-activity::lifecycle runtime::real_javascript_regex_callback_uses_observed_content
-────────────
-     Summary [   0.307s] 100 tests run: 100 passed, 0 skipped
-
-
-Final adapter12tests
-    Blocking waiting for file lock on artifact directory
-   Compiling codex-code-activity v0.0.0 (<review-workspace>/codex-fork/codex-rs/code-activity)
-    Finished `test` profile [unoptimized + debuginfo] target(s) in 27.25s
-────────────
- Nextest run ID 4a2356a7-4b92-4879-b171-030b804ee0aa with nextest profile: default
-    Starting 12 tests across 1 binary
-        PASS [   0.031s] ( 1/12) codex-code-activity::codex_adapter invalid_final_shell_source_has_no_predicted_operations
-        PASS [   0.035s] ( 2/12) codex-code-activity::codex_adapter direct_python_argv_and_missing_source_are_explicitly_unsupported
-        PASS [   0.037s] ( 3/12) codex-code-activity::codex_adapter lifecycle_status_never_turns_intent_into_observed_changes
-        PASS [   0.033s] ( 4/12) codex-code-activity::codex_adapter nested_typescript_child_source_remains_static_provenance
-        PASS [   0.045s] ( 5/12) codex-code-activity::codex_adapter executor_uris_are_retained_without_host_path_resolution
-        PASS [   0.040s] ( 6/12) codex-code-activity::codex_adapter mixed_known_and_unknown_source_keeps_gaps_and_legacy_unknown
-        PASS [   0.039s] ( 7/12) codex-code-activity::codex_adapter serialized_prototype_keeps_independent_status_and_static_basis
-        PASS [   0.043s] ( 8/12) codex-code-activity::codex_adapter source_mentions_in_comments_and_strings_do_not_invent_file_effects
-        PASS [   0.043s] ( 9/12) codex-code-activity::codex_adapter powershell_carriers_explicitly_abstain_instead_of_using_bash
-        PASS [   0.045s] (10/12) codex-code-activity::codex_adapter original_item_and_conservative_actions_are_preserved
-        PASS [   0.053s] (11/12) codex-code-activity::codex_adapter real_codex_extractor_preserves_shell_and_nested_source_intent
-        PASS [   0.197s] (12/12) codex-code-activity::codex_adapter oversized_source_abstains_before_copying_or_parsing
-────────────
-     Summary [   0.213s] 12 tests run: 12 passed, 0 skipped
-
-
-Strict changed-crate Clippy
-    Checking codex-utils-absolute-path v0.0.0 (<review-workspace>/codex-fork/codex-rs/utils/absolute-path)
-    Checking codex-utils-rustls-provider v0.0.0 (<review-workspace>/codex-fork/codex-rs/utils/rustls-provider)
-    Checking codex-utils-cache v0.0.0 (<review-workspace>/codex-fork/codex-rs/utils/cache)
-    Checking codex-utils-redacted-string v0.0.0 (<review-workspace>/codex-fork/codex-rs/utils/redacted-string)
-    Checking codex-async-utils v0.0.0 (<review-workspace>/codex-fork/codex-rs/async-utils)
-    Checking codex-utils-string v0.0.0 (<review-workspace>/codex-fork/codex-rs/utils/string)
-    Checking codex-http-client v0.0.0 (<review-workspace>/codex-fork/codex-rs/http-client)
-    Checking codex-utils-image v0.0.0 (<review-workspace>/codex-fork/codex-rs/utils/image)
-    Checking codex-utils-path-uri v0.0.0 (<review-workspace>/codex-fork/codex-rs/utils/path-uri)
-    Checking codex-utils-home-dir v0.0.0 (<review-workspace>/codex-fork/codex-rs/utils/home-dir)
-    Checking codex-execpolicy v0.0.0 (<review-workspace>/codex-fork/codex-rs/execpolicy)
-    Checking codex-extension-items v0.0.0 (<review-workspace>/codex-fork/codex-rs/ext/items)
-    Checking codex-network-proxy v0.0.0 (<review-workspace>/codex-fork/codex-rs/network-proxy)
-    Checking codex-protocol v0.0.0 (<review-workspace>/codex-fork/codex-rs/protocol)
-    Checking codex-shell-command v0.0.0 (<review-workspace>/codex-fork/codex-rs/shell-command)
-    Checking codex-code-activity v0.0.0 (<review-workspace>/codex-fork/codex-rs/code-activity)
-    Finished `dev` profile [unoptimized + debuginfo] target(s) in 30.51s
-
-
-Doctests and rustdoc
-    Blocking waiting for file lock on package cache
-    Finished `test` profile [unoptimized + debuginfo] target(s) in 1.41s
+Current doctests
+Finished `test` profile [unoptimized + debuginfo] target(s) in 0.95s
    Doc-tests codex_code_activity
 
 running 1 test
 test code-activity/src/lib.rs - (line 7) ... ok
 
-test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
 
 
 running 3 tests
@@ -934,566 +203,117 @@ test code-activity/src/lifecycle.rs - lifecycle::PreparedCall (line 39) - compil
 test code-activity/src/stream.rs - stream::ActivityStream (line 40) - compile fail ... ok
 test code-activity/src/identity.rs - identity::OperationId (line 46) - compile fail ... ok
 
-test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.46s
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.36s
 
-all doctests ran in 5.28s; merged doctests compilation took 4.29s
- Documenting codex-code-activity v0.0.0 (<review-workspace>/codex-fork/codex-rs/code-activity)
-    Finished `dev` profile [unoptimized + debuginfo] target(s) in 6.39s
-   Generated <review-workspace>/codex-fork/codex-rs/target/doc/codex_code_activity/index.html
+all doctests ran in 1.98s; merged doctests compilation took 1.10s
 
+Current rustdoc
+Checking codex-protocol v0.0.0 (<WORKSPACE>/codex-fork/codex-rs/protocol)
+    Checking codex-shell-command v0.0.0 (<WORKSPACE>/codex-fork/codex-rs/shell-command)
+ Documenting codex-code-activity v0.0.0 (<WORKSPACE>/codex-fork/codex-rs/code-activity)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 7.84s
+   Generated <WORKSPACE>/codex-fork/codex-rs/target/doc/codex_code_activity/index.html
 
-Release build
-    Blocking waiting for file lock on package cache
-   Compiling proc-macro2 v1.0.106
-   Compiling unicode-ident v1.0.22
-   Compiling quote v1.0.45
-   Compiling libc v0.2.186
-   Compiling serde_core v1.0.228
-   Compiling cfg-if v1.0.4
-   Compiling serde v1.0.228
-   Compiling memchr v2.8.1
-   Compiling itoa v1.0.17
-   Compiling shlex v1.3.0
-   Compiling find-msvc-tools v0.1.9
-   Compiling scopeguard v1.2.0
-   Compiling portable-atomic v1.13.1
-   Compiling parking_lot_core v0.9.12
-   Compiling pin-project-lite v0.2.16
-   Compiling critical-section v1.2.0
-   Compiling zmij v1.0.19
-   Compiling thiserror v2.0.18
-   Compiling bytes v1.12.1
-   Compiling lock_api v0.4.14
-   Compiling futures-core v0.3.34
-   Compiling version_check v0.9.5
-   Compiling stable_deref_trait v1.2.1
-   Compiling futures-sink v0.3.34
-   Compiling serde_json v1.0.149
-   Compiling regex-syntax v0.8.8
-   Compiling autocfg v1.5.0
-   Compiling getrandom v0.3.4
-   Compiling equivalent v1.0.2
-   Compiling slab v0.4.12
-   Compiling subtle v2.6.1
-   Compiling aho-corasick v1.1.4
-   Compiling hashbrown v0.17.1
-   Compiling generic-array v0.14.7
-   Compiling bitflags v2.13.1
-   Compiling futures-channel v0.3.34
-   Compiling typenum v1.20.0
-   Compiling num-traits v0.2.19
-   Compiling futures-task v0.3.34
-   Compiling futures-io v0.3.34
-   Compiling writeable v0.6.2
-   Compiling allocator-api2 v0.2.21
-   Compiling indexmap v2.14.0
-   Compiling zerocopy v0.8.37
-   Compiling foldhash v0.2.0
-   Compiling unicode-xid v0.2.6
-   Compiling http v1.4.0
-   Compiling log v0.4.34
-   Compiling pkg-config v0.3.32
-   Compiling core-foundation-sys v0.8.7
-   Compiling percent-encoding v2.3.2
-   Compiling litemap v0.8.1
-   Compiling fnv v1.0.7
-   Compiling crossbeam-utils v0.8.21
-   Compiling either v1.15.0
-   Compiling utf8_iter v1.0.4
-   Compiling jobserver v0.1.34
-   Compiling fastrand v2.3.0
-   Compiling winnow v1.0.4
-   Compiling ipnet v2.11.0
-   Compiling icu_normalizer_data v2.2.0
-   Compiling once_cell v1.21.4
-   Compiling cc v1.2.55
-   Compiling errno v0.3.14
-   Compiling socket2 v0.6.3
-   Compiling mio v1.2.0
-   Compiling block-buffer v0.10.4
-   Compiling crypto-common v0.1.7
-   Compiling syn v2.0.117
-   Compiling signal-hook-registry v1.4.8
-   Compiling regex-automata v0.4.13
-   Compiling tracing-core v0.1.36
-   Compiling syn v3.0.3
-   Compiling http-body v1.0.1
-   Compiling digest v0.10.7
-   Compiling rand_core v0.9.5
-   Compiling toml_parser v1.1.3+spec-1.1.0
-   Compiling itertools v0.14.0
-   Compiling icu_properties_data v2.2.0
-   Compiling toml_datetime v0.7.5+spec-1.1.0
-   Compiling winnow v0.7.14
-   Compiling cpufeatures v0.2.17
-   Compiling sync_wrapper v1.0.2
-   Compiling crossbeam-epoch v0.9.20
-   Compiling mime v0.3.17
-   Compiling fs_extra v1.3.0
-   Compiling psl-types v2.0.11
-   Compiling unicase v2.9.0
-   Compiling cmake v0.1.57
-   Compiling dunce v1.0.5
-   Compiling mime_guess v2.0.5
-   Compiling http-body-util v0.1.3
-   Compiling const_format_proc_macros v0.2.34
-   Compiling form_urlencoded v1.2.2
-   Compiling ahash v0.8.12
-   Compiling getrandom v0.4.2
-   Compiling base64 v0.22.1
-   Compiling uuid v1.20.0
-   Compiling smol_str v0.3.5
-   Compiling zeroize v1.8.2
-   Compiling rand_core v0.10.1
-   Compiling semver v1.0.27
-   Compiling asynk-strim v0.1.5
-   Compiling aws-lc-sys v0.45.0
-   Compiling ring v0.17.14
-   Compiling rama-error v0.3.0-alpha.4
-   Compiling time-core v0.1.8
-   Compiling powerfmt v0.2.0
-   Compiling aws-lc-rs v1.18.1
-   Compiling rustc_version v0.4.1
-   Compiling num-conv v0.2.0
-   Compiling deranged v0.5.5
-   Compiling sha2 v0.10.9
-   Compiling const_format v0.2.35
-   Compiling nom v8.0.0
-   Compiling spin v0.9.8
-   Compiling toml_edit v0.23.10+spec-1.0.0
-   Compiling time-macros v0.2.27
-   Compiling endian-type v0.2.0
-   Compiling rustix v1.1.4
-   Compiling flume v0.12.0
-   Compiling rustls-pki-types v1.14.0
-   Compiling psl v2.1.184
-   Compiling num-integer v0.1.46
-   Compiling getrandom v0.2.17
-   Compiling untrusted v0.7.1
-   Compiling proc-macro-crate v3.4.0
-   Compiling untrusted v0.9.0
-   Compiling md5 v0.8.0
-   Compiling heck v0.5.0
-   Compiling hex v0.4.3
-   Compiling security-framework-sys v2.15.0
-   Compiling tree-sitter-language v0.1.7
-   Compiling httparse v1.10.1
-   Compiling byteorder v1.5.0
-   Compiling regex v1.12.3
-   Compiling time v0.3.47
-   Compiling atomic-waker v1.1.2
-   Compiling try-lock v0.2.5
-   Compiling synstructure v0.13.2
-   Compiling futures-macro v0.3.34
-   Compiling data-encoding v2.10.0
-   Compiling lazy_static v1.5.0
-   Compiling want v0.3.1
-   Compiling serde_derive_internals v0.29.1
-   Compiling core-foundation v0.9.4
-   Compiling ppv-lite86 v0.2.21
-   Compiling rayon-core v1.13.0
-   Compiling rand_chacha v0.9.0
-   Compiling syn v1.0.109
-   Compiling rand v0.9.3
-   Compiling ryu v1.0.22
-   Compiling schemars v0.8.22
-   Compiling rustls v0.23.45
-   Compiling minimal-lexical v0.2.1
-   Compiling futures-util v0.3.34
-   Compiling env_filter v1.0.0
-   Compiling nom v7.1.3
-   Compiling heapless v0.7.17
-   Compiling utf8parse v0.2.2
-   Compiling termcolor v1.4.1
-   Compiling tinyvec_macros v0.1.1
-   Compiling typeid v1.0.3
-   Compiling system-configuration-sys v0.6.0
-   Compiling dyn-clone v1.0.20
-   Compiling ref-cast v1.0.25
-   Compiling serde_derive v1.0.228
-   Compiling thiserror-impl v2.0.18
-   Compiling tokio-macros v2.7.0
-   Compiling displaydoc v0.2.5
-   Compiling tracing-attributes v0.1.31
-   Compiling zerofrom-derive v0.1.6
-   Compiling yoke-derive v0.8.2
-   Compiling zerovec-derive v0.11.3
-   Compiling rama-macros v0.3.0-alpha.4
-   Compiling async-trait v0.1.89
-   Compiling schemars_derive v0.8.22
-   Compiling dupe_derive v0.9.1
-   Compiling bytemuck_derive v1.10.2
-   Compiling anyhow v1.0.103
-   Compiling option-ext v0.2.0
-   Compiling dirs-sys v0.5.0
-   Compiling rusticata-macros v4.1.0
-   Compiling ts-rs-macros v11.1.0
-   Compiling zerofrom v0.1.6
-   Compiling enum-as-inner v0.6.1
-   Compiling asn1-rs-derive v0.6.0
-   Compiling asn1-rs-impl v0.2.0
-   Compiling ref-cast-impl v1.0.25
-   Compiling tracing v0.1.44
-   Compiling tinyvec v1.10.0
-   Compiling env_logger v0.11.9
-   Compiling hash32 v0.2.1
-   Compiling wildcard v0.3.0
-   Compiling yoke v0.8.2
-   Compiling logos-codegen v0.15.1
-   Compiling rand v0.10.1
-   Compiling blake3 v1.8.2
-   Compiling crossbeam-deque v0.8.6
-   Compiling crossbeam-channel v0.5.15
-   Compiling sha1 v0.10.6
-   Compiling core-foundation v0.10.1
-   Compiling erased-serde v0.4.10
-   Compiling futures-executor v0.3.34
-   Compiling bytemuck v1.25.0
-   Compiling iri-string v0.7.10
-   Compiling crc-catalog v2.4.0
-   Compiling zerovec v0.11.6
-   Compiling zerotrie v0.2.4
-   Compiling futures v0.3.34
-   Compiling allocative v0.3.6
-   Compiling atomic v0.5.3
-   Compiling link-section v0.17.2
-   Compiling bit-vec v0.8.0
-   Compiling tagptr v0.2.0
-   Compiling tower-service v0.3.3
-   Compiling linktime-proc-macro v0.1.0
-   Compiling security-framework v3.5.1
-   Compiling quickcheck v1.1.0
-   Compiling bit-set v0.8.0
-   Compiling crc v3.4.0
-   Compiling asn1-rs v0.7.1
-   Compiling cobs v0.3.0
-   Compiling ts-rs v11.1.0
-   Compiling ctor v1.0.6
-   Compiling dirs v6.0.0
-   Compiling strong_hash_derive v0.1.0
-   Compiling serde_repr v0.1.20
-   Compiling allocative_derive v0.3.6
-   Compiling tinystr v0.8.3
-   Compiling potential_utf v0.1.4
-   Compiling tempfile v3.27.0
-   Compiling zstd-sys v2.0.16+zstd.1.5.7
-   Compiling iana-time-zone v0.1.65
-   Compiling icu_locale_core v2.2.0
-   Compiling icu_collections v2.2.0
-   Compiling hashbrown v0.16.1
-   Compiling smallvec v1.15.1
-   Compiling num-bigint v0.4.6
-   Compiling oid-registry v0.8.1
-   Compiling beef v0.5.2
-   Compiling unicode-segmentation v1.12.0
-   Compiling nibble_vec v0.1.0
-   Compiling native-tls v0.2.14
-   Compiling radix_trie v0.3.0
-   Compiling simd-adler32 v0.3.8
-   Compiling hashbrown v0.14.5
-   Compiling parking_lot v0.12.5
-   Compiling cfg_aliases v0.1.1
-   Compiling unicode-width v0.1.14
-   Compiling constant_time_eq v0.3.1
-   Compiling bumpalo v3.19.1
-   Compiling httpdate v1.0.3
-   Compiling rama-http-headers v0.3.0-alpha.4
-   Compiling arrayvec v0.7.6
-   Compiling crc32fast v1.5.0
-   Compiling arrayref v0.3.9
-   Compiling pin-utils v0.1.0
-   Compiling tokio v1.52.3
-   Compiling lock_free_hashtable v0.1.4
-   Compiling moka v0.12.13
-   Compiling resolv-conf v0.7.6
-   Compiling static_interner v0.1.2
-   Compiling nix v0.28.0
-   Compiling postcard v1.1.3
-   Compiling icu_provider v2.2.0
-   Compiling dashmap v6.1.0
-   Compiling convert_case v0.6.0
-   Compiling triomphe v0.1.15
-   Compiling chrono v0.4.43
-   Compiling icu_normalizer v2.2.0
-   Compiling icu_properties v2.2.0
-   Compiling codex-utils-absolute-path v0.0.0 (<review-workspace>/codex-fork/codex-rs/utils/absolute-path)
-   Compiling strong_hash v0.1.0
-   Compiling schemafy_core v0.5.2
-   Compiling rustls-native-certs v0.8.3
-   Compiling system-configuration v0.7.0
-   Compiling Inflector v0.11.4
-   Compiling sorted_vector_map v0.2.1
-   Compiling fancy-regex v0.16.2
-   Compiling dupe v0.9.1
-   Compiling pagable_derive v0.4.1
-   Compiling anstyle-parse v0.2.7
-   Compiling security-framework v2.11.1
-   Compiling webpki-roots v1.0.5
-   Compiling csv-core v0.1.13
-   Compiling bstr v1.12.1
-   Compiling cookie v0.18.1
-   Compiling bitflags v1.3.2
-   Compiling anstyle v1.0.13
-   Compiling idna_adapter v1.2.1
-   Compiling strsim v0.11.1
-   Compiling inventory v0.3.24
-   Compiling adler2 v2.0.1
-   Compiling idna v1.1.0
-   Compiling colorchoice v1.0.4
-   Compiling is_terminal_polyfill v1.70.2
-   Compiling anstyle-query v1.1.5
-   Compiling take_mut v0.2.2
-   Compiling starlark_map v0.14.2
-   Compiling static_assertions v1.1.0
-   Compiling ident_case v1.0.1
-   Compiling sequence_trie v0.3.6
-   Compiling anstream v0.6.21
-   Compiling logos-derive v0.15.1
-   Compiling darling_core v0.21.3
-   Compiling miniz_oxide v0.8.9
-   Compiling csv v1.4.0
-   Compiling fluent-uri v0.1.4
-   Compiling schemafy_lib v0.5.2
-   Compiling derive_more-impl v1.0.0
-   Compiling pagable v0.4.1
-   Compiling der-parser v10.0.0
-   Compiling url v2.5.8
-   Compiling sharded-slab v0.1.7
-   Compiling serde_html_form v0.3.2
-   Compiling fxhash v0.2.1
-   Compiling matchers v0.2.0
-   Compiling tracing-log v0.2.0
-   Compiling memoffset v0.9.1
-   Compiling thread_local v1.1.9
-   Compiling http-range-header v0.4.2
-   Compiling matchit v0.9.1
-   Compiling tower-layer v0.3.3
-   Compiling litrs v1.0.0
-   Compiling nu-ansi-term v0.50.3
-   Compiling zlib-rs v0.5.5
-   Compiling icu_locale_data v2.2.0
-   Compiling zstd-safe v7.2.4
-   Compiling paste v1.0.15
-   Compiling endian-type v0.1.2
-   Compiling clap_lex v1.0.0
-   Compiling indenter v0.3.4
-   Compiling radix_trie v0.2.1
-   Compiling tracing-subscriber v0.3.22
-   Compiling clap_builder v4.5.58
-   Compiling schemafy v0.5.2
-   Compiling document-features v0.2.12
-   Compiling logos v0.15.1
-   Compiling lsp-types v0.97.0
-   Compiling publicsuffix v2.3.0
-   Compiling annotate-snippets v0.9.2
-   Compiling fdeflate v0.3.7
-   Compiling derivative v2.2.0
-   Compiling opentelemetry v0.31.0
-   Compiling yasna v0.6.0
-   Compiling clap_derive v4.5.55
-   Compiling fd-lock v4.0.4
-   Compiling pem v3.0.6
-   Compiling pxfm v0.1.27
-   Compiling darling_macro v0.21.3
-   Compiling encoding_rs v0.8.35
-   Compiling tokio-util v0.7.18
-   Compiling tokio-graceful v0.2.2
-   Compiling rama-utils v0.3.0-alpha.4
-   Compiling hickory-proto v0.25.2
-   Compiling tokio-stream v0.1.18
-   Compiling tokio-native-tls v0.3.1
-   Compiling tower v0.5.3
-   Compiling h2 v0.4.19
-   Compiling tokio-test v0.4.5
-   Compiling icu_decimal_data v2.2.0
-   Compiling flate2 v1.1.8
-   Compiling rama-core v0.3.0-alpha.4
-   Compiling derive_more v1.0.0
-   Compiling weezl v0.1.12
-   Compiling quick-error v2.0.1
-   Compiling byteorder-lite v0.1.0
-   Compiling home v0.5.12
-   Compiling color_quant v1.1.0
-   Compiling starlark v0.14.2
-   Compiling zune-core v0.5.1
-   Compiling gif v0.14.1
-   Compiling image-webp v0.2.4
-   Compiling rustyline v14.0.0
-   Compiling png v0.18.0
-   Compiling zune-jpeg v0.5.12
-   Compiling tower-http v0.6.8
-   Compiling clap v4.5.58
-   Compiling moxcms v0.7.11
-   Compiling darling v0.21.3
-   Compiling cookie_store v0.22.1
-   Compiling starlark_derive v0.14.2
-   Compiling debugserver-types v0.5.0
-   Compiling hickory-resolver v0.25.2
-   Compiling display_container v0.9.0
-   Compiling gix-validate v0.11.0
-   Compiling textwrap v0.11.0
-   Compiling erased-serde v0.3.31
-   Compiling serde_urlencoded v0.7.1
-   Compiling lru v0.18.2
-   Compiling gix-trace v0.1.18
-   Compiling hyper v1.8.1
-   Compiling strsim v0.10.0
-   Compiling cmp_any v0.8.1
-   Compiling urlencoding v2.1.3
-   Compiling maplit v1.0.2
-   Compiling codex-utils-cache v0.0.0 (<review-workspace>/codex-fork/codex-rs/utils/cache)
-   Compiling gix-path v0.11.2
-   Compiling rama-http-types v0.3.0-alpha.4
-   Compiling codex-utils-path-uri v0.0.0 (<review-workspace>/codex-fork/codex-rs/utils/path-uri)
-   Compiling icu_locale v2.2.0
-   Compiling serde_with_macros v3.17.0
-   Compiling tracing-opentelemetry v0.32.1
-   Compiling globset v0.4.18
-   Compiling codex-utils-home-dir v0.0.0 (<review-workspace>/codex-fork/codex-rs/utils/home-dir)
-   Compiling fixed_decimal v0.7.2
-   Compiling multimap v0.10.1
-   Compiling tree-sitter v0.25.10
-   Compiling hyper-util v0.1.20
-   Compiling derive_more-impl v2.1.1
-   Compiling rand_regex v0.18.1
-   Compiling tree-sitter-powershell v0.26.4
-   Compiling tree-sitter-bash v0.25.1
-   Compiling serde_ignored v0.1.14
-   Compiling regex-lite v0.1.8
-   Compiling serde_with v3.17.0
-   Compiling icu_decimal v2.2.0
-   Compiling gix-url v0.35.2
-   Compiling chardetng v0.1.17
-   Compiling codex-utils-string v0.0.0 (<review-workspace>/codex-fork/codex-rs/utils/string)
-   Compiling codex-async-utils v0.0.0 (<review-workspace>/codex-fork/codex-rs/async-utils)
-   Compiling rama-net v0.3.0-alpha.4
-   Compiling codex-extension-items v0.0.0 (<review-workspace>/codex-fork/codex-rs/ext/items)
-   Compiling hyper-tls v0.6.0
-   Compiling codex-utils-redacted-string v0.0.0 (<review-workspace>/codex-fork/codex-rs/utils/redacted-string)
-   Compiling quick-xml v0.41.0
-   Compiling strum_macros v0.28.0
-   Compiling tree-sitter-python v0.25.0
-   Compiling tree-sitter-typescript v0.23.2
-   Compiling derive_more v2.1.1
-   Compiling image v0.25.9
-   Compiling fs-err v3.3.1
-   Compiling env_home v0.1.0
-   Compiling streaming-iterator v0.1.9
-   Compiling eyre v0.6.12
-   Compiling strum v0.27.2
-   Compiling sys-locale v0.3.2
-   Compiling wildmatch v2.6.1
-   Compiling which v8.0.0
-   Compiling similar v2.7.0
-   Compiling yansi v1.0.1
-   Compiling diff v0.1.13
-   Compiling pretty_assertions v1.4.1
-   Compiling starlark_syntax v0.14.2
-   Compiling codex-utils-image v0.0.0 (<review-workspace>/codex-fork/codex-rs/utils/image)
-   Compiling rama-dns v0.3.0-alpha.4
-   Compiling rama-udp v0.3.0-alpha.4
-   Compiling rama-unix v0.3.0-alpha.4
-   Compiling zstd v0.13.3
-   Compiling rama-http v0.3.0-alpha.4
-   Compiling rama-tcp v0.3.0-alpha.4
-   Compiling rama-socks5 v0.3.0-alpha.4
-   Compiling rama-http-core v0.3.0-alpha.4
-   Compiling rama-http-backend v0.3.0-alpha.4
-   Compiling codex-execpolicy v0.0.0 (<review-workspace>/codex-fork/codex-rs/execpolicy)
-   Compiling rustls-webpki v0.103.15
-   Compiling x509-parser v0.18.1
-   Compiling rcgen v0.14.9
-   Compiling tokio-rustls v0.26.4
-   Compiling codex-utils-rustls-provider v0.0.0 (<review-workspace>/codex-fork/codex-rs/utils/rustls-provider)
-   Compiling hyper-rustls v0.27.7
-   Compiling rama-tls-rustls v0.3.0-alpha.4
-   Compiling reqwest v0.12.28
-   Compiling codex-network-proxy v0.0.0 (<review-workspace>/codex-fork/codex-rs/network-proxy)
-   Compiling codex-http-client v0.0.0 (<review-workspace>/codex-fork/codex-rs/http-client)
-   Compiling codex-protocol v0.0.0 (<review-workspace>/codex-fork/codex-rs/protocol)
-   Compiling codex-shell-command v0.0.0 (<review-workspace>/codex-fork/codex-rs/shell-command)
-   Compiling codex-code-activity v0.0.0 (<review-workspace>/codex-fork/codex-rs/code-activity)
-    Finished `release` profile [optimized + debuginfo] target(s) in 2m 50s
+Current selected release targets
+Compiling codex-protocol v0.0.0 (<WORKSPACE>/codex-fork/codex-rs/protocol)
+   Compiling codex-shell-command v0.0.0 (<WORKSPACE>/codex-fork/codex-rs/shell-command)
+   Compiling codex-code-activity v0.0.0 (<WORKSPACE>/codex-fork/codex-rs/code-activity)
+    Finished `release` profile [optimized + debuginfo] target(s) in 3m 11s
 
+Current Bazel module lock
+INFO: Invocation ID: 30f4c254-b4cd-4f66-90a8-45d2be1b55a7
+WARNING: For repository 'platforms', the root module requires module version platforms@1.0.0, but got platforms@1.1.0 in the resolved dependency graph. Please update the version in your MODULE.bazel or set --check_direct_dependencies=off
+WARNING: For repository 'rules_cc', the root module requires module version rules_cc@0.2.18, but got rules_cc@0.2.20 in the resolved dependency graph. Please update the version in your MODULE.bazel or set --check_direct_dependencies=off
+<root> (codex@_)
 
-Native Bazel final
-INFO: Invocation ID: e51405c1-a148-4986-902a-cb1a1ba4bdb0
+Current native Bazel tests
+INFO: Invocation ID: 4761ae7a-3ee1-4406-b611-85929c2bf3fe
 Computing main repo mapping:
 WARNING: For repository 'platforms', the root module requires module version platforms@1.0.0, but got platforms@1.1.0 in the resolved dependency graph. Please update the version in your MODULE.bazel or set --check_direct_dependencies=off
 WARNING: For repository 'rules_cc', the root module requires module version rules_cc@0.2.18, but got rules_cc@0.2.20 in the resolved dependency graph. Please update the version in your MODULE.bazel or set --check_direct_dependencies=off
 Loading:
 Loading: 3 packages loaded
-Analyzing: 27 targets (8 packages loaded, 6 targets configured)
-Analyzing: 27 targets (8 packages loaded, 6 targets configured)
+Analyzing: 39 targets (8 packages loaded, 6 targets configured)
+Analyzing: 39 targets (8 packages loaded, 6 targets configured)
 
-Analyzing: 27 targets (685 packages loaded, 50745 targets configured)
+Analyzing: 39 targets (686 packages loaded, 53138 targets configured, 6 aspect applications)
 [1 / 1] no actions running
-INFO: Analyzed 27 targets (689 packages loaded, 55941 targets configured, 9 aspect applications).
-[1,380 / 3,220] Writing repo mapping manifest for //codex-rs/code-activity:code-activity-function_goldens-test; 0s local ... (3 actions running)
-[3,191 / 3,220] Compiling Rust bin //codex-rs/code-activity:code-activity-unit-tests-bin (30 files); 0s disk-cache, darwin-sandbox ... (2 actions running)
-[3,192 / 3,220] Compiling Rust bin //codex-rs/code-activity:code-activity-unit-tests-bin (30 files); 2s disk-cache, darwin-sandbox ... (2 actions, 1 running)
-[3,194 / 3,221] 1 / 24 tests; Compiling Rust bin //codex-rs/code-activity:code-activity-language_review-test (1 file); 1s disk-cache, darwin-sandbox ... (13 actions running)
-[3,196 / 3,221] 1 / 24 tests; Compiling Rust bin //codex-rs/code-activity:code-activity-language_review-test (1 file); 4s disk-cache, darwin-sandbox ... (12 actions running)
-[3,201 / 3,221] 1 / 24 tests; Compiling Rust bin //codex-rs/code-activity:code-activity-tripwire_parity-test (1 file); 6s disk-cache, darwin-sandbox ... (13 actions, 7 running)
-INFO: Found 3 targets and 24 test targets...
-INFO: Elapsed time: 14.849s, Critical Path: 10.90s
-INFO: 63 processes: 3170 action cache hit, 2 disk cache hit, 36 internal, 37 darwin-sandbox.
+INFO: Analyzed 39 targets (689 packages loaded, 56022 targets configured, 9 aspect applications).
+[1,898 / 3,244] checking cached actions
+[3,201 / 3,244] Compiling Rust rlib //codex-rs/protocol:protocol (75 files); 0s disk-cache, darwin-sandbox
+[3,201 / 3,244] Compiling Rust rlib //codex-rs/protocol:protocol (75 files); 11s disk-cache, darwin-sandbox
+[3,202 / 3,244] [Prepa] Compiling Rust rlib //codex-rs/shell-command:shell-command (19 files)
+[3,203 / 3,244] Compiling Rust rlib //codex-rs/code-activity:code-activity (33 files); 0s disk-cache, darwin-sandbox ... (2 actions running)
+[3,204 / 3,244] Compiling Rust bin //codex-rs/code-activity:code-activity-unit-tests-bin (33 files); 1s disk-cache, darwin-sandbox ... (2 actions running)
+[3,206 / 3,244] [Prepa] Compiling Rust bin //codex-rs/code-activity:codex-code-activity (34 files)
+[3,209 / 3,245] [Prepa] Compiling Rust bin //codex-rs/code-activity:code-activity-function_goldens-test (1 file)
+[3,210 / 3,246] Compiling Rust bin //codex-rs/code-activity:code-activity-function_goldens-test (1 file); 1s disk-cache, darwin-sandbox ... (2 actions running)
+[3,216 / 3,249] Compiling Rust bin //codex-rs/code-activity:code-activity-lifecycle-test (1 file); 0s disk-cache, darwin-sandbox ... (2 actions running)
+[3,220 / 3,251] Compiling Rust bin //codex-rs/code-activity:code-activity-policy-test (1 file); 0s disk-cache, darwin-sandbox ... (2 actions running)
+[3,221 / 3,251] Compiling Rust bin //codex-rs/code-activity:code-activity-review_regressions-test (1 file); 1s disk-cache, darwin-sandbox ... (2 actions, 1 running)
+[3,225 / 3,253] Compiling Rust bin //codex-rs/code-activity:code-activity-contract-test (1 file); 1s disk-cache, darwin-sandbox ... (2 actions, 1 running)
+[3,229 / 3,255] Compiling Rust bin //codex-rs/code-activity:code-activity-tripwire_parity-test (1 file); 1s disk-cache, darwin-sandbox ... (2 actions, 1 running)
+[3,232 / 3,257] Compiling Rust bin //codex-rs/code-activity:code-activity-analysis-test (1 file); 1s disk-cache, darwin-sandbox ... (2 actions running)
+[3,236 / 3,259] Compiling Rust bin //codex-rs/code-activity:codex-code-activity-bin-unit-tests-bin (34 files); 0s disk-cache, darwin-sandbox ... (2 actions running)
+[3,240 / 3,261] Compiling Rust bin //codex-rs/code-activity:code-activity-codex_adapter-test (1 file); 0s disk-cache, darwin-sandbox ... (2 actions running)
+[3,242 / 3,261] 1 / 36 tests; Compiling Rust bin //codex-rs/code-activity:code-activity-stress-test (1 file); 0s disk-cache, darwin-sandbox ... (2 actions running)
+[3,246 / 3,262] 3 / 36 tests; Testing //codex-rs/code-activity:code-activity-resource_construction-test; 0s disk-cache, darwin-sandbox ... (2 actions running)
+[3,251 / 3,263] 7 / 36 tests; Testing //codex-rs/code-activity:code-activity-policy-test; 0s disk-cache, darwin-sandbox ... (2 actions running)
+[3,254 / 3,263] 10 / 36 tests; Testing //codex-rs/code-activity:code-activity-contract-test; 0s disk-cache, darwin-sandbox ... (2 actions running)
+[3,258 / 3,263] 14 / 36 tests; Testing //codex-rs/code-activity:code-activity-semantic_review-test; 0s disk-cache, darwin-sandbox ... (2 actions running)
+[3,261 / 3,263] 17 / 36 tests; Testing //codex-rs/code-activity:code-activity-codex_adapter-test; 0s disk-cache, darwin-sandbox ... (2 actions running)
+[3,262 / 3,263] 18 / 36 tests; Testing //codex-rs/code-activity:code-activity-stress-test; 1s disk-cache, darwin-sandbox
+[3,262 / 3,263] 18 / 36 tests; Testing //codex-rs/code-activity:code-activity-stress-test; 11s disk-cache, darwin-sandbox
+[3,262 / 3,263] 18 / 36 tests; Testing //codex-rs/code-activity:code-activity-stress-test; 42s disk-cache, darwin-sandbox
+[3,262 / 3,263] 18 / 36 tests; Testing //codex-rs/code-activity:code-activity-stress-test; 43s disk-cache, darwin-sandbox
+INFO: Found 3 targets and 36 test targets...
+INFO: Elapsed time: 81.889s, Critical Path: 59.78s
+INFO: 63 processes: 3200 action cache hit, 8 disk cache hit, 21 internal, 53 darwin-sandbox.
 INFO: Build completed successfully, 63 total actions
-//codex-rs/code-activity:code-activity-unit-tests               (cached) PASSED in 0.9s
 //codex-rs/code-activity:code-activity-analysis-test-windows-cross      SKIPPED
 //codex-rs/code-activity:code-activity-budget_review-test-windows-cross SKIPPED
 //codex-rs/code-activity:code-activity-codex_adapter-test-windows-cross SKIPPED
+//codex-rs/code-activity:code-activity-contract-test-windows-cross      SKIPPED
 //codex-rs/code-activity:code-activity-function_goldens-test-windows-cross SKIPPED
 //codex-rs/code-activity:code-activity-function_limits-test-windows-cross SKIPPED
 //codex-rs/code-activity:code-activity-language_review-test-windows-cross SKIPPED
 //codex-rs/code-activity:code-activity-lifecycle-test-windows-cross     SKIPPED
+//codex-rs/code-activity:code-activity-object_review-test-windows-cross SKIPPED
 //codex-rs/code-activity:code-activity-parity_controls-test-windows-cross SKIPPED
+//codex-rs/code-activity:code-activity-policy-test-windows-cross        SKIPPED
+//codex-rs/code-activity:code-activity-resource_construction-test-windows-cross SKIPPED
 //codex-rs/code-activity:code-activity-review_regressions-test-windows-cross SKIPPED
+//codex-rs/code-activity:code-activity-semantic_review-test-windows-cross SKIPPED
 //codex-rs/code-activity:code-activity-shell_review-test-windows-cross  SKIPPED
+//codex-rs/code-activity:code-activity-stress-test-windows-cross        SKIPPED
 //codex-rs/code-activity:code-activity-tripwire_parity-test-windows-cross SKIPPED
-//codex-rs/code-activity:code-activity-analysis-test                     PASSED in 0.6s
-//codex-rs/code-activity:code-activity-budget_review-test                PASSED in 0.7s
+//codex-rs/code-activity:code-activity-analysis-test                     PASSED in 0.5s
+//codex-rs/code-activity:code-activity-budget_review-test                PASSED in 0.6s
 //codex-rs/code-activity:code-activity-codex_adapter-test                PASSED in 0.7s
-//codex-rs/code-activity:code-activity-function_goldens-test             PASSED in 0.6s
-//codex-rs/code-activity:code-activity-function_limits-test              PASSED in 0.7s
-//codex-rs/code-activity:code-activity-language_review-test              PASSED in 0.7s
-//codex-rs/code-activity:code-activity-lifecycle-test                    PASSED in 0.6s
-//codex-rs/code-activity:code-activity-parity_controls-test              PASSED in 0.6s
-//codex-rs/code-activity:code-activity-review_regressions-test           PASSED in 0.6s
-//codex-rs/code-activity:code-activity-shell_review-test                 PASSED in 0.7s
+//codex-rs/code-activity:code-activity-contract-test                     PASSED in 0.5s
+//codex-rs/code-activity:code-activity-function_goldens-test             PASSED in 0.5s
+//codex-rs/code-activity:code-activity-function_limits-test              PASSED in 0.5s
+//codex-rs/code-activity:code-activity-language_review-test              PASSED in 0.5s
+//codex-rs/code-activity:code-activity-lifecycle-test                    PASSED in 0.5s
+//codex-rs/code-activity:code-activity-object_review-test                PASSED in 0.5s
+//codex-rs/code-activity:code-activity-parity_controls-test              PASSED in 0.5s
+//codex-rs/code-activity:code-activity-policy-test                       PASSED in 0.5s
+//codex-rs/code-activity:code-activity-resource_construction-test        PASSED in 0.5s
+//codex-rs/code-activity:code-activity-review_regressions-test           PASSED in 0.5s
+//codex-rs/code-activity:code-activity-semantic_review-test              PASSED in 0.5s
+//codex-rs/code-activity:code-activity-shell_review-test                 PASSED in 0.5s
+//codex-rs/code-activity:code-activity-stress-test                       PASSED in 43.8s
 //codex-rs/code-activity:code-activity-tripwire_parity-test              PASSED in 0.6s
-//codex-rs/code-activity:codex-code-activity-bin-unit-tests              PASSED in 0.6s
+//codex-rs/code-activity:code-activity-unit-tests                        PASSED in 0.7s
+//codex-rs/code-activity:codex-code-activity-bin-unit-tests              PASSED in 0.8s
 
-Executed 12 out of 24 tests: 13 tests pass and 11 were skipped.
+Executed 19 out of 36 tests: 19 tests pass and 17 were skipped.
 There were tests whose specified size is too big. Use the --test_verbose_timeout_warnings command line option to see which ones these are.
 
+Standalone parse-only diagnostic build
+Compiling codex-code-activity v0.1.0 (/tmp/code-activity-original-125)
+    Finished `release` profile [optimized + debuginfo] target(s) in 2.98s
 
-Bazel adapter rerun
-INFO: Invocation ID: bb203577-58e4-4d29-8cbe-01015a8b01d5
-Computing main repo mapping:
-Loading:
-Loading: 0 packages loaded
-Analyzing: target //codex-rs/code-activity:code-activity-codex_adapter-test (1 packages loaded, 0 targets configured)
-Analyzing: target //codex-rs/code-activity:code-activity-codex_adapter-test (1 packages loaded, 0 targets configured)
-
-INFO: Analyzed target //codex-rs/code-activity:code-activity-codex_adapter-test (1 packages loaded, 51 targets configured).
-[5 / 7] Compiling Rust bin //codex-rs/code-activity:code-activity-codex_adapter-test (1 file); 1s disk-cache, darwin-sandbox
-[6 / 7] [Prepa] runfiles for //codex-rs/code-activity:code-activity-codex_adapter-test
-[7 / 8] 1 / 1 tests; Testing //codex-rs/code-activity:code-activity-codex_adapter-test; 0s disk-cache, darwin-sandbox
-INFO: Found 1 test target...
-Target //codex-rs/code-activity:code-activity-codex_adapter-test up-to-date:
-  bazel-bin/codex-rs/code-activity/code-activity-codex_adapter-test
-INFO: Elapsed time: 8.126s, Critical Path: 7.01s
-INFO: 4 processes: 4 action cache hit, 2 internal, 3 darwin-sandbox.
-INFO: Build completed successfully, 4 total actions
-//codex-rs/code-activity:code-activity-codex_adapter-test                PASSED in 0.8s
-
-Executed 1 out of 1 test: 1 test passes.
-There were tests whose specified size is too big. Use the --test_verbose_timeout_warnings command line option to see which ones these are.
-
-
-Bazel lock verification
-INFO: Invocation ID: 0d6bc15e-cd3e-4889-907e-c0e18848f20f
-WARNING: For repository 'platforms', the root module requires module version platforms@1.0.0, but got platforms@1.1.0 in the resolved dependency graph. Please update the version in your MODULE.bazel or set --check_direct_dependencies=off
-WARNING: For repository 'rules_cc', the root module requires module version rules_cc@0.2.18, but got rules_cc@0.2.20 in the resolved dependency graph. Please update the version in your MODULE.bazel or set --check_direct_dependencies=off
-<root> (codex@_)
+Standalone parse-only strict Clippy
+Checking codex-code-activity v0.1.0 (/tmp/code-activity-original-125)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 1.20s

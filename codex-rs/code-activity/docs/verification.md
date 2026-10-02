@@ -2,16 +2,17 @@
 
 Environment: macOS arm64, Rust 1.95.0, cargo-nextest 0.9.146, Python 3.14.7,
 Node 26.10.0, Bazelisk 1.29.0 selecting Codex's pinned Bazel 9.0.0.
-Official Codex base: `ca466061d64f0b44f416135c7fd06aa7af850bbc`.
+Current verified and merged official Codex base: `c5d242fa7907bff1b7a7e26e95febc548c0a6963`.
 Actual Tripwire comparison: `56f18dad3ac729db75e6d2437fa74b1b9a3c900f`.
 
 | Check | Actual current result |
 |---|---|
-| In-tree nextest, all targets including ignored fixed runtime fixtures | **139 passed, zero skipped**, zero failures/retries in final run; 44.75 seconds with two test threads |
+| In-tree nextest, all targets including ignored fixed runtime fixtures | **139 passed, zero skipped**, zero failures/retries in final run; 44.06 seconds with two test threads |
 | In-tree lifecycle/API doctests | **4 passed**, including three compile-fail lifecycle/ID checks |
 | Changed-crate all-target Clippy, warnings denied plus pedantic/nursery | Passed; no suppressions or weakened lints |
 | Formatting and warning-denied rustdoc | Passed; stable rustfmt retains the unchanged upstream nightly-setting warning |
-| In-tree all-target release build | Passed; inherited thin-LTO profile; two low-priority build jobs |
+| Current-base release library, CLI and actual adapter/consumer/benchmark examples | Passed; inherited thin-LTO profile; two low-priority build jobs |
+| Earlier-base all-target release build | Passed on `ca466061…`; preserved in the earlier receipt, not relabeled as current-base release validation |
 | Native Bazel `//codex-rs/code-activity:all` | **19 targets passed; 17 Windows cross targets skipped** on macOS |
 | Bazel module-lock error mode | Passed, no dependency changes in this review round |
 | Bazel/Clippy policy consistency script | Passed |
@@ -19,7 +20,7 @@ Actual Tripwire comparison: `56f18dad3ac729db75e6d2437fa74b1b9a3c900f`.
 | Source-size check | All **64 Rust files** are at most 350 lines: 63 crate/example/test files plus the separate 115-line diagnostic artifact |
 | Stress and timed evidence | **111 inert cases / 222 pipeline measurements**, 32 original/current common comparisons, raw durations and 12 isolated consumer RSS logs; native parse-only diagnostic |
 | Standalone diagnostic compilation and strict Clippy | Passed against the original locked grammar/profile; no source execution |
-| Measured source/data integrity | All measured Rust/dataset/driver hashes still match; exact expanded corpus hash and 222 sample counts verified |
+| Measured source/data integrity | All final measured Rust/dataset/driver hashes still match `0b499de…`; exact expanded corpus hash and 222 sample counts verified |
 | Codex compatibility | Real item adapter tests pass; no changes to core, app-server, protocols or TUI relative to official base |
 | Original checkouts | Parser `125f907…` and Tripwire `56f18da…` remain clean and untouched |
 | Frozen older Tripwire corpus | Byte-for-byte preserved; 191 full operation comparisons remain exact; a generator uncertainty exception is narrow and explicit |
@@ -50,7 +51,7 @@ cargo clippy -p codex-code-activity --all-targets --no-deps --locked -- -D warni
 CARGO_BUILD_JOBS=2 nice -n 10 cargo nextest run --test-threads 2 -p codex-code-activity --all-targets --locked --no-fail-fast --run-ignored all
 cargo test -p codex-code-activity --doc --locked
 RUSTDOCFLAGS='-D warnings' cargo doc -p codex-code-activity --no-deps --locked
-CARGO_BUILD_JOBS=2 nice -n 10 cargo build -p codex-code-activity --release --all-targets --locked
+CARGO_BUILD_JOBS=2 nice -n 10 cargo build -p codex-code-activity --release --lib --bin codex-code-activity --example benchmark --example compare --example consumer --example codex_item --locked
 cargo run -p codex-code-activity --example codex_item --locked
 ```
 
