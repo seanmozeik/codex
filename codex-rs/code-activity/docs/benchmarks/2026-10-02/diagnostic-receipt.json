@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "originalCommit": "125f907ca4ea38ee3c59f20b60d46d9f7e0a4acc",
+  "diagnosticSourceSha256": "1e3d4b3add777a7edc7b2314c9ef46e4ea3931a2b60682dd40bb97eef1d41a68",
+  "diagnosticBinarySha256": "2c01fc72e06f87c661c829ac8bd83824f232da4ee350f29d3b1aebf61358788d",
+  "compilerAndMachine": "run-receipt.json",
+  "grammar": "tree-sitter-python 0.25.0",
+  "runtime": "tree-sitter 0.25.10",
+  "commands": [
+    "cp code-activity/docs/benchmarks/2026-10-02/parse-only.rs /tmp/code-activity-original-125/examples/parse-only.rs",
+    "CARGO_BUILD_JOBS=2 CARGO_TARGET_DIR=$WORKSPACE/code-activity/target nice -n 10 cargo build --manifest-path /tmp/code-activity-original-125/Cargo.toml --example parse-only --release --locked",
+    "nice -n 10 $WORKSPACE/code-activity/target/release/examples/parse-only > code-activity/docs/benchmarks/2026-10-02/parse-only.jsonl"
+  ],
+  "pathNotation": "$WORKSPACE substitutes the local task workspace only; commands otherwise reproduce the actual run."
+}

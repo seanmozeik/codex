@@ -100,6 +100,11 @@ Run the standalone synthetic demonstration with:
 cargo run -p codex-code-activity --example consumer --locked
 ```
 
+[Captured synthetic output](../examples/consumer.output.json) combines the
+example's three emitted JSON values and counted dispatch into one inspectable
+artifact: an ordinary read followed by a protected write, two UI rows, a block
+decision tied to operation 1, and zero mock calls. The source remains inert.
+
 It prints the envelope, typed rows, policy result and zero mock executor calls.
 The source is synthetic and inert. Full parse/emission/UI/policy cost belongs in
 the performance evidence; grammar recognition alone does not measure this flow.

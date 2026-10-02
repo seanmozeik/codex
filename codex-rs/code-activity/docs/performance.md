@@ -83,11 +83,137 @@ counts; they are not hard wall-clock or native tree-sitter memory limits.
 
 ## Actual run receipt
 
-The integration owner records the exact code/dataset hashes, machine and OS,
-compiler and Cargo versions, release profile, load conditions, commands, measured
-sample counts, raw JSONL and isolated RSS logs here after execution. No measured
-numbers are claimed until those artifacts exist. Tests cover deterministic
-byte-identical reports, bounded records/gaps/source counts, explicit recursive
-and malformed abstention, small-case action multiplicity, and an actual unchanged
-host sentinel when file-writing strings are analyzed. The sentinel test is a
-regression control, not a proof of arbitrary-input safety.
+Actual measurements cover **111 cases / 222 pipeline runs**, on Apple M1 Ultra,
+20 logical CPUs, 64 GiB RAM, macOS 27.0.1 (26A434), native arm64, Rust/Cargo
+1.95.0. Measured code commit:
+`59d2071a84ffb2f1040d0d1fe4dfa2fb50c2840c`. Later receipt/document additions
+do not change its compiled parser, tests or benchmark examples; the receipt
+hashes every measured Rust file, dataset and driver. The inherited release
+profile uses opt-level 3, thin LTO, four codegen units, line-table debug info and
+no stripping. Grammar/runtime versions are tree-sitter 0.25.10, Python 0.25.0,
+TypeScript 0.23.2 and Bash 0.25.1 (actual locks).
+
+Runs were serial at `nice -n 10`, after compilation finished. No Juno release
+compiler was observed before the measurements. This was a desktop with ordinary
+background applications, without CPU affinity, frequency/thermal control or
+statistical isolation. A one-sample consumer pilot selected measured/warmup
+counts: mean above 50 ms → 3/1, above 5 ms → 10/2, otherwise 30/3. Counts and
+every raw sample are retained; p95 with three samples is simply the maximum.
+
+The complete [run receipt](benchmarks/2026-10-02/run-receipt.json),
+[raw measurements](benchmarks/2026-10-02/measurements.jsonl),
+[pilot](benchmarks/2026-10-02/pilot-consumer.jsonl) and
+[exact compressed source corpus](benchmarks/2026-10-02/corpus-v1.jsonl.gz)
+are versioned. Expanded corpus SHA-256:
+`e3fbada8bf267f2a027e2e38c3a7e4bd2a8f3a95a761033210b215ad27b2dbaf`.
+Calls/sec and input bytes/sec use measured iteration count / summed timed
+duration; they include ownership, analysis and consumer work, not stdout.
+
+| Consumer case | Input bytes | Median / p95, ms | Ops / gaps / sources | Samples | Calls/sec |
+|---|---:|---:|---:|---:|---:|
+| Python direct, 1 | 39 | 0.0177 / 0.0219 | 2 / 0 / 1 | 30 | 53,437 |
+| Python direct, 16 | 624 | 0.2278 / 0.2513 | 32 / 0 / 1 | 30 | 4,360 |
+| Python direct, 128 | 4,992 | 1.8421 / 1.9292 | 256 / 0 / 1 | 30 | 541 |
+| Python direct, 512 | 19,968 | 5.8115 / 6.0272 | 256 / 256 / 1 | 10 | 172 |
+| JavaScript direct, 128 | 5,144 | 1.0495 / 1.1674 | 128 / 0 / 1 | 30 | 941 |
+| Typed TS function, 128 | 1,906 | 0.9579 / 1.0248 | 128 / 0 / 1 | 30 | 1,036 |
+| Shell → Node, 32 | 1,984 | 0.5862 / 0.6030 | 32 / 0 / 33 | 30 | 1,699 |
+| TS tool → shell → Python, 32 | 3,776 | 1.0749 / 1.1381 | 62 / 1 / 64 | 30 | 919 |
+| Python comments, 8,192 | 311,321 | 6,031.1010 / 6,040.1104 | 1 / 0 / 1 | 3 | 0.17 |
+| Accepted single-comment source cap | 1,048,576 | 7.3165 / 7.5228 | 0 / 0 / 1 | 10 | 136 |
+| Rejected source over cap | 1,048,577 | 0.0235 / 0.0258 | 0 / 1 / 1 | 30 | 41,885 |
+
+These are descriptive host measurements, not performance guarantees. Python
+direct-512 hits report caps, and nested tool-32 hits the source cap; their output
+is incomplete. Over-cap throughput measures rejection. Empty comment-only
+reports are opaque, not evidence of safety. In the separate parse/emission
+pipeline, Python direct-1 measured 12.7/17.1 µs median/p95; adding the tested
+local consumer measured 17.7/21.9 µs. This is not a live Codex dispatch/event/UI
+benchmark and does not include AI inference or permission handling.
+
+## Original parser comparison and memory
+
+The original commit is `125f907ca4ea38ee3c59f20b60d46d9f7e0a4acc`.
+A [source-only archive with its Apache-2.0 license](benchmarks/2026-10-02/baseline-125f907.tar.gz)
+makes it reproducible without private guidance or discussion files.
+[Baseline metadata](benchmarks/2026-10-02/baseline-metadata.json) records archive,
+identical harness and binary hashes/sizes/profiles. Both use the exact
+`examples/compare.rs` source, locked parser dependency versions, Rust 1.95.0,
+owned requests, a reused parser, original Report JSON and output destruction,
+with 30 measured iterations / three warmups. Setup/input decoding/startup are
+outside the timing window.
+
+Of [32 common cases](benchmarks/2026-10-02/common-case-ids.json), **14 reports are
+byte-identical**. The other 18 retain their timings/counts as semantic deltas,
+not equivalent-work speed comparisons. See
+[report equivalence hashes](benchmarks/2026-10-02/common-equivalence.json),
+[summary and variance](benchmarks/2026-10-02/comparison-summary.json),
+[original raw samples](benchmarks/2026-10-02/common-original-125f907.jsonl) and
+[current raw samples](benchmarks/2026-10-02/common-current.jsonl).
+
+| Byte-identical case | Original median / p95, ms | Current median / p95, ms |
+|---|---:|---:|
+| Python direct, 128 | 1.2108 / 1.2853 | 1.6495 / 2.2957 |
+| JavaScript direct, 128 | 0.7299 / 0.7630 | 0.7754 / 0.8134 |
+| Shell → Node, 32 | 0.4166 / 0.4277 | 0.5024 / 0.5368 |
+| Awaited JS promises, 128 | 1.9455 / 2.1960 | 1.9918 / 2.0538 |
+
+The current parser generally costs more in these samples; this is a correctness,
+resource-control and output-contract change, **not a demonstrated speedup**.
+Different current-harness runs vary, particularly for very small scripts; do
+not infer statistically significant regressions from this single-host run or
+subtract unlike pipelines as exact per-stage costs.
+
+Fresh-process `/usr/bin/time -l` logs cover 12 selected consumer cases.
+Their peak RSS ranges from **17,104,896 to 20,430,848 bytes** (16.3–19.5 MiB).
+Both common comparison processes use the same 32-input corpus and timed scope:
+original peak **7,651,328 bytes**, current **11,894,784 bytes**. Binary sizes are
+4,412,664 and 13,707,912 bytes respectively; the current in-tree build also has
+Codex dependency/adapter code. These are process footprint observations,
+including setup/input buffers/allocator retention and build graph differences,
+not per-call allocations or language-only memory regressions. Original/current
+common logs and selected `<case>.time.txt` files are in the receipt directory.
+
+## Native parsing limit found by the stress run
+
+The repeated Python comment case grows from 38,937 bytes / 1,024 comment lines
+at about 94 ms to 311,321 bytes / 8,192 lines at about **6.03 seconds** in the
+consumer run. A separate [parse-only diagnostic](benchmarks/2026-10-02/parse-only.rs),
+with the same pinned grammar/runtime and profile, measured native parsing,
+root metadata queries and tree destruction at **101 ms / 6.509 seconds**
+median. Cursor collection of the already parsed root took **31 µs / 240 µs**.
+[Raw diagnostic samples](benchmarks/2026-10-02/parse-only.jsonl) and
+[exact diagnostic receipt](benchmarks/2026-10-02/diagnostic-receipt.json) retain
+one warmup / three samples, counts and hashes. No submitted source executed.
+
+That diagnostic places the expensive work in the native parse/tree interval,
+without pinpointing one native function. The grammar scanner's repeated comment
+lookahead is a plausible source-inspection hypothesis, not a profiled attribution.
+Neither source bytes nor semantic-visit limits interrupt this interval.
+**Cancellation/deadline or native-parser mitigation is required before putting
+this path synchronously into an interactive UI.** The prototype has no such
+deadline and makes no hard wall-clock or native allocation guarantee.
+
+## Replay the actual runs
+
+From `codex-rs`, extract the source-only baseline, install the identical comparison
+harness, and preserve its original manifest/profile:
+
+```sh
+mkdir -p /tmp/code-activity-original-125/examples
+tar -xzf code-activity/docs/benchmarks/2026-10-02/baseline-125f907.tar.gz -C /tmp/code-activity-original-125
+cp code-activity/examples/compare.rs /tmp/code-activity-original-125/examples/compare.rs
+CARGO_BUILD_JOBS=2 nice -n 10 cargo build --manifest-path /tmp/code-activity-original-125/Cargo.toml --example compare --release --locked
+python3 code-activity/examples/measure.py /tmp/code-activity-original-125/target/release/examples/compare /tmp/code-activity-replay
+cp code-activity/docs/benchmarks/2026-10-02/parse-only.rs /tmp/code-activity-original-125/examples/parse-only.rs
+CARGO_BUILD_JOBS=2 nice -n 10 cargo build --manifest-path /tmp/code-activity-original-125/Cargo.toml --example parse-only --release --locked
+nice -n 10 /tmp/code-activity-original-125/target/release/examples/parse-only > /tmp/code-activity-replay/parse-only.jsonl
+```
+
+The actual receipt uses an existing shared local target directory to reuse cached
+dependencies; that path change does not alter the compiler/profile. The selected
+comparison IDs, expanded corpus and hashes allow replay independently of the
+driver. Current runs can be replayed without the baseline. Tests cover repeated
+byte-identical reports, count caps, recursion/malformed abstention, small-case
+multiplicity and an actual unchanged host sentinel while analyzing write strings.
+The sentinel is a regression control, not proof of arbitrary-input safety.
