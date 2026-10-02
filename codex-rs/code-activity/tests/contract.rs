@@ -242,12 +242,9 @@ fn command_item(command: Vec<String>) -> eyre::Result<CommandExecutionItem> {
         source: ExecCommandSource::Agent,
         interaction_input: None,
         status: CommandExecutionStatus::Completed,
-        stdout: Some("done".into()),
-        stderr: None,
-        aggregated_output: None,
+        aggregated_output: Some("done".into()),
         exit_code: Some(0),
         duration: None,
-        formatted_output: None,
     })
 }
 
@@ -274,6 +271,7 @@ fn actual_codex_item_remains_independent_of_consumer_contract() -> eyre::Result<
             .all(|row| row.basis == Basis::StaticIntent)
     );
     assert_eq!(serde_json::to_value(activity.item)?, before);
+    assert_eq!(activity.item.aggregated_output.as_deref(), Some("done"));
     Ok(())
 }
 

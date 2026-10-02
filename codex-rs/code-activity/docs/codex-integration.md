@@ -1,6 +1,6 @@
 # Current Codex integration scope
 
-Pinned official base: `ca466061d64f0b44f416135c7fd06aa7af850bbc`, fetched again
+Pinned official base: `c5d242fa7907bff1b7a7e26e95febc548c0a6963`, verified and merged
 on 2 October 2026 before creating this fork branch. This is an in-tree discussion
 prototype, not a live core/app-server/UI integration.
 
@@ -71,7 +71,21 @@ flowchart LR
    size/latency evaluation and all upstream CI lanes. Synthetic source examples
    do not establish production accuracy or a hard wall-clock deadline.
 
-The current official [contribution policy](https://github.com/openai/codex/blob/ca466061d64f0b44f416135c7fd06aa7af850bbc/docs/contributing.md#L5)
+The current official [contribution policy](https://github.com/openai/codex/blob/c5d242fa7907bff1b7a7e26e95febc548c0a6963/docs/contributing.md#L5)
 states that external code contributions/PRs are not accepted. This PR targets
 Sean's own fork for his discussion, with no upstream submission or reviewer
 request.
+
+## Same-day upstream refresh
+
+Official main advanced by twelve commits during this review. The final branch
+includes `c5d242fa7907bff1b7a7e26e95febc548c0a6963` without rewriting its earlier
+commits. Upstream consolidated command output into `aggregated_output`, removing
+`stdout`, `stderr` and `formatted_output` from `CommandExecutionItem`. The bridge
+continues to borrow the whole real item; only boundary fixture/example builders
+needed adjustment. Explicit tests retain aggregate output, status, exit metadata,
+argv, cwd URI and existing parsed commands without treating output as file-change
+evidence. No production protocol, core, app-server or TUI edits are introduced
+relative to this updated official base. Earlier timed data keeps its original
+code/base receipt; final validation and any refreshed data identify their own
+snapshot.

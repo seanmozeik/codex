@@ -36,12 +36,9 @@ fn command_item(shell: &str, script: &str, cwd: &str) -> eyre::Result<CommandExe
         source: ExecCommandSource::Agent,
         interaction_input: None,
         status: CommandExecutionStatus::InProgress,
-        stdout: None,
-        stderr: None,
         aggregated_output: None,
         exit_code: None,
         duration: None,
-        formatted_output: None,
     })
 }
 
@@ -149,6 +146,10 @@ fn lifecycle_status_never_turns_intent_into_observed_changes() -> eyre::Result<(
         assert_eq!(serde_json::to_value(report(&activity)?)?, initial);
         assert_eq!(activity.item.status, status);
         assert_eq!(activity.item.exit_code, exit_code);
+        assert_eq!(
+            activity.item.aggregated_output.as_deref(),
+            Some("Wrote settings.ts successfully")
+        );
     }
     Ok(())
 }

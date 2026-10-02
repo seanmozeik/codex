@@ -31,12 +31,9 @@ fn main() -> eyre::Result<()> {
         source: ExecCommandSource::Agent,
         interaction_input: None,
         status: CommandExecutionStatus::InProgress,
-        stdout: None,
-        stderr: None,
         aggregated_output: None,
         exit_code: None,
         duration: None,
-        formatted_output: None,
     };
     let activity = analyze_codex_command(&mut Analyzer::new()?, &item);
     let mut stdout = std::io::stdout().lock();

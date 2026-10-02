@@ -91,6 +91,6 @@ not change Codex's permissions or live dispatch.
 Codex's Apache-2.0 license metadata. No private transcripts, real session
 payloads or internal benchmark corpora are included.
 
-Current official Codex [contribution policy](https://github.com/openai/codex/blob/ca466061d64f0b44f416135c7fd06aa7af850bbc/docs/contributing.md#L5)
+Current official Codex [contribution policy](https://github.com/openai/codex/blob/c5d242fa7907bff1b7a7e26e95febc548c0a6963/docs/contributing.md#L5)
 declines external code PRs. This fork-local PR is for Sean to share in his own
 team conversation; it makes no claim of upstream acceptance.
