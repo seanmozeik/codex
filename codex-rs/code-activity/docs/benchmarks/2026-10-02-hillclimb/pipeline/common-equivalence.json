@@ -1,0 +1,514 @@
+[
+  {
+    "case": "python-direct-1",
+    "byteIdentical": true,
+    "originalReportSha256": "fc9f17de2ae8fcaa70a169b2f385c675882c158ba20e2a2d29b336c09b96fb93",
+    "currentReportSha256": "fc9f17de2ae8fcaa70a169b2f385c675882c158ba20e2a2d29b336c09b96fb93",
+    "originalCounts": {
+      "operations": 2,
+      "unresolved": 0,
+      "sources": 1
+    },
+    "currentCounts": {
+      "operations": 2,
+      "unresolved": 0,
+      "sources": 1
+    }
+  },
+  {
+    "case": "python-direct-128",
+    "byteIdentical": true,
+    "originalReportSha256": "5a82fc02bf311253e96a4931c44d9f25197a8180ba821f0e827bbdf1c386ab9e",
+    "currentReportSha256": "5a82fc02bf311253e96a4931c44d9f25197a8180ba821f0e827bbdf1c386ab9e",
+    "originalCounts": {
+      "operations": 256,
+      "unresolved": 0,
+      "sources": 1
+    },
+    "currentCounts": {
+      "operations": 256,
+      "unresolved": 0,
+      "sources": 1
+    }
+  },
+  {
+    "case": "python-vars-functions-1",
+    "byteIdentical": false,
+    "originalReportSha256": "d82ac0beed32a2bb0fe490b7f905d63380732e5597a1dd858bcff6d3a4c5ee3d",
+    "currentReportSha256": "1a2f7ee0a92bb595f6bffc2d350d49790623bea18538842d00dc1e76f59fd1a7",
+    "originalCounts": {
+      "operations": 0,
+      "unresolved": 3,
+      "sources": 1
+    },
+    "currentCounts": {
+      "operations": 1,
+      "unresolved": 1,
+      "sources": 1
+    }
+  },
+  {
+    "case": "python-vars-functions-128",
+    "byteIdentical": false,
+    "originalReportSha256": "f6ff1584df261f6c8777d949d15c54d83c982e2e84bc16acc758954ee513e66a",
+    "currentReportSha256": "ede0a822c7e218cad83d31ab1eb68ad1774a8578f542549a965024795a62df6c",
+    "originalCounts": {
+      "operations": 0,
+      "unresolved": 130,
+      "sources": 1
+    },
+    "currentCounts": {
+      "operations": 128,
+      "unresolved": 1,
+      "sources": 1
+    }
+  },
+  {
+    "case": "python-closure-1",
+    "byteIdentical": false,
+    "originalReportSha256": "1e3a2dcf4290073e76525df35c6c0fa2bdc8106fbafd4c0f4832f924415d61b5",
+    "currentReportSha256": "4742322f8f6df1a30fed87b23829cdf2ff1f7092f9878df686dc474d7e2194dc",
+    "originalCounts": {
+      "operations": 0,
+      "unresolved": 4,
+      "sources": 1
+    },
+    "currentCounts": {
+      "operations": 1,
+      "unresolved": 1,
+      "sources": 1
+    }
+  },
+  {
+    "case": "python-closure-128",
+    "byteIdentical": false,
+    "originalReportSha256": "f1b53123479b607dddd218a5dcc5c7e1710a3a3c9946f8cff7294a4e3e9f3104",
+    "currentReportSha256": "eb65d8750a277c04a81b03a34c6aa60d9215005c85ecc367bb4ad8ae59fc2dca",
+    "originalCounts": {
+      "operations": 0,
+      "unresolved": 131,
+      "sources": 1
+    },
+    "currentCounts": {
+      "operations": 128,
+      "unresolved": 1,
+      "sources": 1
+    }
+  },
+  {
+    "case": "javascript-direct-1",
+    "byteIdentical": true,
+    "originalReportSha256": "0d4beca343c3b95307692936aba7057ab5f3a434ac77a0f6b91c9d9f76f23a80",
+    "currentReportSha256": "0d4beca343c3b95307692936aba7057ab5f3a434ac77a0f6b91c9d9f76f23a80",
+    "originalCounts": {
+      "operations": 1,
+      "unresolved": 0,
+      "sources": 1
+    },
+    "currentCounts": {
+      "operations": 1,
+      "unresolved": 0,
+      "sources": 1
+    }
+  },
+  {
+    "case": "javascript-direct-128",
+    "byteIdentical": true,
+    "originalReportSha256": "8b57dda5ea25a71e6e8996990fb86c6c5e688d6c1b9ddc0ee489cb9aff528ff6",
+    "currentReportSha256": "8b57dda5ea25a71e6e8996990fb86c6c5e688d6c1b9ddc0ee489cb9aff528ff6",
+    "originalCounts": {
+      "operations": 128,
+      "unresolved": 0,
+      "sources": 1
+    },
+    "currentCounts": {
+      "operations": 128,
+      "unresolved": 0,
+      "sources": 1
+    }
+  },
+  {
+    "case": "javascript-closure-1",
+    "byteIdentical": false,
+    "originalReportSha256": "d0bebac7d9af18d71f90602967f48c300e6138db07321663fdd2ddcd920c0471",
+    "currentReportSha256": "c8d894390980db4c5c7b5ca414dd6e61d564b740be789ded86e98f6feeb13fe6",
+    "originalCounts": {
+      "operations": 0,
+      "unresolved": 3,
+      "sources": 1
+    },
+    "currentCounts": {
+      "operations": 1,
+      "unresolved": 0,
+      "sources": 1
+    }
+  },
+  {
+    "case": "javascript-closure-128",
+    "byteIdentical": false,
+    "originalReportSha256": "55caf3060adf50a5f38105c6cbe3abe4ea3de1ab80abd372b564a32949697cb3",
+    "currentReportSha256": "ab709282ffc99727248fd8d6ad8593cd38c08c7902639267df56b5ef89c858b2",
+    "originalCounts": {
+      "operations": 0,
+      "unresolved": 130,
+      "sources": 1
+    },
+    "currentCounts": {
+      "operations": 128,
+      "unresolved": 0,
+      "sources": 1
+    }
+  },
+  {
+    "case": "javascript-callback-1",
+    "byteIdentical": false,
+    "originalReportSha256": "f1afea8ee36b5dce66b8e249aea273b2f3a25022dcc1d1ef4d2ef4df80617931",
+    "currentReportSha256": "0479aa37cc457aa6d3543962b757475c52da2b081fd762ed48943bca710dd087",
+    "originalCounts": {
+      "operations": 0,
+      "unresolved": 2,
+      "sources": 1
+    },
+    "currentCounts": {
+      "operations": 2,
+      "unresolved": 0,
+      "sources": 1
+    }
+  },
+  {
+    "case": "javascript-callback-128",
+    "byteIdentical": false,
+    "originalReportSha256": "8c03c47408b9191be07419098b54269cfe365492d667bdf7afc442c22a716d67",
+    "currentReportSha256": "f937c0c5de7e2588ed67ce9e0e78def05a2a445340a522db844e5f9ea16fb0df",
+    "originalCounts": {
+      "operations": 0,
+      "unresolved": 256,
+      "sources": 1
+    },
+    "currentCounts": {
+      "operations": 247,
+      "unresolved": 17,
+      "sources": 1
+    }
+  },
+  {
+    "case": "typescript-functions-1",
+    "byteIdentical": false,
+    "originalReportSha256": "12f54a33fc6adbda66317e96bf951e1ad50cb7097c26cdaf6d184abad5aaadd2",
+    "currentReportSha256": "1344371f458d526605fc6cf92d9b712306a4516d50076dac6af24e9ff7570035",
+    "originalCounts": {
+      "operations": 0,
+      "unresolved": 2,
+      "sources": 1
+    },
+    "currentCounts": {
+      "operations": 1,
+      "unresolved": 0,
+      "sources": 1
+    }
+  },
+  {
+    "case": "typescript-functions-128",
+    "byteIdentical": false,
+    "originalReportSha256": "feffed4942beb69a5a8bebc6def0e3b0598d67978a5204668f3e7ffbb9f07dfa",
+    "currentReportSha256": "5230cce37a9ebea4cb28eadc71398caa5a14fb35c91f201b700e8d329b439136",
+    "originalCounts": {
+      "operations": 0,
+      "unresolved": 129,
+      "sources": 1
+    },
+    "currentCounts": {
+      "operations": 128,
+      "unresolved": 0,
+      "sources": 1
+    }
+  },
+  {
+    "case": "javascript-process-1",
+    "byteIdentical": true,
+    "originalReportSha256": "7a0290da8a0b0176c6d3709c54e224548533b5754bd86b24dbd630fe90fceec0",
+    "currentReportSha256": "7a0290da8a0b0176c6d3709c54e224548533b5754bd86b24dbd630fe90fceec0",
+    "originalCounts": {
+      "operations": 1,
+      "unresolved": 1,
+      "sources": 1
+    },
+    "currentCounts": {
+      "operations": 1,
+      "unresolved": 1,
+      "sources": 1
+    }
+  },
+  {
+    "case": "javascript-process-128",
+    "byteIdentical": true,
+    "originalReportSha256": "1851add0b75d57d85ad6d228907fbb4836c64ab8ac50b169b1b9b7dc473c8196",
+    "currentReportSha256": "1851add0b75d57d85ad6d228907fbb4836c64ab8ac50b169b1b9b7dc473c8196",
+    "originalCounts": {
+      "operations": 128,
+      "unresolved": 128,
+      "sources": 1
+    },
+    "currentCounts": {
+      "operations": 128,
+      "unresolved": 128,
+      "sources": 1
+    }
+  },
+  {
+    "case": "shell-direct-1",
+    "byteIdentical": false,
+    "originalReportSha256": "caac32fe06742298da850f92773752ed52573d1ca65284adde3c7a77c2efce88",
+    "currentReportSha256": "368242c32abdeeef973210863ebe38eda273b952885bcb1d099d03356fba114c",
+    "originalCounts": {
+      "operations": 1,
+      "unresolved": 1,
+      "sources": 1
+    },
+    "currentCounts": {
+      "operations": 1,
+      "unresolved": 2,
+      "sources": 1
+    }
+  },
+  {
+    "case": "shell-direct-128",
+    "byteIdentical": false,
+    "originalReportSha256": "25cdb60cba7f0862bcd34c8db05b54bd424a6e743e62a8c3073ddc242caad601",
+    "currentReportSha256": "47441d43bb5aab6350e04afd994255c35de8a55aef2d3d215ce983fc9a40343d",
+    "originalCounts": {
+      "operations": 128,
+      "unresolved": 128,
+      "sources": 1
+    },
+    "currentCounts": {
+      "operations": 128,
+      "unresolved": 256,
+      "sources": 1
+    }
+  },
+  {
+    "case": "shell-nested-node-1",
+    "byteIdentical": true,
+    "originalReportSha256": "31211105b5fbaaf30df94172593e9783030be2c58c1449488f9d941dbd619923",
+    "currentReportSha256": "31211105b5fbaaf30df94172593e9783030be2c58c1449488f9d941dbd619923",
+    "originalCounts": {
+      "operations": 1,
+      "unresolved": 0,
+      "sources": 2
+    },
+    "currentCounts": {
+      "operations": 1,
+      "unresolved": 0,
+      "sources": 2
+    }
+  },
+  {
+    "case": "shell-nested-node-32",
+    "byteIdentical": true,
+    "originalReportSha256": "f224ff198621be16bec8adcd6aff0f4a122cc30756fc5e52fdcbac0c13f4f24f",
+    "currentReportSha256": "f224ff198621be16bec8adcd6aff0f4a122cc30756fc5e52fdcbac0c13f4f24f",
+    "originalCounts": {
+      "operations": 32,
+      "unresolved": 0,
+      "sources": 33
+    },
+    "currentCounts": {
+      "operations": 32,
+      "unresolved": 0,
+      "sources": 33
+    }
+  },
+  {
+    "case": "shell-nested-python-1",
+    "byteIdentical": true,
+    "originalReportSha256": "cd9215fe082f886a80522d5247df095ac554f23b43d4888cdb4fa9c259952b85",
+    "currentReportSha256": "cd9215fe082f886a80522d5247df095ac554f23b43d4888cdb4fa9c259952b85",
+    "originalCounts": {
+      "operations": 2,
+      "unresolved": 0,
+      "sources": 2
+    },
+    "currentCounts": {
+      "operations": 2,
+      "unresolved": 0,
+      "sources": 2
+    }
+  },
+  {
+    "case": "shell-nested-python-32",
+    "byteIdentical": true,
+    "originalReportSha256": "01b29f5331051b603e0e0274287c0a06092421d6083aba8dda33d51472e808a8",
+    "currentReportSha256": "01b29f5331051b603e0e0274287c0a06092421d6083aba8dda33d51472e808a8",
+    "originalCounts": {
+      "operations": 64,
+      "unresolved": 0,
+      "sources": 33
+    },
+    "currentCounts": {
+      "operations": 64,
+      "unresolved": 0,
+      "sources": 33
+    }
+  },
+  {
+    "case": "python-lazy-generator-1",
+    "byteIdentical": false,
+    "originalReportSha256": "df34cbb78fde79861db1dd0d5b88166c3306be8902eb83e0f1176f7aa5be4ba2",
+    "currentReportSha256": "51e6f8b8fda2fadf09d5ae4579e0aea0d26c11005d509a2988247ce34247e246",
+    "originalCounts": {
+      "operations": 1,
+      "unresolved": 1,
+      "sources": 1
+    },
+    "currentCounts": {
+      "operations": 0,
+      "unresolved": 1,
+      "sources": 1
+    }
+  },
+  {
+    "case": "python-lazy-generator-128",
+    "byteIdentical": false,
+    "originalReportSha256": "37e3c48bc2e9a46d8e186a6511788ef813879e1b54fea759866ad9fe9011da43",
+    "currentReportSha256": "0d76b750be91bd2af0f8b1b0095a6f0fe384bbc972c3e8d0bf5ddfcc8f023d5f",
+    "originalCounts": {
+      "operations": 128,
+      "unresolved": 128,
+      "sources": 1
+    },
+    "currentCounts": {
+      "operations": 0,
+      "unresolved": 128,
+      "sources": 1
+    }
+  },
+  {
+    "case": "javascript-deferred-import-1",
+    "byteIdentical": false,
+    "originalReportSha256": "4d71e64155a41bc7b7083813adedab6ca6e0650bb67a63e6fa24da5ce4b9d1fa",
+    "currentReportSha256": "8be8e27e043d489f5d8a28d5fa84e1083f2a1c12a8f8b961b5e5b518054fabee",
+    "originalCounts": {
+      "operations": 1,
+      "unresolved": 0,
+      "sources": 1
+    },
+    "currentCounts": {
+      "operations": 0,
+      "unresolved": 1,
+      "sources": 1
+    }
+  },
+  {
+    "case": "javascript-deferred-import-128",
+    "byteIdentical": false,
+    "originalReportSha256": "e0a9eb5e01055720c9f83b08c786e4927a6927ba74f37fa288790a561b5aed50",
+    "currentReportSha256": "3b661b8460562e020f3d991912776d9ae9722331fb572660b670b1abcd2463b7",
+    "originalCounts": {
+      "operations": 128,
+      "unresolved": 0,
+      "sources": 1
+    },
+    "currentCounts": {
+      "operations": 0,
+      "unresolved": 128,
+      "sources": 1
+    }
+  },
+  {
+    "case": "javascript-awaited-promises-1",
+    "byteIdentical": true,
+    "originalReportSha256": "80d1525d6f90d9e0d550847d51687931e43e27659d07b73ace6e2e28e4362180",
+    "currentReportSha256": "80d1525d6f90d9e0d550847d51687931e43e27659d07b73ace6e2e28e4362180",
+    "originalCounts": {
+      "operations": 2,
+      "unresolved": 0,
+      "sources": 1
+    },
+    "currentCounts": {
+      "operations": 2,
+      "unresolved": 0,
+      "sources": 1
+    }
+  },
+  {
+    "case": "javascript-awaited-promises-128",
+    "byteIdentical": true,
+    "originalReportSha256": "3a683820b048d83e29d915ede8ae39c2ab473a73f4fb4773a96453a88e566c14",
+    "currentReportSha256": "3a683820b048d83e29d915ede8ae39c2ab473a73f4fb4773a96453a88e566c14",
+    "originalCounts": {
+      "operations": 256,
+      "unresolved": 0,
+      "sources": 1
+    },
+    "currentCounts": {
+      "operations": 256,
+      "unresolved": 0,
+      "sources": 1
+    }
+  },
+  {
+    "case": "python-alias-expansion-1",
+    "byteIdentical": true,
+    "originalReportSha256": "e1e2bca86ac79e7f0ee120e04e025abb941a18928f0105554c8c898649c8077b",
+    "currentReportSha256": "e1e2bca86ac79e7f0ee120e04e025abb941a18928f0105554c8c898649c8077b",
+    "originalCounts": {
+      "operations": 0,
+      "unresolved": 0,
+      "sources": 1
+    },
+    "currentCounts": {
+      "operations": 0,
+      "unresolved": 0,
+      "sources": 1
+    }
+  },
+  {
+    "case": "javascript-alias-expansion-1",
+    "byteIdentical": true,
+    "originalReportSha256": "1c36af73346b5f17584354879961e0441149fe840460cbc6d5850c14b605dec3",
+    "currentReportSha256": "1c36af73346b5f17584354879961e0441149fe840460cbc6d5850c14b605dec3",
+    "originalCounts": {
+      "operations": 0,
+      "unresolved": 0,
+      "sources": 1
+    },
+    "currentCounts": {
+      "operations": 0,
+      "unresolved": 0,
+      "sources": 1
+    }
+  },
+  {
+    "case": "python-alias-expansion-128",
+    "byteIdentical": false,
+    "originalReportSha256": "4443739a677575768789477a97ae54efd9f99c738e4c27febd68d0d4f05e1153",
+    "currentReportSha256": "e1cd264cac96320f37be7814c5417da454bef31d06f786825219b39a383e3bff",
+    "originalCounts": {
+      "operations": 0,
+      "unresolved": 0,
+      "sources": 1
+    },
+    "currentCounts": {
+      "operations": 0,
+      "unresolved": 1,
+      "sources": 1
+    }
+  },
+  {
+    "case": "javascript-alias-expansion-128",
+    "byteIdentical": false,
+    "originalReportSha256": "a9156add437f61de27ebd6d647cd9263ac85d6c4dba61133116cb960a90e38f2",
+    "currentReportSha256": "af7010babed0fad194add4ef46facef7ee4c3dfa82f06978ee9ca8c93b57badf",
+    "originalCounts": {
+      "operations": 0,
+      "unresolved": 0,
+      "sources": 1
+    },
+    "currentCounts": {
+      "operations": 0,
+      "unresolved": 1,
+      "sources": 1
+    }
+  }
+]

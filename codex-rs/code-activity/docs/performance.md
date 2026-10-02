@@ -8,6 +8,111 @@ client. Policy output cannot authorize execution, including inputs with no
 recognized actions or explicit gaps. Runtime permission enforcement remains the
 authoritative boundary.
 
+## Scanner hill climb: current repaired measurements
+
+The 311,321-byte / 8,192-comment Python case now takes **6.262 ms median**
+through the full Rust consumer, versus **5,987.412 ms** in a fresh matched run
+of the previously published build: about **956× faster** on this fixture.
+At 1,024 comments the matched median falls from 94.518 ms to 0.793 ms.
+All **111 serialized Report outputs are byte-identical** before/after,
+including operations, uncertainty records, source spans and nested provenance.
+
+Activity interpretation, the Codex adapter and consumers are Rust. Syntax parsing
+uses tree-sitter's native C runtime and generated C grammars through Rust FFI.
+There is no vendored or executed Tripwire TypeScript implementation and no
+JavaScript runtime in the analyzer path. This repair vendors the MIT Python
+0.25.0 grammar package under `third_party/tree-sitter-python`. Its 16 unchanged
+selected package files include the generated C parser and Rust bindings/build
+script. Only the native scanner changes. `grammar.js` remains provenance
+and generator input; Cargo does not evaluate it. The source manifest and exact
+patch are retained beside the grammar. Cargo and Bazel both compile that scanner.
+
+The repaired measured source anchor is
+`3b037e19e538cf8ec20b1463c4fa2bb81e564b72`, on the same official c5d242fa base,
+compiler and inherited release profile as the pre-repair build. The preserved
+before benchmark binary hash matches its old run receipt. Its compiled source
+anchor is 0b499de7367f947a082bc4560bcf1d5775d44846, published as e20092b830d80acb90d637e4480f723450eef042;
+later pre-repair edits were docs/data only. Current receipts include binaries,
+Rust/data/driver hashes, grammar sources, Cargo/Bazel locks and exact commands.
+
+| Matched consumer case | Before median / p95, ms | After median / p95, ms | Samples each |
+|---|---:|---:|---:|
+| python-padding-1024 | 94.5180 / 95.6248 | 0.7934 / 0.7935 | 3 |
+| python-padding-8192 | 5987.4123 / 6003.8470 | 6.2615 / 6.4805 | 3 |
+| python-direct-1 | 0.0173 / 0.0212 | 0.0170 / 0.0213 | 30 |
+| python-direct-128 | 1.7512 / 1.8708 | 1.7554 / 1.8368 | 30 |
+| javascript-direct-128 | 1.0175 / 1.1071 | 1.0210 / 1.0935 | 30 |
+| typescript-functions-128 | 0.9553 / 1.0002 | 0.9546 / 1.0281 | 30 |
+| shell-direct-128 | 1.1965 / 1.3237 | 1.1918 / 1.3171 | 30 |
+| shell-nested-node-32 | 0.5869 / 0.6539 | 0.5877 / 0.6851 | 30 |
+
+The padding comparisons use three measured calls and one warmup per variant;
+other matched cases use 30/3. Every raw duration, min/max/mean and population
+standard deviation is retained. p95 for three samples is their maximum.
+Commands run serially at nice 10 without profiling or builds; no active compiler
+was observed before measurement. The ordinary desktop/background-load caveats
+below apply. Regular-script medians stayed close in this sample. Individual median/ p95
+changes and raw variance remain visible rather than being summarized as an
+across-the-board win. This is not a statistical non-regression proof or a
+universal speedup claim.
+
+The separate refreshed 111-case driver retains 222 parse/emission and consumer
+measurements, 12 isolated RSS logs and 32 original-prototype comparisons.
+It measured the repaired 8,192-comment consumer at 6.410/6.599 ms median/ p95
+(10 samples), and the tiny Python consumer at 17.0/20.7 µs (30 samples).
+Sample counts differ from the matched run and are not pooled. The expanded
+corpus hash remains e3fbada8bf267f2a027e2e38c3a7e4bd2a8f3a95a761033210b215ad27b2dbaf.
+
+### Profile, native scaling and preserved syntax
+
+The retained three-second/one-millisecond sampled call graph places 2019 of 2159
+samples beneath Python's external scanner and 1430 top-of-stack samples in
+`ts_lexer__do_advance`. The scanner rescanned successive remaining comment
+suffixes, then returned false; the ordinary lexer reset and consumed each
+original comment. Profile-active timings are retained only as diagnostic data
+and are excluded from the clean comparison above.
+
+The guard records the **first** comment's indentation, then returns false only
+when INDENT/NEWLINE are disabled and that indentation rules out DEDENT.
+A comment already rules out STRING_START; recovery requires INDENT and keeps
+its original path. No source preprocessing, comment removal, syntax validation
+skip, output cap reduction or permission fallback is used. Review includes every
+subsequent scanner return and the runtime's lexer reset on false.
+
+The separate serial clang-O3 native diagnostic (same C driver/flags, parser
+reused, parse plus Tree destruction, inspection outside timing) records:
+
+| Native module comments | Before median, ms | After median, ms |
+|---|---:|---:|
+|128|2.284|0.118|
+|512|23.578|0.341|
+|1,024|93.811|0.679|
+|2,048|373.767|1.382|
+|4,096|1,504.630|2.845|
+|8,192|5,999.615|5.340|
+
+Same-indentation function comments improve similarly: 4,096 comments fall from
+1,294.968 to 2.349 ms. These are native diagnostics, not Rust consumer numbers.
+Exact complete CST comparison passes 213 fresh sources (117 from the pinned
+upstream grammar corpus plus 96 generated), and 639 incremental checks:
+526 source-changing edits plus 113 no-op indentation edits. Comparisons include
+all children/comments, kinds/fields, byte/point spans and named/extra/error/missing
+flags; candidate/upstream and incremental/fresh trees match. Timed FNV signatures
+are diagnostic only. Eight new Rust tests additionally cover syntax ownership,
+ordering/spans, Unicode/tabs/CRLF/strings, malformed abstention, nested source/UI
+provenance and a late sensitive write blocked before mock dispatch.
+
+**Remaining native time limit:** lower-indented comments can still require
+lookahead to decide DEDENT. The explicit unchanged-path negative control is
+68.925→68.796 ms at 1,024 comments and 272.019→273.873 ms at 2,048 comments.
+That family remains approximately quadratic. Native parsing still has no hard
+cancellation/deadline or allocation limit, so this fix does not establish a
+safe synchronous UI latency bound for arbitrary input.
+
+[Hill-climb reproduction and artifact index](benchmarks/2026-10-02-hillclimb/README.md)
+links the clean matched samples/RSS/report hashes, current complete pipeline,
+profile excerpt, native build receipt, raw scaling and exact-CST corpus/results.
+
 ## Dataset and harness
 
 `tests/fixtures/benchmark-v1.json` is a versioned, synthetic dataset specification.
@@ -28,7 +133,7 @@ treated as complete effect discovery.
 
 The custom harness avoids adding benchmark dependencies or changing the host
 workspace profile. It uses `Instant`, `black_box` on input/output, explicit
-warmup, nearest-rank p50/p95, minimum/maximum/mean/population standard deviation,
+warmup, nearest-rank p50/ p95, minimum/maximum/mean/population standard deviation,
 and every raw microsecond sample. This is descriptive evidence; it provides no
 confidence interval, statistical significance test, or production SLA. Parser
 initialization, dataset generation, statistics and stdout are outside the timing
@@ -81,9 +186,9 @@ their throughput is rejected-input throughput. Malformed sources yield explicit
 gaps rather than inferred actions. Source caps bound accepted bytes and report
 counts; they are not hard wall-clock or native tree-sitter memory limits.
 
-## Actual run receipt
+## Pre-optimization run receipt
 
-The final current-base measurements cover **111 cases / 222 pipeline runs**, on Apple M1 Ultra,
+The preserved pre-optimization measurements cover **111 cases / 222 pipeline runs**, on Apple M1 Ultra,
 20 logical CPUs, 64 GiB RAM, macOS 27.0.1 (26A434), native arm64, Rust/Cargo
 1.95.0. Measured code commit:
 `0b499de7367f947a082bc4560bcf1d5775d44846`. It includes official Codex base
@@ -95,7 +200,7 @@ no stripping. Grammar/runtime versions are tree-sitter 0.25.10, Python 0.25.0,
 TypeScript 0.23.2 and Bash 0.25.1 (actual locks).
 
 The earlier receipt remains separately in `benchmarks/2026-10-02`, anchored to
-`59d2071…` on base `ca466061…`; it is not relabeled as the final build.
+`59d2071…` on base `ca466061…`; it is not relabeled as the repaired build.
 
 Runs were serial at `nice -n 10`, after compilation finished. No Juno release
 compiler was observed before the measurements. This was a desktop with ordinary
@@ -131,7 +236,7 @@ These are descriptive host measurements, not performance guarantees. Python
 direct-512 hits report caps, and nested tool-32 hits the source cap; their output
 is incomplete. Over-cap throughput measures rejection. Empty comment-only
 reports are opaque, not evidence of safety. In the separate parse/emission
-pipeline, Python direct-1 measured 12.5/19.0 µs median/p95; adding the tested
+pipeline, Python direct-1 measured 12.5/19.0 µs median/ p95; adding the tested
 local consumer measured 17.2/20.6 µs. This is not a live Codex dispatch/event/UI
 benchmark and does not include AI inference or permission handling.
 
@@ -162,8 +267,10 @@ not equivalent-work speed comparisons. See
 | Shell → Node, 32 | 0.4513 / 0.5030 | 0.5389 / 0.5561 |
 | Awaited JS promises, 128 | 2.0744 / 2.1910 | 2.0603 / 2.1913 |
 
-The current parser generally costs more in these samples; this is a correctness,
-resource-control and output-contract change, **not a demonstrated speedup**.
+Before the scanner repair, the in-tree parser generally cost more than the
+original prototype in these samples. Those correctness/resource/contract
+changes did not demonstrate a general speedup. The targeted scanner gains above
+are compared with the pre-repair in-tree build.
 Different current-harness runs vary, particularly for very small scripts; do
 not infer statistically significant regressions from this single-host run or
 subtract unlike pipelines as exact per-stage costs.
@@ -178,7 +285,7 @@ including setup/input buffers/allocator retention and build graph differences,
 not per-call allocations or language-only memory regressions. Original/current
 common logs and selected `<case>.time.txt` files are in the receipt directory.
 
-## Native parsing limit found by the stress run
+## Pre-optimization native parsing limit
 
 The repeated Python comment case grows from 38,937 bytes / 1,024 comment lines
 at about 96 ms to 311,321 bytes / 8,192 lines at about **6.17 seconds** in the
@@ -190,13 +297,11 @@ median. Cursor collection of the already parsed root took **31 µs / 240 µs**.
 [exact diagnostic receipt](benchmarks/2026-10-02/diagnostic-receipt.json) retain
 one warmup / three samples, counts and hashes. No submitted source executed.
 
-That diagnostic places the expensive work in the native parse/tree interval,
-without pinpointing one native function. The grammar scanner's repeated comment
-lookahead is a plausible source-inspection hypothesis, not a profiled attribution.
-Neither source bytes nor semantic-visit limits interrupt this interval.
-**Cancellation/deadline or native-parser mitigation is required before putting
-this path synchronously into an interactive UI.** The prototype has no such
-deadline and makes no hard wall-clock or native allocation guarantee.
+The old diagnostic isolated native parsing but did not profile individual
+functions. The new sampled call graph and scanner repair above substantiate the
+repeated-comment lookahead attribution. Neither source-byte nor semantic-visit
+limits interrupt unchanged expensive native paths. Cancellation/deadline work
+remains required before relying on bounded synchronous UI latency.
 
 ## Replay the actual runs
 

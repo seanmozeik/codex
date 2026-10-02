@@ -1,0 +1,16 @@
+{
+  "pid": 25542,
+  "command": [
+    "/usr/bin/nice",
+    "-n",
+    "10",
+    "/Users/sean/Documents/Codex/2026-10-02/task-8/codex-fork/codex-rs/target/release/examples/benchmark",
+    "3",
+    "1",
+    "python-padding-8192",
+    "consumer"
+  ],
+  "profiling": "sample 3 seconds 1 millisecond; separate from timing runs",
+  "profiledBenchmarkSha256": "4b9cacf44aab37db4060459cd29d2a931393e6cd73a1391adb29f1ff8e4fc690",
+  "warning": "Profile-active timings are excluded from clean performance comparisons."
+}

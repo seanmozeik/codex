@@ -1,0 +1,1223 @@
+[
+  {
+    "case": "python-direct-1",
+    "byteIdentical": true,
+    "beforeReportSha256": "fc9f17de2ae8fcaa70a169b2f385c675882c158ba20e2a2d29b336c09b96fb93",
+    "afterReportSha256": "fc9f17de2ae8fcaa70a169b2f385c675882c158ba20e2a2d29b336c09b96fb93",
+    "counts": {
+      "operations": 2,
+      "unresolved": 0,
+      "sources": 1
+    }
+  },
+  {
+    "case": "python-direct-16",
+    "byteIdentical": true,
+    "beforeReportSha256": "98b2a05bb9fd2484c46027f0b9625f677813e2bfc190b8dcb4678cc3546bd51b",
+    "afterReportSha256": "98b2a05bb9fd2484c46027f0b9625f677813e2bfc190b8dcb4678cc3546bd51b",
+    "counts": {
+      "operations": 32,
+      "unresolved": 0,
+      "sources": 1
+    }
+  },
+  {
+    "case": "python-direct-128",
+    "byteIdentical": true,
+    "beforeReportSha256": "5a82fc02bf311253e96a4931c44d9f25197a8180ba821f0e827bbdf1c386ab9e",
+    "afterReportSha256": "5a82fc02bf311253e96a4931c44d9f25197a8180ba821f0e827bbdf1c386ab9e",
+    "counts": {
+      "operations": 256,
+      "unresolved": 0,
+      "sources": 1
+    }
+  },
+  {
+    "case": "python-direct-512",
+    "byteIdentical": true,
+    "beforeReportSha256": "f42c5c8c8d827734e38e67df7e205017ba92d5cce7f35f23848fbb3d0c6eacae",
+    "afterReportSha256": "f42c5c8c8d827734e38e67df7e205017ba92d5cce7f35f23848fbb3d0c6eacae",
+    "counts": {
+      "operations": 256,
+      "unresolved": 256,
+      "sources": 1
+    }
+  },
+  {
+    "case": "python-vars-functions-1",
+    "byteIdentical": true,
+    "beforeReportSha256": "1a2f7ee0a92bb595f6bffc2d350d49790623bea18538842d00dc1e76f59fd1a7",
+    "afterReportSha256": "1a2f7ee0a92bb595f6bffc2d350d49790623bea18538842d00dc1e76f59fd1a7",
+    "counts": {
+      "operations": 1,
+      "unresolved": 1,
+      "sources": 1
+    }
+  },
+  {
+    "case": "python-vars-functions-16",
+    "byteIdentical": true,
+    "beforeReportSha256": "4c4f935603be00f2e7fc83461ef474aeb957452b5a70a475b9a3e2d8a7a4cb4b",
+    "afterReportSha256": "4c4f935603be00f2e7fc83461ef474aeb957452b5a70a475b9a3e2d8a7a4cb4b",
+    "counts": {
+      "operations": 16,
+      "unresolved": 1,
+      "sources": 1
+    }
+  },
+  {
+    "case": "python-vars-functions-128",
+    "byteIdentical": true,
+    "beforeReportSha256": "ede0a822c7e218cad83d31ab1eb68ad1774a8578f542549a965024795a62df6c",
+    "afterReportSha256": "ede0a822c7e218cad83d31ab1eb68ad1774a8578f542549a965024795a62df6c",
+    "counts": {
+      "operations": 128,
+      "unresolved": 1,
+      "sources": 1
+    }
+  },
+  {
+    "case": "python-vars-functions-512",
+    "byteIdentical": true,
+    "beforeReportSha256": "9f775aa3418d0d94ad789e9bf6d0c62268dc6c0c948489d1a42fa6d35685bd92",
+    "afterReportSha256": "9f775aa3418d0d94ad789e9bf6d0c62268dc6c0c948489d1a42fa6d35685bd92",
+    "counts": {
+      "operations": 237,
+      "unresolved": 256,
+      "sources": 1
+    }
+  },
+  {
+    "case": "python-closure-1",
+    "byteIdentical": true,
+    "beforeReportSha256": "4742322f8f6df1a30fed87b23829cdf2ff1f7092f9878df686dc474d7e2194dc",
+    "afterReportSha256": "4742322f8f6df1a30fed87b23829cdf2ff1f7092f9878df686dc474d7e2194dc",
+    "counts": {
+      "operations": 1,
+      "unresolved": 1,
+      "sources": 1
+    }
+  },
+  {
+    "case": "python-closure-16",
+    "byteIdentical": true,
+    "beforeReportSha256": "e3e82268fc93334b0cdf46c78f42a92a76bae62cad3e8d90c3637818201e528d",
+    "afterReportSha256": "e3e82268fc93334b0cdf46c78f42a92a76bae62cad3e8d90c3637818201e528d",
+    "counts": {
+      "operations": 16,
+      "unresolved": 1,
+      "sources": 1
+    }
+  },
+  {
+    "case": "python-closure-128",
+    "byteIdentical": true,
+    "beforeReportSha256": "eb65d8750a277c04a81b03a34c6aa60d9215005c85ecc367bb4ad8ae59fc2dca",
+    "afterReportSha256": "eb65d8750a277c04a81b03a34c6aa60d9215005c85ecc367bb4ad8ae59fc2dca",
+    "counts": {
+      "operations": 128,
+      "unresolved": 1,
+      "sources": 1
+    }
+  },
+  {
+    "case": "python-closure-512",
+    "byteIdentical": true,
+    "beforeReportSha256": "bbe3cd8ca92cf3beaf39385eea5131f1f1a2e990e922f86b29b16ea20b20fea2",
+    "afterReportSha256": "bbe3cd8ca92cf3beaf39385eea5131f1f1a2e990e922f86b29b16ea20b20fea2",
+    "counts": {
+      "operations": 254,
+      "unresolved": 256,
+      "sources": 1
+    }
+  },
+  {
+    "case": "javascript-direct-1",
+    "byteIdentical": true,
+    "beforeReportSha256": "0d4beca343c3b95307692936aba7057ab5f3a434ac77a0f6b91c9d9f76f23a80",
+    "afterReportSha256": "0d4beca343c3b95307692936aba7057ab5f3a434ac77a0f6b91c9d9f76f23a80",
+    "counts": {
+      "operations": 1,
+      "unresolved": 0,
+      "sources": 1
+    }
+  },
+  {
+    "case": "javascript-direct-16",
+    "byteIdentical": true,
+    "beforeReportSha256": "c63cf545a54599f9f861d896695efcd3f41392eef3d4bd45cf762b119e88c13b",
+    "afterReportSha256": "c63cf545a54599f9f861d896695efcd3f41392eef3d4bd45cf762b119e88c13b",
+    "counts": {
+      "operations": 16,
+      "unresolved": 0,
+      "sources": 1
+    }
+  },
+  {
+    "case": "javascript-direct-128",
+    "byteIdentical": true,
+    "beforeReportSha256": "8b57dda5ea25a71e6e8996990fb86c6c5e688d6c1b9ddc0ee489cb9aff528ff6",
+    "afterReportSha256": "8b57dda5ea25a71e6e8996990fb86c6c5e688d6c1b9ddc0ee489cb9aff528ff6",
+    "counts": {
+      "operations": 128,
+      "unresolved": 0,
+      "sources": 1
+    }
+  },
+  {
+    "case": "javascript-direct-512",
+    "byteIdentical": true,
+    "beforeReportSha256": "99cd19ab8666697f3390bd13c1e8f247548b93fe8cd0911477dd5325177f3230",
+    "afterReportSha256": "99cd19ab8666697f3390bd13c1e8f247548b93fe8cd0911477dd5325177f3230",
+    "counts": {
+      "operations": 256,
+      "unresolved": 256,
+      "sources": 1
+    }
+  },
+  {
+    "case": "javascript-closure-1",
+    "byteIdentical": true,
+    "beforeReportSha256": "c8d894390980db4c5c7b5ca414dd6e61d564b740be789ded86e98f6feeb13fe6",
+    "afterReportSha256": "c8d894390980db4c5c7b5ca414dd6e61d564b740be789ded86e98f6feeb13fe6",
+    "counts": {
+      "operations": 1,
+      "unresolved": 0,
+      "sources": 1
+    }
+  },
+  {
+    "case": "javascript-closure-16",
+    "byteIdentical": true,
+    "beforeReportSha256": "2038313c7fc796dbf88a1573fa244364a056efb664be3ca0c1e1c5bd838da440",
+    "afterReportSha256": "2038313c7fc796dbf88a1573fa244364a056efb664be3ca0c1e1c5bd838da440",
+    "counts": {
+      "operations": 16,
+      "unresolved": 0,
+      "sources": 1
+    }
+  },
+  {
+    "case": "javascript-closure-128",
+    "byteIdentical": true,
+    "beforeReportSha256": "ab709282ffc99727248fd8d6ad8593cd38c08c7902639267df56b5ef89c858b2",
+    "afterReportSha256": "ab709282ffc99727248fd8d6ad8593cd38c08c7902639267df56b5ef89c858b2",
+    "counts": {
+      "operations": 128,
+      "unresolved": 0,
+      "sources": 1
+    }
+  },
+  {
+    "case": "javascript-closure-512",
+    "byteIdentical": true,
+    "beforeReportSha256": "b2c7031c2ce608e4f03a1aad0b75e8e62a757845d184f995fcaab2ee89409fa8",
+    "afterReportSha256": "b2c7031c2ce608e4f03a1aad0b75e8e62a757845d184f995fcaab2ee89409fa8",
+    "counts": {
+      "operations": 253,
+      "unresolved": 256,
+      "sources": 1
+    }
+  },
+  {
+    "case": "javascript-callback-1",
+    "byteIdentical": true,
+    "beforeReportSha256": "0479aa37cc457aa6d3543962b757475c52da2b081fd762ed48943bca710dd087",
+    "afterReportSha256": "0479aa37cc457aa6d3543962b757475c52da2b081fd762ed48943bca710dd087",
+    "counts": {
+      "operations": 2,
+      "unresolved": 0,
+      "sources": 1
+    }
+  },
+  {
+    "case": "javascript-callback-16",
+    "byteIdentical": true,
+    "beforeReportSha256": "8c269660b47935861ca1f1cc8f6b85d97faeefa88c3c866bcb0658540832ff4c",
+    "afterReportSha256": "8c269660b47935861ca1f1cc8f6b85d97faeefa88c3c866bcb0658540832ff4c",
+    "counts": {
+      "operations": 32,
+      "unresolved": 0,
+      "sources": 1
+    }
+  },
+  {
+    "case": "javascript-callback-128",
+    "byteIdentical": true,
+    "beforeReportSha256": "f937c0c5de7e2588ed67ce9e0e78def05a2a445340a522db844e5f9ea16fb0df",
+    "afterReportSha256": "f937c0c5de7e2588ed67ce9e0e78def05a2a445340a522db844e5f9ea16fb0df",
+    "counts": {
+      "operations": 247,
+      "unresolved": 17,
+      "sources": 1
+    }
+  },
+  {
+    "case": "javascript-callback-512",
+    "byteIdentical": true,
+    "beforeReportSha256": "16763a5205f9e671e8d6e1bb5808b951c58649cc2f5506117b538496d52320c2",
+    "afterReportSha256": "16763a5205f9e671e8d6e1bb5808b951c58649cc2f5506117b538496d52320c2",
+    "counts": {
+      "operations": 247,
+      "unresolved": 256,
+      "sources": 1
+    }
+  },
+  {
+    "case": "typescript-functions-1",
+    "byteIdentical": true,
+    "beforeReportSha256": "1344371f458d526605fc6cf92d9b712306a4516d50076dac6af24e9ff7570035",
+    "afterReportSha256": "1344371f458d526605fc6cf92d9b712306a4516d50076dac6af24e9ff7570035",
+    "counts": {
+      "operations": 1,
+      "unresolved": 0,
+      "sources": 1
+    }
+  },
+  {
+    "case": "typescript-functions-16",
+    "byteIdentical": true,
+    "beforeReportSha256": "9622aae23d89659251aef79eff6498cd8c5570af650e3744eda1039e5e54c697",
+    "afterReportSha256": "9622aae23d89659251aef79eff6498cd8c5570af650e3744eda1039e5e54c697",
+    "counts": {
+      "operations": 16,
+      "unresolved": 0,
+      "sources": 1
+    }
+  },
+  {
+    "case": "typescript-functions-128",
+    "byteIdentical": true,
+    "beforeReportSha256": "5230cce37a9ebea4cb28eadc71398caa5a14fb35c91f201b700e8d329b439136",
+    "afterReportSha256": "5230cce37a9ebea4cb28eadc71398caa5a14fb35c91f201b700e8d329b439136",
+    "counts": {
+      "operations": 128,
+      "unresolved": 0,
+      "sources": 1
+    }
+  },
+  {
+    "case": "typescript-functions-512",
+    "byteIdentical": true,
+    "beforeReportSha256": "f654e5bb76083a9323d9a5fddf01f033bf4305d9cf56efbb4f0cbf1d893267b1",
+    "afterReportSha256": "f654e5bb76083a9323d9a5fddf01f033bf4305d9cf56efbb4f0cbf1d893267b1",
+    "counts": {
+      "operations": 245,
+      "unresolved": 256,
+      "sources": 1
+    }
+  },
+  {
+    "case": "javascript-process-1",
+    "byteIdentical": true,
+    "beforeReportSha256": "7a0290da8a0b0176c6d3709c54e224548533b5754bd86b24dbd630fe90fceec0",
+    "afterReportSha256": "7a0290da8a0b0176c6d3709c54e224548533b5754bd86b24dbd630fe90fceec0",
+    "counts": {
+      "operations": 1,
+      "unresolved": 1,
+      "sources": 1
+    }
+  },
+  {
+    "case": "javascript-process-16",
+    "byteIdentical": true,
+    "beforeReportSha256": "87cdea496889b3033581005176add1bc57112a2bec26fc2472d19b91cfe145bd",
+    "afterReportSha256": "87cdea496889b3033581005176add1bc57112a2bec26fc2472d19b91cfe145bd",
+    "counts": {
+      "operations": 16,
+      "unresolved": 16,
+      "sources": 1
+    }
+  },
+  {
+    "case": "javascript-process-128",
+    "byteIdentical": true,
+    "beforeReportSha256": "1851add0b75d57d85ad6d228907fbb4836c64ab8ac50b169b1b9b7dc473c8196",
+    "afterReportSha256": "1851add0b75d57d85ad6d228907fbb4836c64ab8ac50b169b1b9b7dc473c8196",
+    "counts": {
+      "operations": 128,
+      "unresolved": 128,
+      "sources": 1
+    }
+  },
+  {
+    "case": "javascript-process-512",
+    "byteIdentical": true,
+    "beforeReportSha256": "347311fac409157496eafef4546cc3d87fe7d73333bc0843d8ceaba0aad3e3ac",
+    "afterReportSha256": "347311fac409157496eafef4546cc3d87fe7d73333bc0843d8ceaba0aad3e3ac",
+    "counts": {
+      "operations": 256,
+      "unresolved": 256,
+      "sources": 1
+    }
+  },
+  {
+    "case": "shell-direct-1",
+    "byteIdentical": true,
+    "beforeReportSha256": "368242c32abdeeef973210863ebe38eda273b952885bcb1d099d03356fba114c",
+    "afterReportSha256": "368242c32abdeeef973210863ebe38eda273b952885bcb1d099d03356fba114c",
+    "counts": {
+      "operations": 1,
+      "unresolved": 2,
+      "sources": 1
+    }
+  },
+  {
+    "case": "shell-direct-16",
+    "byteIdentical": true,
+    "beforeReportSha256": "60fb17682be68f0d5a0c48f2f32d86a726137dd4dd853e8800523988719389c0",
+    "afterReportSha256": "60fb17682be68f0d5a0c48f2f32d86a726137dd4dd853e8800523988719389c0",
+    "counts": {
+      "operations": 16,
+      "unresolved": 32,
+      "sources": 1
+    }
+  },
+  {
+    "case": "shell-direct-128",
+    "byteIdentical": true,
+    "beforeReportSha256": "47441d43bb5aab6350e04afd994255c35de8a55aef2d3d215ce983fc9a40343d",
+    "afterReportSha256": "47441d43bb5aab6350e04afd994255c35de8a55aef2d3d215ce983fc9a40343d",
+    "counts": {
+      "operations": 128,
+      "unresolved": 256,
+      "sources": 1
+    }
+  },
+  {
+    "case": "shell-direct-512",
+    "byteIdentical": true,
+    "beforeReportSha256": "cd537f060dd24384c956511262c4a7e92905cf5b6ec85995502b61bda7005335",
+    "afterReportSha256": "cd537f060dd24384c956511262c4a7e92905cf5b6ec85995502b61bda7005335",
+    "counts": {
+      "operations": 256,
+      "unresolved": 256,
+      "sources": 1
+    }
+  },
+  {
+    "case": "shell-nested-node-1",
+    "byteIdentical": true,
+    "beforeReportSha256": "31211105b5fbaaf30df94172593e9783030be2c58c1449488f9d941dbd619923",
+    "afterReportSha256": "31211105b5fbaaf30df94172593e9783030be2c58c1449488f9d941dbd619923",
+    "counts": {
+      "operations": 1,
+      "unresolved": 0,
+      "sources": 2
+    }
+  },
+  {
+    "case": "shell-nested-node-8",
+    "byteIdentical": true,
+    "beforeReportSha256": "39051a20357b8c39f44dd5273ae7ae2da574baf356fd6aa9126ba2778a84b36b",
+    "afterReportSha256": "39051a20357b8c39f44dd5273ae7ae2da574baf356fd6aa9126ba2778a84b36b",
+    "counts": {
+      "operations": 8,
+      "unresolved": 0,
+      "sources": 9
+    }
+  },
+  {
+    "case": "shell-nested-node-32",
+    "byteIdentical": true,
+    "beforeReportSha256": "f224ff198621be16bec8adcd6aff0f4a122cc30756fc5e52fdcbac0c13f4f24f",
+    "afterReportSha256": "f224ff198621be16bec8adcd6aff0f4a122cc30756fc5e52fdcbac0c13f4f24f",
+    "counts": {
+      "operations": 32,
+      "unresolved": 0,
+      "sources": 33
+    }
+  },
+  {
+    "case": "shell-nested-node-80",
+    "byteIdentical": true,
+    "beforeReportSha256": "4824116346059a4a409a1bf8389fa7e23580d05bec09a7e35ed270b604df212d",
+    "afterReportSha256": "4824116346059a4a409a1bf8389fa7e23580d05bec09a7e35ed270b604df212d",
+    "counts": {
+      "operations": 63,
+      "unresolved": 17,
+      "sources": 64
+    }
+  },
+  {
+    "case": "shell-nested-python-1",
+    "byteIdentical": true,
+    "beforeReportSha256": "cd9215fe082f886a80522d5247df095ac554f23b43d4888cdb4fa9c259952b85",
+    "afterReportSha256": "cd9215fe082f886a80522d5247df095ac554f23b43d4888cdb4fa9c259952b85",
+    "counts": {
+      "operations": 2,
+      "unresolved": 0,
+      "sources": 2
+    }
+  },
+  {
+    "case": "shell-nested-python-8",
+    "byteIdentical": true,
+    "beforeReportSha256": "15bf9af27e9aa36908bf5ae19e00a6e5bce10bef3fc01b64477e38bff9734049",
+    "afterReportSha256": "15bf9af27e9aa36908bf5ae19e00a6e5bce10bef3fc01b64477e38bff9734049",
+    "counts": {
+      "operations": 16,
+      "unresolved": 0,
+      "sources": 9
+    }
+  },
+  {
+    "case": "shell-nested-python-32",
+    "byteIdentical": true,
+    "beforeReportSha256": "01b29f5331051b603e0e0274287c0a06092421d6083aba8dda33d51472e808a8",
+    "afterReportSha256": "01b29f5331051b603e0e0274287c0a06092421d6083aba8dda33d51472e808a8",
+    "counts": {
+      "operations": 64,
+      "unresolved": 0,
+      "sources": 33
+    }
+  },
+  {
+    "case": "shell-nested-python-80",
+    "byteIdentical": true,
+    "beforeReportSha256": "648324b7950d8528ff6e8b76196c5adb12bea8c3e102919e56361ff2dcbd32fc",
+    "afterReportSha256": "648324b7950d8528ff6e8b76196c5adb12bea8c3e102919e56361ff2dcbd32fc",
+    "counts": {
+      "operations": 126,
+      "unresolved": 17,
+      "sources": 64
+    }
+  },
+  {
+    "case": "typescript-tools-shell-python-1",
+    "byteIdentical": true,
+    "beforeReportSha256": "8809af4898932039193d738ecbe0ee3043b24bd1d8879e48892f9d3b57e6445c",
+    "afterReportSha256": "8809af4898932039193d738ecbe0ee3043b24bd1d8879e48892f9d3b57e6445c",
+    "counts": {
+      "operations": 2,
+      "unresolved": 0,
+      "sources": 3
+    }
+  },
+  {
+    "case": "typescript-tools-shell-python-8",
+    "byteIdentical": true,
+    "beforeReportSha256": "363c70c4f587456f467ef1e475d63342a62c8b5391d612ff495986c577abb6a4",
+    "afterReportSha256": "363c70c4f587456f467ef1e475d63342a62c8b5391d612ff495986c577abb6a4",
+    "counts": {
+      "operations": 16,
+      "unresolved": 0,
+      "sources": 17
+    }
+  },
+  {
+    "case": "typescript-tools-shell-python-32",
+    "byteIdentical": true,
+    "beforeReportSha256": "6add5fa9ba1eb204619521c9017c770e3ce987be0c92bd5d8df15c1eef2a7456",
+    "afterReportSha256": "6add5fa9ba1eb204619521c9017c770e3ce987be0c92bd5d8df15c1eef2a7456",
+    "counts": {
+      "operations": 62,
+      "unresolved": 1,
+      "sources": 64
+    }
+  },
+  {
+    "case": "typescript-tools-shell-python-80",
+    "byteIdentical": true,
+    "beforeReportSha256": "60566b01cce4667d842bae655323027b7a6ae95f9e2a4fb7f8f6b2f91e13f7b7",
+    "afterReportSha256": "60566b01cce4667d842bae655323027b7a6ae95f9e2a4fb7f8f6b2f91e13f7b7",
+    "counts": {
+      "operations": 62,
+      "unresolved": 49,
+      "sources": 64
+    }
+  },
+  {
+    "case": "python-recursion-1",
+    "byteIdentical": true,
+    "beforeReportSha256": "4f8c289d5eca028c7eb66cb2ce2c55344d6b6d8391c833d672795d13bd335429",
+    "afterReportSha256": "4f8c289d5eca028c7eb66cb2ce2c55344d6b6d8391c833d672795d13bd335429",
+    "counts": {
+      "operations": 2,
+      "unresolved": 1,
+      "sources": 1
+    }
+  },
+  {
+    "case": "python-recursion-16",
+    "byteIdentical": true,
+    "beforeReportSha256": "e83357078b309f2aff550b19fff8c26598e92140435037c4ec605fd98cb3d553",
+    "afterReportSha256": "e83357078b309f2aff550b19fff8c26598e92140435037c4ec605fd98cb3d553",
+    "counts": {
+      "operations": 2,
+      "unresolved": 46,
+      "sources": 1
+    }
+  },
+  {
+    "case": "python-recursion-128",
+    "byteIdentical": true,
+    "beforeReportSha256": "29f990cf32aa2780f318457afed9ca2346a4cc0d2d66d84c64aac425300770d7",
+    "afterReportSha256": "29f990cf32aa2780f318457afed9ca2346a4cc0d2d66d84c64aac425300770d7",
+    "counts": {
+      "operations": 2,
+      "unresolved": 256,
+      "sources": 1
+    }
+  },
+  {
+    "case": "typescript-recursion-1",
+    "byteIdentical": true,
+    "beforeReportSha256": "af4c7d317074142c267e153ebf5ad4d311d572e9c0067520a673d406705d1deb",
+    "afterReportSha256": "af4c7d317074142c267e153ebf5ad4d311d572e9c0067520a673d406705d1deb",
+    "counts": {
+      "operations": 1,
+      "unresolved": 1,
+      "sources": 1
+    }
+  },
+  {
+    "case": "typescript-recursion-16",
+    "byteIdentical": true,
+    "beforeReportSha256": "bf0e4a05759cd91adb5ce0a7b83df20f1699483497aedcbe63baca1ca96f3502",
+    "afterReportSha256": "bf0e4a05759cd91adb5ce0a7b83df20f1699483497aedcbe63baca1ca96f3502",
+    "counts": {
+      "operations": 1,
+      "unresolved": 31,
+      "sources": 1
+    }
+  },
+  {
+    "case": "typescript-recursion-128",
+    "byteIdentical": true,
+    "beforeReportSha256": "cee12b855f889b2b327d7f0681dda8ec634c2e0c3e13a8fefe018cb41aa8bc2b",
+    "afterReportSha256": "cee12b855f889b2b327d7f0681dda8ec634c2e0c3e13a8fefe018cb41aa8bc2b",
+    "counts": {
+      "operations": 1,
+      "unresolved": 255,
+      "sources": 1
+    }
+  },
+  {
+    "case": "python-malformed-1",
+    "byteIdentical": true,
+    "beforeReportSha256": "883bc10421d8e1565e6ca0908dd2dd19d23abc0c122146b45ac777b30d8958ac",
+    "afterReportSha256": "883bc10421d8e1565e6ca0908dd2dd19d23abc0c122146b45ac777b30d8958ac",
+    "counts": {
+      "operations": 0,
+      "unresolved": 1,
+      "sources": 1
+    }
+  },
+  {
+    "case": "python-malformed-32",
+    "byteIdentical": true,
+    "beforeReportSha256": "3c54b054b17f0630bd44124bc0f254766534edcbf08307f903eaef74175eea50",
+    "afterReportSha256": "3c54b054b17f0630bd44124bc0f254766534edcbf08307f903eaef74175eea50",
+    "counts": {
+      "operations": 0,
+      "unresolved": 1,
+      "sources": 1
+    }
+  },
+  {
+    "case": "python-malformed-1024",
+    "byteIdentical": true,
+    "beforeReportSha256": "0009ea28d1c48b9466efb4b6357be6896434d14c9e9d62a8b7cce6e9b1767aa6",
+    "afterReportSha256": "0009ea28d1c48b9466efb4b6357be6896434d14c9e9d62a8b7cce6e9b1767aa6",
+    "counts": {
+      "operations": 0,
+      "unresolved": 1,
+      "sources": 1
+    }
+  },
+  {
+    "case": "typeScript-malformed-1",
+    "byteIdentical": true,
+    "beforeReportSha256": "3a6c282d7dfca3bdf002b3b96105af28bbce6b1facbfc543a31f25a22a4fff77",
+    "afterReportSha256": "3a6c282d7dfca3bdf002b3b96105af28bbce6b1facbfc543a31f25a22a4fff77",
+    "counts": {
+      "operations": 0,
+      "unresolved": 1,
+      "sources": 1
+    }
+  },
+  {
+    "case": "typeScript-malformed-32",
+    "byteIdentical": true,
+    "beforeReportSha256": "dc052c7f24ae55c82609d430c1d3b7dfa13a4c3c71cf24b2d229a2b0b277c107",
+    "afterReportSha256": "dc052c7f24ae55c82609d430c1d3b7dfa13a4c3c71cf24b2d229a2b0b277c107",
+    "counts": {
+      "operations": 0,
+      "unresolved": 1,
+      "sources": 1
+    }
+  },
+  {
+    "case": "typeScript-malformed-1024",
+    "byteIdentical": true,
+    "beforeReportSha256": "23301a53a2afcfd04efe55a2f9bc18491d0b95501c13d117d8b1bd7555fbc27a",
+    "afterReportSha256": "23301a53a2afcfd04efe55a2f9bc18491d0b95501c13d117d8b1bd7555fbc27a",
+    "counts": {
+      "operations": 0,
+      "unresolved": 1,
+      "sources": 1
+    }
+  },
+  {
+    "case": "shell-malformed-1",
+    "byteIdentical": true,
+    "beforeReportSha256": "e57432cabe40c05b5854d3a9d2453e3d4e33e7952b28dc949871d29c56a7822f",
+    "afterReportSha256": "e57432cabe40c05b5854d3a9d2453e3d4e33e7952b28dc949871d29c56a7822f",
+    "counts": {
+      "operations": 0,
+      "unresolved": 1,
+      "sources": 1
+    }
+  },
+  {
+    "case": "shell-malformed-32",
+    "byteIdentical": true,
+    "beforeReportSha256": "f7d1482ca206e0a5b54432ab8543d3ab1b5a03369eedefd442988dc48d6e9ef6",
+    "afterReportSha256": "f7d1482ca206e0a5b54432ab8543d3ab1b5a03369eedefd442988dc48d6e9ef6",
+    "counts": {
+      "operations": 0,
+      "unresolved": 1,
+      "sources": 1
+    }
+  },
+  {
+    "case": "shell-malformed-1024",
+    "byteIdentical": true,
+    "beforeReportSha256": "4203a43ee9545ccb15b3de59c6e883513f8adbf5b5e9fef35df136a0553dc100",
+    "afterReportSha256": "4203a43ee9545ccb15b3de59c6e883513f8adbf5b5e9fef35df136a0553dc100",
+    "counts": {
+      "operations": 0,
+      "unresolved": 1,
+      "sources": 1
+    }
+  },
+  {
+    "case": "python-padding-1024",
+    "byteIdentical": true,
+    "beforeReportSha256": "6adbef0a8cea5600605837f866f6d0deaf049a52a38d323315b75dfbb696cc7e",
+    "afterReportSha256": "6adbef0a8cea5600605837f866f6d0deaf049a52a38d323315b75dfbb696cc7e",
+    "counts": {
+      "operations": 1,
+      "unresolved": 0,
+      "sources": 1
+    }
+  },
+  {
+    "case": "python-padding-8192",
+    "byteIdentical": true,
+    "beforeReportSha256": "cbed60c0acb21ec8b6bce491477e62293a352f96be58ce62f587e083ec49f866",
+    "afterReportSha256": "cbed60c0acb21ec8b6bce491477e62293a352f96be58ce62f587e083ec49f866",
+    "counts": {
+      "operations": 1,
+      "unresolved": 0,
+      "sources": 1
+    }
+  },
+  {
+    "case": "python-padding-28000",
+    "byteIdentical": true,
+    "beforeReportSha256": "c74e8918855f2a32e4208bdccd3a2950f8590c1f08f552b4ff897c56928068ec",
+    "afterReportSha256": "c74e8918855f2a32e4208bdccd3a2950f8590c1f08f552b4ff897c56928068ec",
+    "counts": {
+      "operations": 0,
+      "unresolved": 1,
+      "sources": 1
+    }
+  },
+  {
+    "case": "typescript-deep-32",
+    "byteIdentical": true,
+    "beforeReportSha256": "aaa741c924c58a699fe73923b53ca7581f51e86b092733fb29f09451899f6a98",
+    "afterReportSha256": "aaa741c924c58a699fe73923b53ca7581f51e86b092733fb29f09451899f6a98",
+    "counts": {
+      "operations": 0,
+      "unresolved": 0,
+      "sources": 1
+    }
+  },
+  {
+    "case": "typescript-deep-128",
+    "byteIdentical": true,
+    "beforeReportSha256": "dac9e95a1d6969111e754ccdf2bb4273ea1ae5755c8629d8f484703c09b06e76",
+    "afterReportSha256": "dac9e95a1d6969111e754ccdf2bb4273ea1ae5755c8629d8f484703c09b06e76",
+    "counts": {
+      "operations": 0,
+      "unresolved": 1,
+      "sources": 1
+    }
+  },
+  {
+    "case": "typescript-deep-1024",
+    "byteIdentical": true,
+    "beforeReportSha256": "4ff77aac95d26c645fdb00d2e4464ac1f6a95401e927ec08fd884bb9250fa328",
+    "afterReportSha256": "4ff77aac95d26c645fdb00d2e4464ac1f6a95401e927ec08fd884bb9250fa328",
+    "counts": {
+      "operations": 0,
+      "unresolved": 1,
+      "sources": 1
+    }
+  },
+  {
+    "case": "javascript-padding-1024",
+    "byteIdentical": true,
+    "beforeReportSha256": "5b603a2ab64b411951d8a0cb58f3ea66654a412db549ae375d39c2dc0cb06c71",
+    "afterReportSha256": "5b603a2ab64b411951d8a0cb58f3ea66654a412db549ae375d39c2dc0cb06c71",
+    "counts": {
+      "operations": 1,
+      "unresolved": 0,
+      "sources": 1
+    }
+  },
+  {
+    "case": "javascript-padding-8192",
+    "byteIdentical": true,
+    "beforeReportSha256": "b8eb35993e465137fc89208d84e6bee9a718238d34162b72178b0ecf23d3aea4",
+    "afterReportSha256": "b8eb35993e465137fc89208d84e6bee9a718238d34162b72178b0ecf23d3aea4",
+    "counts": {
+      "operations": 1,
+      "unresolved": 0,
+      "sources": 1
+    }
+  },
+  {
+    "case": "javascript-padding-28000",
+    "byteIdentical": true,
+    "beforeReportSha256": "689e454df37911d97c8cacf37cd1e80691083f75c3729c857fbfbde0d3aaa557",
+    "afterReportSha256": "689e454df37911d97c8cacf37cd1e80691083f75c3729c857fbfbde0d3aaa557",
+    "counts": {
+      "operations": 0,
+      "unresolved": 1,
+      "sources": 1
+    }
+  },
+  {
+    "case": "shell-padding-1024",
+    "byteIdentical": true,
+    "beforeReportSha256": "b632846dd239115398ba86876935c46419bc06a8e2c0c05e686013bc7a8a54cd",
+    "afterReportSha256": "b632846dd239115398ba86876935c46419bc06a8e2c0c05e686013bc7a8a54cd",
+    "counts": {
+      "operations": 1,
+      "unresolved": 0,
+      "sources": 1
+    }
+  },
+  {
+    "case": "shell-padding-8192",
+    "byteIdentical": true,
+    "beforeReportSha256": "4434e7568194d0bdf25cdfeb18c9a4b16e762c8f8403b25326bcdf639d5ad8e6",
+    "afterReportSha256": "4434e7568194d0bdf25cdfeb18c9a4b16e762c8f8403b25326bcdf639d5ad8e6",
+    "counts": {
+      "operations": 1,
+      "unresolved": 0,
+      "sources": 1
+    }
+  },
+  {
+    "case": "shell-padding-28000",
+    "byteIdentical": true,
+    "beforeReportSha256": "1fa82f6eaa16d4ff551effea3f0f3460a976621cd5d0bfcc0d586363690c99cd",
+    "afterReportSha256": "1fa82f6eaa16d4ff551effea3f0f3460a976621cd5d0bfcc0d586363690c99cd",
+    "counts": {
+      "operations": 0,
+      "unresolved": 1,
+      "sources": 1
+    }
+  },
+  {
+    "case": "python-dynamic-target-1",
+    "byteIdentical": true,
+    "beforeReportSha256": "570cea43691300ed186dc7eb6dad6b28a0133d2bb3879e70c7e6b6191943da8c",
+    "afterReportSha256": "570cea43691300ed186dc7eb6dad6b28a0133d2bb3879e70c7e6b6191943da8c",
+    "counts": {
+      "operations": 2,
+      "unresolved": 0,
+      "sources": 1
+    }
+  },
+  {
+    "case": "python-dynamic-target-16",
+    "byteIdentical": true,
+    "beforeReportSha256": "9f208cff12c4f99e1f7bdb0f358b56ace69adcc95501191504d05292e2dff6b1",
+    "afterReportSha256": "9f208cff12c4f99e1f7bdb0f358b56ace69adcc95501191504d05292e2dff6b1",
+    "counts": {
+      "operations": 32,
+      "unresolved": 0,
+      "sources": 1
+    }
+  },
+  {
+    "case": "python-dynamic-target-128",
+    "byteIdentical": true,
+    "beforeReportSha256": "7cd0537b7aa977bf673b78e035ab8fd79325fc365dccc4a7dc02d9198de45537",
+    "afterReportSha256": "7cd0537b7aa977bf673b78e035ab8fd79325fc365dccc4a7dc02d9198de45537",
+    "counts": {
+      "operations": 256,
+      "unresolved": 0,
+      "sources": 1
+    }
+  },
+  {
+    "case": "javascript-opaque-callback-1",
+    "byteIdentical": true,
+    "beforeReportSha256": "87d48d1d617afad03930f2a5f6d9422459555ab756f7424d725512b97842e2f1",
+    "afterReportSha256": "87d48d1d617afad03930f2a5f6d9422459555ab756f7424d725512b97842e2f1",
+    "counts": {
+      "operations": 0,
+      "unresolved": 1,
+      "sources": 1
+    }
+  },
+  {
+    "case": "javascript-opaque-callback-16",
+    "byteIdentical": true,
+    "beforeReportSha256": "d5ebf5042a1e4c1195420acc1c11b65302d35a714c19451c88db6c8c858d2e16",
+    "afterReportSha256": "d5ebf5042a1e4c1195420acc1c11b65302d35a714c19451c88db6c8c858d2e16",
+    "counts": {
+      "operations": 0,
+      "unresolved": 16,
+      "sources": 1
+    }
+  },
+  {
+    "case": "javascript-opaque-callback-128",
+    "byteIdentical": true,
+    "beforeReportSha256": "45a9c25d0e62d5f5073ad39f37966d008707fc4ccf18c31c7908ed3691f69c2c",
+    "afterReportSha256": "45a9c25d0e62d5f5073ad39f37966d008707fc4ccf18c31c7908ed3691f69c2c",
+    "counts": {
+      "operations": 0,
+      "unresolved": 128,
+      "sources": 1
+    }
+  },
+  {
+    "case": "javascript-implicit-hook-1",
+    "byteIdentical": true,
+    "beforeReportSha256": "b6c1af1212067d914ef6c63bbbae2a72f5dc65b428e0228476c3cf5328578c86",
+    "afterReportSha256": "b6c1af1212067d914ef6c63bbbae2a72f5dc65b428e0228476c3cf5328578c86",
+    "counts": {
+      "operations": 0,
+      "unresolved": 1,
+      "sources": 1
+    }
+  },
+  {
+    "case": "javascript-implicit-hook-16",
+    "byteIdentical": true,
+    "beforeReportSha256": "df0f3a9c955d4068aea882853b09ab401bed66631d2f6f84678c48437247dd0b",
+    "afterReportSha256": "df0f3a9c955d4068aea882853b09ab401bed66631d2f6f84678c48437247dd0b",
+    "counts": {
+      "operations": 0,
+      "unresolved": 16,
+      "sources": 1
+    }
+  },
+  {
+    "case": "javascript-implicit-hook-128",
+    "byteIdentical": true,
+    "beforeReportSha256": "7f4c45d7d443cd74e0bb07dd1db934adad283cc96a38be3d5917c2bf3bb512a8",
+    "afterReportSha256": "7f4c45d7d443cd74e0bb07dd1db934adad283cc96a38be3d5917c2bf3bb512a8",
+    "counts": {
+      "operations": 0,
+      "unresolved": 128,
+      "sources": 1
+    }
+  },
+  {
+    "case": "python-lazy-generator-1",
+    "byteIdentical": true,
+    "beforeReportSha256": "51e6f8b8fda2fadf09d5ae4579e0aea0d26c11005d509a2988247ce34247e246",
+    "afterReportSha256": "51e6f8b8fda2fadf09d5ae4579e0aea0d26c11005d509a2988247ce34247e246",
+    "counts": {
+      "operations": 0,
+      "unresolved": 1,
+      "sources": 1
+    }
+  },
+  {
+    "case": "python-lazy-generator-16",
+    "byteIdentical": true,
+    "beforeReportSha256": "a0ed295502327a3d51bcf0c4d365bdeb505ed6fc2fe29157430a34e09ffaae0d",
+    "afterReportSha256": "a0ed295502327a3d51bcf0c4d365bdeb505ed6fc2fe29157430a34e09ffaae0d",
+    "counts": {
+      "operations": 0,
+      "unresolved": 16,
+      "sources": 1
+    }
+  },
+  {
+    "case": "python-lazy-generator-128",
+    "byteIdentical": true,
+    "beforeReportSha256": "0d76b750be91bd2af0f8b1b0095a6f0fe384bbc972c3e8d0bf5ddfcc8f023d5f",
+    "afterReportSha256": "0d76b750be91bd2af0f8b1b0095a6f0fe384bbc972c3e8d0bf5ddfcc8f023d5f",
+    "counts": {
+      "operations": 0,
+      "unresolved": 128,
+      "sources": 1
+    }
+  },
+  {
+    "case": "javascript-deferred-import-1",
+    "byteIdentical": true,
+    "beforeReportSha256": "8be8e27e043d489f5d8a28d5fa84e1083f2a1c12a8f8b961b5e5b518054fabee",
+    "afterReportSha256": "8be8e27e043d489f5d8a28d5fa84e1083f2a1c12a8f8b961b5e5b518054fabee",
+    "counts": {
+      "operations": 0,
+      "unresolved": 1,
+      "sources": 1
+    }
+  },
+  {
+    "case": "javascript-deferred-import-16",
+    "byteIdentical": true,
+    "beforeReportSha256": "2dee797c783fedb04cc62897d10515d184465fdef51fb4a7bf5d3d00a4fef273",
+    "afterReportSha256": "2dee797c783fedb04cc62897d10515d184465fdef51fb4a7bf5d3d00a4fef273",
+    "counts": {
+      "operations": 0,
+      "unresolved": 16,
+      "sources": 1
+    }
+  },
+  {
+    "case": "javascript-deferred-import-128",
+    "byteIdentical": true,
+    "beforeReportSha256": "3b661b8460562e020f3d991912776d9ae9722331fb572660b670b1abcd2463b7",
+    "afterReportSha256": "3b661b8460562e020f3d991912776d9ae9722331fb572660b670b1abcd2463b7",
+    "counts": {
+      "operations": 0,
+      "unresolved": 128,
+      "sources": 1
+    }
+  },
+  {
+    "case": "javascript-unawaited-promises-1",
+    "byteIdentical": true,
+    "beforeReportSha256": "798504134af67ee2f52ddf7692b0acd425998c4694ff803814d3d0e8766c0e27",
+    "afterReportSha256": "798504134af67ee2f52ddf7692b0acd425998c4694ff803814d3d0e8766c0e27",
+    "counts": {
+      "operations": 1,
+      "unresolved": 1,
+      "sources": 1
+    }
+  },
+  {
+    "case": "javascript-unawaited-promises-16",
+    "byteIdentical": true,
+    "beforeReportSha256": "b54c0fc99e1fe5e0439c9c0f7156c3f086fc4b72fa3c8a6e3b7ec1499d372545",
+    "afterReportSha256": "b54c0fc99e1fe5e0439c9c0f7156c3f086fc4b72fa3c8a6e3b7ec1499d372545",
+    "counts": {
+      "operations": 1,
+      "unresolved": 31,
+      "sources": 1
+    }
+  },
+  {
+    "case": "javascript-unawaited-promises-128",
+    "byteIdentical": true,
+    "beforeReportSha256": "444749eabc76cda659da559f27bb3197c6fd22d5556b3e8fd9440b00d6ae9a4f",
+    "afterReportSha256": "444749eabc76cda659da559f27bb3197c6fd22d5556b3e8fd9440b00d6ae9a4f",
+    "counts": {
+      "operations": 1,
+      "unresolved": 255,
+      "sources": 1
+    }
+  },
+  {
+    "case": "javascript-awaited-promises-1",
+    "byteIdentical": true,
+    "beforeReportSha256": "80d1525d6f90d9e0d550847d51687931e43e27659d07b73ace6e2e28e4362180",
+    "afterReportSha256": "80d1525d6f90d9e0d550847d51687931e43e27659d07b73ace6e2e28e4362180",
+    "counts": {
+      "operations": 2,
+      "unresolved": 0,
+      "sources": 1
+    }
+  },
+  {
+    "case": "javascript-awaited-promises-16",
+    "byteIdentical": true,
+    "beforeReportSha256": "c2a35f382fac3b0409688dfd9d84d0d86aac6b62f32db330b2a494759a85c67e",
+    "afterReportSha256": "c2a35f382fac3b0409688dfd9d84d0d86aac6b62f32db330b2a494759a85c67e",
+    "counts": {
+      "operations": 32,
+      "unresolved": 0,
+      "sources": 1
+    }
+  },
+  {
+    "case": "javascript-awaited-promises-128",
+    "byteIdentical": true,
+    "beforeReportSha256": "3a683820b048d83e29d915ede8ae39c2ab473a73f4fb4773a96453a88e566c14",
+    "afterReportSha256": "3a683820b048d83e29d915ede8ae39c2ab473a73f4fb4773a96453a88e566c14",
+    "counts": {
+      "operations": 256,
+      "unresolved": 0,
+      "sources": 1
+    }
+  },
+  {
+    "case": "python-resource-alias-1",
+    "byteIdentical": true,
+    "beforeReportSha256": "d6b71130439c4f32c8234c160fa08532313f0a2a1c5b9c4f7d00341193acbf79",
+    "afterReportSha256": "d6b71130439c4f32c8234c160fa08532313f0a2a1c5b9c4f7d00341193acbf79",
+    "counts": {
+      "operations": 2,
+      "unresolved": 0,
+      "sources": 1
+    }
+  },
+  {
+    "case": "python-resource-alias-16",
+    "byteIdentical": true,
+    "beforeReportSha256": "126be21853c5ed42382921dbcc413781e516c9277d5937ff305d8db0f00080f3",
+    "afterReportSha256": "126be21853c5ed42382921dbcc413781e516c9277d5937ff305d8db0f00080f3",
+    "counts": {
+      "operations": 32,
+      "unresolved": 0,
+      "sources": 1
+    }
+  },
+  {
+    "case": "python-resource-alias-128",
+    "byteIdentical": true,
+    "beforeReportSha256": "02af3d82ad50cf75825e110d0c23fd099386b7dcf649f0159ac39bda39cdbe6f",
+    "afterReportSha256": "02af3d82ad50cf75825e110d0c23fd099386b7dcf649f0159ac39bda39cdbe6f",
+    "counts": {
+      "operations": 256,
+      "unresolved": 0,
+      "sources": 1
+    }
+  },
+  {
+    "case": "javascript-resource-alias-1",
+    "byteIdentical": true,
+    "beforeReportSha256": "811488b1b61ccdcfc42cadb027d18ed79bec80e4c478f21bde4933580c959689",
+    "afterReportSha256": "811488b1b61ccdcfc42cadb027d18ed79bec80e4c478f21bde4933580c959689",
+    "counts": {
+      "operations": 1,
+      "unresolved": 0,
+      "sources": 1
+    }
+  },
+  {
+    "case": "javascript-resource-alias-16",
+    "byteIdentical": true,
+    "beforeReportSha256": "9cc3eaecdd7eccb38cbdad08403fe04b76d61065add45fbfd7843fc2922a3f76",
+    "afterReportSha256": "9cc3eaecdd7eccb38cbdad08403fe04b76d61065add45fbfd7843fc2922a3f76",
+    "counts": {
+      "operations": 16,
+      "unresolved": 0,
+      "sources": 1
+    }
+  },
+  {
+    "case": "javascript-resource-alias-128",
+    "byteIdentical": true,
+    "beforeReportSha256": "f81b419f999790b182b9b3208c926618a74db011e51367fe28fc9d9d34b3574c",
+    "afterReportSha256": "f81b419f999790b182b9b3208c926618a74db011e51367fe28fc9d9d34b3574c",
+    "counts": {
+      "operations": 128,
+      "unresolved": 0,
+      "sources": 1
+    }
+  },
+  {
+    "case": "python-alias-expansion-1",
+    "byteIdentical": true,
+    "beforeReportSha256": "e1e2bca86ac79e7f0ee120e04e025abb941a18928f0105554c8c898649c8077b",
+    "afterReportSha256": "e1e2bca86ac79e7f0ee120e04e025abb941a18928f0105554c8c898649c8077b",
+    "counts": {
+      "operations": 0,
+      "unresolved": 0,
+      "sources": 1
+    }
+  },
+  {
+    "case": "javascript-alias-expansion-1",
+    "byteIdentical": true,
+    "beforeReportSha256": "1c36af73346b5f17584354879961e0441149fe840460cbc6d5850c14b605dec3",
+    "afterReportSha256": "1c36af73346b5f17584354879961e0441149fe840460cbc6d5850c14b605dec3",
+    "counts": {
+      "operations": 0,
+      "unresolved": 0,
+      "sources": 1
+    }
+  },
+  {
+    "case": "python-alias-expansion-3",
+    "byteIdentical": true,
+    "beforeReportSha256": "8ea8560d84ef38f557937c000e1e68013d5c0a4d39468eadeb19df26683bc72f",
+    "afterReportSha256": "8ea8560d84ef38f557937c000e1e68013d5c0a4d39468eadeb19df26683bc72f",
+    "counts": {
+      "operations": 0,
+      "unresolved": 1,
+      "sources": 1
+    }
+  },
+  {
+    "case": "javascript-alias-expansion-3",
+    "byteIdentical": true,
+    "beforeReportSha256": "6c6c9cc31ba8cf093fa50003861919afea1ba3428ab8cd2f3bf29a5c618cbae1",
+    "afterReportSha256": "6c6c9cc31ba8cf093fa50003861919afea1ba3428ab8cd2f3bf29a5c618cbae1",
+    "counts": {
+      "operations": 0,
+      "unresolved": 1,
+      "sources": 1
+    }
+  },
+  {
+    "case": "python-alias-expansion-128",
+    "byteIdentical": true,
+    "beforeReportSha256": "e1cd264cac96320f37be7814c5417da454bef31d06f786825219b39a383e3bff",
+    "afterReportSha256": "e1cd264cac96320f37be7814c5417da454bef31d06f786825219b39a383e3bff",
+    "counts": {
+      "operations": 0,
+      "unresolved": 1,
+      "sources": 1
+    }
+  },
+  {
+    "case": "javascript-alias-expansion-128",
+    "byteIdentical": true,
+    "beforeReportSha256": "af7010babed0fad194add4ef46facef7ee4c3dfa82f06978ee9ca8c93b57badf",
+    "afterReportSha256": "af7010babed0fad194add4ef46facef7ee4c3dfa82f06978ee9ca8c93b57badf",
+    "counts": {
+      "operations": 0,
+      "unresolved": 1,
+      "sources": 1
+    }
+  },
+  {
+    "case": "source-byte-boundary-1048576",
+    "byteIdentical": true,
+    "beforeReportSha256": "8c215283fd4ec53fdb5eb2a4c1c35be162dba73ba32155c636cda5a89dbf4a62",
+    "afterReportSha256": "8c215283fd4ec53fdb5eb2a4c1c35be162dba73ba32155c636cda5a89dbf4a62",
+    "counts": {
+      "operations": 0,
+      "unresolved": 0,
+      "sources": 1
+    }
+  },
+  {
+    "case": "source-byte-boundary-1048577",
+    "byteIdentical": true,
+    "beforeReportSha256": "8827051d52c503a004e50b91bae4191901841dae70243daea01aac78e681080c",
+    "afterReportSha256": "8827051d52c503a004e50b91bae4191901841dae70243daea01aac78e681080c",
+    "counts": {
+      "operations": 0,
+      "unresolved": 1,
+      "sources": 1
+    }
+  },
+  {
+    "case": "callback-item-boundary-129",
+    "byteIdentical": true,
+    "beforeReportSha256": "2f5a6d8a46605b7cc67fb2a5b3f3035b573ee6b1b86e3e92d4e3878cfa173ccb",
+    "afterReportSha256": "2f5a6d8a46605b7cc67fb2a5b3f3035b573ee6b1b86e3e92d4e3878cfa173ccb",
+    "counts": {
+      "operations": 0,
+      "unresolved": 1,
+      "sources": 1
+    }
+  }
+]

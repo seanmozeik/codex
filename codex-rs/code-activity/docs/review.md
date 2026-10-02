@@ -30,6 +30,24 @@ The filesystem dispatch extraction removes duplicated synchronous/asynchronous
 logic while retaining explicit effect variants. No lint allowances or weakened
 workspace lint settings were added. Rust sources remain at most 350 lines.
 
+## Native performance review
+
+The Python scanner's repeated suffix lookahead caused seconds of latency on a
+311 KB comment fixture. A native guard now skips the suffix only when no external
+token can be produced, retaining original comments and byte/point coordinates.
+The 16 unchanged selected package files include the original generated parser;
+only the C scanner changes. Complete MIT provenance, source hashes and the exact
+patch accompany the vendored grammar. No Tripwire TypeScript runtime is added.
+
+The renewed whole personal Rust and strict-review pass covers native/FFI
+boundaries, every scanner return, original/incremental syntax-tree equivalence,
+eight new language/contract/security regressions and Cargo/Bazel integration.
+Independent review caught an evidence wording issue:639 incremental checks are
+526 source-changing edits plus 113 no-ops. The driver/README/results now state
+that split explicitly. [Actual performance](performance.md) includes the clean
+matched ~956× fixture gain and the unchanged lower-indent quadratic control;
+the patch does not replace deadline work.
+
 ## Compatibility and remaining work
 
 The borrowed adapter compiles against the pinned real `CommandExecutionItem`.

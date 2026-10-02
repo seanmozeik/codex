@@ -24,6 +24,21 @@ thread history or the UI**, and is not a shippable integration.
 - [Lifecycle contract](docs/lifecycle.md): stream replacement, preparation,
   host capture and completion.
 
+## Native parser and scanner repair
+
+The activity interpreter and consumers are Rust; tree-sitter syntax parsing uses
+native C runtime/grammars through Rust bindings. No Tripwire TypeScript parser
+implementation or JavaScript runtime is vendored or executed. The Python C
+grammar package is vendored for a narrowly reviewed comment-lookahead repair;
+its generated parser/bindings remain unchanged, with complete MIT provenance.
+`grammar.js` is retained generator input and is not evaluated by Cargo.
+
+The pathological 8,192-comment full-consumer case improved from 5.987 seconds to
+6.262 milliseconds in matched release runs. All 111 serialized reports remain
+byte-identical and the full 147-test suite passes. [Performance evidence](docs/performance.md)
+records raw samples, syntax-tree equivalence, unchanged-path controls and the
+remaining lack of a native parsing deadline.
+
 ## Try it
 
 From `codex-rs` with the repository's pinned Rust 1.95.0 toolchain:
