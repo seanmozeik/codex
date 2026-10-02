@@ -646,6 +646,7 @@ inherits = "test"
 opt-level = 0
 
 [patch.crates-io]
+tree-sitter-python = { path = "../third_party/tree-sitter-python" }
 # Uncomment to debug local changes.
 # ratatui = { path = "../../ratatui" }
 crossterm = { git = "https://github.com/openai-oss-forks/crossterm", rev = "efa177859fd9623d57b9fe7ae9bf491ae1ac6ec4" }
