@@ -42,7 +42,8 @@ for case in CASES:
             raise RuntimeError("edited CST mismatch: " + case["id"])
         if new_incremental != new_fresh_tree:
             raise RuntimeError("incremental/fresh mismatch: " + case["id"])
-        edit_records.append({"sourceSha256": hashlib.sha256(replacement.encode()).hexdigest(),
+        edit_records.append({"sourceChanged": replacement != case["source"],
+                             "sourceSha256": hashlib.sha256(replacement.encode()).hexdigest(),
                              "cstSha256": hashlib.sha256(new_incremental).hexdigest(),
                              "nodes": new["nodes"], "syntaxError": new["syntaxError"]})
     records.append({"id": case["id"], "sourceSha256": hashlib.sha256(case["source"].encode()).hexdigest(),
@@ -52,6 +53,8 @@ for case in CASES:
 
 (ROOT / "native-equivalence-results.json").write_text(json.dumps({
     "freshCases": len(records), "incrementalEdits": 3 * len(records),
+    "changedInputEdits": sum(edit["sourceChanged"] for record in records for edit in record["incrementalEdits"]),
+    "noOpEdits": sum(not edit["sourceChanged"] for record in records for edit in record["incrementalEdits"]),
     "comparison": "exact full CST bytes: kinds, fields, all children/comments, byte/point spans, named/extra/error/missing flags; candidate/upstream and incremental/fresh",
     "records": records,
 }, indent=2) + "\n")

@@ -11,8 +11,10 @@ cases. The upstream sources retain the full MIT notice in
 `LICENSE.tree-sitter-python`. Fresh parses and three incremental edits per case
 compare exact complete CST bytes: node kinds/fields, all children and comments,
 byte/point spans, named/extra/error/missing flags. The result has 213 fresh cases
-and 639 edited cases. Each incremental result also equals a fresh parse of the
-edited source. FNV signatures in timed scaling rows are only diagnostic checks;
+and 639 incremental checks: 526 changed-input edits and 113 no-op edits where
+the indentation recipe finds no four-space sequence. Each incremental result
+also equals a fresh parse of its replacement source. FNV signatures in timed
+scaling rows are only diagnostic checks;
 the differential gate compares the entire serialized CST byte sequence.
 
 Reproduce on macOS with the two original packages in your Cargo registry and the
