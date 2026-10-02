@@ -1,0 +1,115 @@
+{
+  "version": "codeActivity/v1",
+  "callId": "demo-typescript-edit",
+  "coverage": "partial",
+  "sources": [
+    {
+      "id": 0,
+      "language": "typeScript",
+      "parent": null
+    }
+  ],
+  "operations": [
+    {
+      "id": 0,
+      "evidence": {
+        "sourceId": 0,
+        "startByte": 157,
+        "endByte": 175,
+        "startLine": 4,
+        "endLine": 4,
+        "startColumn": 22
+      },
+      "basis": "staticIntent",
+      "effect": {
+        "type": "fileRead",
+        "target": {
+          "type": "literal",
+          "path": "settings.ts",
+          "cwd": "/workspace"
+        }
+      }
+    },
+    {
+      "id": 1,
+      "evidence": {
+        "sourceId": 0,
+        "startByte": 183,
+        "endByte": 229,
+        "startLine": 5,
+        "endLine": 5,
+        "startColumn": 7
+      },
+      "basis": "staticIntent",
+      "effect": {
+        "type": "fileEdit",
+        "target": {
+          "type": "literal",
+          "path": "settings.ts",
+          "cwd": "/workspace"
+        },
+        "transforms": [
+          "textReplacement"
+        ]
+      }
+    },
+    {
+      "id": 2,
+      "evidence": {
+        "sourceId": 0,
+        "startByte": 231,
+        "endByte": 265,
+        "startLine": 6,
+        "endLine": 6,
+        "startColumn": 1
+      },
+      "basis": "staticIntent",
+      "effect": {
+        "type": "processRun",
+        "argv": [
+          "git",
+          "diff",
+          "--",
+          "settings.ts"
+        ],
+        "shell": null
+      }
+    }
+  ],
+  "unresolved": [
+    {
+      "evidence": {
+        "sourceId": 0,
+        "startByte": 0,
+        "endByte": 63,
+        "startLine": 1,
+        "endLine": 1,
+        "startColumn": 1
+      },
+      "reason": "Imported module initialization is not analysed"
+    },
+    {
+      "evidence": {
+        "sourceId": 0,
+        "startByte": 64,
+        "endByte": 107,
+        "startLine": 2,
+        "endLine": 2,
+        "startColumn": 1
+      },
+      "reason": "Imported module initialization is not analysed"
+    },
+    {
+      "evidence": {
+        "sourceId": 0,
+        "startByte": 231,
+        "endByte": 265,
+        "startLine": 6,
+        "endLine": 6,
+        "startColumn": 1
+      },
+      "reason": "Child process effects are not evaluated"
+    }
+  ],
+  "diffs": []
+}

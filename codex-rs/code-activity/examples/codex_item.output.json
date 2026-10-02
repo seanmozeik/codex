@@ -1,0 +1,106 @@
+{
+  "item": {
+    "id": "prototype-command",
+    "command": [
+      "/bin/zsh",
+      "-lc",
+      "python3 - <<'PY'\nfrom pathlib import Path\np=Path('settings.ts')\np.write_text(p.read_text().replace('old', 'new'))\nPY"
+    ],
+    "cwd": "file:///workspace",
+    "parsed_cmd": [
+      {
+        "type": "unknown",
+        "cmd": "python3 - <<'PY'\nfrom pathlib import Path\np=Path('settings.ts')\np.write_text(p.read_text().replace('old', 'new'))\nPY"
+      }
+    ],
+    "source": "agent",
+    "status": "in_progress"
+  },
+  "sourceActivity": {
+    "type": "supported",
+    "shell": "/bin/zsh",
+    "report": {
+      "version": "codeActivity/v1",
+      "callId": "prototype-command",
+      "coverage": "partial",
+      "sources": [
+        {
+          "id": 0,
+          "language": "shell",
+          "parent": null
+        },
+        {
+          "id": 1,
+          "language": "python",
+          "parent": {
+            "sourceId": 0,
+            "startByte": 17,
+            "endByte": 114,
+            "startLine": 2,
+            "endLine": 5,
+            "startColumn": 1
+          }
+        }
+      ],
+      "operations": [
+        {
+          "id": 0,
+          "evidence": {
+            "sourceId": 1,
+            "startByte": 60,
+            "endByte": 73,
+            "startLine": 3,
+            "endLine": 3,
+            "startColumn": 14
+          },
+          "basis": "staticIntent",
+          "effect": {
+            "type": "fileRead",
+            "target": {
+              "type": "literal",
+              "path": "settings.ts",
+              "cwd": null
+            }
+          }
+        },
+        {
+          "id": 1,
+          "evidence": {
+            "sourceId": 1,
+            "startByte": 47,
+            "endByte": 96,
+            "startLine": 3,
+            "endLine": 3,
+            "startColumn": 1
+          },
+          "basis": "staticIntent",
+          "effect": {
+            "type": "fileEdit",
+            "target": {
+              "type": "literal",
+              "path": "settings.ts",
+              "cwd": null
+            },
+            "transforms": [
+              "textReplacement"
+            ]
+          }
+        }
+      ],
+      "unresolved": [
+        {
+          "evidence": {
+            "sourceId": 1,
+            "startByte": 0,
+            "endByte": 24,
+            "startLine": 1,
+            "endLine": 1,
+            "startColumn": 1
+          },
+          "reason": "Imported module initialization is not analysed"
+        }
+      ],
+      "diffs": []
+    }
+  }
+}
