@@ -92,8 +92,9 @@ def main():
             json.dumps([row['callId'] for row in selected], indent=2) + '\n')
         reports = {}
         for label, binary in [('original-125f907', original), ('current', compare)]:
-            stdout, _ = run([binary, str(path), '30', '3'])
+            stdout, stderr = run([binary, str(path), '30', '3'], memory=True)
             (output / f'common-{label}.jsonl').write_bytes(stdout)
+            (output / f'common-{label}.time.txt').write_bytes(stderr)
             stdout, _ = run([binary, str(path), '1', '0', '--reports'])
             reports[label] = stdout.splitlines()
         equivalence = []
