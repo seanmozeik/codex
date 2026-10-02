@@ -45,7 +45,8 @@ pub(super) fn bind(state: &mut State<'_, '_>, node: Node<'_>) {
                     full
                 };
                 let binding = binding.split('.').next().unwrap_or(binding);
-                state.bindings.insert(
+                state.insert_binding(
+                    node,
                     binding.to_owned(),
                     if supported {
                         Value::Api(full)
@@ -67,14 +68,16 @@ pub(super) fn bind(state: &mut State<'_, '_>, node: Node<'_>) {
             for item in children(clause) {
                 match item.kind() {
                     "identifier" => {
-                        state.bindings.insert(
+                        state.insert_binding(
+                            node,
                             text(item, state.source).to_owned(),
                             Value::Api(module.clone()),
                         );
                     }
                     "namespace_import" => {
                         if let Some(id) = item.named_child(0) {
-                            state.bindings.insert(
+                            state.insert_binding(
+                                node,
                                 text(id, state.source).to_owned(),
                                 Value::Api(module.clone()),
                             );
@@ -88,7 +91,8 @@ pub(super) fn bind(state: &mut State<'_, '_>, node: Node<'_>) {
                             }
                             if let Some(name) = spec.child_by_field_name("name") {
                                 let alias = spec.child_by_field_name("alias").unwrap_or(name);
-                                state.bindings.insert(
+                                state.insert_binding(
+                                    node,
                                     text(alias, state.source).to_owned(),
                                     Value::Api(format!("{module}.{}", text(name, state.source))),
                                 );
@@ -105,7 +109,8 @@ pub(super) fn bind(state: &mut State<'_, '_>, node: Node<'_>) {
 
 pub(super) fn normalize(module: &str) -> String {
     match module {
-        "fs" | "node:fs" | "fs/promises" | "node:fs/promises" => "fs".into(),
+        "fs" | "node:fs" => "fs".into(),
+        "fs/promises" | "node:fs/promises" => "fs.promises".into(),
         "child_process" | "node:child_process" => "child_process".into(),
         "path" | "node:path" => "path".into(),
         other => format!("external:{other}"),
@@ -118,7 +123,10 @@ pub(super) fn load(state: &mut State<'_, '_>, node: Node<'_>, input: &Value) -> 
         return Value::Unknown;
     };
     let module = normalize(&name);
-    if matches!(module.as_str(), "fs" | "path" | "child_process") {
+    if matches!(
+        module.as_str(),
+        "fs" | "fs.promises" | "path" | "child_process"
+    ) {
         Value::Api(module)
     } else {
         state.gap(node, "Module initialization and exports are not inspected");

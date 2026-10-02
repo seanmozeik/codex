@@ -1,0 +1,414 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Codex code activity local outbound contract v1",
+  "type": "object",
+  "required": [
+    "schema",
+    "callId",
+    "analysis"
+  ],
+  "properties": {
+    "schema": {
+      "const": "codex.codeActivity.v1"
+    },
+    "callId": {
+      "type": "string"
+    },
+    "analysis": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": [
+            "type",
+            "coverage",
+            "sources",
+            "records",
+            "unresolved"
+          ],
+          "properties": {
+            "type": {
+              "const": "supported"
+            },
+            "coverage": {
+              "enum": [
+                "partial",
+                "opaque"
+              ]
+            },
+            "sources": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/source"
+              },
+              "maxItems": 64
+            },
+            "records": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/operation"
+              },
+              "maxItems": 256
+            },
+            "unresolved": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/unresolved"
+              },
+              "maxItems": 256
+            }
+          },
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "required": [
+            "type",
+            "reason"
+          ],
+          "properties": {
+            "type": {
+              "const": "unsupported"
+            },
+            "reason": {
+              "enum": [
+                "unrecognizedArgv",
+                "unsupportedShell",
+                "sourceTooLarge"
+              ]
+            }
+          },
+          "additionalProperties": false
+        }
+      ]
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "span": {
+      "type": "object",
+      "required": [
+        "sourceId",
+        "startByte",
+        "endByte",
+        "startLine",
+        "endLine",
+        "startColumn"
+      ],
+      "properties": {
+        "sourceId": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "startByte": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "endByte": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "startLine": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "endLine": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "startColumn": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "target": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": [
+            "type",
+            "path",
+            "cwd"
+          ],
+          "properties": {
+            "type": {
+              "const": "literal"
+            },
+            "path": {
+              "type": "string"
+            },
+            "cwd": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "required": [
+            "type"
+          ],
+          "properties": {
+            "type": {
+              "const": "unresolved"
+            }
+          },
+          "additionalProperties": false
+        }
+      ]
+    },
+    "effect": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": [
+            "type",
+            "target"
+          ],
+          "properties": {
+            "type": {
+              "const": "fileDelete"
+            },
+            "target": {
+              "$ref": "#/$defs/target"
+            }
+          },
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "required": [
+            "type",
+            "target"
+          ],
+          "properties": {
+            "type": {
+              "const": "fileTruncate"
+            },
+            "target": {
+              "$ref": "#/$defs/target"
+            }
+          },
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "required": [
+            "type",
+            "target"
+          ],
+          "properties": {
+            "type": {
+              "const": "fileRead"
+            },
+            "target": {
+              "$ref": "#/$defs/target"
+            }
+          },
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "required": [
+            "type",
+            "target"
+          ],
+          "properties": {
+            "type": {
+              "const": "fileList"
+            },
+            "target": {
+              "$ref": "#/$defs/target"
+            }
+          },
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "required": [
+            "type",
+            "target",
+            "mode"
+          ],
+          "properties": {
+            "type": {
+              "const": "fileOpen"
+            },
+            "target": {
+              "$ref": "#/$defs/target"
+            },
+            "mode": {
+              "enum": [
+                "replace",
+                "append",
+                "exclusiveCreate",
+                "unknown"
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "required": [
+            "type",
+            "target",
+            "mode"
+          ],
+          "properties": {
+            "type": {
+              "const": "fileWrite"
+            },
+            "target": {
+              "$ref": "#/$defs/target"
+            },
+            "mode": {
+              "enum": [
+                "replace",
+                "append",
+                "exclusiveCreate",
+                "unknown"
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "required": [
+            "type",
+            "target",
+            "transforms"
+          ],
+          "properties": {
+            "type": {
+              "const": "fileEdit"
+            },
+            "target": {
+              "$ref": "#/$defs/target"
+            },
+            "transforms": {
+              "type": "array",
+              "items": {
+                "enum": [
+                  "textNormalization",
+                  "textReplacement",
+                  "regexSubstitution",
+                  "textSlice",
+                  "textConcatenation"
+                ]
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "required": [
+            "type",
+            "argv",
+            "shell"
+          ],
+          "properties": {
+            "type": {
+              "const": "processRun"
+            },
+            "argv": {
+              "type": "array",
+              "items": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            },
+            "shell": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          },
+          "additionalProperties": false
+        }
+      ]
+    },
+    "source": {
+      "type": "object",
+      "required": [
+        "id",
+        "language",
+        "parent"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "language": {
+          "enum": [
+            "python",
+            "typeScript",
+            "shell"
+          ]
+        },
+        "parent": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/span"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "operation": {
+      "type": "object",
+      "required": [
+        "id",
+        "evidence",
+        "basis",
+        "effect"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "evidence": {
+          "$ref": "#/$defs/span"
+        },
+        "basis": {
+          "const": "staticIntent"
+        },
+        "effect": {
+          "$ref": "#/$defs/effect"
+        }
+      },
+      "additionalProperties": false
+    },
+    "unresolved": {
+      "type": "object",
+      "required": [
+        "evidence",
+        "reason"
+      ],
+      "properties": {
+        "evidence": {
+          "$ref": "#/$defs/span"
+        },
+        "reason": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

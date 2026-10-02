@@ -1,4 +1,5 @@
 //! Bounded lexical environments. Function values refer to stable scope indices.
+use crate::value::MAX_VALUE_BYTES;
 use crate::value::Value;
 use std::collections::HashMap;
 
@@ -15,12 +16,14 @@ struct Scope {
 pub(super) struct Bindings {
     current: ScopeId,
     scopes: Vec<Scope>,
+    exhausted: bool,
 }
 
 impl Bindings {
     pub(super) fn new(values: HashMap<String, Value>) -> Self {
         Self {
             current: ScopeId(0),
+            exhausted: false,
             scopes: vec![Scope {
                 parent: None,
                 values,
@@ -48,6 +51,9 @@ impl Bindings {
         self.scopes.iter().map(|scope| scope.values.len()).sum()
     }
     pub(super) fn get(&self, name: &str) -> Option<&Value> {
+        if self.exhausted {
+            return None;
+        }
         let mut scope = Some(self.current);
         while let Some(index) = scope {
             let frame = self.scopes.get(index.0)?;
@@ -61,20 +67,38 @@ impl Bindings {
     pub(super) fn local(&self, name: &str) -> bool {
         self.scopes[self.current.0].values.contains_key(name)
     }
-    pub(super) fn insert(&mut self, name: String, value: Value) {
+    pub(super) fn insert(&mut self, name: String, value: Value) -> bool {
+        if self.exhausted
+            || name.len() > MAX_VALUE_BYTES
+            || !value.within_budget()
+            || !self.local(&name) && self.len() >= 256
+        {
+            // A dropped local declaration must not reveal an enclosing name.
+            // Stop resolving this environment rather than growing shadow slots.
+            self.exhausted = true;
+            self.clear();
+            return false;
+        }
         self.scopes[self.current.0].values.insert(name, value);
+        true
     }
-    pub(super) fn assign(&mut self, name: &str, value: Value) {
+    pub(super) fn assign(&mut self, name: &str, value: Value) -> bool {
+        if self.exhausted || !value.within_budget() {
+            self.exhausted = true;
+            self.clear();
+            return false;
+        }
         let mut scope = Some(self.current);
         while let Some(index) = scope {
             let frame = &mut self.scopes[index.0];
             if frame.values.contains_key(name) {
                 frame.values.insert(name.into(), value);
-                return;
+                return true;
             }
             scope = frame.parent;
         }
         self.clear();
+        true
     }
     pub(super) fn clear(&mut self) {
         // Invalidate retained closures as well as the caller: unknown code may
@@ -97,6 +121,7 @@ impl Bindings {
         }
     }
     pub(super) fn restore(&mut self, saved: &Self) {
+        self.exhausted |= saved.exhausted;
         // Do not recycle scope IDs referenced by closures from other branches.
         for (index, scope) in saved.scopes.iter().enumerate() {
             self.scopes[index] = scope.clone();
@@ -104,6 +129,7 @@ impl Bindings {
         self.current = saved.current;
     }
     pub(super) fn join(&mut self, other: &Self) {
+        self.exhausted |= other.exhausted;
         for (index, scope) in self.scopes.iter_mut().enumerate() {
             for (name, value) in &mut scope.values {
                 if other.scopes.get(index).and_then(|s| s.values.get(name)) != Some(value) {

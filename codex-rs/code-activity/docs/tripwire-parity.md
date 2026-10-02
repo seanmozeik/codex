@@ -27,7 +27,9 @@ The older frozen corpus in `tests/fixtures/tripwire.json` contains 355 commands,
 273 embedded inputs, 191 fully inspected reference inputs and 223 operations.
 It remains byte-for-byte unchanged. Exact normalized operation-set comparison
 covers the 191 fully inspected inputs; multiplicity and ordering are tested
-separately. Four historical unsupported function fixtures now require exact
+separately. The inert aggregate-generator reference keeps its exact read set
+but now explicitly marks lazy generator consumption unsupported. Four
+historical unsupported function fixtures now require exact
 reviewed deletion sets. This historical corpus alone cannot prove current parity.
 
 `tests/fixtures/functions.json` contains 57 hand-reviewed inert goldens. They
@@ -94,9 +96,11 @@ All Tripwire paths below refer to the pinned revision above.
 - [`77d99f38`](https://github.com/seanmozeik/tripwire/commit/77d99f38dc71f6e6ef8f6e0b6dfbc851a1e89239): forwarded argv comparison.
 
 Tripwire's complete MIT license and copyright Sean Mozeik 2026 are preserved in
-[NOTICE](../NOTICE). No TypeScript implementation, protected-path policy,
-execution engine, bypass rules, private transcripts or real-session fixtures
-were copied into this PR. The synthetic older corpus is attributable behavioral
+[NOTICE](../NOTICE). Selected lexical protected-path and process rules are
+reimplemented in the isolated mock policy consumer with reduced scope; see
+[the rule matrix](output-contract.md). No TypeScript implementation, execution
+engine, bypass rules, private transcripts or real-session fixtures were copied
+into this PR. The synthetic older corpus is attributable behavioral
 reference material. The crate inherits Codex's Apache-2.0 metadata.
 
 ## Next useful ports

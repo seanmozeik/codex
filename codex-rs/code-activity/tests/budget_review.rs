@@ -98,3 +98,39 @@ fn typescript_type_only_imports_supply_no_runtime_api() -> eyre::Result<()> {
     assert_eq!(report.operations.len(), 1);
     Ok(())
 }
+
+#[test]
+fn nested_source_capacity_is_reported_before_queued_children_are_parsed() -> eyre::Result<()> {
+    for (language, source) in [
+        (
+            Language::TypeScript,
+            "tools.exec_command({cmd:'if'});".repeat(65),
+        ),
+        (
+            Language::Python,
+            "import subprocess\n".to_owned()
+                + &"subprocess.run(['python3','-c','if'])\n".repeat(65),
+        ),
+    ] {
+        let report = Analyzer::new()?.analyze(Request::new(
+            "pending-source-bound".into(),
+            language,
+            source,
+            None,
+        ));
+        let capacity_gap = report
+            .unresolved
+            .iter()
+            .position(|gap| gap.reason == "Embedded source budget exceeded");
+        let child_gap = report
+            .unresolved
+            .iter()
+            .position(|gap| gap.reason.contains("Incomplete or invalid syntax"));
+        assert!(
+            matches!((capacity_gap, child_gap), (Some(capacity), Some(child)) if capacity < child),
+            "{report:?}"
+        );
+        assert_eq!(report.sources.len(), 64);
+    }
+    Ok(())
+}

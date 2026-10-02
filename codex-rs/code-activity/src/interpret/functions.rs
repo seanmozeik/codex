@@ -54,7 +54,7 @@ impl<'tree> State<'_, 'tree> {
             {
                 let key = text(name, self.source);
                 if !self.bindings.local(key) {
-                    self.bindings.insert(key.into(), Value::Unknown);
+                    self.insert_binding(name, key.into(), Value::Unknown);
                 }
             }
             if matches!(
@@ -220,7 +220,7 @@ impl<'tree> State<'_, 'tree> {
             return Value::Unknown;
         }
         if let Some(name) = &function.self_name {
-            self.bindings.insert(name.clone(), Value::Function(id));
+            self.insert_binding(node, name.clone(), Value::Function(id));
         }
         let mut used = 0;
         for (index, parameter) in function.parameters.iter().enumerate() {

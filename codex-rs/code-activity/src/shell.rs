@@ -19,7 +19,7 @@ mod context;
 mod input;
 mod literals;
 
-pub fn interpreter_source(argv: &[Option<String>]) -> Option<(crate::Language, String)> {
+pub fn interpreter_source(argv: &[Option<String>]) -> Option<(crate::Language, &str)> {
     let invocation = input::resolve(argv)?;
     if invocation.context_unknown {
         return None;
@@ -29,7 +29,7 @@ pub fn interpreter_source(argv: &[Option<String>]) -> Option<(crate::Language, S
     };
     Some((
         invocation.language,
-        argv.get(index)?.as_ref()?.get(prefix..)?.to_owned(),
+        argv.get(index)?.as_ref()?.get(prefix..)?,
     ))
 }
 

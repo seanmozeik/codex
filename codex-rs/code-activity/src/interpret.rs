@@ -13,6 +13,7 @@ use crate::children;
 use crate::span;
 use crate::text;
 use crate::value::FunctionId;
+use crate::value::MAX_VALUE_BYTES;
 use crate::value::Value;
 use crate::value::string_literal;
 use functions::Flow;
@@ -92,6 +93,31 @@ pub fn analyze(
 }
 
 impl<'tree> State<'_, 'tree> {
+    fn reserve_value(
+        &mut self,
+        node: Node<'_>,
+        value: &Value,
+        key_bytes: usize,
+        remaining: &mut usize,
+    ) -> bool {
+        let size = value
+            .budget_size()
+            .and_then(|size| size.checked_add(key_bytes));
+        if let Some(size) = size
+            && size <= *remaining
+        {
+            *remaining -= size;
+            return true;
+        }
+        self.gap(
+            node,
+            "Abstract value construction budget exceeded; bindings invalidated",
+        );
+        self.bindings.clear();
+        self.cwd = None;
+        false
+    }
+
     fn gap(&mut self, node: Node<'_>, reason: &str) {
         if self.report.unresolved.len() < MAX_OPERATIONS {
             self.report.unresolved.push(Unresolved {
@@ -112,15 +138,15 @@ impl<'tree> State<'_, 'tree> {
             effect,
         });
     }
-    fn bind(&mut self, node: Node<'_>, value: Value) {
-        if !value.within_budget() || self.bindings.len() >= 256 {
+    fn insert_binding(&mut self, node: Node<'_>, name: String, value: Value) {
+        if !self.bindings.insert(name, value) {
             self.gap(
                 node,
                 "Abstract value or binding budget exceeded; bindings invalidated",
             );
-            self.bindings.clear();
-            return;
         }
+    }
+    fn bind(&mut self, node: Node<'_>, value: Value) {
         if node.kind() == "object_pattern"
             && let Value::Api(api) = value
         {
@@ -146,8 +172,7 @@ impl<'tree> State<'_, 'tree> {
             node.kind(),
             "identifier" | "shorthand_property_identifier_pattern"
         ) {
-            self.bindings
-                .insert(text(node, self.source).to_owned(), value);
+            self.insert_binding(node, text(node, self.source).to_owned(), value);
         } else {
             self.gap(
                 node,
@@ -162,7 +187,7 @@ impl<'tree> State<'_, 'tree> {
             self.gap(node, "AST traversal budget exceeded");
             return Value::Unknown;
         }
-        match node.kind() {
+        let value = match node.kind() {
             "module"
             | "program"
             | "block"
@@ -211,12 +236,7 @@ impl<'tree> State<'_, 'tree> {
                 .map_or(Value::Unknown, |n| self.eval(n, depth + 1)),
             "attribute" | "member_expression" => self.eval_member(node, depth),
             "call" | "call_expression" => self.eval_call(node, depth),
-            "list" | "tuple" | "array" => Value::Array(
-                children(node)
-                    .into_iter()
-                    .map(|n| self.eval(n, depth + 1))
-                    .collect(),
-            ),
+            "list" | "tuple" | "array" => self.eval_array(node, depth),
             "object" | "dictionary" => self.eval_object(node, depth),
             "binary_operator" | "binary_expression" | "boolean_operator" => {
                 self.eval_binary(node, depth)
@@ -225,7 +245,8 @@ impl<'tree> State<'_, 'tree> {
             "with_statement" => self.eval_with(node, depth),
             "for_statement" | "for_in_statement" => self.eval_loop(node, depth),
             "if_statement" => self.eval_branches(node, depth),
-            "list_comprehension" | "generator_expression" => self.eval_comprehension(node, depth),
+            "list_comprehension" => self.eval_comprehension(node, depth),
+            "generator_expression" => self.eval_generator(node, depth),
             "assert_statement" | "comparison_operator" => {
                 for part in children(node) {
                     self.eval(part, depth + 1);
@@ -246,6 +267,12 @@ impl<'tree> State<'_, 'tree> {
                 self.bindings.clear();
                 Value::Unknown
             }
+        };
+        let mut remaining = MAX_VALUE_BYTES;
+        if self.reserve_value(node, &value, 0, &mut remaining) {
+            value
+        } else {
+            Value::Unknown
         }
     }
 }

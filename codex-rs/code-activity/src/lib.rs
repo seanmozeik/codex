@@ -18,6 +18,7 @@
 
 mod capture_error;
 mod codex_adapter;
+pub mod contract;
 mod diff;
 mod error;
 mod execution;
@@ -26,6 +27,7 @@ mod interpret;
 mod lifecycle;
 mod model;
 mod phase;
+pub mod policy;
 mod shell;
 mod snapshot;
 mod stream;
@@ -36,6 +38,12 @@ pub use codex_adapter::CodexCommandActivity;
 pub use codex_adapter::CodexSourceActivity;
 pub use codex_adapter::UnsupportedCodexCarrier;
 pub use codex_adapter::analyze_codex_command;
+pub use contract::ActivityContract;
+pub use contract::ArgumentKnowledge;
+pub use contract::ContractAnalysis;
+pub use contract::ContractSchema;
+pub use contract::UiAction;
+pub use contract::UiRow;
 pub use error::ActivityError;
 pub use execution::ExecutionResult;
 pub use execution::ExecutionStatus;

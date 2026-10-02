@@ -92,6 +92,23 @@ impl<'tree> State<'_, 'tree> {
         Value::Unknown
     }
 
+    pub(super) fn eval_generator(&mut self, node: Node<'tree>, depth: usize) -> Value {
+        // Python evaluates the outer iterable when creating a generator, but
+        // defers its body, filters and subsequent iterables until consumption.
+        if let Some(clause) = children(node)
+            .into_iter()
+            .find(|n| n.kind() == "for_in_clause")
+            && let Some(input) = clause.child_by_field_name("right")
+        {
+            self.eval(input, depth + 1);
+        }
+        self.gap(
+            node,
+            "Lazy generator body and consumption are not inspected",
+        );
+        Value::Unknown
+    }
+
     pub(super) fn eval_comprehension(&mut self, node: Node<'tree>, depth: usize) -> Value {
         let clauses: Vec<_> = children(node)
             .into_iter()

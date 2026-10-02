@@ -4,11 +4,25 @@ use super::calls;
 use crate::Transform;
 use crate::children;
 use crate::text;
+use crate::value::MAX_VALUE_BYTES;
 use crate::value::Value;
 use std::collections::BTreeMap;
 use tree_sitter::Node;
 
 impl<'tree> State<'_, 'tree> {
+    pub(super) fn eval_array(&mut self, node: Node<'tree>, depth: usize) -> Value {
+        let mut values = Vec::new();
+        let mut remaining = MAX_VALUE_BYTES - 64;
+        for child in children(node) {
+            let value = self.eval(child, depth + 1);
+            if !self.reserve_value(child, &value, 0, &mut remaining) {
+                return Value::Unknown;
+            }
+            values.push(value);
+        }
+        Value::Array(values)
+    }
+
     pub(super) fn eval_await(&mut self, node: Node<'tree>, depth: usize) -> Value {
         match node
             .named_child(0)
@@ -53,7 +67,7 @@ impl<'tree> State<'_, 'tree> {
         if let Some(arguments) = node.child_by_field_name("arguments")
             && arguments.kind() == "generator_expression"
         {
-            let value = self.eval_comprehension(arguments, depth + 1);
+            let value = self.eval_generator(arguments, depth + 1);
             return calls::evaluate(self, node, function, &[value], &BTreeMap::new());
         }
         let arg_nodes = node
@@ -63,6 +77,7 @@ impl<'tree> State<'_, 'tree> {
         let mut args = vec![];
         let mut keywords = BTreeMap::new();
         let mut duplicates = false;
+        let mut remaining = MAX_VALUE_BYTES;
         for arg in arg_nodes {
             if arg.kind() == "keyword_argument" {
                 if let (Some(name), Some(value)) = (
@@ -70,12 +85,24 @@ impl<'tree> State<'_, 'tree> {
                     arg.child_by_field_name("value"),
                 ) {
                     let value = self.eval(value, depth + 1);
+                    if !self.reserve_value(
+                        arg,
+                        &value,
+                        text(name, self.source).len(),
+                        &mut remaining,
+                    ) {
+                        return Value::Unknown;
+                    }
                     duplicates |= keywords
                         .insert(text(name, self.source).to_owned(), value)
                         .is_some();
                 }
             } else {
-                args.push(self.eval(arg, depth + 1));
+                let value = self.eval(arg, depth + 1);
+                if !self.reserve_value(arg, &value, 0, &mut remaining) {
+                    return Value::Unknown;
+                }
+                args.push(value);
             }
         }
         if duplicates {
@@ -88,10 +115,14 @@ impl<'tree> State<'_, 'tree> {
     pub(super) fn eval_object(&mut self, node: Node<'tree>, depth: usize) -> Value {
         let mut map = BTreeMap::new();
         let mut complete = true;
+        let mut remaining = MAX_VALUE_BYTES - 64;
         for pair in children(node) {
             if pair.kind() == "shorthand_property_identifier" {
                 let key = text(pair, self.source).to_owned();
                 let value = self.bindings.get(&key).cloned().unwrap_or(Value::Unknown);
+                if !self.reserve_value(pair, &value, key.len(), &mut remaining) {
+                    return Value::Unknown;
+                }
                 map.insert(key, value);
                 continue;
             }
@@ -106,13 +137,23 @@ impl<'tree> State<'_, 'tree> {
                 };
                 let value = self.eval(v, depth + 1);
                 if let Some(key) = key {
+                    if !self.reserve_value(pair, &value, key.len(), &mut remaining) {
+                        return Value::Unknown;
+                    }
                     map.insert(key, value);
                 } else {
-                    self.gap(k, "Computed object key is unresolved");
+                    self.gap(k, "Computed object key is unresolved; bindings invalidated");
+                    self.bindings.clear();
+                    self.cwd = None;
                     complete = false;
                 }
             } else {
-                self.gap(pair, "Computed object property is unresolved");
+                self.gap(
+                    pair,
+                    "Computed object property is unresolved; bindings invalidated",
+                );
+                self.bindings.clear();
+                self.cwd = None;
                 complete = false;
             }
         }

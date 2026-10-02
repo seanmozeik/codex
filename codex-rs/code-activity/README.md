@@ -15,6 +15,10 @@ thread history or the UI**, and is not a shippable integration.
 - [Codex integration scope](docs/codex-integration.md): actual adapter, proposed
   lifecycle, remaining transport/environment/privacy work.
 - [Verification](docs/verification.md): commands, counts and limitations.
+- [Output contract](docs/output-contract.md): versioned records and tested UI
+  consumer, with explicit partial coverage and provenance.
+- [Performance evidence](docs/performance.md): reproducible inert stress inputs,
+  end-to-end timing, common original-parser comparison and isolated peak RSS.
 - [Synthetic adapter output](examples/codex_item.output.json): original Codex item
   plus independent static intent; no observed changes or new public API.
 - [Lifecycle contract](docs/lifecycle.md): stream replacement, preparation,
@@ -80,6 +84,9 @@ execute or as proof that no activity will occur.
 Tripwire is Sean Mozeik's MIT-licensed policy inspector. This is an independent
 Rust activity implementation informed by its parser architecture and synthetic
 regression scenarios, not a copy of its policy decisions or a full port.
+The isolated whole-script mock policy example separately reimplements a small
+documented set of Tripwire lexical rules; it cannot authorize execution and does
+not change Codex's permissions or live dispatch.
 [NOTICE](NOTICE) preserves its complete MIT attribution; the crate inherits
 Codex's Apache-2.0 license metadata. No private transcripts, real session
 payloads or internal benchmark corpora are included.

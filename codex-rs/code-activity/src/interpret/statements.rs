@@ -38,8 +38,15 @@ impl<'tree> State<'_, 'tree> {
             if node.kind() == "assignment_expression"
                 && self.language == crate::Language::TypeScript
             {
-                self.bindings
-                    .assign(crate::text(lhs, self.source), value.clone());
+                if !self
+                    .bindings
+                    .assign(crate::text(lhs, self.source), value.clone())
+                {
+                    self.gap(
+                        lhs,
+                        "Abstract value or binding budget exceeded; bindings invalidated",
+                    );
+                }
             } else {
                 self.bind(lhs, value.clone());
             }

@@ -316,7 +316,7 @@ fn expanding_constants_and_arrays_abstain_before_growth() -> eyre::Result<()> {
         assert!(
             r.unresolved
                 .iter()
-                .any(|u| u.reason.contains("value or binding budget"))
+                .any(|u| u.reason.contains("Abstract value construction budget"))
         );
     }
     Ok(())

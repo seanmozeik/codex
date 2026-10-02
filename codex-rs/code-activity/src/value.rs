@@ -4,6 +4,8 @@ use crate::Transform;
 use crate::WriteMode;
 use std::collections::BTreeMap;
 
+pub const MAX_VALUE_BYTES: usize = 16_384;
+
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub struct FunctionId(pub usize);
 
@@ -39,6 +41,10 @@ pub enum HandleMode {
 
 impl Value {
     pub(crate) fn within_budget(&self) -> bool {
+        self.budget_size().is_some()
+    }
+
+    pub(crate) fn budget_size(&self) -> Option<usize> {
         fn visit(value: &Value, remaining: &mut usize, depth: usize) -> bool {
             if depth > 64 || *remaining < 64 {
                 return false;
@@ -86,7 +92,8 @@ impl Value {
                 Target::Unresolved => 0,
             }
         }
-        visit(self, &mut 16_384, 0)
+        let mut remaining = MAX_VALUE_BYTES;
+        visit(self, &mut remaining, 0).then_some(MAX_VALUE_BYTES - remaining)
     }
     pub(crate) fn text(&self) -> Option<String> {
         match self {

@@ -56,7 +56,7 @@ impl State<'_, '_> {
                 if let Some(name) = name {
                     let name = text(name, self.source).split('.').next().unwrap_or("");
                     if !name.is_empty() && !self.bindings.local(name) {
-                        self.bindings.insert(name.into(), Value::Unknown);
+                        self.insert_binding(node, name.into(), Value::Unknown);
                     }
                 }
             }
@@ -65,8 +65,7 @@ impl State<'_, '_> {
             && name.kind() == "identifier"
             && !self.bindings.local(text(name, self.source))
         {
-            self.bindings
-                .insert(text(name, self.source).into(), Value::Unknown);
+            self.insert_binding(name, text(name, self.source).into(), Value::Unknown);
         }
     }
 }
