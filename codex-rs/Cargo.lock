@@ -16216,6 +16216,7 @@ dependencies = [
 [[package]]
 name = "tree-sitter-python"
 version = "0.25.0"
+source = "git+https://github.com/seanmozeik/tree-sitter-python?rev=da2cb9d769837d483db688e8bf9d99093b7682e0#da2cb9d769837d483db688e8bf9d99093b7682e0"
 dependencies = [
  "cc",
  "tree-sitter-language",

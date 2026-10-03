@@ -62,7 +62,8 @@ Classes/methods, Python async/generator/global/nonlocal semantics, JavaScript va
 hoisting and most callback families require explicit uncertainty.
 
 Activity interpretation and consumers are Rust, with native tree-sitter syntax
-parsing.
+parsing. See [parser dependencies](docs/dependencies.md) for the immutable
+Python scanner patch and build requirements.
 
 Selected parsing scenarios and mock policy rules are adapted from Tripwire.
 [NOTICE](NOTICE) retains the required MIT attribution; this crate inherits Codex's
