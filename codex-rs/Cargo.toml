@@ -26,6 +26,7 @@ members = [
     "features",
     "install-context",
     "codex-backend-openapi-models",
+    "code-activity",
     "code-mode",
     "code-mode-host",
     "code-mode-protocol",
@@ -169,6 +170,10 @@ edition = "2024"
 license = "Apache-2.0"
 
 [workspace.dependencies]
+fs-err = "3.3.1"
+eyre = "0.6.12"
+tree-sitter-python = { git = "https://github.com/seanmozeik/tree-sitter-python", rev = "da2cb9d769837d483db688e8bf9d99093b7682e0", version = "=0.25.0" }
+tree-sitter-typescript = "0.23.2"
 # Internal
 codex-realtime-webrtc = { path = "realtime-webrtc" }
 app_test_support = { path = "app-server/tests/common" }
