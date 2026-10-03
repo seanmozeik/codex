@@ -22,3 +22,11 @@ Python grammar for [tree-sitter][].
 [npm]: https://img.shields.io/npm/v/tree-sitter-python?logo=npm
 [crates]: https://img.shields.io/crates/v/tree-sitter-python?logo=rust
 [pypi]: https://img.shields.io/pypi/v/tree-sitter-python?logo=pypi&logoColor=ffd242
+
+## Codex build
+
+Codex uses this tree-sitter-python 0.25.0 package through a local Cargo patch.
+`src/scanner.c` skips comment suffix lookahead when no external token can be
+emitted. Generated parser and Rust bindings retain upstream behavior; paths that
+can produce indentation tokens keep their original lookahead. See `LICENSE` for
+the upstream MIT license.

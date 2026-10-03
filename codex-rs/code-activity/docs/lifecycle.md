@@ -58,8 +58,8 @@ Regex substitutions, backreferences, callbacks and slice edits use the same evid
 
 Concurrent writers remain a limit. A changed target with a matching predicted write is useful evidence, but it is not proof of authorship. The JSON therefore says `observationBasis: "captureInterval"` and keeps source operations as `staticIntent`. Rename/delete intent, aliases, persistent REPL state, arbitrary helper functions and writes to unknown paths still need more work.
 
-## Runnable evidence
+## Example
 
-`cargo run --example lifecycle` emits five JSON lines from a real, fixed Python fixture. It edits `first.txt` with a regex, fails when reading `missing.txt`, and never reaches the write to `second.txt`. The stored [sample](../examples/lifecycle.output.jsonl) replaces only its temporary root with `/demo/workspace` for readability.
+`cargo run -p codex-code-activity --example lifecycle --locked` emits five JSON lines from a fixed Python fixture in a temporary directory. It edits `first.txt` with a regex, fails when reading `missing.txt`, and never reaches the write to `second.txt`.
 
 The runtime tests also execute a JavaScript regex callback. The Rust analyser does not evaluate that callback. The host comparison still returns the correct changed text.

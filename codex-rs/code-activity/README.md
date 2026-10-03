@@ -1,111 +1,59 @@
-# Code activity: in-tree discussion prototype
+# Code activity
 
-This crate turns generated Python, JavaScript/TypeScript and shell source into
-bounded, source-backed static activity records. It recognizes file reads,
-writes, edits, deletion/truncation, listings and process launches, including
-literal nested tool and interpreter calls. It never executes submitted source.
+This crate turns Python, JavaScript/TypeScript and shell source into structured
+file and process intent without executing it. It recognizes reads, writes,
+appends, edits, deletion, listings and process launches, including literal nested
+tool and interpreter calls. Local functions, closures and supported callbacks
+retain their source locations and repeated effects.
 
-This PR is a review surface in Sean's fork of Codex. The crate compiles against
-Codex's actual workspace and has a tested adapter for its real
-`CommandExecutionItem`. It is **not wired into core dispatch, app-server events,
-thread history or the UI**, and is not a shippable integration.
+`ActivityContract` gives clients a versioned envelope and typed activity rows.
+Every record is static intent, with source spans and nested-source provenance;
+unknown targets and unsupported semantics remain explicit. Streaming previews
+replace earlier revisions rather than accumulating stale predictions.
 
-- [Tripwire parity and provenance](docs/tripwire-parity.md): actual current
-  source/test audit, selected ports, differences and explicit unsupported cases.
-- [Codex integration scope](docs/codex-integration.md): actual adapter, proposed
-  lifecycle, remaining transport/environment/privacy work.
-- [Verification](docs/verification.md): commands, counts and limitations.
-- [Output contract](docs/output-contract.md): versioned records and tested UI
-  consumer, with explicit partial coverage and provenance.
-- [Performance evidence](docs/performance.md): reproducible inert stress inputs,
-  end-to-end timing, common original-parser comparison and isolated peak RSS.
-- [Synthetic adapter output](examples/codex_item.output.json): original Codex item
-  plus independent static intent; no observed changes or new public API.
-- [Lifecycle contract](docs/lifecycle.md): stream replacement, preparation,
-  host capture and completion.
+The Codex adapter borrows the real `CommandExecutionItem`, preserves its existing
+parsed actions, cwd URI and execution status, and adds a separate analysis view.
+The crate does not yet publish app-server events or render a live Codex UI.
 
-## Native parser and scanner repair
+## Use
 
-The activity interpreter and consumers are Rust; tree-sitter syntax parsing uses
-native C runtime/grammars through Rust bindings. No Tripwire TypeScript parser
-implementation or JavaScript runtime is vendored or executed. The Python C
-grammar package is vendored for a narrowly reviewed comment-lookahead repair;
-its generated parser/bindings remain unchanged, with complete MIT provenance.
-`grammar.js` is retained generator input and is not evaluated by Cargo.
-
-The pathological 8,192-comment full-consumer case improved from 5.987 seconds to
-6.262 milliseconds in matched release runs. All 111 serialized reports remain
-byte-identical and the full 147-test suite passes. [Performance evidence](docs/performance.md)
-records raw samples, syntax-tree equivalence, unchanged-path controls and the
-remaining lack of a native parsing deadline.
-
-## Try it
-
-From `codex-rs` with the repository's pinned Rust 1.95.0 toolchain:
+From `codex-rs`:
 
 ```sh
 cargo run -p codex-code-activity --example codex_item --locked
 cargo run -p codex-code-activity --bin codex-code-activity --locked < code-activity/examples/python-edit.jsonl
-cargo nextest run -p codex-code-activity --all-targets --locked --run-ignored all
+cargo nextest run -p codex-code-activity --all-targets --locked --run-ignored all --retries 0
 cargo test -p codex-code-activity --doc --locked
 ```
 
-The first example analyses an inert, synthetic command item. The JSONL CLI is
-also pure source analysis. The lifecycle example and two opt-in runtime tests
-execute only fixed, trusted fixtures in temporary directories; they do not
-execute model/user input.
+The JSONL CLI and command-item example analyze inert source. The lifecycle example
+and two opt-in runtime tests execute only fixed fixtures in temporary directories.
 
-The core adapter uses Codex's shell extractors on original argv, preserves the
-whole borrowed command item and existing `ParsedCommand`, and adds a separate
-supported/unsupported static result. Direct Python/Node argv and PowerShell
-explicitly abstain at this adapter boundary, although the standalone analyzer
-can accept Python/TypeScript source directly. Bash/Zsh/Sh carriers receive
-best-effort Bash grammar analysis with gaps. Executor cwd remains an unchanged
-`PathUri` on the original item; the parser starts with unresolved cwd rather
-than inventing host-native paths from a URI. Explicit source cwd changes are
-conditional intent. Raw demo output needs host disclosure rules before delivery
-to clients.
+- [Codex adapter](docs/codex-integration.md): supported carriers and host integration.
+- [Output contract](docs/output-contract.md): records, identity and consumer rules.
+- [Lifecycle](docs/lifecycle.md): streaming, host capture and terminal results.
+- [Benchmarking](docs/benchmarking.md): reusable release and streaming harnesses.
 
-## Meaning and limits
+## Limits
 
-Every source-derived operation has `basis: staticIntent`; coverage is always
-partial or opaque. A recognized write is not a receipt that it ran. Operations
-have source spans and report-local IDs; nested decoded sources point to their
-containing source span. Sources and aliases are rebuilt on every stream revision
-so stale previews can be replaced or retracted.
+Coverage is always partial or opaque. A predicted write is not evidence that it
+ran; an empty report does not prove the absence of activity or grant permission.
+The host owns execution, permissions, redaction and disclosure.
 
-The optional standalone capture lifecycle compares bounded host snapshots. Its
-`hostSnapshotsOnly`/`captureInterval` attribution cannot prove which process
-changed a file, and equal endpoints cannot exclude intermediate changes.
-`LocalFiles` is not an executor-aware Codex capture adapter and is not used by
-the Codex item bridge.
+Source is limited to 1 MiB, operations and uncertainty records to 256 each, nested
+sources to 64, embedded depth to 4, syntax depth to 64 and semantic visits to
+50,000 per source. Abstract values, bindings, functions and literal callback
+iteration are also bounded. These limits do not impose a native parsing deadline.
 
-The parser limits decoded source to 1 MiB, operations and uncertainty records to
-256 each, nested sources to 64, embedded depth to 4, syntax depth to 64 and
-semantic visits to 50,000 per source. Abstract values, local functions, frames,
-scopes and literal callback iteration are separately bounded. These are size
-and traversal bounds, not a wall-clock deadline or complete language sandbox.
+Dynamic evaluation, arbitrary module initialization/user code, persistent REPL
+state, general shared-container mutation and full shell semantics are unmodeled.
+Classes/methods, Python async/generator/global/nonlocal semantics, JavaScript var
+hoisting and most callback families require explicit uncertainty.
 
-Module meanings are assumed only for recognized standard/builtin imports.
-Module initialization, persistent REPL state, arbitrary user code, dynamic eval,
-general shared container mutation, full shell evaluation and remote execution
-remain unmodeled. Defaults/rest/destructuring, classes/methods, Python
-async/generators/global/nonlocal, JS var hoisting and most callback families
-remain explicit gaps. Unsupported input must never be treated as permission to
-execute or as proof that no activity will occur.
+Activity interpretation and consumers are Rust, with native tree-sitter syntax
+parsing. The Python scanner skips redundant comment lookahead where no external
+token can be emitted; indentation-sensitive paths retain their original behavior.
 
-## Attribution and discussion
-
-Tripwire is Sean Mozeik's MIT-licensed policy inspector. This is an independent
-Rust activity implementation informed by its parser architecture and synthetic
-regression scenarios, not a copy of its policy decisions or a full port.
-The isolated whole-script mock policy example separately reimplements a small
-documented set of Tripwire lexical rules; it cannot authorize execution and does
-not change Codex's permissions or live dispatch.
-[NOTICE](NOTICE) preserves its complete MIT attribution; the crate inherits
-Codex's Apache-2.0 license metadata. No private transcripts, real session
-payloads or internal benchmark corpora are included.
-
-Current official Codex [contribution policy](https://github.com/openai/codex/blob/c5d242fa7907bff1b7a7e26e95febc548c0a6963/docs/contributing.md#L5)
-declines external code PRs. This fork-local PR is for Sean to share in his own
-team conversation; it makes no claim of upstream acceptance.
+Selected parsing scenarios and mock policy rules are adapted from Tripwire.
+[NOTICE](NOTICE) retains the required MIT attribution; this crate inherits Codex's
+Apache-2.0 license metadata. The policy example never authorizes execution.

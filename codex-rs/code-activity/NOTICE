@@ -1,8 +1,7 @@
-Tripwire provenance
+Tripwire attribution
 
 The bounded closure/scope/callback architecture and selected regression scenarios
 were reimplemented with reference to Tripwire, by Sean Mozeik.
-See docs/tripwire-parity.md for immutable source revisions and differences.
 The Rust crate retains its workspace Apache-2.0 metadata. The following notice
 preserves the MIT attribution for the referenced work and any adapted portions.
 
