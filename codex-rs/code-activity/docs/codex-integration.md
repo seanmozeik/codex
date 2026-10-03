@@ -1,6 +1,6 @@
 # Codex adapter
 
-`analyze_command_item` borrows Codex's actual `CommandExecutionItem` and returns
+`analyze_codex_command` borrows Codex's actual `CommandExecutionItem` and returns
 an additive static-analysis view. Existing parsed commands, argv, aggregate
 output, cwd URI, process identity, status and exit code remain on the original
 item. Predicted activity is independent of command success or failure.
@@ -24,7 +24,8 @@ cargo run -p codex-code-activity --example codex_item --locked
 ## Host integration
 
 The crate is not wired into core dispatch, app-server events, thread history or
-TUI rendering. A host integration must:
+TUI rendering. Its policy API is tested against mock dispatch; production
+pre-execution enforcement remains separate. A host integration must:
 
 - Publish the [versioned contract](output-contract.md) with partial/unsupported
   status and apply secret/path disclosure rules before transport.
