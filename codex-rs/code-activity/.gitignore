@@ -1,0 +1,5 @@
+# Local benchmark and demo run artifacts
+/docs/benchmarks/
+/benchmark-results/
+/examples/*.output.*
+*.time.txt

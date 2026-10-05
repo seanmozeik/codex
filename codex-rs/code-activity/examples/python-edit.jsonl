@@ -1,0 +1,1 @@
+{"callId":"demo-python-edit","language":"python","source":"from pathlib import Path\nimport subprocess as sp\np = Path('settings.ts')\ns = p.read_text()\np.write_text(s.replace('old', 'new'))\nsp.run(['git', 'diff', '--', 'settings.ts'])\n","cwd":"/workspace","snapshots":[{"path":"settings.ts","before":"export const label = 'old';\n","after":"export const label = 'new';\n"}]}

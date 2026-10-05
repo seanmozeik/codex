@@ -1,0 +1,1 @@
+{"callId":"demo-typescript-edit","language":"typeScript","source":"import { readFile as read, writeFile } from 'node:fs/promises';\nimport { spawn } from 'node:child_process';\nconst path = 'settings.ts';\nconst source = await read(path, 'utf8');\nawait writeFile(path, source.replace(/old/g, 'new'));\nspawn('git', ['diff', '--', path]);\n","cwd":"/workspace","snapshots":[]}

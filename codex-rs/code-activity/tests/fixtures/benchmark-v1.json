@@ -1,0 +1,438 @@
+{
+  "version": 1,
+  "cases": [
+    {
+      "id": "python-direct",
+      "language": "python",
+      "prefix": "",
+      "body": "open(\"output.txt\", \"w\").write(\"hello\")\n",
+      "suffix": "",
+      "scales": [
+        1,
+        16,
+        128,
+        512
+      ],
+      "effectsPerUnit": 2,
+      "requiredGap": null
+    },
+    {
+      "id": "python-vars-functions",
+      "language": "python",
+      "prefix": "from pathlib import Path\ndef save(p):\n Path(p).write_text(\"hello\")\n",
+      "body": "target=\"output.txt\"\nsave(target)\n",
+      "suffix": "",
+      "scales": [
+        1,
+        16,
+        128,
+        512
+      ],
+      "effectsPerUnit": 1,
+      "requiredGap": null
+    },
+    {
+      "id": "python-closure",
+      "language": "python",
+      "prefix": "from pathlib import Path\ndef outer(p):\n return lambda: Path(p).unlink()\nf=outer(\"output.txt\")\n",
+      "body": "f()\n",
+      "suffix": "",
+      "scales": [
+        1,
+        16,
+        128,
+        512
+      ],
+      "effectsPerUnit": 1,
+      "requiredGap": null
+    },
+    {
+      "id": "javascript-direct",
+      "language": "typeScript",
+      "prefix": "const fs=require('fs');\n",
+      "body": "fs.writeFileSync('output.txt','hello');\n",
+      "suffix": "",
+      "scales": [
+        1,
+        16,
+        128,
+        512
+      ],
+      "effectsPerUnit": 1,
+      "requiredGap": null
+    },
+    {
+      "id": "javascript-closure",
+      "language": "typeScript",
+      "prefix": "const fs=require('fs');function outer(p){return ()=>fs.unlinkSync(p)}const f=outer('output.txt');\n",
+      "body": "f();\n",
+      "suffix": "",
+      "scales": [
+        1,
+        16,
+        128,
+        512
+      ],
+      "effectsPerUnit": 1,
+      "requiredGap": null
+    },
+    {
+      "id": "javascript-callback",
+      "language": "typeScript",
+      "prefix": "const fs=require('fs');\n",
+      "body": "['a.txt','b.txt'].forEach(p=>fs.unlinkSync(p));\n",
+      "suffix": "",
+      "scales": [
+        1,
+        16,
+        128,
+        512
+      ],
+      "effectsPerUnit": 2,
+      "requiredGap": null
+    },
+    {
+      "id": "typescript-functions",
+      "language": "typeScript",
+      "prefix": "const fs=require('fs');const save=(p:string):void=>fs.writeFileSync(p,'hello');\nconst target:string='output.txt';\n",
+      "body": "save(target);\n",
+      "suffix": "",
+      "scales": [
+        1,
+        16,
+        128,
+        512
+      ],
+      "effectsPerUnit": 1,
+      "requiredGap": null
+    },
+    {
+      "id": "javascript-process",
+      "language": "typeScript",
+      "prefix": "const cp=require('child_process');\n",
+      "body": "cp.spawnSync('echo',['hello']);\n",
+      "suffix": "",
+      "scales": [
+        1,
+        16,
+        128,
+        512
+      ],
+      "effectsPerUnit": 1,
+      "requiredGap": null
+    },
+    {
+      "id": "shell-direct",
+      "language": "shell",
+      "prefix": "",
+      "body": "cat input.txt > output.txt\n",
+      "suffix": "",
+      "scales": [
+        1,
+        16,
+        128,
+        512
+      ],
+      "effectsPerUnit": 1,
+      "requiredGap": "Redirection"
+    },
+    {
+      "id": "shell-nested-node",
+      "language": "shell",
+      "prefix": "",
+      "body": "node -e 'const fs=require(\"fs\");fs.unlinkSync(\"output.txt\");'\n",
+      "suffix": "",
+      "scales": [
+        1,
+        8,
+        32,
+        80
+      ],
+      "effectsPerUnit": 1,
+      "requiredGap": null
+    },
+    {
+      "id": "shell-nested-python",
+      "language": "shell",
+      "prefix": "",
+      "body": "python3 -c 'open(\"output.txt\", \"w\").write(\"hello\")'\n",
+      "suffix": "",
+      "scales": [
+        1,
+        8,
+        32,
+        80
+      ],
+      "effectsPerUnit": 2,
+      "requiredGap": null
+    },
+    {
+      "id": "typescript-tools-shell-python",
+      "language": "typeScript",
+      "prefix": "",
+      "body": "await tools.exec_command({cmd:'python3 -c \\'open(\"output.txt\", \"w\").write(\"hello\")\\'',login:false,workdir:\"/child\"});\n",
+      "suffix": "",
+      "scales": [
+        1,
+        8,
+        32,
+        80
+      ],
+      "effectsPerUnit": 2,
+      "requiredGap": null
+    },
+    {
+      "id": "python-recursion",
+      "language": "python",
+      "prefix": "def f(p):\n return f(p)\n",
+      "body": "open(f('unresolved'), 'w').write('x')\n",
+      "suffix": "",
+      "scales": [
+        1,
+        16,
+        128
+      ],
+      "effectsPerUnit": null,
+      "requiredGap": "Recursive"
+    },
+    {
+      "id": "typescript-recursion",
+      "language": "typeScript",
+      "prefix": "const fs=require('fs');function f(p){return f(p)}\n",
+      "body": "fs.unlinkSync(f('unresolved'));\n",
+      "suffix": "",
+      "scales": [
+        1,
+        16,
+        128
+      ],
+      "effectsPerUnit": null,
+      "requiredGap": "Recursive"
+    },
+    {
+      "id": "python-malformed",
+      "language": "python",
+      "prefix": "",
+      "body": "if (:\n",
+      "suffix": "",
+      "scales": [
+        1,
+        32,
+        1024
+      ],
+      "effectsPerUnit": null,
+      "requiredGap": "syntax"
+    },
+    {
+      "id": "typeScript-malformed",
+      "language": "typeScript",
+      "prefix": "",
+      "body": "const x = ( ;\n",
+      "suffix": "",
+      "scales": [
+        1,
+        32,
+        1024
+      ],
+      "effectsPerUnit": null,
+      "requiredGap": "syntax"
+    },
+    {
+      "id": "shell-malformed",
+      "language": "shell",
+      "prefix": "",
+      "body": "if then )\n",
+      "suffix": "",
+      "scales": [
+        1,
+        32,
+        1024
+      ],
+      "effectsPerUnit": null,
+      "requiredGap": "syntax"
+    },
+    {
+      "id": "python-padding",
+      "language": "python",
+      "prefix": "open(\"input.txt\").read()\n",
+      "body": "# padded source without extra actions\n",
+      "suffix": "",
+      "scales": [
+        1024,
+        8192,
+        28000
+      ],
+      "effectsPerUnit": null,
+      "requiredGap": null
+    },
+    {
+      "id": "typescript-deep",
+      "language": "typeScript",
+      "prefix": "const x=",
+      "body": "(",
+      "suffix": ";",
+      "scales": [
+        32,
+        128,
+        1024
+      ],
+      "effectsPerUnit": null,
+      "requiredGap": null,
+      "balanced": true
+    },
+    {
+      "id": "javascript-padding",
+      "language": "typeScript",
+      "prefix": "require('fs').readFileSync('input.txt');\n",
+      "body": "// padded source without extra actions\n",
+      "suffix": "",
+      "scales": [
+        1024,
+        8192,
+        28000
+      ],
+      "effectsPerUnit": null,
+      "requiredGap": null
+    },
+    {
+      "id": "shell-padding",
+      "language": "shell",
+      "prefix": "cat input.txt\n",
+      "body": "# padded source without extra actions\n",
+      "suffix": "",
+      "scales": [
+        1024,
+        8192,
+        28000
+      ],
+      "effectsPerUnit": null,
+      "requiredGap": null
+    },
+    {
+      "id": "python-dynamic-target",
+      "language": "python",
+      "prefix": "",
+      "body": "open(dynamic_target, \"w\").write(\"x\")\n",
+      "suffix": "",
+      "scales": [
+        1,
+        16,
+        128
+      ],
+      "effectsPerUnit": 2,
+      "requiredGap": null
+    },
+    {
+      "id": "javascript-opaque-callback",
+      "language": "typeScript",
+      "prefix": "const fs=require('fs');\n",
+      "body": "unknown(()=>fs.unlinkSync('potential.txt'));\n",
+      "suffix": "",
+      "scales": [
+        1,
+        16,
+        128
+      ],
+      "effectsPerUnit": null,
+      "requiredGap": "Unknown callable"
+    },
+    {
+      "id": "javascript-implicit-hook",
+      "language": "typeScript",
+      "prefix": "const fs=require('fs');\n",
+      "body": "JSON.stringify({toJSON:()=>fs.unlinkSync('potential.txt')});\n",
+      "suffix": "",
+      "scales": [
+        1,
+        16,
+        128
+      ],
+      "effectsPerUnit": null,
+      "requiredGap": "callback"
+    },
+    {
+      "id": "python-lazy-generator",
+      "language": "python",
+      "prefix": "",
+      "body": "g=(open('never','w') for p in ['a'])\n",
+      "suffix": "",
+      "scales": [
+        1,
+        16,
+        128
+      ],
+      "effectsPerUnit": 0,
+      "requiredGap": "Lazy generator"
+    },
+    {
+      "id": "javascript-deferred-import",
+      "language": "typeScript",
+      "prefix": "const fs=import('node:fs');\n",
+      "body": "fs.unlinkSync('never');\n",
+      "suffix": "",
+      "scales": [
+        1,
+        16,
+        128
+      ],
+      "effectsPerUnit": 0,
+      "requiredGap": "Receiver or method"
+    },
+    {
+      "id": "javascript-unawaited-promises",
+      "language": "typeScript",
+      "prefix": "const fs=require('node:fs/promises');\n",
+      "body": "fs.readFile('a','utf8').replace('x','y');\n",
+      "suffix": "",
+      "scales": [
+        1,
+        16,
+        128
+      ],
+      "effectsPerUnit": null,
+      "requiredGap": "Receiver or method"
+    },
+    {
+      "id": "javascript-awaited-promises",
+      "language": "typeScript",
+      "prefix": "const fs=require('node:fs/promises');\n",
+      "body": "await fs.writeFile('a',(await fs.readFile('a','utf8')).replace('x','y'));\n",
+      "suffix": "",
+      "scales": [
+        1,
+        16,
+        128
+      ],
+      "effectsPerUnit": 2,
+      "requiredGap": null
+    },
+    {
+      "id": "python-resource-alias",
+      "language": "python",
+      "prefix": "",
+      "body": "with open('output.txt','w') as f:\n alias=f\n alias.write('x')\n",
+      "suffix": "",
+      "scales": [
+        1,
+        16,
+        128
+      ],
+      "effectsPerUnit": 2,
+      "requiredGap": null
+    },
+    {
+      "id": "javascript-resource-alias",
+      "language": "typeScript",
+      "prefix": "const fs=require('fs');const alias=fs;\n",
+      "body": "alias.writeFileSync('output.txt','hello');\n",
+      "suffix": "",
+      "scales": [
+        1,
+        16,
+        128
+      ],
+      "effectsPerUnit": 1,
+      "requiredGap": null
+    }
+  ]
+}

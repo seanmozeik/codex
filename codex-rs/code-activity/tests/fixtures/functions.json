@@ -1,0 +1,781 @@
+[
+  {
+    "name": "JS alias and nested wrapper",
+    "language": "typeScript",
+    "source": "const fs=require('fs'); const save=(p,s)=>fs.writeFileSync(p,s); function run(p){const alias=save;alias(p,'x')} run('a.txt');",
+    "effects": [
+      {
+        "type": "fileWrite",
+        "target": {
+          "type": "literal",
+          "path": "a.txt",
+          "cwd": "/workspace"
+        },
+        "mode": "replace"
+      }
+    ],
+    "gap": null
+  },
+  {
+    "name": "Typed TS nested wrapper",
+    "language": "typeScript",
+    "source": "import fs from 'node:fs'; const save=(p:string,s:string):void=>fs.writeFileSync(p,s); function run(p:string):void{save(p,'x')} run('a.txt');",
+    "effects": [
+      {
+        "type": "fileWrite",
+        "target": {
+          "type": "literal",
+          "path": "a.txt",
+          "cwd": "/workspace"
+        },
+        "mode": "replace"
+      }
+    ],
+    "gap": "Imported"
+  },
+  {
+    "name": "Python positional and keyword function",
+    "language": "python",
+    "source": "from pathlib import Path\ndef save(p,s):\n Path(p).write_text(s)\nsave(s='x',p='a.txt')",
+    "effects": [
+      {
+        "type": "fileWrite",
+        "target": {
+          "type": "literal",
+          "path": "a.txt",
+          "cwd": "/workspace"
+        },
+        "mode": "replace"
+      }
+    ],
+    "gap": "Imported"
+  },
+  {
+    "name": "JS returned closure",
+    "language": "typeScript",
+    "source": "const fs=require('fs'); function outer(p){return ()=>fs.unlinkSync(p)} const f=outer('a.txt');f();",
+    "effects": [
+      {
+        "type": "fileDelete",
+        "target": {
+          "type": "literal",
+          "path": "a.txt",
+          "cwd": "/workspace"
+        }
+      }
+    ],
+    "gap": null
+  },
+  {
+    "name": "Python returned lambda",
+    "language": "python",
+    "source": "from pathlib import Path\ndef outer(p):\n return lambda: Path(p).unlink()\nf=outer('a.txt')\nf()",
+    "effects": [
+      {
+        "type": "fileDelete",
+        "target": {
+          "type": "literal",
+          "path": "a.txt",
+          "cwd": "/workspace"
+        }
+      }
+    ],
+    "gap": "Imported"
+  },
+  {
+    "name": "JS independent retained frames",
+    "language": "typeScript",
+    "source": "const fs=require('fs'); function outer(p){return ()=>fs.unlinkSync(p)} const a=outer('a');const b=outer('b');a();b();a();",
+    "effects": [
+      {
+        "type": "fileDelete",
+        "target": {
+          "type": "literal",
+          "path": "a",
+          "cwd": "/workspace"
+        }
+      },
+      {
+        "type": "fileDelete",
+        "target": {
+          "type": "literal",
+          "path": "b",
+          "cwd": "/workspace"
+        }
+      },
+      {
+        "type": "fileDelete",
+        "target": {
+          "type": "literal",
+          "path": "a",
+          "cwd": "/workspace"
+        }
+      }
+    ],
+    "gap": null
+  },
+  {
+    "name": "Uncalled JS body",
+    "language": "typeScript",
+    "source": "const fs=require('fs'); function remove(p){fs.unlinkSync(p)} const f=()=>fs.unlinkSync('dead');",
+    "effects": [],
+    "gap": null
+  },
+  {
+    "name": "Uncalled Python body",
+    "language": "python",
+    "source": "from pathlib import Path\ndef remove(p):\n Path(p).unlink()",
+    "effects": [],
+    "gap": "Imported"
+  },
+  {
+    "name": "JS late capture",
+    "language": "typeScript",
+    "source": "const fs=require('fs');let p='a';const f=()=>fs.unlinkSync(p);p='b';f();",
+    "effects": [
+      {
+        "type": "fileDelete",
+        "target": {
+          "type": "literal",
+          "path": "b",
+          "cwd": "/workspace"
+        }
+      }
+    ],
+    "gap": null
+  },
+  {
+    "name": "JS outer assignment",
+    "language": "typeScript",
+    "source": "const fs=require('fs');let p='a';function change(){p='b'}change();fs.unlinkSync(p);",
+    "effects": [
+      {
+        "type": "fileDelete",
+        "target": {
+          "type": "literal",
+          "path": "b",
+          "cwd": "/workspace"
+        }
+      }
+    ],
+    "gap": null
+  },
+  {
+    "name": "Python late global capture",
+    "language": "python",
+    "source": "from pathlib import Path\np='a'\ndef remove():\n Path(p).unlink()\np='b'\nremove()",
+    "effects": [
+      {
+        "type": "fileDelete",
+        "target": {
+          "type": "literal",
+          "path": "b",
+          "cwd": "/workspace"
+        }
+      }
+    ],
+    "gap": "Imported"
+  },
+  {
+    "name": "Python locals do not mutate globals",
+    "language": "python",
+    "source": "from pathlib import Path\np='a'\ndef change():\n p='b'\nchange()\nPath(p).unlink()",
+    "effects": [
+      {
+        "type": "fileDelete",
+        "target": {
+          "type": "literal",
+          "path": "a",
+          "cwd": "/workspace"
+        }
+      }
+    ],
+    "gap": "Imported"
+  },
+  {
+    "name": "JS block shadow",
+    "language": "typeScript",
+    "source": "let p='outer';{let p='inner';}require('fs').unlinkSync(p);",
+    "effects": [
+      {
+        "type": "fileDelete",
+        "target": {
+          "type": "literal",
+          "path": "outer",
+          "cwd": "/workspace"
+        }
+      }
+    ],
+    "gap": null
+  },
+  {
+    "name": "JS parameter shadow",
+    "language": "typeScript",
+    "source": "const fs=require('fs');let p='outer';function remove(p){fs.unlinkSync(p)}remove('inner');fs.unlinkSync(p);",
+    "effects": [
+      {
+        "type": "fileDelete",
+        "target": {
+          "type": "literal",
+          "path": "inner",
+          "cwd": "/workspace"
+        }
+      },
+      {
+        "type": "fileDelete",
+        "target": {
+          "type": "literal",
+          "path": "outer",
+          "cwd": "/workspace"
+        }
+      }
+    ],
+    "gap": null
+  },
+  {
+    "name": "JS return stops body",
+    "language": "typeScript",
+    "source": "const fs=require('fs');function path(){return 'a';fs.unlinkSync('dead')}fs.writeFileSync(path(),'x');",
+    "effects": [
+      {
+        "type": "fileWrite",
+        "target": {
+          "type": "literal",
+          "path": "a",
+          "cwd": "/workspace"
+        },
+        "mode": "replace"
+      }
+    ],
+    "gap": null
+  },
+  {
+    "name": "Python return stops body",
+    "language": "python",
+    "source": "from pathlib import Path\ndef path():\n return 'a'\n Path('dead').unlink()\nPath(path()).write_text('x')",
+    "effects": [
+      {
+        "type": "fileWrite",
+        "target": {
+          "type": "literal",
+          "path": "a",
+          "cwd": "/workspace"
+        },
+        "mode": "replace"
+      }
+    ],
+    "gap": "Imported"
+  },
+  {
+    "name": "JS missing argument",
+    "language": "typeScript",
+    "source": "const fs=require('fs');const save=p=>fs.writeFileSync(p,'x');save();",
+    "effects": [
+      {
+        "type": "fileWrite",
+        "target": {
+          "type": "unresolved"
+        },
+        "mode": "replace"
+      }
+    ],
+    "gap": null
+  },
+  {
+    "name": "JS argument effects before unknown call",
+    "language": "typeScript",
+    "source": "unknown(require('fs').readFileSync('a','utf8'));",
+    "effects": [
+      {
+        "type": "fileRead",
+        "target": {
+          "type": "literal",
+          "path": "a",
+          "cwd": "/workspace"
+        }
+      }
+    ],
+    "gap": "Unknown callable"
+  },
+  {
+    "name": "JS self recursion bounded",
+    "language": "typeScript",
+    "source": "function f(p){f(p)} f('a');",
+    "effects": [],
+    "gap": "Recursive"
+  },
+  {
+    "name": "Python recursion bounded",
+    "language": "python",
+    "source": "def f(p):\n f(p)\nf('a')",
+    "effects": [],
+    "gap": "Recursive"
+  },
+  {
+    "name": "JS mutual recursion bounded",
+    "language": "typeScript",
+    "source": "function f(p){g(p)}function g(p){f(p)}f('a');",
+    "effects": [],
+    "gap": "Recursive"
+  },
+  {
+    "name": "JS short circuit false",
+    "language": "typeScript",
+    "source": "let p='a';false && (p='b');require('fs').unlinkSync(p);",
+    "effects": [
+      {
+        "type": "fileDelete",
+        "target": {
+          "type": "literal",
+          "path": "a",
+          "cwd": "/workspace"
+        }
+      }
+    ],
+    "gap": null
+  },
+  {
+    "name": "JS short circuit true",
+    "language": "typeScript",
+    "source": "let p='a';true || (p='b');require('fs').unlinkSync(p);",
+    "effects": [
+      {
+        "type": "fileDelete",
+        "target": {
+          "type": "literal",
+          "path": "a",
+          "cwd": "/workspace"
+        }
+      }
+    ],
+    "gap": null
+  },
+  {
+    "name": "JS unknown short circuit joins",
+    "language": "typeScript",
+    "source": "let p='a';flag && (p='b');require('fs').unlinkSync(p);",
+    "effects": [
+      {
+        "type": "fileDelete",
+        "target": {
+          "type": "unresolved"
+        }
+      }
+    ],
+    "gap": "Short-circuit"
+  },
+  {
+    "name": "JS unsupported defaults stay lazy",
+    "language": "typeScript",
+    "source": "const f=(p=require('fs').unlinkSync('dead'))=>p;",
+    "effects": [],
+    "gap": "defaults"
+  },
+  {
+    "name": "Python unsupported defaults stay eager",
+    "language": "python",
+    "source": "from pathlib import Path\ndef f(p=Path('a').unlink()):\n pass",
+    "effects": [
+      {
+        "type": "fileDelete",
+        "target": {
+          "type": "literal",
+          "path": "a",
+          "cwd": "/workspace"
+        }
+      }
+    ],
+    "gap": "defaults"
+  },
+  {
+    "name": "JS literal forEach",
+    "language": "typeScript",
+    "source": "const fs=require('fs');['a','b'].forEach(p=>fs.unlinkSync(p));",
+    "effects": [
+      {
+        "type": "fileDelete",
+        "target": {
+          "type": "literal",
+          "path": "a",
+          "cwd": "/workspace"
+        }
+      },
+      {
+        "type": "fileDelete",
+        "target": {
+          "type": "literal",
+          "path": "b",
+          "cwd": "/workspace"
+        }
+      }
+    ],
+    "gap": null
+  },
+  {
+    "name": "TS literal map returns targets",
+    "language": "typeScript",
+    "source": "const fs=require('fs');const paths=['a','b'].map((p:string)=>p+'x');for(const p of paths){fs.unlinkSync(p)}",
+    "effects": [
+      {
+        "type": "fileDelete",
+        "target": {
+          "type": "literal",
+          "path": "ax",
+          "cwd": "/workspace"
+        }
+      },
+      {
+        "type": "fileDelete",
+        "target": {
+          "type": "literal",
+          "path": "bx",
+          "cwd": "/workspace"
+        }
+      }
+    ],
+    "gap": "Loop"
+  },
+  {
+    "name": "JS callback mutation abstains",
+    "language": "typeScript",
+    "source": "const fs=require('fs');const paths=['a','b'];paths.forEach(p=>{paths[1]='c';fs.unlinkSync(p)});",
+    "effects": [],
+    "gap": "Callback mutation"
+  },
+  {
+    "name": "TS await async result",
+    "language": "typeScript",
+    "source": "const fs=require('fs');async function path(p:string){return p}fs.writeFileSync(await path('a'),'x');",
+    "effects": [
+      {
+        "type": "fileWrite",
+        "target": {
+          "type": "literal",
+          "path": "a",
+          "cwd": "/workspace"
+        },
+        "mode": "replace"
+      }
+    ],
+    "gap": "Async"
+  },
+  {
+    "name": "JS unawaited result unresolved",
+    "language": "typeScript",
+    "source": "const fs=require('fs');async function path(){return 'a'}fs.writeFileSync(path(),'x');",
+    "effects": [
+      {
+        "type": "fileWrite",
+        "target": {
+          "type": "unresolved"
+        },
+        "mode": "replace"
+      }
+    ],
+    "gap": "Async"
+  },
+  {
+    "name": "Python cwd mutation",
+    "language": "python",
+    "source": "import os\nos.chdir('/elsewhere')\nopen('a','w').write('x')",
+    "effects": [
+      {
+        "type": "fileOpen",
+        "target": {
+          "type": "literal",
+          "path": "a",
+          "cwd": null
+        },
+        "mode": "replace"
+      },
+      {
+        "type": "fileWrite",
+        "target": {
+          "type": "literal",
+          "path": "a",
+          "cwd": null
+        },
+        "mode": "replace"
+      }
+    ],
+    "gap": "directory mutation"
+  },
+  {
+    "name": "Shell JS function source",
+    "language": "shell",
+    "source": "node -e 'const fs=require(\"fs\");function save(p){fs.writeFileSync(p,\"x\")}save(\"a\")'",
+    "effects": [
+      {
+        "type": "fileWrite",
+        "target": {
+          "type": "literal",
+          "path": "a",
+          "cwd": "/workspace"
+        },
+        "mode": "replace"
+      }
+    ],
+    "gap": null
+  },
+  {
+    "name": "Shell typed TS function source",
+    "language": "shell",
+    "source": "tsx -e 'const fs=require(\"fs\");function save(p:string){fs.writeFileSync(p,\"x\")}save(\"a\")'",
+    "effects": [
+      {
+        "type": "fileWrite",
+        "target": {
+          "type": "literal",
+          "path": "a",
+          "cwd": "/workspace"
+        },
+        "mode": "replace"
+      }
+    ],
+    "gap": null
+  },
+  {
+    "name": "Nested TS shell Python functions",
+    "language": "typeScript",
+    "source": "const launch=(cmd:string)=>tools.exec_command({cmd,workdir:'/child'});launch(\"python3 -c 'from pathlib import Path; f=lambda p:Path(p).unlink(); f(\\\"a\\\")'\");",
+    "effects": [
+      {
+        "type": "fileDelete",
+        "target": {
+          "type": "literal",
+          "path": "a",
+          "cwd": "/child"
+        }
+      }
+    ],
+    "gap": "Imported"
+  },
+  {
+    "name": "Var hoisting abstains",
+    "language": "typeScript",
+    "source": "var p='a';{var p='b'}require('fs').unlinkSync(p)",
+    "effects": [],
+    "gap": "var hoisting"
+  },
+  {
+    "name": "Named function expression self binding",
+    "language": "typeScript",
+    "source": "function inside(){return 'wrong'}const f=function inside(){return inside()};require('fs').unlinkSync(f())",
+    "effects": [
+      {
+        "type": "fileDelete",
+        "target": {
+          "type": "unresolved"
+        }
+      }
+    ],
+    "gap": "Recursive"
+  },
+  {
+    "name": "JS loop return unresolved",
+    "language": "typeScript",
+    "source": "const fs=require('fs');function f(){for(const p of ['a','b'])return p}fs.unlinkSync(f())",
+    "effects": [
+      {
+        "type": "fileDelete",
+        "target": {
+          "type": "unresolved"
+        }
+      }
+    ],
+    "gap": "Return inside a loop"
+  },
+  {
+    "name": "Python loop return unresolved",
+    "language": "python",
+    "source": "from pathlib import Path\ndef f():\n for p in ['a','b']:\n  return p\nPath(f()).unlink()",
+    "effects": [],
+    "gap": "Return inside a loop"
+  },
+  {
+    "name": "Commented JS short circuit",
+    "language": "typeScript",
+    "source": "let p='a';false /* gap */ && (p='b');require('fs').unlinkSync(p)",
+    "effects": [
+      {
+        "type": "fileDelete",
+        "target": {
+          "type": "literal",
+          "path": "a",
+          "cwd": "/workspace"
+        }
+      }
+    ],
+    "gap": null
+  },
+  {
+    "name": "Python duplicate argument skips body",
+    "language": "python",
+    "source": "from pathlib import Path\ndef f(p):\n Path('dead').unlink()\nf('a',p='b')",
+    "effects": [],
+    "gap": "duplicate function argument"
+  },
+  {
+    "name": "Python missing required skips body",
+    "language": "python",
+    "source": "from pathlib import Path\ndef f(p):\n Path('dead').unlink()\nf()",
+    "effects": [],
+    "gap": "Missing"
+  },
+  {
+    "name": "Python duplicate keywords skip body",
+    "language": "python",
+    "source": "from pathlib import Path\ndef f(p):\n Path('dead').unlink()\nf(p='a',p='b')",
+    "effects": [],
+    "gap": "Duplicate keyword"
+  },
+  {
+    "name": "Python generator deferred",
+    "language": "python",
+    "source": "from pathlib import Path\ndef f():\n Path('dead').unlink()\n yield 1\nf()",
+    "effects": [],
+    "gap": "generator"
+  },
+  {
+    "name": "No-space async unawaited",
+    "language": "typeScript",
+    "source": "const fs=require('fs');const f=async()=>{await 'x';return 'a'};fs.unlinkSync(f())",
+    "effects": [
+      {
+        "type": "fileDelete",
+        "target": {
+          "type": "unresolved"
+        }
+      }
+    ],
+    "gap": "Async"
+  },
+  {
+    "name": "No-space async awaited",
+    "language": "typeScript",
+    "source": "const fs=require('fs');const f=async()=>{await 'x';return 'a'};fs.unlinkSync(await f())",
+    "effects": [
+      {
+        "type": "fileDelete",
+        "target": {
+          "type": "literal",
+          "path": "a",
+          "cwd": "/workspace"
+        }
+      }
+    ],
+    "gap": "Async"
+  },
+  {
+    "name": "Python local import",
+    "language": "python",
+    "source": "from pathlib import Path\np='outer'\ndef f():\n Path(p).unlink()\n import os as p\nf()",
+    "effects": [],
+    "gap": "Receiver"
+  },
+  {
+    "name": "Python local from import",
+    "language": "python",
+    "source": "from pathlib import Path\np='outer'\ndef f():\n Path(p).unlink()\n from os import getcwd as p\nf()",
+    "effects": [],
+    "gap": "Receiver"
+  },
+  {
+    "name": "Python local for",
+    "language": "python",
+    "source": "from pathlib import Path\np='outer'\ndef f():\n Path(p).unlink()\n for p in [\"inner\"]:\n  pass\nf()",
+    "effects": [],
+    "gap": "Receiver"
+  },
+  {
+    "name": "Python local with",
+    "language": "python",
+    "source": "from pathlib import Path\np='outer'\ndef f():\n Path(p).unlink()\n with open(\"inner\") as p:\n  pass\nf()",
+    "effects": [],
+    "gap": "Receiver"
+  },
+  {
+    "name": "Python local import shadows open",
+    "language": "python",
+    "source": "def f():\n open('dead','w')\n import json as open\nf()",
+    "effects": [],
+    "gap": "Unknown callable"
+  },
+  {
+    "name": "Python unsupported tuple local binder",
+    "language": "python",
+    "source": "from pathlib import Path\np='outer'\ndef f():\n Path(p).unlink()\n p,q=['inner','x']\nf()",
+    "effects": [],
+    "gap": "local binding"
+  },
+  {
+    "name": "JS template carries function parameter",
+    "language": "typeScript",
+    "source": "const fs=require('fs');const save=(p:string)=>fs.writeFileSync(`dir/${p}`,'x');save('a')",
+    "effects": [
+      {
+        "type": "fileWrite",
+        "target": {
+          "type": "literal",
+          "path": "dir/a",
+          "cwd": "/workspace"
+        },
+        "mode": "replace"
+      }
+    ],
+    "gap": null
+  },
+  {
+    "name": "Template expression retains nested effects",
+    "language": "typeScript",
+    "source": "`${require('fs').unlinkSync('a')}`",
+    "effects": [
+      {
+        "type": "fileDelete",
+        "target": {
+          "type": "literal",
+          "path": "a",
+          "cwd": "/workspace"
+        }
+      }
+    ],
+    "gap": "Template"
+  },
+  {
+    "name": "Var hoisting preflight stops stale outer read",
+    "language": "typeScript",
+    "source": "const fs=require('fs');let p='outer';function f(){fs.unlinkSync(p);{var p='inner'}}f()",
+    "effects": [],
+    "gap": "var hoisting"
+  },
+  {
+    "name": "Async enclosing mutation is timing dependent",
+    "language": "typeScript",
+    "source": "const fs=require('fs');let p='a';const f=async()=>{await 'x';p='b'};f();fs.unlinkSync(p)",
+    "effects": [
+      {
+        "type": "fileDelete",
+        "target": {
+          "type": "unresolved"
+        }
+      }
+    ],
+    "gap": "Async"
+  },
+  {
+    "name": "Awaited async closure keeps its frame",
+    "language": "typeScript",
+    "source": "const fs=require('fs');async function make(p){return ()=>fs.unlinkSync(p)}const f=await make('a');f()",
+    "effects": [
+      {
+        "type": "fileDelete",
+        "target": {
+          "type": "literal",
+          "path": "a",
+          "cwd": "/workspace"
+        }
+      }
+    ],
+    "gap": "Async"
+  }
+]
