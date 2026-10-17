@@ -1,0 +1,16 @@
+[package]
+name = "codex-tree-sitter-bash"
+version.workspace = true
+edition.workspace = true
+license = "MIT"
+description = "Pinned Bash grammar with descriptor scanning corrected for source previews"
+publish = false
+
+[dependencies]
+tree-sitter-language.workspace = true
+
+[build-dependencies]
+cc.workspace = true
+
+[lints]
+workspace = true

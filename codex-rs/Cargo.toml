@@ -157,6 +157,7 @@ members = [
     "codex-experimental-api-macros",
     "plugin",
     "model-provider",
+    "vendor/tree-sitter-bash",
 ]
 resolver = "2"
 
@@ -173,6 +174,7 @@ license = "Apache-2.0"
 tree-sitter-python = { git = "https://github.com/seanmozeik/tree-sitter-python", rev = "da2cb9d769837d483db688e8bf9d99093b7682e0", version = "=0.25.0" }
 tree-sitter-typescript = "0.23.2"
 # Internal
+codex-tree-sitter-bash = { path = "vendor/tree-sitter-bash" }
 codex-realtime-webrtc = { path = "realtime-webrtc" }
 app_test_support = { path = "app-server/tests/common" }
 codex-analytics = { path = "analytics" }
@@ -201,6 +203,7 @@ codex-collaboration-mode-templates = { path = "collaboration-mode-templates" }
 codex-cloud-config = { path = "cloud-config" }
 codex-cloud-tasks-client = { path = "cloud-tasks-client" }
 codex-cloud-tasks-mock-client = { path = "cloud-tasks-mock-client" }
+codex-code-activity = { path = "code-activity" }
 codex-code-mode = { path = "code-mode" }
 codex-code-mode-protocol = { path = "code-mode-protocol" }
 codex-code-mode-runtime = { path = "code-mode-runtime" }
@@ -351,6 +354,7 @@ blake3 = "1.8.2"
 bm25 = "2.3.2"
 bytes = "1.10.1"
 caseless = "0.2.2"
+cc = "1.2.55"
 chardetng = "0.1.17"
 chrono = "0.4.43"
 clap = "4"
@@ -536,6 +540,7 @@ tonic = { version = "0.14.3", default-features = false, features = ["channel", "
 tonic-prost = "0.14.3"
 tree-sitter = "0.25.10"
 tree-sitter-bash = "0.25"
+tree-sitter-language = "0.1.7"
 tree-sitter-powershell = "=0.26.4"
 ts-rs = "11"
 tungstenite = { version = "0.27.0", features = ["deflate", "proxy"] }

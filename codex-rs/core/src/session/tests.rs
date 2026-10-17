@@ -1,4 +1,6 @@
 use crate::agent::LocalAgentControl;
+mod source_description_publication;
+
 #[path = "notification_tests.rs"]
 mod notification_tests;
 

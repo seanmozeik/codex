@@ -343,6 +343,13 @@ impl ChatWidget {
                 );
             }
             ThreadItem::Plan { text, .. } => self.on_plan_item_completed(text),
+            ThreadItem::SourceDescription {
+                id, description, ..
+            } => {
+                if let Some(cell) = history_cell::SourceDescriptionCell::new(id, description) {
+                    self.add_to_history(cell);
+                }
+            }
             ThreadItem::Reasoning {
                 id,
                 summary,

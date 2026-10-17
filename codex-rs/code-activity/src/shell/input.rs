@@ -2,11 +2,11 @@
 use crate::Language;
 
 #[derive(Clone, Copy)]
-pub(super) enum Input {
+pub(crate) enum Input {
     Stdin,
     Inline { index: usize, prefix: usize },
 }
-pub(super) struct Invocation {
+pub(crate) struct Invocation {
     pub language: Language,
     pub input: Input,
     pub context_unknown: bool,
@@ -16,7 +16,7 @@ fn word(words: &[Option<String>], index: usize) -> Option<&str> {
     words.get(index)?.as_deref()
 }
 
-pub(super) fn language(name: &str) -> Option<Language> {
+pub(crate) fn language(name: &str) -> Option<Language> {
     let name = name.rsplit('/').next()?;
     if matches!(name, "sh" | "bash" | "zsh" | "dash") {
         return Some(Language::Shell);
@@ -73,7 +73,7 @@ fn uv_flags(words: &[Option<String>], index: &mut usize) -> Option<()> {
     Some(())
 }
 
-pub(super) fn resolve(words: &[Option<String>]) -> Option<Invocation> {
+pub(crate) fn resolve(words: &[Option<String>]) -> Option<Invocation> {
     let mut index = 0;
     let mut context_unknown = false;
     for _ in 0..8 {
@@ -186,7 +186,7 @@ fn source_input(
         Language::TypeScript => &["-e", "-p", "--eval=", "--print="],
     };
     let prefix = prefixes.iter().find(|prefix| flag.starts_with(**prefix))?;
-    (index + 1 == words.len()).then_some(Input::Inline {
+    (index + 1 == words.len() && flag.len() > prefix.len()).then_some(Input::Inline {
         index,
         prefix: prefix.len(),
     })

@@ -1,0 +1,312 @@
+{
+  "disposition": "selectiveFindings",
+  "sources": [
+    {
+      "id": 0,
+      "language": "typeScript",
+      "parent": null,
+      "text": "await tools.apply_patch(\"*** Begin Patch\\n*** Add File: note.txt\\n+preview\\n*** End Patch\\n\");\nawait tools.exec_command({cmd: \"python3 - <<'PY'\\nfrom pathlib import Path\\np = Path('note.txt')\\ns = p.read_text(encoding='utf-8')\\np.write_text(s.replace('old', 'new'), encoding='utf-8')\\nunknown()\\nPY\"});"
+    },
+    {
+      "id": 1,
+      "language": "shell",
+      "parent": {
+        "sourceId": 0,
+        "startByte": 126,
+        "endByte": 299,
+        "startLine": 2,
+        "endLine": 2,
+        "startColumn": 32
+      },
+      "text": "python3 - <<'PY'\nfrom pathlib import Path\np = Path('note.txt')\ns = p.read_text(encoding='utf-8')\np.write_text(s.replace('old', 'new'), encoding='utf-8')\nunknown()\nPY"
+    },
+    {
+      "id": 2,
+      "language": "python",
+      "parent": {
+        "sourceId": 1,
+        "startByte": 17,
+        "endByte": 163,
+        "startLine": 2,
+        "endLine": 7,
+        "startColumn": 1
+      },
+      "text": "from pathlib import Path\np = Path('note.txt')\ns = p.read_text(encoding='utf-8')\np.write_text(s.replace('old', 'new'), encoding='utf-8')\nunknown()\n"
+    }
+  ],
+  "edits": [
+    {
+      "ordinal": 0,
+      "basis": "hostToolRequest",
+      "evidence": {
+        "sourceId": 0,
+        "startByte": 6,
+        "endByte": 93,
+        "startLine": 1,
+        "endLine": 1,
+        "startColumn": 7
+      },
+      "details": {
+        "kind": "patch",
+        "patch": {
+          "id": 0,
+          "invocation": {
+            "sourceId": 0,
+            "startByte": 6,
+            "endByte": 93,
+            "startLine": 1,
+            "endLine": 1,
+            "startColumn": 7
+          },
+          "argument": {
+            "sourceId": 0,
+            "startByte": 24,
+            "endByte": 92,
+            "startLine": 1,
+            "endLine": 1,
+            "startColumn": 25
+          },
+          "payload": "*** Begin Patch\n*** Add File: note.txt\n+preview\n*** End Patch\n",
+          "files": [
+            {
+              "kind": "add",
+              "path": {
+                "spelling": "note.txt",
+                "evidence": {
+                  "patchId": 0,
+                  "range": {
+                    "start": 30,
+                    "end": 38
+                  }
+                }
+              },
+              "lines": [
+                {
+                  "prefix": "plus",
+                  "evidence": {
+                    "patchId": 0,
+                    "range": {
+                      "start": 39,
+                      "end": 47
+                    }
+                  },
+                  "text": {
+                    "patchId": 0,
+                    "range": {
+                      "start": 40,
+                      "end": 47
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "cwd": "/workspace"
+      },
+      "predecessorConditions": [],
+      "carrierAssumptions": [],
+      "laterContext": "knownLaterTouch"
+    },
+    {
+      "ordinal": 1,
+      "basis": "standardApiForecast",
+      "evidence": {
+        "sourceId": 2,
+        "startByte": 80,
+        "endByte": 135,
+        "startLine": 4,
+        "endLine": 4,
+        "startColumn": 1
+      },
+      "details": {
+        "kind": "python",
+        "prediction": {
+          "ordinal": 0,
+          "evidence": {
+            "sourceId": 2,
+            "startByte": 80,
+            "endByte": 135,
+            "startLine": 4,
+            "endLine": 4,
+            "startColumn": 1
+          },
+          "target": {
+            "path": "note.txt",
+            "cwd": "/workspace"
+          },
+          "operation": {
+            "type": "writeText",
+            "content": {
+              "type": "replace",
+              "input": {
+                "type": "read",
+                "readId": 0,
+                "target": {
+                  "path": "note.txt",
+                  "cwd": "/workspace"
+                },
+                "evidence": {
+                  "sourceId": 2,
+                  "startByte": 50,
+                  "endByte": 79,
+                  "startLine": 3,
+                  "endLine": 3,
+                  "startColumn": 5
+                },
+                "filesystemEpoch": 0,
+                "encoding": "utf8"
+              },
+              "old": "old",
+              "new": "new",
+              "count": null,
+              "evidence": {
+                "sourceId": 2,
+                "startByte": 93,
+                "endByte": 116,
+                "startLine": 4,
+                "endLine": 4,
+                "startColumn": 14
+              }
+            },
+            "encoding": "utf8"
+          },
+          "dependencies": [
+            {
+              "type": "binding",
+              "name": "p",
+              "version": 1,
+              "evidence": {
+                "sourceId": 2,
+                "startByte": 25,
+                "endByte": 45,
+                "startLine": 2,
+                "endLine": 2,
+                "startColumn": 1
+              }
+            },
+            {
+              "type": "readValue",
+              "readId": 0,
+              "evidence": {
+                "sourceId": 2,
+                "startByte": 50,
+                "endByte": 79,
+                "startLine": 3,
+                "endLine": 3,
+                "startColumn": 5
+              }
+            },
+            {
+              "type": "entryWorkingDirectory",
+              "cwd": "/workspace"
+            },
+            {
+              "type": "capability",
+              "assumption": "standardPythonEvaluation"
+            },
+            {
+              "type": "capability",
+              "assumption": "canonicalPathlib"
+            },
+            {
+              "type": "capability",
+              "assumption": "standardTextMethods"
+            },
+            {
+              "type": "capability",
+              "assumption": "noConcurrentMutation"
+            },
+            {
+              "type": "filesystemEpoch",
+              "epoch": 0
+            }
+          ],
+          "predecessorConditions": [
+            {
+              "sourceId": 2,
+              "startByte": 50,
+              "endByte": 79,
+              "startLine": 3,
+              "endLine": 3,
+              "startColumn": 5
+            }
+          ],
+          "finalState": "opaqueSuccessor"
+        },
+        "assumptions": [
+          "standardPythonEvaluation",
+          "standardBuiltinOpen",
+          "canonicalPathlib",
+          "standardTextMethods",
+          "noConcurrentMutation"
+        ]
+      },
+      "predecessorConditions": [
+        {
+          "sourceId": 0,
+          "startByte": 6,
+          "endByte": 93,
+          "startLine": 1,
+          "endLine": 1,
+          "startColumn": 7
+        }
+      ],
+      "carrierAssumptions": [
+        {
+          "basis": "standardShellDispatchAndStartup",
+          "language": "shell",
+          "invocation": {
+            "sourceId": 0,
+            "startByte": 101,
+            "endByte": 301,
+            "startLine": 2,
+            "endLine": 2,
+            "startColumn": 7
+          }
+        },
+        {
+          "basis": "standardShellDispatchAndStartup",
+          "language": "python",
+          "invocation": {
+            "sourceId": 1,
+            "startByte": 0,
+            "endByte": 165,
+            "startLine": 1,
+            "endLine": 7,
+            "startColumn": 1
+          }
+        },
+        {
+          "basis": "standardPython3Cli",
+          "language": "python",
+          "invocation": {
+            "sourceId": 1,
+            "startByte": 0,
+            "endByte": 165,
+            "startLine": 1,
+            "endLine": 7,
+            "startColumn": 1
+          }
+        }
+      ],
+      "laterContext": "opaqueSuffix"
+    }
+  ],
+  "barriers": [
+    {
+      "evidence": {
+        "sourceId": 2,
+        "startByte": 136,
+        "endByte": 145,
+        "startLine": 5,
+        "endLine": 5,
+        "startColumn": 1
+      },
+      "reason": {
+        "type": "python",
+        "reason": "unmodeledCall"
+      }
+    }
+  ]
+}

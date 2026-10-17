@@ -1,0 +1,219 @@
+{
+  "kind": "exposed-development-manual-gold",
+  "executed": false,
+  "contract": "literal-separator-direct-closed-list-tuple-v1",
+  "cases": [
+    {
+      "id": "J01",
+      "source": "from pathlib import Path\nPath('result.txt').write_text(','.join(['red', 'blue']), encoding='utf-8')",
+      "expected": "exact",
+      "after": "red,blue",
+      "read": null
+    },
+    {
+      "id": "J02",
+      "source": "from pathlib import Path\nPath('result.txt').write_text('|'.join(('a', 'b', 'c')), encoding='utf-8')",
+      "expected": "exact",
+      "after": "a|b|c",
+      "read": null
+    },
+    {
+      "id": "J03",
+      "source": "from pathlib import Path\nPath('result.txt').write_text(' / '.join([]), encoding='utf-8')",
+      "expected": "exact",
+      "after": "",
+      "read": null
+    },
+    {
+      "id": "J04",
+      "source": "from pathlib import Path\nPath('result.txt').write_text('非'.join(()), encoding='utf-8')",
+      "expected": "exact",
+      "after": "",
+      "read": null
+    },
+    {
+      "id": "J05",
+      "source": "from pathlib import Path\nPath('result.txt').write_text('unused'.join(['solo']), encoding='utf-8')",
+      "expected": "exact",
+      "after": "solo",
+      "read": null
+    },
+    {
+      "id": "J06",
+      "source": "from pathlib import Path\nPath('result.txt').write_text(''.join(['a', '', 'b']), encoding='utf-8')",
+      "expected": "exact",
+      "after": "ab",
+      "read": null
+    },
+    {
+      "id": "J07",
+      "source": "from pathlib import Path\nPath('result.txt').write_text(':'.join(['', '', '']), encoding='utf-8')",
+      "expected": "exact",
+      "after": "::",
+      "read": null
+    },
+    {
+      "id": "J08",
+      "source": "from pathlib import Path\nPath('result.txt').write_text('🧭'.join(['é', 'λ']), encoding='utf-8')",
+      "expected": "exact",
+      "after": "é🧭λ",
+      "read": null
+    },
+    {
+      "id": "J09",
+      "source": "from pathlib import Path\ns = '-'\nPath('result.txt').write_text(s.join(['a', 'b']), encoding='utf-8')",
+      "expected": "exact",
+      "after": "a-b",
+      "read": null
+    },
+    {
+      "id": "J10",
+      "source": "from pathlib import Path\ns = '-'\nf = s.join\ns = '!'\nPath('result.txt').write_text(f(['a', 'b']), encoding='utf-8')",
+      "expected": "exact",
+      "after": "a-b",
+      "read": null
+    },
+    {
+      "id": "J11",
+      "source": "from pathlib import Path\nv = Path('input').read_text(encoding='utf-8')\nPath('result.txt').write_text('|'.join([v, 'end']), encoding='utf-8')",
+      "expected": "exact",
+      "after": "a\nb|end",
+      "read": "a\r\nb"
+    },
+    {
+      "id": "J12",
+      "source": "from pathlib import Path\nv = Path('input').read_text(encoding='utf-8')\nPath('result.txt').write_text('/'.join([v, v]), encoding='utf-8')",
+      "expected": "exact",
+      "after": "x/x",
+      "read": "x"
+    },
+    {
+      "id": "J13",
+      "source": "from pathlib import Path\nv = 'p'\nPath('result.txt').write_text(':'.join([v + 'q', 'r'.replace('r', 's')]), encoding='utf-8')",
+      "expected": "exact",
+      "after": "pq:s",
+      "read": null
+    },
+    {
+      "id": "J14",
+      "source": "from pathlib import Path\nPath('result.txt').write_text('|'.join(['abcd'[1:3], 'z']), encoding='utf-8')",
+      "expected": "exact",
+      "after": "bc|z",
+      "read": null
+    },
+    {
+      "id": "J30",
+      "source": "from pathlib import Path\nv = ','.join(['a', 'b'])\nPath('result.txt').write_text(v if 'x' in 'x' else 'b', encoding='utf-8')",
+      "expected": "exact",
+      "after": "a,b",
+      "read": null
+    },
+    {
+      "id": "J31",
+      "source": "from pathlib import Path\nPath('result.txt').write_text('x'.join(['','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','']), encoding='utf-8')",
+      "expected": "exact",
+      "after": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+      "read": null
+    },
+    {
+      "id": "J37-control",
+      "source": "from pathlib import Path\ns = 'a'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\nPath('result.txt').write_text('-'.join([s, 'b']), encoding='utf-8')",
+      "expected": "exact",
+      "after": "axxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-b",
+      "read": null
+    },
+    {
+      "id": "J15",
+      "source": "from pathlib import Path\nPath('result.txt').write_text(','.join(['a', 4]), encoding='utf-8')",
+      "expected": "semanticRefusal"
+    },
+    {
+      "id": "J16",
+      "source": "from pathlib import Path\nPath('result.txt').write_text(','.join(['a', unknown]), encoding='utf-8')",
+      "expected": "semanticRefusal"
+    },
+    {
+      "id": "J17",
+      "source": "from pathlib import Path\nPath('result.txt').write_text(','.join(['a', Path('side').write_text('x')]), encoding='utf-8')",
+      "expected": "semanticRefusal"
+    },
+    {
+      "id": "J18",
+      "source": "from pathlib import Path\nPath('result.txt').write_text(','.join([Path('input').read_text(encoding='utf-8')]), encoding='utf-8')",
+      "expected": "semanticRefusal"
+    },
+    {
+      "id": "J19",
+      "source": "from pathlib import Path\nparts = ['a', 'b']\nPath('result.txt').write_text(','.join(parts), encoding='utf-8')",
+      "expected": "semanticRefusal"
+    },
+    {
+      "id": "J20",
+      "source": "from pathlib import Path\nparts = ('a', 'b')\nPath('result.txt').write_text(','.join(parts), encoding='utf-8')",
+      "expected": "semanticRefusal"
+    },
+    {
+      "id": "J21",
+      "source": "from pathlib import Path\nPath('result.txt').write_text(','.join('ab'), encoding='utf-8')",
+      "expected": "semanticRefusal"
+    },
+    {
+      "id": "J22",
+      "source": "from pathlib import Path\nPath('result.txt').write_text(','.join('a b'.split(' ')), encoding='utf-8')",
+      "expected": "semanticRefusal"
+    },
+    {
+      "id": "J25",
+      "source": "from pathlib import Path\nPath('result.txt').write_text(','.join(iterable=['a']), encoding='utf-8')",
+      "expected": "semanticRefusal"
+    },
+    {
+      "id": "J26",
+      "source": "from pathlib import Path\nPath('result.txt').write_text(','.join(['a'], ['b']), encoding='utf-8')",
+      "expected": "semanticRefusal"
+    },
+    {
+      "id": "J27",
+      "source": "from pathlib import Path\ns = Path('input').read_text(encoding='utf-8')\nPath('result.txt').write_text(s.join([]), encoding='utf-8')",
+      "expected": "semanticRefusal"
+    },
+    {
+      "id": "J28",
+      "source": "from pathlib import Path\nPath('result.txt').write_text(('a' + 'b').join(['x', 'y']), encoding='utf-8')",
+      "expected": "semanticRefusal"
+    },
+    {
+      "id": "J29",
+      "source": "from pathlib import Path\nPath('result.txt').write_text(','.join(['a']) if 'x' in 'x' else 'b', encoding='utf-8')",
+      "expected": "semanticRefusal"
+    },
+    {
+      "id": "J23",
+      "source": "from pathlib import Path\nPath('prefix').write_text('kept')\nPath('result.txt').write_text(','.join(x for x in ('a', 'b')), encoding='utf-8')",
+      "expected": "wholeSourceRefusal"
+    },
+    {
+      "id": "J24",
+      "source": "from pathlib import Path\nPath('prefix').write_text('kept')\nPath('result.txt').write_text(','.join([*('a', 'b')]), encoding='utf-8')",
+      "expected": "wholeSourceRefusal"
+    },
+    {
+      "id": "J32",
+      "source": "from pathlib import Path\nPath('result.txt').write_text('x'.join(['','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','']), encoding='utf-8')",
+      "expected": "sourceLimit"
+    },
+    {
+      "id": "J37",
+      "source": "from pathlib import Path\ns = 'a'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\ns = s + 'x'\nPath('result.txt').write_text('-'.join([s, 'b']), encoding='utf-8')",
+      "expected": "sourceLimit"
+    },
+    {
+      "id": "J38",
+      "source": "from pathlib import Path\nPath('result.txt').write_text('ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss'.join(['','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','']), encoding='utf-8')",
+      "expected": "previewOutputLimit",
+      "outputBytes": 100000,
+      "expectedFullLength": 129024
+    }
+  ]
+}
+

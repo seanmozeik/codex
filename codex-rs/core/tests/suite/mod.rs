@@ -65,6 +65,7 @@ mod cloud_config;
 mod code_mode;
 mod code_mode_elicitation;
 mod code_mode_model_messages;
+mod code_mode_source_description;
 mod codex_apps_protocol;
 mod codex_delegate;
 mod collaboration_instructions;

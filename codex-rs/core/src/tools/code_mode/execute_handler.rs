@@ -35,17 +35,22 @@ impl CodeModeExecuteHandler {
 
     async fn execute(
         &self,
-        session: std::sync::Arc<crate::session::session::Session>,
-        step_context: Arc<crate::session::step_context::StepContext>,
-        call_id: String,
+        invocation: &ToolInvocation,
         originating_call: Option<crate::tools::context::ToolCallOrigin>,
-        code: String,
+        code: &str,
         telemetry: &mut CodeModeToolCallGuard,
     ) -> Result<CodeModeToolOutput, FunctionCallError> {
-        let args =
-            codex_code_mode::parse_exec_source(&code).map_err(FunctionCallError::RespondToModel)?;
-        let exec = ExecContext {
+        let ToolInvocation {
             session,
+            step_context,
+            call_id,
+            cancellation_token,
+            ..
+        } = invocation;
+        let args =
+            codex_code_mode::parse_exec_source(code).map_err(FunctionCallError::RespondToModel)?;
+        let exec = ExecContext {
+            session: Arc::clone(session),
             turn: Arc::clone(&step_context.turn),
         };
         let code_mode_input_schema_max_bytes = step_context
@@ -81,6 +86,17 @@ impl CodeModeExecuteHandler {
         )
         .map_err(|error| FunctionCallError::Fatal(error.to_string()))?
         .apply_code_mode(&mut enabled_tools);
+        super::source_description::publish(
+            &exec.session,
+            &exec.turn,
+            step_context,
+            call_id,
+            code,
+            &enabled_tools,
+            cancellation_token,
+        )
+        .await?;
+        super::source_description::check_cancelled(cancellation_token)?;
         let started_at = std::time::Instant::now();
         let started_cell = exec
             .session
@@ -94,7 +110,7 @@ impl CodeModeExecuteHandler {
                     yield_time_ms: args.yield_time_ms,
                     max_output_tokens: args.max_output_tokens,
                 },
-                Arc::clone(&step_context),
+                Arc::clone(step_context),
             )
             .await
             .map_err(FunctionCallError::RespondToModel)?;
@@ -113,7 +129,7 @@ impl CodeModeExecuteHandler {
         exec.session
             .services
             .executed_tool_calls
-            .start_cell(&cell_id, &call_id);
+            .start_cell(&cell_id, call_id);
         let runtime_cell_id = cell_id.to_string();
         let code_cell_trace = exec
             .session
@@ -212,15 +228,14 @@ impl CodeModeExecuteHandler {
         let ToolInvocation {
             session,
             turn,
-            step_context,
             call_id,
             tool_name,
             payload,
             ..
-        } = invocation;
+        } = &invocation;
 
         let mut telemetry = CodeModeToolCallGuard::new(
-            &session,
+            session,
             turn.sub_id.clone(),
             turn.turn_metadata_state.clone(),
             call_id.clone(),
@@ -228,15 +243,8 @@ impl CodeModeExecuteHandler {
             handler_span,
         );
         let result = match payload {
-            ToolPayload::Custom { input } if is_exec_tool_name(&tool_name) => self
-                .execute(
-                    session,
-                    step_context,
-                    call_id,
-                    originating_call,
-                    input,
-                    &mut telemetry,
-                )
+            ToolPayload::Custom { input } if is_exec_tool_name(tool_name) => self
+                .execute(&invocation, originating_call, input, &mut telemetry)
                 .await
                 .map(boxed_tool_output),
             _ => Err(FunctionCallError::RespondToModel(format!(

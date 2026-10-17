@@ -3,7 +3,7 @@ use crate::children;
 use crate::text;
 use tree_sitter::Node;
 
-pub(super) fn literal(node: Node<'_>, source: &str) -> Option<String> {
+pub(crate) fn literal(node: Node<'_>, source: &str) -> Option<String> {
     let raw = text(node, source);
     match node.kind() {
         "-" => Some("-".into()),

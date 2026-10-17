@@ -23,14 +23,23 @@ use tree_sitter::Node;
 
 mod callbacks;
 mod calls;
+mod computed;
 mod control;
 mod data;
 mod expressions;
 mod function_locals;
 mod functions;
 mod imports;
+mod literal_loop;
+mod literal_replace;
 mod scopes;
 mod statements;
+
+#[derive(Clone, Copy, PartialEq, Eq)]
+pub(crate) enum Mode {
+    Diagnostic,
+    Complete,
+}
 
 pub struct Embedded {
     pub source: String,
@@ -42,11 +51,14 @@ pub struct State<'a, 'tree> {
     source: &'a str,
     source_id: SourceId,
     language: Language,
+    mode: Mode,
     cwd: Option<String>,
     bindings: Bindings,
     functions: Vec<Function<'tree>>,
     active_calls: Vec<FunctionId>,
     flow: Flow,
+    loop_context: literal_loop::CallContext,
+    loop_source: literal_loop::SourcePolicy,
     report: &'a mut Report,
     embedded: Vec<Embedded>,
     visited: usize,
@@ -59,6 +71,7 @@ pub fn analyze(
     language: Language,
     cwd: Option<String>,
     report: &mut Report,
+    mode: Mode,
 ) -> Vec<Embedded> {
     let globals: &[&str] = match language {
         Language::Python => &[
@@ -70,10 +83,12 @@ pub fn analyze(
         ],
         Language::Shell => &[],
     };
+    let loop_source = literal_loop::SourcePolicy::inspect(root, mode, language);
     let mut state = State {
         source,
         source_id,
         language,
+        mode,
         cwd,
         bindings: Bindings::new(
             globals
@@ -84,11 +99,22 @@ pub fn analyze(
         functions: vec![],
         active_calls: vec![],
         flow: Flow::Continue,
+        loop_context: literal_loop::CallContext::Outside,
+        loop_source,
         report,
         embedded: vec![],
         visited: 0,
     };
-    state.eval(root, /*depth*/ 0);
+    if loop_source == literal_loop::SourcePolicy::TextOnly
+        && !state.literal_loop_source_structure(root, /*depth*/ 0)
+    {
+        state.gap(
+            root,
+            "Strict Python loop sources require straight-line text/file statements",
+        );
+    } else {
+        state.eval(root, /*depth*/ 0);
+    }
     state.embedded
 }
 
@@ -268,6 +294,9 @@ impl<'tree> State<'_, 'tree> {
                 Value::Unknown
             }
         };
+        if node.kind() == "identifier" {
+            self.reject_unknown_loop_identifier(node, &value);
+        }
         let mut remaining = MAX_VALUE_BYTES;
         if self.reserve_value(node, &value, /*key_bytes*/ 0, &mut remaining) {
             value

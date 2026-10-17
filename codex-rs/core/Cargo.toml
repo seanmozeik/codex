@@ -28,6 +28,7 @@ codex-apply-patch = { workspace = true }
 codex-async-utils = { workspace = true }
 codex-attachment-store = { workspace = true }
 codex-client = { workspace = true }
+codex-code-activity = { workspace = true }
 codex-code-mode = { workspace = true }
 codex-connectors = { workspace = true }
 codex-context-fragments = { workspace = true }

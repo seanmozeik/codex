@@ -22,6 +22,7 @@ use crate::protocol::PatchApplyStatus;
 use crate::protocol::ReviewOutputEvent;
 use crate::protocol::ReviewTarget;
 use crate::protocol::SubAgentActivityKind;
+use crate::source_description::SourceDescriptionItem;
 use crate::user_input::ByteRange;
 use crate::user_input::TextElement;
 use crate::user_input::UserInput;
@@ -51,6 +52,7 @@ pub enum TurnItem {
     Plan(PlanItem),
     Reasoning(ReasoningItem),
     CommandExecution(CommandExecutionItem),
+    SourceDescription(SourceDescriptionItem),
     DynamicToolCall(DynamicToolCallItem),
     CollabAgentToolCall(CollabAgentToolCallItem),
     SubAgentActivity(SubAgentActivityItem),
@@ -743,6 +745,7 @@ impl TurnItem {
             TurnItem::Plan(item) => item.id.clone(),
             TurnItem::Reasoning(item) => item.id.clone(),
             TurnItem::CommandExecution(item) => item.id.clone(),
+            TurnItem::SourceDescription(item) => item.id.clone(),
             TurnItem::DynamicToolCall(item) => item.id.clone(),
             TurnItem::CollabAgentToolCall(item) => item.id.clone(),
             TurnItem::SubAgentActivity(item) => item.id.clone(),

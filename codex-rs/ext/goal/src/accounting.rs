@@ -166,6 +166,7 @@ impl GoalAccountingState {
             return;
         };
         match item {
+            TurnItem::SourceDescription(_) => {}
             TurnItem::AgentMessage(message) => {
                 let has_text = message.content.iter().any(|content| match content {
                     AgentMessageContent::Text { text } => !text.trim().is_empty(),

@@ -399,6 +399,73 @@ fn activity_metadata_is_retained_without_including_outputs() -> color_eyre::Resu
     Ok(())
 }
 
+#[test]
+fn turn_summary_preserves_last_twenty_real_items_with_interleaved_source_metadata()
+-> color_eyre::Result<()> {
+    let items: Vec<Value> = (0..24)
+        .map(|index| {
+            if index % 2 == 0 {
+                json!({"type": "agentMessage", "id": format!("item-{index}"),
+                    "text": format!("Message {index}"), "phase": "commentary"})
+            } else {
+                json!({"type": "commandExecution", "id": format!("item-{index}"),
+                    "command": format!("cat file-{index}.txt"), "cwd": "/tmp",
+                    "status": "completed", "commandActions": [],
+                    "aggregatedOutput": format!("Output {index}"), "exitCode": 0})
+            }
+        })
+        .collect();
+    let turn: Turn = serde_json::from_value(json!({
+        "id": "turn-1", "status": "completed", "items": items
+    }))?;
+    let descriptions: [codex_app_server_protocol::SourceDescription; 2] = [
+        serde_json::from_value(json!({
+            "disposition": "completeSyntax",
+            "sources": [{"id": 0, "language": "typeScript", "parent": null,
+                "text": "// source metadata"}],
+            "references": [], "patches": []
+        }))?,
+        serde_json::from_value(json!({
+            "disposition": "fallback", "reason": "unsupportedSource"
+        }))?,
+    ];
+    let mut with_sources = turn.clone();
+    with_sources.items = turn
+        .items
+        .iter()
+        .enumerate()
+        .flat_map(|(index, item)| {
+            [
+                ThreadItem::SourceDescription {
+                    id: format!("source-{index}"),
+                    call_id: format!("call-{index}"),
+                    description: descriptions[index % descriptions.len()].clone(),
+                },
+                item.clone(),
+            ]
+        })
+        .collect();
+    let expected_ids: Vec<Value> = (4..24)
+        .map(|index| json!(format!("item-{index}")))
+        .collect();
+
+    for include_outputs in [false, true] {
+        let actual = turn_summary(&with_sources, include_outputs, DEFAULT_OUTPUT_CHARS);
+        let actual_ids: Vec<Value> = actual["items"]
+            .as_array()
+            .expect("summary items")
+            .iter()
+            .map(|item| item["id"].clone())
+            .collect();
+        assert_eq!(actual_ids, expected_ids);
+        assert_eq!(
+            actual,
+            turn_summary(&turn, include_outputs, DEFAULT_OUTPUT_CHARS)
+        );
+    }
+    Ok(())
+}
+
 #[tokio::test]
 async fn task_management_tools_use_existing_app_server_operations() -> color_eyre::Result<()> {
     let (codex_home, server, source, target) = test_server(json!({})).await?;

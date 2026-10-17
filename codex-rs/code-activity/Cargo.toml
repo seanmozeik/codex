@@ -7,8 +7,10 @@ license.workspace = true
 description = "Source-backed activity records for agent-generated Python, TypeScript, and shell"
 
 [dependencies]
+codex-apply-patch.workspace = true
 codex-protocol.workspace = true
 codex-shell-command.workspace = true
+codex-tree-sitter-bash.workspace = true
 serde = { workspace = true, features = ["derive"] }
 serde_json.workspace = true
 tree-sitter.workspace = true

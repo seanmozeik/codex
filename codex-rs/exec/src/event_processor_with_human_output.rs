@@ -203,6 +203,8 @@ impl EventProcessorWithHumanOutput {
             ThreadItem::ContextCompaction { .. } => {
                 eprintln!("{}", "context compacted".style(self.dimmed));
             }
+            // Analysis completion is not another executed tool or runtime result.
+            ThreadItem::SourceDescription { .. } => {}
             _ => {}
         }
     }

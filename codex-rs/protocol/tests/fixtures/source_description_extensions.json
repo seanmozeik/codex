@@ -1,0 +1,136 @@
+{
+  "disposition": "completeSyntax",
+  "sources": [
+    {
+      "id": 0,
+      "language": "typeScript",
+      "parent": null,
+      "text": "await tools.exec_command({cmd:\"LANG=C cd -- 'δ' && cat > 'δ.out'\\ncat <<'DATA'\\nDATA\\npython -c \\\"open('δ.txt').read().strip()\\\"\\n\"});"
+    },
+    {
+      "id": 1,
+      "language": "shell",
+      "parent": {
+        "sourceId": 0, "startByte": 6, "endByte": 136,
+        "startLine": 1, "endLine": 1, "startColumn": 7
+      },
+      "text": "LANG=C cd -- 'δ' && cat > 'δ.out'\ncat <<'DATA'\nDATA\npython -c \"open('δ.txt').read().strip()\"\n"
+    },
+    {
+      "id": 2,
+      "language": "python",
+      "parent": {
+        "sourceId": 1, "startByte": 64, "endByte": 95,
+        "startLine": 4, "endLine": 4, "startColumn": 11
+      },
+      "text": "open('δ.txt').read().strip()"
+    }
+  ],
+  "references": [
+    {
+      "kind": "invocationCall",
+      "evidence": {
+        "sourceId": 0, "startByte": 6, "endByte": 136,
+        "startLine": 1, "endLine": 1, "startColumn": 7
+      },
+      "literal": null
+    },
+    {
+      "kind": "invocationCall",
+      "evidence": {
+        "sourceId": 1, "startByte": 0, "endByte": 17,
+        "startLine": 1, "endLine": 1, "startColumn": 1
+      },
+      "literal": "cd"
+    },
+    {
+      "kind": "environmentAssignment",
+      "evidence": {
+        "sourceId": 1, "startByte": 0, "endByte": 6,
+        "startLine": 1, "endLine": 1, "startColumn": 1
+      },
+      "literal": "LANG=C"
+    },
+    {
+      "kind": "directoryOperand",
+      "evidence": {
+        "sourceId": 1, "startByte": 13, "endByte": 17,
+        "startLine": 1, "endLine": 1, "startColumn": 14
+      },
+      "literal": "δ"
+    },
+    {
+      "kind": "shellConnector",
+      "evidence": {
+        "sourceId": 1, "startByte": 18, "endByte": 20,
+        "startLine": 1, "endLine": 1, "startColumn": 19
+      },
+      "literal": "&&"
+    },
+    {
+      "kind": "invocationCall",
+      "evidence": {
+        "sourceId": 1, "startByte": 21, "endByte": 24,
+        "startLine": 1, "endLine": 1, "startColumn": 22
+      },
+      "literal": "cat"
+    },
+    {
+      "kind": "shellRedirection",
+      "evidence": {
+        "sourceId": 1, "startByte": 25, "endByte": 35,
+        "startLine": 1, "endLine": 1, "startColumn": 26
+      },
+      "literal": "δ.out"
+    },
+    {
+      "kind": "invocationCall",
+      "evidence": {
+        "sourceId": 1, "startByte": 36, "endByte": 39,
+        "startLine": 2, "endLine": 2, "startColumn": 1
+      },
+      "literal": "cat"
+    },
+    {
+      "kind": "heredocData",
+      "evidence": {
+        "sourceId": 1, "startByte": 49, "endByte": 49,
+        "startLine": 3, "endLine": 3, "startColumn": 1
+      },
+      "literal": null
+    },
+    {
+      "kind": "invocationCall",
+      "evidence": {
+        "sourceId": 1, "startByte": 54, "endByte": 95,
+        "startLine": 4, "endLine": 4, "startColumn": 1
+      },
+      "literal": "python"
+    },
+    {
+      "kind": "openCall",
+      "evidence": {
+        "sourceId": 2, "startByte": 0, "endByte": 14,
+        "startLine": 1, "endLine": 1, "startColumn": 1
+      },
+      "literal": "δ.txt"
+    },
+    {
+      "kind": "readCall",
+      "evidence": {
+        "sourceId": 2, "startByte": 0, "endByte": 21,
+        "startLine": 1, "endLine": 1, "startColumn": 1
+      },
+      "literal": "δ.txt"
+    },
+    {
+      "kind": "transformCall",
+      "evidence": {
+        "sourceId": 2, "startByte": 0, "endByte": 29,
+        "startLine": 1, "endLine": 1, "startColumn": 1
+      },
+      "literal": "δ.txt"
+    }
+  ],
+  "patches": []
+}

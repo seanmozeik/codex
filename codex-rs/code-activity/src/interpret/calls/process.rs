@@ -172,6 +172,7 @@ mod tests {
                 Language::TypeScript,
                 /*cwd*/ None,
                 &mut report,
+                crate::interpret::Mode::Diagnostic,
             );
             assert_eq!(pending.len(), 63);
             assert!(pending.iter().all(|entry| entry.source == payload));

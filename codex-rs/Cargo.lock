@@ -2729,8 +2729,10 @@ name = "codex-code-activity"
 version = "0.0.0"
 dependencies = [
  "anyhow",
+ "codex-apply-patch",
  "codex-protocol",
  "codex-shell-command",
+ "codex-tree-sitter-bash",
  "codex-utils-path-uri",
  "libc",
  "pretty_assertions",
@@ -2965,6 +2967,7 @@ dependencies = [
  "codex-async-utils",
  "codex-attachment-store",
  "codex-client",
+ "codex-code-activity",
  "codex-code-mode",
  "codex-config",
  "codex-connectors",
@@ -4810,6 +4813,14 @@ dependencies = [
  "thiserror 2.0.18",
  "tracing",
  "urlencoding",
+]
+
+[[package]]
+name = "codex-tree-sitter-bash"
+version = "0.0.0"
+dependencies = [
+ "cc",
+ "tree-sitter-language",
 ]
 
 [[package]]

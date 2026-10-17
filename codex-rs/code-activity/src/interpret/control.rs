@@ -65,6 +65,9 @@ impl<'tree> State<'_, 'tree> {
     }
 
     pub(super) fn eval_loop(&mut self, node: Node<'tree>, depth: usize) -> Value {
+        if self.mode == super::Mode::Complete && self.language == crate::Language::Python {
+            return self.eval_literal_loop(node, depth);
+        }
         let (Some(target), Some(input), Some(body)) = (
             node.child_by_field_name("left"),
             node.child_by_field_name("right"),

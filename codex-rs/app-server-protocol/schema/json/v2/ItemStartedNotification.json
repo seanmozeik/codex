@@ -740,6 +740,2405 @@
       "minLength": 1,
       "type": "string"
     },
+    "SelectiveBarrier": {
+      "additionalProperties": false,
+      "properties": {
+        "evidence": {
+          "$ref": "#/definitions/SourceDescriptionSpan"
+        },
+        "reason": {
+          "$ref": "#/definitions/SelectiveBarrierReason"
+        }
+      },
+      "required": [
+        "evidence",
+        "reason"
+      ],
+      "type": "object"
+    },
+    "SelectiveBarrierReason": {
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "reason": {
+              "type": "string"
+            },
+            "type": {
+              "enum": [
+                "carrier"
+              ],
+              "title": "CarrierSelectiveBarrierReasonType",
+              "type": "string"
+            }
+          },
+          "required": [
+            "reason",
+            "type"
+          ],
+          "title": "CarrierSelectiveBarrierReason",
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "reason": {
+              "$ref": "#/definitions/SelectivePythonBarrierReason"
+            },
+            "type": {
+              "enum": [
+                "python"
+              ],
+              "title": "PythonSelectiveBarrierReasonType",
+              "type": "string"
+            }
+          },
+          "required": [
+            "reason",
+            "type"
+          ],
+          "title": "PythonSelectiveBarrierReason",
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "reason": {
+              "$ref": "#/definitions/SelectiveJavaScriptBarrierReason"
+            },
+            "type": {
+              "enum": [
+                "javaScript"
+              ],
+              "title": "JavaScriptSelectiveBarrierReasonType",
+              "type": "string"
+            }
+          },
+          "required": [
+            "reason",
+            "type"
+          ],
+          "title": "JavaScriptSelectiveBarrierReason",
+          "type": "object"
+        }
+      ]
+    },
+    "SelectiveCarrierAssumption": {
+      "additionalProperties": false,
+      "properties": {
+        "basis": {
+          "$ref": "#/definitions/SelectiveCarrierBasis"
+        },
+        "invocation": {
+          "$ref": "#/definitions/SourceDescriptionSpan"
+        },
+        "language": {
+          "$ref": "#/definitions/SourceDescriptionLanguage"
+        }
+      },
+      "required": [
+        "basis",
+        "invocation",
+        "language"
+      ],
+      "type": "object"
+    },
+    "SelectiveCarrierBasis": {
+      "oneOf": [
+        {
+          "description": "Conditional ordinary lookup/startup behavior, never runtime attestation.",
+          "enum": [
+            "standardShellDispatchAndStartup"
+          ],
+          "type": "string"
+        },
+        {
+          "description": "The shell-launched interpreter supplies Python 3 CLI semantics.",
+          "enum": [
+            "standardPython3Cli"
+          ],
+          "type": "string"
+        },
+        {
+          "description": "The exact Node carrier supplies CommonJS command-line semantics.",
+          "enum": [
+            "standardNodeCommonJsCli"
+          ],
+          "type": "string"
+        }
+      ]
+    },
+    "SelectiveEditBasis": {
+      "enum": [
+        "standardApiForecast",
+        "hostToolRequest"
+      ],
+      "type": "string"
+    },
+    "SelectiveEditDetails": {
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "assumptions": {
+              "items": {
+                "$ref": "#/definitions/SelectivePythonAssumption"
+              },
+              "type": "array"
+            },
+            "kind": {
+              "enum": [
+                "python"
+              ],
+              "type": "string"
+            },
+            "prediction": {
+              "$ref": "#/definitions/SelectivePythonEdit"
+            }
+          },
+          "required": [
+            "assumptions",
+            "kind",
+            "prediction"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "assumptions": {
+              "items": {
+                "$ref": "#/definitions/SelectiveJavaScriptAssumption"
+              },
+              "type": "array"
+            },
+            "kind": {
+              "enum": [
+                "javaScript"
+              ],
+              "type": "string"
+            },
+            "prediction": {
+              "$ref": "#/definitions/SelectiveJavaScriptEdit"
+            }
+          },
+          "required": [
+            "assumptions",
+            "kind",
+            "prediction"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "cwd": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "kind": {
+              "enum": [
+                "patch"
+              ],
+              "type": "string"
+            },
+            "patch": {
+              "$ref": "#/definitions/SubmittedPatch"
+            }
+          },
+          "required": [
+            "kind",
+            "patch"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "SelectiveIndexRecipe": {
+      "description": "A frozen Python integer expression, distinct from a JavaScript string index.",
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "evidence": {
+              "$ref": "#/definitions/SourceDescriptionSpan"
+            },
+            "type": {
+              "enum": [
+                "literal"
+              ],
+              "title": "LiteralSelectiveIndexRecipeType",
+              "type": "string"
+            },
+            "value": {
+              "format": "int64",
+              "type": "integer"
+            }
+          },
+          "required": [
+            "evidence",
+            "type",
+            "value"
+          ],
+          "title": "LiteralSelectiveIndexRecipe",
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "evidence": {
+              "$ref": "#/definitions/SourceDescriptionSpan"
+            },
+            "input": {
+              "$ref": "#/definitions/SelectiveTextRecipe"
+            },
+            "needle": {
+              "type": "string"
+            },
+            "start": {
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/SelectiveIndexRecipe"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "type": {
+              "enum": [
+                "substringIndex"
+              ],
+              "title": "SubstringIndexSelectiveIndexRecipeType",
+              "type": "string"
+            }
+          },
+          "required": [
+            "evidence",
+            "input",
+            "needle",
+            "type"
+          ],
+          "title": "SubstringIndexSelectiveIndexRecipe",
+          "type": "object"
+        }
+      ]
+    },
+    "SelectiveJavaScriptAssumption": {
+      "description": "Conditional standard-runtime hypotheses, never runtime attestations.",
+      "enum": [
+        "standardNodeCommonJsEvaluation",
+        "canonicalNodeFs",
+        "standardStringMethods",
+        "noConcurrentMutation",
+        "completeDescriptorWrites",
+        "regularDescriptorFiles"
+      ],
+      "type": "string"
+    },
+    "SelectiveJavaScriptBarrierReason": {
+      "description": "The finite reason a Node source region remains unresolved.",
+      "enum": [
+        "unknownName",
+        "unmodeledCall",
+        "unsupportedOperation"
+      ],
+      "type": "string"
+    },
+    "SelectiveJavaScriptDependency": {
+      "description": "Captured evaluation dependencies, never authority to execute a request.",
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "descriptorId": {
+              "format": "uint",
+              "minimum": 0.0,
+              "type": "integer"
+            },
+            "openedAt": {
+              "$ref": "#/definitions/SourceDescriptionSpan"
+            },
+            "type": {
+              "enum": [
+                "descriptor"
+              ],
+              "title": "DescriptorSelectiveJavaScriptDependencyType",
+              "type": "string"
+            }
+          },
+          "required": [
+            "descriptorId",
+            "openedAt",
+            "type"
+          ],
+          "title": "DescriptorSelectiveJavaScriptDependency",
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "evidence": {
+              "$ref": "#/definitions/SourceDescriptionSpan"
+            },
+            "name": {
+              "type": "string"
+            },
+            "type": {
+              "enum": [
+                "binding"
+              ],
+              "title": "BindingSelectiveJavaScriptDependencyType",
+              "type": "string"
+            },
+            "version": {
+              "format": "uint",
+              "minimum": 0.0,
+              "type": "integer"
+            }
+          },
+          "required": [
+            "evidence",
+            "name",
+            "type",
+            "version"
+          ],
+          "title": "BindingSelectiveJavaScriptDependency",
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "evidence": {
+              "$ref": "#/definitions/SourceDescriptionSpan"
+            },
+            "readId": {
+              "format": "uint",
+              "minimum": 0.0,
+              "type": "integer"
+            },
+            "type": {
+              "enum": [
+                "readValue"
+              ],
+              "title": "ReadValueSelectiveJavaScriptDependencyType",
+              "type": "string"
+            }
+          },
+          "required": [
+            "evidence",
+            "readId",
+            "type"
+          ],
+          "title": "ReadValueSelectiveJavaScriptDependency",
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "cwd": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "type": {
+              "enum": [
+                "entryWorkingDirectory"
+              ],
+              "title": "EntryWorkingDirectorySelectiveJavaScriptDependencyType",
+              "type": "string"
+            }
+          },
+          "required": [
+            "type"
+          ],
+          "title": "EntryWorkingDirectorySelectiveJavaScriptDependency",
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "assumption": {
+              "$ref": "#/definitions/SelectiveJavaScriptAssumption"
+            },
+            "type": {
+              "enum": [
+                "capability"
+              ],
+              "title": "CapabilitySelectiveJavaScriptDependencyType",
+              "type": "string"
+            }
+          },
+          "required": [
+            "assumption",
+            "type"
+          ],
+          "title": "CapabilitySelectiveJavaScriptDependency",
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "epoch": {
+              "format": "uint",
+              "minimum": 0.0,
+              "type": "integer"
+            },
+            "type": {
+              "enum": [
+                "filesystemEpoch"
+              ],
+              "title": "FilesystemEpochSelectiveJavaScriptDependencyType",
+              "type": "string"
+            }
+          },
+          "required": [
+            "epoch",
+            "type"
+          ],
+          "title": "FilesystemEpochSelectiveJavaScriptDependency",
+          "type": "object"
+        }
+      ]
+    },
+    "SelectiveJavaScriptDescriptorPosition": {
+      "enum": [
+        "cursor",
+        "absolute"
+      ],
+      "type": "string"
+    },
+    "SelectiveJavaScriptEdit": {
+      "additionalProperties": false,
+      "description": "One synchronous primitive-string UTF-8 filesystem effect under Node assumptions.",
+      "properties": {
+        "content": {
+          "$ref": "#/definitions/SelectiveJavaScriptTextRecipe"
+        },
+        "dependencies": {
+          "items": {
+            "$ref": "#/definitions/SelectiveJavaScriptDependency"
+          },
+          "type": "array"
+        },
+        "evidence": {
+          "$ref": "#/definitions/SourceDescriptionSpan"
+        },
+        "ordinal": {
+          "format": "uint",
+          "minimum": 0.0,
+          "type": "integer"
+        },
+        "predecessorConditions": {
+          "items": {
+            "$ref": "#/definitions/SourceDescriptionSpan"
+          },
+          "type": "array"
+        },
+        "target": {
+          "$ref": "#/definitions/SelectiveTarget"
+        },
+        "writeEffect": {
+          "$ref": "#/definitions/SelectiveJavaScriptWriteEffect"
+        }
+      },
+      "required": [
+        "content",
+        "dependencies",
+        "evidence",
+        "ordinal",
+        "predecessorConditions",
+        "target"
+      ],
+      "type": "object"
+    },
+    "SelectiveJavaScriptTextRecipe": {
+      "description": "Node string semantics are separate from Python recipes.",
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "evidence": {
+              "$ref": "#/definitions/SourceDescriptionSpan"
+            },
+            "type": {
+              "enum": [
+                "literal"
+              ],
+              "title": "LiteralSelectiveJavaScriptTextRecipeType",
+              "type": "string"
+            },
+            "value": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "evidence",
+            "type",
+            "value"
+          ],
+          "title": "LiteralSelectiveJavaScriptTextRecipe",
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "evidence": {
+              "$ref": "#/definitions/SourceDescriptionSpan"
+            },
+            "filesystemEpoch": {
+              "format": "uint",
+              "minimum": 0.0,
+              "type": "integer"
+            },
+            "readId": {
+              "format": "uint",
+              "minimum": 0.0,
+              "type": "integer"
+            },
+            "target": {
+              "$ref": "#/definitions/SelectiveTarget"
+            },
+            "type": {
+              "enum": [
+                "readUtf8"
+              ],
+              "title": "ReadUtf8SelectiveJavaScriptTextRecipeType",
+              "type": "string"
+            }
+          },
+          "required": [
+            "evidence",
+            "filesystemEpoch",
+            "readId",
+            "target",
+            "type"
+          ],
+          "title": "ReadUtf8SelectiveJavaScriptTextRecipe",
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "description": "String needle, first match only; replacement substitutions are excluded.",
+          "properties": {
+            "evidence": {
+              "$ref": "#/definitions/SourceDescriptionSpan"
+            },
+            "input": {
+              "$ref": "#/definitions/SelectiveJavaScriptTextRecipe"
+            },
+            "new": {
+              "type": "string"
+            },
+            "old": {
+              "type": "string"
+            },
+            "type": {
+              "enum": [
+                "replaceFirst"
+              ],
+              "title": "ReplaceFirstSelectiveJavaScriptTextRecipeType",
+              "type": "string"
+            }
+          },
+          "required": [
+            "evidence",
+            "input",
+            "new",
+            "old",
+            "type"
+          ],
+          "title": "ReplaceFirstSelectiveJavaScriptTextRecipe",
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "description": "Every nonoverlapping match of a nonempty string; no replacement substitutions.",
+          "properties": {
+            "evidence": {
+              "$ref": "#/definitions/SourceDescriptionSpan"
+            },
+            "input": {
+              "$ref": "#/definitions/SelectiveJavaScriptTextRecipe"
+            },
+            "new": {
+              "type": "string"
+            },
+            "old": {
+              "type": "string"
+            },
+            "type": {
+              "enum": [
+                "replaceAll"
+              ],
+              "title": "ReplaceAllSelectiveJavaScriptTextRecipeType",
+              "type": "string"
+            }
+          },
+          "required": [
+            "evidence",
+            "input",
+            "new",
+            "old",
+            "type"
+          ],
+          "title": "ReplaceAllSelectiveJavaScriptTextRecipe",
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "description": "Nonnegative UTF-16 code-unit bounds; unpaired-surrogate results are refused.",
+          "properties": {
+            "end": {
+              "format": "uint",
+              "minimum": 0.0,
+              "type": [
+                "integer",
+                "null"
+              ]
+            },
+            "evidence": {
+              "$ref": "#/definitions/SourceDescriptionSpan"
+            },
+            "input": {
+              "$ref": "#/definitions/SelectiveJavaScriptTextRecipe"
+            },
+            "start": {
+              "format": "uint",
+              "minimum": 0.0,
+              "type": "integer"
+            },
+            "type": {
+              "enum": [
+                "slice"
+              ],
+              "title": "SliceSelectiveJavaScriptTextRecipeType",
+              "type": "string"
+            }
+          },
+          "required": [
+            "evidence",
+            "input",
+            "start",
+            "type"
+          ],
+          "title": "SliceSelectiveJavaScriptTextRecipe",
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "evidence": {
+              "$ref": "#/definitions/SourceDescriptionSpan"
+            },
+            "left": {
+              "$ref": "#/definitions/SelectiveJavaScriptTextRecipe"
+            },
+            "right": {
+              "$ref": "#/definitions/SelectiveJavaScriptTextRecipe"
+            },
+            "type": {
+              "enum": [
+                "concat"
+              ],
+              "title": "ConcatSelectiveJavaScriptTextRecipeType",
+              "type": "string"
+            }
+          },
+          "required": [
+            "evidence",
+            "left",
+            "right",
+            "type"
+          ],
+          "title": "ConcatSelectiveJavaScriptTextRecipe",
+          "type": "object"
+        }
+      ]
+    },
+    "SelectiveJavaScriptWriteEffect": {
+      "description": "Conditional byte effects of path writes and exclusively owned descriptors.",
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "type": {
+              "enum": [
+                "overwrite"
+              ],
+              "title": "OverwriteSelectiveJavaScriptWriteEffectType",
+              "type": "string"
+            }
+          },
+          "required": [
+            "type"
+          ],
+          "title": "OverwriteSelectiveJavaScriptWriteEffect",
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "descriptorId": {
+              "format": "uint",
+              "minimum": 0.0,
+              "type": "integer"
+            },
+            "openedAt": {
+              "$ref": "#/definitions/SourceDescriptionSpan"
+            },
+            "type": {
+              "enum": [
+                "truncate"
+              ],
+              "title": "TruncateSelectiveJavaScriptWriteEffectType",
+              "type": "string"
+            }
+          },
+          "required": [
+            "descriptorId",
+            "openedAt",
+            "type"
+          ],
+          "title": "TruncateSelectiveJavaScriptWriteEffect",
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "description": "Append UTF-8 bytes at the operation-time EOF under descriptor premises.",
+          "properties": {
+            "descriptorId": {
+              "format": "uint",
+              "minimum": 0.0,
+              "type": "integer"
+            },
+            "openedAt": {
+              "$ref": "#/definitions/SourceDescriptionSpan"
+            },
+            "type": {
+              "enum": [
+                "descriptorAppend"
+              ],
+              "title": "DescriptorAppendSelectiveJavaScriptWriteEffectType",
+              "type": "string"
+            }
+          },
+          "required": [
+            "descriptorId",
+            "openedAt",
+            "type"
+          ],
+          "title": "DescriptorAppendSelectiveJavaScriptWriteEffect",
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "byteOffset": {
+              "format": "uint",
+              "minimum": 0.0,
+              "type": "integer"
+            },
+            "descriptorId": {
+              "format": "uint",
+              "minimum": 0.0,
+              "type": "integer"
+            },
+            "openedAt": {
+              "$ref": "#/definitions/SourceDescriptionSpan"
+            },
+            "position": {
+              "$ref": "#/definitions/SelectiveJavaScriptDescriptorPosition"
+            },
+            "type": {
+              "enum": [
+                "descriptorWrite"
+              ],
+              "title": "DescriptorWriteSelectiveJavaScriptWriteEffectType",
+              "type": "string"
+            }
+          },
+          "required": [
+            "byteOffset",
+            "descriptorId",
+            "openedAt",
+            "position",
+            "type"
+          ],
+          "title": "DescriptorWriteSelectiveJavaScriptWriteEffect",
+          "type": "object"
+        }
+      ]
+    },
+    "SelectiveLaterContext": {
+      "description": "No variant establishes execution or final filesystem state.",
+      "enum": [
+        "unobserved",
+        "opaqueSuffix",
+        "knownLaterTouch",
+        "possibleAliasLaterTouch"
+      ],
+      "type": "string"
+    },
+    "SelectiveLogicalStreamBinding": {
+      "additionalProperties": false,
+      "description": "Binding to an owned stream and physical seed, independent of event ordinal.",
+      "properties": {
+        "baseFilesystemEpoch": {
+          "format": "uint",
+          "minimum": 0.0,
+          "type": "integer"
+        },
+        "openedAt": {
+          "$ref": "#/definitions/SourceDescriptionSpan"
+        },
+        "revision": {
+          "format": "uint",
+          "minimum": 0.0,
+          "type": "integer"
+        },
+        "sourceId": {
+          "format": "uint",
+          "minimum": 0.0,
+          "type": "integer"
+        },
+        "streamId": {
+          "format": "uint",
+          "minimum": 0.0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "baseFilesystemEpoch",
+        "openedAt",
+        "revision",
+        "sourceId",
+        "streamId"
+      ],
+      "type": "object"
+    },
+    "SelectiveLogicalStreamPreviewMetadata": {
+      "additionalProperties": false,
+      "description": "Conditional logical overlay; never usable as a physical replay seed.",
+      "properties": {
+        "acceptedCharactersRequired": {
+          "description": "Unicode characters accepted before output newline translation.",
+          "format": "uint",
+          "minimum": 0.0,
+          "type": "integer"
+        },
+        "binding": {
+          "$ref": "#/definitions/SelectiveLogicalStreamBinding"
+        },
+        "mode": {
+          "$ref": "#/definitions/SelectivePythonStreamMode"
+        },
+        "payloadBytes": {
+          "description": "UTF-8 payload after output newline translation, excluding retained suffix.",
+          "items": {
+            "format": "uint8",
+            "maximum": 255.0,
+            "minimum": 0.0,
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        "position": {
+          "$ref": "#/definitions/SelectivePythonStreamPosition"
+        },
+        "realization": {
+          "$ref": "#/definitions/SelectiveLogicalStreamRealization"
+        },
+        "revisionAfter": {
+          "format": "uint",
+          "minimum": 0.0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "acceptedCharactersRequired",
+        "binding",
+        "mode",
+        "payloadBytes",
+        "position",
+        "realization",
+        "revisionAfter"
+      ],
+      "type": "object"
+    },
+    "SelectiveLogicalStreamRealization": {
+      "description": "Logical bytes are not an assertion of successful physical flush or close.",
+      "enum": [
+        "requiresSuccessfulFlushOrClose"
+      ],
+      "type": "string"
+    },
+    "SelectivePredicateRecipe": {
+      "description": "Closed, side-effect-free Python predicates over captured text.",
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "description": "Evaluate the immutable text needle before the haystack.",
+          "properties": {
+            "evidence": {
+              "$ref": "#/definitions/SourceDescriptionSpan"
+            },
+            "haystack": {
+              "$ref": "#/definitions/SelectiveTextRecipe"
+            },
+            "needle": {
+              "$ref": "#/definitions/SelectiveTextRecipe"
+            },
+            "type": {
+              "enum": [
+                "textContains"
+              ],
+              "title": "TextContainsSelectivePredicateRecipeType",
+              "type": "string"
+            }
+          },
+          "required": [
+            "evidence",
+            "haystack",
+            "needle",
+            "type"
+          ],
+          "title": "TextContainsSelectivePredicateRecipe",
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "description": "Text equality without truth coercion or object dispatch.",
+          "properties": {
+            "evidence": {
+              "$ref": "#/definitions/SourceDescriptionSpan"
+            },
+            "left": {
+              "$ref": "#/definitions/SelectiveTextRecipe"
+            },
+            "right": {
+              "$ref": "#/definitions/SelectiveTextRecipe"
+            },
+            "type": {
+              "enum": [
+                "textEquals"
+              ],
+              "title": "TextEqualsSelectivePredicateRecipeType",
+              "type": "string"
+            }
+          },
+          "required": [
+            "evidence",
+            "left",
+            "right",
+            "type"
+          ],
+          "title": "TextEqualsSelectivePredicateRecipe",
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "description": "Boolean predicates only; evaluate right only if left is true.",
+          "properties": {
+            "evidence": {
+              "$ref": "#/definitions/SourceDescriptionSpan"
+            },
+            "left": {
+              "$ref": "#/definitions/SelectivePredicateRecipe"
+            },
+            "right": {
+              "$ref": "#/definitions/SelectivePredicateRecipe"
+            },
+            "type": {
+              "enum": [
+                "and"
+              ],
+              "title": "AndSelectivePredicateRecipeType",
+              "type": "string"
+            }
+          },
+          "required": [
+            "evidence",
+            "left",
+            "right",
+            "type"
+          ],
+          "title": "AndSelectivePredicateRecipe",
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "evidence": {
+              "$ref": "#/definitions/SourceDescriptionSpan"
+            },
+            "input": {
+              "$ref": "#/definitions/SelectiveTextRecipe"
+            },
+            "prefix": {
+              "type": "string"
+            },
+            "prefixEvidence": {
+              "$ref": "#/definitions/SourceDescriptionSpan"
+            },
+            "type": {
+              "enum": [
+                "startsWith"
+              ],
+              "title": "StartsWithSelectivePredicateRecipeType",
+              "type": "string"
+            }
+          },
+          "required": [
+            "evidence",
+            "input",
+            "prefix",
+            "prefixEvidence",
+            "type"
+          ],
+          "title": "StartsWithSelectivePredicateRecipe",
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "evidence": {
+              "$ref": "#/definitions/SourceDescriptionSpan"
+            },
+            "input": {
+              "$ref": "#/definitions/SelectiveTextRecipe"
+            },
+            "suffix": {
+              "type": "string"
+            },
+            "suffixEvidence": {
+              "$ref": "#/definitions/SourceDescriptionSpan"
+            },
+            "type": {
+              "enum": [
+                "endsWith"
+              ],
+              "title": "EndsWithSelectivePredicateRecipeType",
+              "type": "string"
+            }
+          },
+          "required": [
+            "evidence",
+            "input",
+            "suffix",
+            "suffixEvidence",
+            "type"
+          ],
+          "title": "EndsWithSelectivePredicateRecipe",
+          "type": "object"
+        }
+      ]
+    },
+    "SelectivePredictedEdit": {
+      "additionalProperties": false,
+      "properties": {
+        "basis": {
+          "$ref": "#/definitions/SelectiveEditBasis"
+        },
+        "carrierAssumptions": {
+          "items": {
+            "$ref": "#/definitions/SelectiveCarrierAssumption"
+          },
+          "type": "array"
+        },
+        "details": {
+          "$ref": "#/definitions/SelectiveEditDetails"
+        },
+        "evidence": {
+          "$ref": "#/definitions/SourceDescriptionSpan"
+        },
+        "laterContext": {
+          "$ref": "#/definitions/SelectiveLaterContext"
+        },
+        "ordinal": {
+          "description": "Ordered across the analyzed call; not an observed execution index.",
+          "format": "uint",
+          "minimum": 0.0,
+          "type": "integer"
+        },
+        "predecessorConditions": {
+          "items": {
+            "$ref": "#/definitions/SourceDescriptionSpan"
+          },
+          "type": "array"
+        },
+        "snapshot": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/SelectiveSnapshotPreview"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Optional pre-execution snapshot calculation, never an observed edit."
+        }
+      },
+      "required": [
+        "basis",
+        "carrierAssumptions",
+        "details",
+        "evidence",
+        "laterContext",
+        "ordinal",
+        "predecessorConditions"
+      ],
+      "type": "object"
+    },
+    "SelectivePythonAssumption": {
+      "enum": [
+        "pathlibNewlineSupport",
+        "standardPythonEvaluation",
+        "standardBuiltinOpen",
+        "canonicalPathlib",
+        "standardTextMethods",
+        "noConcurrentMutation"
+      ],
+      "type": "string"
+    },
+    "SelectivePythonBarrierReason": {
+      "enum": [
+        "unknownName",
+        "unmodeledCall",
+        "unmodeledImport",
+        "unsupportedOperation",
+        "escapingHandle"
+      ],
+      "type": "string"
+    },
+    "SelectivePythonDependency": {
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "evidence": {
+              "$ref": "#/definitions/SourceDescriptionSpan"
+            },
+            "name": {
+              "type": "string"
+            },
+            "type": {
+              "enum": [
+                "binding"
+              ],
+              "title": "BindingSelectivePythonDependencyType",
+              "type": "string"
+            },
+            "version": {
+              "format": "uint",
+              "minimum": 0.0,
+              "type": "integer"
+            }
+          },
+          "required": [
+            "evidence",
+            "name",
+            "type",
+            "version"
+          ],
+          "title": "BindingSelectivePythonDependency",
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "evidence": {
+              "$ref": "#/definitions/SourceDescriptionSpan"
+            },
+            "readId": {
+              "format": "uint",
+              "minimum": 0.0,
+              "type": "integer"
+            },
+            "type": {
+              "enum": [
+                "readValue"
+              ],
+              "title": "ReadValueSelectivePythonDependencyType",
+              "type": "string"
+            }
+          },
+          "required": [
+            "evidence",
+            "readId",
+            "type"
+          ],
+          "title": "ReadValueSelectivePythonDependency",
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "cwd": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "type": {
+              "enum": [
+                "entryWorkingDirectory"
+              ],
+              "title": "EntryWorkingDirectorySelectivePythonDependencyType",
+              "type": "string"
+            }
+          },
+          "required": [
+            "type"
+          ],
+          "title": "EntryWorkingDirectorySelectivePythonDependency",
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "assumption": {
+              "$ref": "#/definitions/SelectivePythonAssumption"
+            },
+            "type": {
+              "enum": [
+                "capability"
+              ],
+              "title": "CapabilitySelectivePythonDependencyType",
+              "type": "string"
+            }
+          },
+          "required": [
+            "assumption",
+            "type"
+          ],
+          "title": "CapabilitySelectivePythonDependency",
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "epoch": {
+              "format": "uint",
+              "minimum": 0.0,
+              "type": "integer"
+            },
+            "type": {
+              "enum": [
+                "filesystemEpoch"
+              ],
+              "title": "FilesystemEpochSelectivePythonDependencyType",
+              "type": "string"
+            }
+          },
+          "required": [
+            "epoch",
+            "type"
+          ],
+          "title": "FilesystemEpochSelectivePythonDependency",
+          "type": "object"
+        }
+      ]
+    },
+    "SelectivePythonEdit": {
+      "additionalProperties": false,
+      "properties": {
+        "dependencies": {
+          "items": {
+            "$ref": "#/definitions/SelectivePythonDependency"
+          },
+          "type": "array"
+        },
+        "evidence": {
+          "$ref": "#/definitions/SourceDescriptionSpan"
+        },
+        "finalState": {
+          "$ref": "#/definitions/SelectivePythonFinalState"
+        },
+        "iterationContext": {
+          "description": "Source-literal iteration occurrences, outermost first.",
+          "items": {
+            "$ref": "#/definitions/SelectivePythonIterationContext"
+          },
+          "type": "array"
+        },
+        "operation": {
+          "$ref": "#/definitions/SelectivePythonOperation"
+        },
+        "ordinal": {
+          "description": "Local mutation order, scoped by evidence.sourceId.",
+          "format": "uint",
+          "minimum": 0.0,
+          "type": "integer"
+        },
+        "predecessorConditions": {
+          "items": {
+            "$ref": "#/definitions/SourceDescriptionSpan"
+          },
+          "type": "array"
+        },
+        "target": {
+          "$ref": "#/definitions/SelectiveTarget"
+        }
+      },
+      "required": [
+        "dependencies",
+        "evidence",
+        "finalState",
+        "operation",
+        "ordinal",
+        "predecessorConditions",
+        "target"
+      ],
+      "type": "object"
+    },
+    "SelectivePythonFinalState": {
+      "enum": [
+        "notEstablished",
+        "knownLaterTouch",
+        "possibleAliasLaterTouch",
+        "opaqueSuccessor"
+      ],
+      "type": "string"
+    },
+    "SelectivePythonIterationContext": {
+      "additionalProperties": false,
+      "description": "A bounded literal iteration; repeated source spans are distinct occurrences.",
+      "properties": {
+        "evidence": {
+          "$ref": "#/definitions/SourceDescriptionSpan"
+        },
+        "index": {
+          "format": "uint",
+          "minimum": 0.0,
+          "type": "integer"
+        },
+        "literalCount": {
+          "format": "uint",
+          "minimum": 0.0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "evidence",
+        "index",
+        "literalCount"
+      ],
+      "type": "object"
+    },
+    "SelectivePythonOperation": {
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "description": "One logical stream write; its base epoch names the physical seed only.",
+          "properties": {
+            "baseFilesystemEpoch": {
+              "format": "uint",
+              "minimum": 0.0,
+              "type": "integer"
+            },
+            "content": {
+              "$ref": "#/definitions/SelectiveTextRecipe"
+            },
+            "encoding": {
+              "$ref": "#/definitions/SelectiveTextEncoding"
+            },
+            "mode": {
+              "$ref": "#/definitions/SelectivePythonStreamMode"
+            },
+            "newline": {
+              "$ref": "#/definitions/SelectivePythonWriteNewline"
+            },
+            "openedAt": {
+              "$ref": "#/definitions/SourceDescriptionSpan"
+            },
+            "position": {
+              "$ref": "#/definitions/SelectivePythonStreamPosition"
+            },
+            "requiredResult": {
+              "$ref": "#/definitions/SelectivePythonWriteResultCondition"
+            },
+            "streamId": {
+              "format": "uint",
+              "minimum": 0.0,
+              "type": "integer"
+            },
+            "streamRevision": {
+              "format": "uint",
+              "minimum": 0.0,
+              "type": "integer"
+            },
+            "type": {
+              "enum": [
+                "logicalWrite"
+              ],
+              "title": "LogicalWriteSelectivePythonOperationType",
+              "type": "string"
+            }
+          },
+          "required": [
+            "baseFilesystemEpoch",
+            "content",
+            "encoding",
+            "mode",
+            "newline",
+            "openedAt",
+            "position",
+            "requiredResult",
+            "streamId",
+            "streamRevision",
+            "type"
+          ],
+          "title": "LogicalWriteSelectivePythonOperation",
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "type": {
+              "enum": [
+                "truncate"
+              ],
+              "title": "TruncateSelectivePythonOperationType",
+              "type": "string"
+            }
+          },
+          "required": [
+            "type"
+          ],
+          "title": "TruncateSelectivePythonOperation",
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "content": {
+              "$ref": "#/definitions/SelectiveTextRecipe"
+            },
+            "encoding": {
+              "$ref": "#/definitions/SelectiveTextEncoding"
+            },
+            "newline": {
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/SelectivePythonWriteNewline"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "type": {
+              "enum": [
+                "writeText"
+              ],
+              "title": "WriteTextSelectivePythonOperationType",
+              "type": "string"
+            }
+          },
+          "required": [
+            "content",
+            "encoding",
+            "type"
+          ],
+          "title": "WriteTextSelectivePythonOperation",
+          "type": "object"
+        }
+      ]
+    },
+    "SelectivePythonReadNewline": {
+      "description": "Full-read decoding policy; omission on a recipe retains universal translation.",
+      "enum": [
+        "universalTranslate",
+        "preserve"
+      ],
+      "type": "string"
+    },
+    "SelectivePythonStreamMode": {
+      "description": "Only explicit-newline truncate/update text streams enter the logical lane.",
+      "enum": [
+        "truncateWrite",
+        "updateExisting"
+      ],
+      "type": "string"
+    },
+    "SelectivePythonStreamPosition": {
+      "description": "Zero-position proof; read completion alone does not establish rewind.",
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "type": {
+              "enum": [
+                "initialZero"
+              ],
+              "title": "InitialZeroSelectivePythonStreamPositionType",
+              "type": "string"
+            }
+          },
+          "required": [
+            "type"
+          ],
+          "title": "InitialZeroSelectivePythonStreamPosition",
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "readEvidence": {
+              "$ref": "#/definitions/SourceDescriptionSpan"
+            },
+            "readId": {
+              "format": "uint",
+              "minimum": 0.0,
+              "type": "integer"
+            },
+            "seekEvidence": {
+              "$ref": "#/definitions/SourceDescriptionSpan"
+            },
+            "type": {
+              "enum": [
+                "rewoundZero"
+              ],
+              "title": "RewoundZeroSelectivePythonStreamPositionType",
+              "type": "string"
+            }
+          },
+          "required": [
+            "readEvidence",
+            "readId",
+            "seekEvidence",
+            "type"
+          ],
+          "title": "RewoundZeroSelectivePythonStreamPosition",
+          "type": "object"
+        }
+      ]
+    },
+    "SelectivePythonWriteNewline": {
+      "description": "Source policy, distinct from the caller's concrete runtime-default assertion.",
+      "enum": [
+        "runtimeDefault",
+        "preserve",
+        "cr",
+        "crLf"
+      ],
+      "type": "string"
+    },
+    "SelectivePythonWriteResultCondition": {
+      "description": "Current write acceptance remains conditional, never a completed predecessor.",
+      "enum": [
+        "fullCharacterCount"
+      ],
+      "type": "string"
+    },
+    "SelectiveSnapshotBasis": {
+      "description": "Captured path identities, existence/absence and bytes must remain applicable until each modeled operation/read, except for the listed replayed effects. Startup/import behavior, ordinary APIs and normal completion remain premises.",
+      "enum": [
+        "preExecutionSnapshotConditional"
+      ],
+      "type": "string"
+    },
+    "SelectiveSnapshotEncoding": {
+      "enum": [
+        "utf8"
+      ],
+      "type": "string"
+    },
+    "SelectiveSnapshotPreview": {
+      "additionalProperties": false,
+      "description": "A bounded diff derived from captured bytes and modeled preceding operations. Source/API hypotheses and later uncertainty remain on the containing edit. This payload does not establish that execution started, succeeded, or applied any bytes. Display validation does not authenticate a persisted producer.",
+      "properties": {
+        "after": {
+          "type": "string"
+        },
+        "basis": {
+          "$ref": "#/definitions/SelectiveSnapshotBasis"
+        },
+        "before": {
+          "description": "None means captured absence, never unreadable or unavailable content.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "environmentId": {
+          "description": "Capture context is separate from the original source path spelling/cwd.",
+          "type": "string"
+        },
+        "filesystemEpoch": {
+          "format": "uint",
+          "minimum": 0.0,
+          "type": "integer"
+        },
+        "logicalStream": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/SelectiveLogicalStreamPreviewMetadata"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "readBindings": {
+          "items": {
+            "$ref": "#/definitions/SelectiveSnapshotReadBinding"
+          },
+          "type": "array"
+        },
+        "replayOrdinals": {
+          "description": "Earlier outer operation ordinals replayed to obtain this operation point.",
+          "items": {
+            "format": "uint",
+            "minimum": 0.0,
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        "resolvedCwd": {
+          "type": "string"
+        },
+        "resolvedTarget": {
+          "type": "string"
+        },
+        "scope": {
+          "$ref": "#/definitions/SelectiveSnapshotScope"
+        },
+        "sourceId": {
+          "format": "uint",
+          "minimum": 0.0,
+          "type": "integer"
+        },
+        "textProfile": {
+          "$ref": "#/definitions/SelectiveSnapshotTextProfile"
+        },
+        "unifiedDiff": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "after",
+        "basis",
+        "environmentId",
+        "filesystemEpoch",
+        "readBindings",
+        "replayOrdinals",
+        "resolvedCwd",
+        "resolvedTarget",
+        "scope",
+        "sourceId",
+        "textProfile",
+        "unifiedDiff"
+      ],
+      "type": "object"
+    },
+    "SelectiveSnapshotReadBinding": {
+      "additionalProperties": false,
+      "description": "One consumed source read; the binding alone does not attest filesystem truth.",
+      "properties": {
+        "encoding": {
+          "$ref": "#/definitions/SelectiveTextEncoding"
+        },
+        "filesystemEpoch": {
+          "format": "uint",
+          "minimum": 0.0,
+          "type": "integer"
+        },
+        "newline": {
+          "$ref": "#/definitions/SelectiveSnapshotReadNewline"
+        },
+        "readId": {
+          "format": "uint",
+          "minimum": 0.0,
+          "type": "integer"
+        },
+        "sourceId": {
+          "format": "uint",
+          "minimum": 0.0,
+          "type": "integer"
+        },
+        "target": {
+          "$ref": "#/definitions/SelectiveTarget"
+        }
+      },
+      "required": [
+        "encoding",
+        "filesystemEpoch",
+        "newline",
+        "readId",
+        "sourceId",
+        "target"
+      ],
+      "type": "object"
+    },
+    "SelectiveSnapshotReadNewline": {
+      "enum": [
+        "unspecified",
+        "pythonUniversal",
+        "sourceDeclared",
+        "preserve"
+      ],
+      "type": "string"
+    },
+    "SelectiveSnapshotScope": {
+      "description": "The artifact describes one modeled operation, not the script's final state.",
+      "enum": [
+        "operationPoint",
+        "logicalStream"
+      ],
+      "type": "string"
+    },
+    "SelectiveSnapshotTextProfile": {
+      "additionalProperties": false,
+      "description": "Explicit text-I/O premises supplied by the selected execution environment.",
+      "properties": {
+        "readNewline": {
+          "$ref": "#/definitions/SelectiveSnapshotReadNewline"
+        },
+        "runtimeDefaultEncoding": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/SelectiveSnapshotEncoding"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "None preserves an unresolved Python default codec."
+        },
+        "writeNewline": {
+          "$ref": "#/definitions/SelectiveSnapshotWriteNewline"
+        }
+      },
+      "required": [
+        "readNewline",
+        "writeNewline"
+      ],
+      "type": "object"
+    },
+    "SelectiveSnapshotWriteNewline": {
+      "enum": [
+        "unspecified",
+        "lf",
+        "cr",
+        "crLf",
+        "preserve"
+      ],
+      "type": "string"
+    },
+    "SelectiveTarget": {
+      "additionalProperties": false,
+      "description": "A literal spelling and entry anchor; this is not a resolved filesystem identity.",
+      "properties": {
+        "cwd": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "path": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "path"
+      ],
+      "type": "object"
+    },
+    "SelectiveTextEncoding": {
+      "enum": [
+        "utf8",
+        "runtimeDefault"
+      ],
+      "type": "string"
+    },
+    "SelectiveTextRecipe": {
+      "description": "Read IDs and epochs are local to evidence.sourceId and frozen evaluation order.",
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "evidence": {
+              "$ref": "#/definitions/SourceDescriptionSpan"
+            },
+            "type": {
+              "enum": [
+                "literal"
+              ],
+              "title": "LiteralSelectiveTextRecipeType",
+              "type": "string"
+            },
+            "value": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "evidence",
+            "type",
+            "value"
+          ],
+          "title": "LiteralSelectiveTextRecipe",
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "encoding": {
+              "$ref": "#/definitions/SelectiveTextEncoding"
+            },
+            "evidence": {
+              "$ref": "#/definitions/SourceDescriptionSpan"
+            },
+            "filesystemEpoch": {
+              "format": "uint",
+              "minimum": 0.0,
+              "type": "integer"
+            },
+            "newline": {
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/SelectivePythonReadNewline"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "readId": {
+              "format": "uint",
+              "minimum": 0.0,
+              "type": "integer"
+            },
+            "target": {
+              "$ref": "#/definitions/SelectiveTarget"
+            },
+            "type": {
+              "enum": [
+                "read"
+              ],
+              "title": "ReadSelectiveTextRecipeType",
+              "type": "string"
+            }
+          },
+          "required": [
+            "encoding",
+            "evidence",
+            "filesystemEpoch",
+            "readId",
+            "target",
+            "type"
+          ],
+          "title": "ReadSelectiveTextRecipe",
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "count": {
+              "format": "uint",
+              "minimum": 0.0,
+              "type": [
+                "integer",
+                "null"
+              ]
+            },
+            "evidence": {
+              "$ref": "#/definitions/SourceDescriptionSpan"
+            },
+            "input": {
+              "$ref": "#/definitions/SelectiveTextRecipe"
+            },
+            "new": {
+              "type": "string"
+            },
+            "old": {
+              "type": "string"
+            },
+            "type": {
+              "enum": [
+                "replace"
+              ],
+              "title": "ReplaceSelectiveTextRecipeType",
+              "type": "string"
+            }
+          },
+          "required": [
+            "evidence",
+            "input",
+            "new",
+            "old",
+            "type"
+          ],
+          "title": "ReplaceSelectiveTextRecipe",
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "count": {
+              "format": "uint",
+              "minimum": 0.0,
+              "type": [
+                "integer",
+                "null"
+              ]
+            },
+            "evidence": {
+              "$ref": "#/definitions/SourceDescriptionSpan"
+            },
+            "input": {
+              "$ref": "#/definitions/SelectiveTextRecipe"
+            },
+            "new": {
+              "$ref": "#/definitions/SelectiveTextRecipe"
+            },
+            "old": {
+              "$ref": "#/definitions/SelectiveTextRecipe"
+            },
+            "type": {
+              "enum": [
+                "replaceText"
+              ],
+              "title": "ReplaceTextSelectiveTextRecipeType",
+              "type": "string"
+            }
+          },
+          "required": [
+            "evidence",
+            "input",
+            "new",
+            "old",
+            "type"
+          ],
+          "title": "ReplaceTextSelectiveTextRecipe",
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "description": "Python code-point bounds, with an implicit positive unit step.",
+          "properties": {
+            "end": {
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/SelectiveIndexRecipe"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "evidence": {
+              "$ref": "#/definitions/SourceDescriptionSpan"
+            },
+            "input": {
+              "$ref": "#/definitions/SelectiveTextRecipe"
+            },
+            "start": {
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/SelectiveIndexRecipe"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "type": {
+              "enum": [
+                "slice"
+              ],
+              "title": "SliceSelectiveTextRecipeType",
+              "type": "string"
+            }
+          },
+          "required": [
+            "evidence",
+            "input",
+            "type"
+          ],
+          "title": "SliceSelectiveTextRecipe",
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "evidence": {
+              "$ref": "#/definitions/SourceDescriptionSpan"
+            },
+            "index": {
+              "format": "int64",
+              "type": "integer"
+            },
+            "input": {
+              "$ref": "#/definitions/SelectiveTextRecipe"
+            },
+            "maxsplit": {
+              "format": "int64",
+              "type": [
+                "integer",
+                "null"
+              ]
+            },
+            "separator": {
+              "type": "string"
+            },
+            "splitEvidence": {
+              "$ref": "#/definitions/SourceDescriptionSpan"
+            },
+            "type": {
+              "enum": [
+                "splitItem"
+              ],
+              "title": "SplitItemSelectiveTextRecipeType",
+              "type": "string"
+            }
+          },
+          "required": [
+            "evidence",
+            "index",
+            "input",
+            "separator",
+            "splitEvidence",
+            "type"
+          ],
+          "title": "SplitItemSelectiveTextRecipe",
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "description": "Characters are a set of code points, not a suffix.",
+          "properties": {
+            "characters": {
+              "type": "string"
+            },
+            "evidence": {
+              "$ref": "#/definitions/SourceDescriptionSpan"
+            },
+            "input": {
+              "$ref": "#/definitions/SelectiveTextRecipe"
+            },
+            "type": {
+              "enum": [
+                "rstrip"
+              ],
+              "title": "RstripSelectiveTextRecipeType",
+              "type": "string"
+            }
+          },
+          "required": [
+            "characters",
+            "evidence",
+            "input",
+            "type"
+          ],
+          "title": "RstripSelectiveTextRecipe",
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "evidence": {
+              "$ref": "#/definitions/SourceDescriptionSpan"
+            },
+            "left": {
+              "$ref": "#/definitions/SelectiveTextRecipe"
+            },
+            "right": {
+              "$ref": "#/definitions/SelectiveTextRecipe"
+            },
+            "type": {
+              "enum": [
+                "concat"
+              ],
+              "title": "ConcatSelectiveTextRecipeType",
+              "type": "string"
+            }
+          },
+          "required": [
+            "evidence",
+            "left",
+            "right",
+            "type"
+          ],
+          "title": "ConcatSelectiveTextRecipe",
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "description": "Only the selected arm is evaluated; neither arm is an observed result.",
+          "properties": {
+            "alternative": {
+              "$ref": "#/definitions/SelectiveTextRecipe"
+            },
+            "consequence": {
+              "$ref": "#/definitions/SelectiveTextRecipe"
+            },
+            "evidence": {
+              "$ref": "#/definitions/SourceDescriptionSpan"
+            },
+            "predicate": {
+              "$ref": "#/definitions/SelectivePredicateRecipe"
+            },
+            "type": {
+              "enum": [
+                "conditional"
+              ],
+              "title": "ConditionalSelectiveTextRecipeType",
+              "type": "string"
+            }
+          },
+          "required": [
+            "alternative",
+            "consequence",
+            "evidence",
+            "predicate",
+            "type"
+          ],
+          "title": "ConditionalSelectiveTextRecipe",
+          "type": "object"
+        }
+      ]
+    },
+    "SourceDescription": {
+      "description": "Completion means whole-source analysis finished, never that a tool ran.",
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "disposition": {
+              "enum": [
+                "completeSyntax"
+              ],
+              "type": "string"
+            },
+            "patches": {
+              "items": {
+                "$ref": "#/definitions/SubmittedPatch"
+              },
+              "type": "array"
+            },
+            "references": {
+              "items": {
+                "$ref": "#/definitions/SourceDescriptionReference"
+              },
+              "type": "array"
+            },
+            "sources": {
+              "items": {
+                "$ref": "#/definitions/SourceDescriptionSource"
+              },
+              "type": "array"
+            }
+          },
+          "required": [
+            "disposition",
+            "patches",
+            "references",
+            "sources"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "description": "Conditional forecasts may coexist with opaque regions. No execution claim.",
+          "properties": {
+            "barriers": {
+              "items": {
+                "$ref": "#/definitions/SelectiveBarrier"
+              },
+              "type": "array"
+            },
+            "disposition": {
+              "enum": [
+                "selectiveFindings"
+              ],
+              "type": "string"
+            },
+            "edits": {
+              "items": {
+                "$ref": "#/definitions/SelectivePredictedEdit"
+              },
+              "type": "array"
+            },
+            "sources": {
+              "items": {
+                "$ref": "#/definitions/SourceDescriptionSource"
+              },
+              "type": "array"
+            }
+          },
+          "required": [
+            "barriers",
+            "disposition",
+            "edits",
+            "sources"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "disposition": {
+              "enum": [
+                "fallback"
+              ],
+              "type": "string"
+            },
+            "reason": {
+              "$ref": "#/definitions/SourceDescriptionFallback"
+            }
+          },
+          "required": [
+            "disposition",
+            "reason"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "SourceDescriptionFallback": {
+      "enum": [
+        "unsupportedSource",
+        "sourceLimit",
+        "deadline",
+        "busy",
+        "unavailable",
+        "presentation"
+      ],
+      "type": "string"
+    },
+    "SourceDescriptionLanguage": {
+      "enum": [
+        "typeScript",
+        "shell",
+        "python"
+      ],
+      "type": "string"
+    },
+    "SourceDescriptionReference": {
+      "additionalProperties": false,
+      "properties": {
+        "evidence": {
+          "$ref": "#/definitions/SourceDescriptionSpan"
+        },
+        "kind": {
+          "$ref": "#/definitions/SourceDescriptionReferenceKind"
+        },
+        "literal": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "evidence",
+        "kind"
+      ],
+      "type": "object"
+    },
+    "SourceDescriptionReferenceKind": {
+      "enum": [
+        "importFrom",
+        "pathConstructorCall",
+        "openCall",
+        "readCall",
+        "replaceCall",
+        "transformCall",
+        "writeCall",
+        "invocationCall",
+        "commandOption",
+        "outputConsumer",
+        "shellConnector",
+        "shellRedirection",
+        "directoryOperand",
+        "environmentAssignment",
+        "heredocData"
+      ],
+      "type": "string"
+    },
+    "SourceDescriptionSource": {
+      "additionalProperties": false,
+      "description": "Original decoded text, including any leading exec pragma. No path resolution.",
+      "properties": {
+        "id": {
+          "format": "uint",
+          "minimum": 0.0,
+          "type": "integer"
+        },
+        "language": {
+          "$ref": "#/definitions/SourceDescriptionLanguage"
+        },
+        "parent": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/SourceDescriptionSpan"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "text": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "language",
+        "text"
+      ],
+      "type": "object"
+    },
+    "SourceDescriptionSpan": {
+      "additionalProperties": false,
+      "description": "UTF-8 byte offsets, one-based lines and one-based byte columns.",
+      "properties": {
+        "endByte": {
+          "format": "uint",
+          "minimum": 0.0,
+          "type": "integer"
+        },
+        "endLine": {
+          "format": "uint",
+          "minimum": 0.0,
+          "type": "integer"
+        },
+        "sourceId": {
+          "format": "uint",
+          "minimum": 0.0,
+          "type": "integer"
+        },
+        "startByte": {
+          "format": "uint",
+          "minimum": 0.0,
+          "type": "integer"
+        },
+        "startColumn": {
+          "format": "uint",
+          "minimum": 0.0,
+          "type": "integer"
+        },
+        "startLine": {
+          "format": "uint",
+          "minimum": 0.0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "endByte",
+        "endLine",
+        "sourceId",
+        "startByte",
+        "startColumn",
+        "startLine"
+      ],
+      "type": "object"
+    },
     "SubAgentActivityKind": {
       "enum": [
         "started",
@@ -748,6 +3147,242 @@
         "completed"
       ],
       "type": "string"
+    },
+    "SubmittedPatch": {
+      "additionalProperties": false,
+      "description": "Requested patch text has a separate byte-coordinate domain from JavaScript.",
+      "properties": {
+        "argument": {
+          "$ref": "#/definitions/SourceDescriptionSpan"
+        },
+        "files": {
+          "items": {
+            "$ref": "#/definitions/SubmittedPatchFile"
+          },
+          "type": "array"
+        },
+        "id": {
+          "format": "uint",
+          "minimum": 0.0,
+          "type": "integer"
+        },
+        "invocation": {
+          "$ref": "#/definitions/SourceDescriptionSpan"
+        },
+        "payload": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "argument",
+        "files",
+        "id",
+        "invocation",
+        "payload"
+      ],
+      "type": "object"
+    },
+    "SubmittedPatchChunk": {
+      "additionalProperties": false,
+      "properties": {
+        "endOfFile": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/SubmittedPatchEvidence"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "lines": {
+          "items": {
+            "$ref": "#/definitions/SubmittedPatchLine"
+          },
+          "type": "array"
+        },
+        "marker": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/SubmittedPatchEvidence"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "lines"
+      ],
+      "type": "object"
+    },
+    "SubmittedPatchEvidence": {
+      "additionalProperties": false,
+      "properties": {
+        "patchId": {
+          "format": "uint",
+          "minimum": 0.0,
+          "type": "integer"
+        },
+        "range": {
+          "$ref": "#/definitions/SubmittedPatchRange"
+        }
+      },
+      "required": [
+        "patchId",
+        "range"
+      ],
+      "type": "object"
+    },
+    "SubmittedPatchFile": {
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "enum": [
+                "add"
+              ],
+              "type": "string"
+            },
+            "lines": {
+              "items": {
+                "$ref": "#/definitions/SubmittedPatchLine"
+              },
+              "type": "array"
+            },
+            "path": {
+              "$ref": "#/definitions/SubmittedPatchPath"
+            }
+          },
+          "required": [
+            "kind",
+            "lines",
+            "path"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "enum": [
+                "delete"
+              ],
+              "type": "string"
+            },
+            "path": {
+              "$ref": "#/definitions/SubmittedPatchPath"
+            }
+          },
+          "required": [
+            "kind",
+            "path"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "chunks": {
+              "items": {
+                "$ref": "#/definitions/SubmittedPatchChunk"
+              },
+              "type": "array"
+            },
+            "kind": {
+              "enum": [
+                "update"
+              ],
+              "type": "string"
+            },
+            "moveTo": {
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/SubmittedPatchPath"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "path": {
+              "$ref": "#/definitions/SubmittedPatchPath"
+            }
+          },
+          "required": [
+            "chunks",
+            "kind",
+            "path"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "SubmittedPatchLine": {
+      "additionalProperties": false,
+      "properties": {
+        "evidence": {
+          "$ref": "#/definitions/SubmittedPatchEvidence"
+        },
+        "prefix": {
+          "$ref": "#/definitions/SubmittedPatchLinePrefix"
+        },
+        "text": {
+          "$ref": "#/definitions/SubmittedPatchEvidence"
+        }
+      },
+      "required": [
+        "evidence",
+        "prefix",
+        "text"
+      ],
+      "type": "object"
+    },
+    "SubmittedPatchLinePrefix": {
+      "enum": [
+        "context",
+        "plus",
+        "minus"
+      ],
+      "type": "string"
+    },
+    "SubmittedPatchPath": {
+      "additionalProperties": false,
+      "properties": {
+        "evidence": {
+          "$ref": "#/definitions/SubmittedPatchEvidence"
+        },
+        "spelling": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "evidence",
+        "spelling"
+      ],
+      "type": "object"
+    },
+    "SubmittedPatchRange": {
+      "additionalProperties": false,
+      "properties": {
+        "end": {
+          "format": "uint",
+          "minimum": 0.0,
+          "type": "integer"
+        },
+        "start": {
+          "format": "uint",
+          "minimum": 0.0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "end",
+        "start"
+      ],
+      "type": "object"
     },
     "TextElement": {
       "properties": {
@@ -774,6 +3409,35 @@
     },
     "ThreadItem": {
       "oneOf": [
+        {
+          "description": "Complete submitted syntax. This item's lifecycle describes analysis only.",
+          "properties": {
+            "callId": {
+              "type": "string"
+            },
+            "description": {
+              "$ref": "#/definitions/SourceDescription"
+            },
+            "id": {
+              "type": "string"
+            },
+            "type": {
+              "enum": [
+                "sourceDescription"
+              ],
+              "title": "SourceDescriptionThreadItemType",
+              "type": "string"
+            }
+          },
+          "required": [
+            "callId",
+            "description",
+            "id",
+            "type"
+          ],
+          "title": "SourceDescriptionThreadItem",
+          "type": "object"
+        },
         {
           "properties": {
             "clientId": {

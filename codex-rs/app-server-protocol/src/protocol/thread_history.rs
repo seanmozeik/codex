@@ -616,6 +616,14 @@ impl ThreadHistoryBuilder {
     }
 
     fn handle_item_started(&mut self, payload: &ItemStartedEvent) {
+        // Source starts carry final analysis metadata but are not renderable
+        // history. A snapshot during publication must wait for completion too.
+        if matches!(
+            &payload.item,
+            codex_protocol::items::TurnItem::SourceDescription(_)
+        ) {
+            return;
+        }
         self.handle_materialized_item_lifecycle(&payload.turn_id, &payload.item);
     }
 
@@ -638,6 +646,7 @@ impl ThreadHistoryBuilder {
             codex_protocol::items::TurnItem::HookPrompt(_)
             | codex_protocol::items::TurnItem::FunctionCallOutput(_)
             | codex_protocol::items::TurnItem::CommandExecution(_)
+            | codex_protocol::items::TurnItem::SourceDescription(_)
             | codex_protocol::items::TurnItem::DynamicToolCall(_)
             | codex_protocol::items::TurnItem::CollabAgentToolCall(_)
             | codex_protocol::items::TurnItem::SubAgentActivity(_)
@@ -5036,6 +5045,104 @@ mod tests {
         assert_eq!(
             builder.active_turn_snapshot().expect("active turn").items,
             vec![expected_item]
+        );
+    }
+
+    #[test]
+    fn source_description_materializes_only_completion_and_upserts_by_id() {
+        use codex_protocol::source_description::SourceDescription;
+        use codex_protocol::source_description::SourceDescriptionItem;
+        use codex_protocol::source_description::SourceDescriptionLanguage;
+        use codex_protocol::source_description::SourceDescriptionReference;
+        use codex_protocol::source_description::SourceDescriptionReferenceKind;
+        use codex_protocol::source_description::SourceDescriptionSource;
+        use codex_protocol::source_description::SourceDescriptionSpan;
+
+        let source = "await tools.exec_command({cmd:'cat a'});";
+        let item = CoreTurnItem::SourceDescription(SourceDescriptionItem {
+            id: "source-1".into(),
+            call_id: "call-1".into(),
+            description: SourceDescription::CompleteSyntax {
+                sources: vec![SourceDescriptionSource {
+                    id: 0,
+                    language: SourceDescriptionLanguage::TypeScript,
+                    parent: None,
+                    text: source.into(),
+                }],
+                references: vec![SourceDescriptionReference {
+                    kind: SourceDescriptionReferenceKind::InvocationCall,
+                    evidence: SourceDescriptionSpan {
+                        source_id: 0,
+                        start_byte: 6,
+                        end_byte: source.len() - 1,
+                        start_line: 1,
+                        end_line: 1,
+                        start_column: 7,
+                    },
+                    literal: None,
+                }],
+                patches: Vec::new(),
+            },
+        });
+        let expected = ThreadItem::from(item.clone());
+        let thread_id = ThreadId::new();
+        let started = EventMsg::ItemStarted(ItemStartedEvent {
+            thread_id,
+            turn_id: "turn-a".into(),
+            item: item.clone(),
+            started_at_ms: 1,
+        });
+        let completed = EventMsg::ItemCompleted(ItemCompletedEvent {
+            thread_id,
+            turn_id: "turn-a".into(),
+            item,
+            started_at_ms: Some(1),
+            completed_at_ms: 2,
+        });
+        let mut builder = ThreadHistoryBuilder::new();
+        builder.handle_event(&EventMsg::TurnStarted(TurnStartedEvent {
+            turn_id: "turn-a".into(),
+            root_turn_id: None,
+            trace_id: None,
+            started_at: None,
+            model_context_window: None,
+            collaboration_mode_kind: Default::default(),
+        }));
+
+        builder.handle_event(&started);
+        assert!(
+            builder
+                .active_turn_snapshot()
+                .expect("active turn")
+                .items
+                .is_empty()
+        );
+        assert!(
+            builder
+                .turn_snapshot("turn-a")
+                .expect("thread/read turn")
+                .items
+                .is_empty()
+        );
+
+        builder.handle_event(&completed);
+        assert_eq!(
+            builder
+                .active_turn_snapshot()
+                .expect("completed source")
+                .items,
+            vec![expected.clone()]
+        );
+
+        // A buffered repeated start must not reintroduce a second pending item.
+        builder.handle_event(&started);
+        builder.handle_event(&completed);
+        assert_eq!(
+            builder
+                .turn_snapshot("turn-a")
+                .expect("replayed turn")
+                .items,
+            vec![expected]
         );
     }
 

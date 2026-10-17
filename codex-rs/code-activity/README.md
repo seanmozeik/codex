@@ -8,10 +8,24 @@ including literal nested
 tool and interpreter calls. Local functions, closures and supported callbacks
 retain their source locations and repeated effects.
 
-`ActivityContract` gives clients a versioned envelope and typed activity rows.
-Every record is static intent, with source spans and nested-source provenance;
-unknown targets and unsupported semantics remain explicit. Streaming previews
-replace earlier revisions rather than accumulating stale predictions.
+For the initial whole-script UI contract, buffer final decoded source with
+`ScriptBuffer`, finish it into `CompleteScript`, and call
+`Analyzer::analyze_complete`. This produces all eligible static rows or none;
+any uncertainty discards every proposed row and diff. Unknown fragments can
+change bindings or control flow used by apparently recognized operations.
+Appending fragments produces no provisional activity. See the
+[whole-script contract](docs/whole-script.md).
+
+The older `analyze`, `ActivityContract`, and `ActivityStream` APIs remain partial
+diagnostic/experimental interfaces for comparison. Their retained recognized rows
+must not be used as the initial whole-script UI contract.
+
+The separate `forecast_edits` API produces conditional Python and Node edit
+recipes with explicit dependencies and unresolved regions. A pure supplied-byte
+materializer can turn a selected recipe into an operation-point preview. These
+results do not establish whole-script effects, successful execution, or final
+file contents. Native presentation and the remaining snapshot-supplier boundary
+are described in [conditional previews](docs/conditional-previews.md).
 
 The Codex adapter borrows the real `CommandExecutionItem`, preserves its existing
 parsed actions, cwd URI and execution status, and adds a separate analysis view.
@@ -54,7 +68,10 @@ The host owns execution, permissions, redaction and disclosure.
 Source is limited to 1 MiB, operations and uncertainty records to 256 each, nested
 sources to 64, embedded depth to 4, syntax depth to 64 and semantic visits to
 50,000 per source. Abstract values, bindings, functions and literal callback
-iteration are also bounded. These limits do not impose a native parsing deadline.
+iteration are also bounded. The strict complete-source API adds a shared
+cooperative 100 ms elapsed budget, including tree-sitter progress checks. It is
+not a hard wall-clock or resident-memory bound; the older diagnostic API retains
+its original behavior.
 
 Dynamic evaluation, arbitrary module initialization/user code, persistent REPL
 state, general shared-container mutation and full shell semantics are unmodeled.

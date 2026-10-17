@@ -199,6 +199,7 @@ fn without_thread_item_media(mut item: ThreadItem) -> ThreadItem {
             ..
         }
         | ThreadItem::CommandExecution { .. }
+        | ThreadItem::SourceDescription { .. }
         | ThreadItem::FileChange { .. }
         | ThreadItem::McpToolCall { result: None, .. }
         | ThreadItem::DynamicToolCall {

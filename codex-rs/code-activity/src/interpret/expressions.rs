@@ -48,6 +48,9 @@ impl<'tree> State<'_, 'tree> {
             (Some(o), Some(p)) => {
                 let base = self.eval(o, depth + 1);
                 let name = text(p, self.source).to_owned();
+                if !self.literal_loop_member(node, &base, &name) {
+                    return Value::Unknown;
+                }
                 match base {
                     Value::Api(api) => Value::Api(format!("{api}.{name}")),
                     Value::Object(fields) if self.language == crate::Language::TypeScript => {
@@ -195,6 +198,9 @@ impl<'tree> State<'_, 'tree> {
             }
         }
         let b = self.eval(right, depth + 1);
+        if !self.literal_loop_binary(node, &a, &b, operator) {
+            return Value::Unknown;
+        }
         match (a, b, operator) {
             (Value::Path(a), Value::Text(b), "/") => Value::Path(if b.starts_with('/') {
                 b
@@ -270,6 +276,13 @@ impl<'tree> State<'_, 'tree> {
         } else {
             let key = index.map_or(Value::Unknown, |n| self.eval(n, depth + 1));
             match (value, key) {
+                (Value::Api(api), Value::Text(key))
+                    if self.mode == super::Mode::Complete
+                        && self.language == crate::Language::TypeScript
+                        && super::computed::filesystem_member(&api, &key, index, self.source) =>
+                {
+                    Value::Api(format!("{api}.{key}"))
+                }
                 (Value::Object(fields), Value::Text(key)) => {
                     fields.get(&key).cloned().unwrap_or(Value::Data)
                 }

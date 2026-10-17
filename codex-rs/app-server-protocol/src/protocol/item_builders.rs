@@ -35,6 +35,7 @@ use codex_protocol::protocol::PatchApplyEndEvent;
 use codex_protocol::protocol::ReviewOutputEvent;
 use codex_protocol::review_format::REVIEW_FALLBACK_MESSAGE;
 use codex_protocol::review_format::render_review_output_text;
+use codex_protocol::source_description::SourceDescription;
 use codex_secrets::redact_secrets;
 use codex_shell_command::parse_command::parse_command;
 use codex_shell_command::parse_command::shlex_join;
@@ -49,6 +50,11 @@ pub struct CommandExecutionPresentation {
     pub command: String,
     /// Parsed command actions with recognizable secrets redacted.
     pub command_actions: Vec<CommandAction>,
+}
+
+/// Source evidence is indivisible: redacting any string discards the entire view.
+pub fn source_description_for_display(description: SourceDescription) -> SourceDescription {
+    description.into_presentable(|text| redact_secrets(text.to_owned()) == text)
 }
 
 impl CommandExecutionPresentation {

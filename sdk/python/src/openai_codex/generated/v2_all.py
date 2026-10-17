@@ -4305,6 +4305,279 @@ class SelectedCapabilityRoot(BaseModel):
     ]
 
 
+class CarrierSelectiveBarrierReason(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        populate_by_name=True,
+    )
+    reason: str
+    type: Annotated[Literal["carrier"], Field(title="CarrierSelectiveBarrierReasonType")]
+
+
+class SelectiveCarrierBasis(Enum):
+    standard_shell_dispatch_and_startup = "standardShellDispatchAndStartup"
+    standard_python3_cli = "standardPython3Cli"
+    standard_node_common_js_cli = "standardNodeCommonJsCli"
+
+
+class SelectiveEditBasis(Enum):
+    standard_api_forecast = "standardApiForecast"
+    host_tool_request = "hostToolRequest"
+
+
+class SelectiveJavaScriptAssumption(Enum):
+    standard_node_common_js_evaluation = "standardNodeCommonJsEvaluation"
+    canonical_node_fs = "canonicalNodeFs"
+    standard_string_methods = "standardStringMethods"
+    no_concurrent_mutation = "noConcurrentMutation"
+    complete_descriptor_writes = "completeDescriptorWrites"
+    regular_descriptor_files = "regularDescriptorFiles"
+
+
+class SelectiveJavaScriptBarrierReason(Enum):
+    unknown_name = "unknownName"
+    unmodeled_call = "unmodeledCall"
+    unsupported_operation = "unsupportedOperation"
+
+
+class EntryWorkingDirectorySelectiveJavaScriptDependency(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        populate_by_name=True,
+    )
+    cwd: str | None = None
+    type: Annotated[
+        Literal["entryWorkingDirectory"],
+        Field(title="EntryWorkingDirectorySelectiveJavaScriptDependencyType"),
+    ]
+
+
+class CapabilitySelectiveJavaScriptDependency(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        populate_by_name=True,
+    )
+    assumption: SelectiveJavaScriptAssumption
+    type: Annotated[
+        Literal["capability"], Field(title="CapabilitySelectiveJavaScriptDependencyType")
+    ]
+
+
+class FilesystemEpochSelectiveJavaScriptDependency(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        populate_by_name=True,
+    )
+    epoch: Annotated[int, Field(ge=0)]
+    type: Annotated[
+        Literal["filesystemEpoch"], Field(title="FilesystemEpochSelectiveJavaScriptDependencyType")
+    ]
+
+
+class SelectiveJavaScriptDescriptorPosition(Enum):
+    cursor = "cursor"
+    absolute = "absolute"
+
+
+class OverwriteSelectiveJavaScriptWriteEffect(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        populate_by_name=True,
+    )
+    type: Annotated[
+        Literal["overwrite"], Field(title="OverwriteSelectiveJavaScriptWriteEffectType")
+    ]
+
+
+class SelectiveLaterContext(Enum):
+    unobserved = "unobserved"
+    opaque_suffix = "opaqueSuffix"
+    known_later_touch = "knownLaterTouch"
+    possible_alias_later_touch = "possibleAliasLaterTouch"
+
+
+class PayloadByte(RootModel[int]):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    root: Annotated[int, Field(ge=0, le=255)]
+
+
+class SelectiveLogicalStreamRealization(RootModel[Literal["requiresSuccessfulFlushOrClose"]]):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    root: Annotated[
+        Literal["requiresSuccessfulFlushOrClose"],
+        Field(
+            description="Logical bytes are not an assertion of successful physical flush or close."
+        ),
+    ]
+
+
+class SelectivePythonAssumption(Enum):
+    pathlib_newline_support = "pathlibNewlineSupport"
+    standard_python_evaluation = "standardPythonEvaluation"
+    standard_builtin_open = "standardBuiltinOpen"
+    canonical_pathlib = "canonicalPathlib"
+    standard_text_methods = "standardTextMethods"
+    no_concurrent_mutation = "noConcurrentMutation"
+
+
+class SelectivePythonBarrierReason(Enum):
+    unknown_name = "unknownName"
+    unmodeled_call = "unmodeledCall"
+    unmodeled_import = "unmodeledImport"
+    unsupported_operation = "unsupportedOperation"
+    escaping_handle = "escapingHandle"
+
+
+class EntryWorkingDirectorySelectivePythonDependency(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        populate_by_name=True,
+    )
+    cwd: str | None = None
+    type: Annotated[
+        Literal["entryWorkingDirectory"],
+        Field(title="EntryWorkingDirectorySelectivePythonDependencyType"),
+    ]
+
+
+class CapabilitySelectivePythonDependency(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        populate_by_name=True,
+    )
+    assumption: SelectivePythonAssumption
+    type: Annotated[Literal["capability"], Field(title="CapabilitySelectivePythonDependencyType")]
+
+
+class FilesystemEpochSelectivePythonDependency(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        populate_by_name=True,
+    )
+    epoch: Annotated[int, Field(ge=0)]
+    type: Annotated[
+        Literal["filesystemEpoch"], Field(title="FilesystemEpochSelectivePythonDependencyType")
+    ]
+
+
+class SelectivePythonFinalState(Enum):
+    not_established = "notEstablished"
+    known_later_touch = "knownLaterTouch"
+    possible_alias_later_touch = "possibleAliasLaterTouch"
+    opaque_successor = "opaqueSuccessor"
+
+
+class TruncateSelectivePythonOperation(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        populate_by_name=True,
+    )
+    type: Annotated[Literal["truncate"], Field(title="TruncateSelectivePythonOperationType")]
+
+
+class SelectivePythonReadNewline(Enum):
+    universal_translate = "universalTranslate"
+    preserve = "preserve"
+
+
+class SelectivePythonStreamMode(Enum):
+    truncate_write = "truncateWrite"
+    update_existing = "updateExisting"
+
+
+class InitialZeroSelectivePythonStreamPosition(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        populate_by_name=True,
+    )
+    type: Annotated[
+        Literal["initialZero"], Field(title="InitialZeroSelectivePythonStreamPositionType")
+    ]
+
+
+class SelectivePythonWriteNewline(Enum):
+    runtime_default = "runtimeDefault"
+    preserve = "preserve"
+    cr = "cr"
+    cr_lf = "crLf"
+
+
+class SelectivePythonWriteResultCondition(RootModel[Literal["fullCharacterCount"]]):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    root: Annotated[
+        Literal["fullCharacterCount"],
+        Field(
+            description="Current write acceptance remains conditional, never a completed predecessor."
+        ),
+    ]
+
+
+class SelectiveSnapshotBasis(RootModel[Literal["preExecutionSnapshotConditional"]]):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    root: Annotated[
+        Literal["preExecutionSnapshotConditional"],
+        Field(
+            description="Captured path identities, existence/absence and bytes must remain applicable until each modeled operation/read, except for the listed replayed effects. Startup/import behavior, ordinary APIs and normal completion remain premises."
+        ),
+    ]
+
+
+class SelectiveSnapshotEncoding(RootModel[Literal["utf8"]]):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    root: Literal["utf8"]
+
+
+class ReplayOrdinal(RootModel[int]):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    root: Annotated[int, Field(ge=0)]
+
+
+class SelectiveSnapshotReadNewline(Enum):
+    unspecified = "unspecified"
+    python_universal = "pythonUniversal"
+    source_declared = "sourceDeclared"
+    preserve = "preserve"
+
+
+class SelectiveSnapshotScope(Enum):
+    operation_point = "operationPoint"
+    logical_stream = "logicalStream"
+
+
+class SelectiveSnapshotWriteNewline(Enum):
+    unspecified = "unspecified"
+    lf = "lf"
+    cr = "cr"
+    cr_lf = "crLf"
+    preserve = "preserve"
+
+
+class SelectiveTarget(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        populate_by_name=True,
+    )
+    cwd: str | None = None
+    path: str
+
+
+class SelectiveTextEncoding(Enum):
+    utf8 = "utf8"
+    runtime_default = "runtimeDefault"
+
+
 class SendAddCreditsNudgeEmailParams(BaseModel):
     model_config = ConfigDict(
         populate_by_name=True,
@@ -4969,6 +5242,52 @@ class SortDirection(Enum):
     desc = "desc"
 
 
+class SourceDescriptionFallback(Enum):
+    unsupported_source = "unsupportedSource"
+    source_limit = "sourceLimit"
+    deadline = "deadline"
+    busy = "busy"
+    unavailable = "unavailable"
+    presentation = "presentation"
+
+
+class SourceDescriptionLanguage(Enum):
+    type_script = "typeScript"
+    shell = "shell"
+    python = "python"
+
+
+class SourceDescriptionReferenceKind(Enum):
+    import_from = "importFrom"
+    path_constructor_call = "pathConstructorCall"
+    open_call = "openCall"
+    read_call = "readCall"
+    replace_call = "replaceCall"
+    transform_call = "transformCall"
+    write_call = "writeCall"
+    invocation_call = "invocationCall"
+    command_option = "commandOption"
+    output_consumer = "outputConsumer"
+    shell_connector = "shellConnector"
+    shell_redirection = "shellRedirection"
+    directory_operand = "directoryOperand"
+    environment_assignment = "environmentAssignment"
+    heredoc_data = "heredocData"
+
+
+class SourceDescriptionSpan(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        populate_by_name=True,
+    )
+    end_byte: Annotated[int, Field(alias="endByte", ge=0)]
+    end_line: Annotated[int, Field(alias="endLine", ge=0)]
+    source_id: Annotated[int, Field(alias="sourceId", ge=0)]
+    start_byte: Annotated[int, Field(alias="startByte", ge=0)]
+    start_column: Annotated[int, Field(alias="startColumn", ge=0)]
+    start_line: Annotated[int, Field(alias="startLine", ge=0)]
+
+
 class SpendControlLimitSnapshot(BaseModel):
     model_config = ConfigDict(
         populate_by_name=True,
@@ -5020,6 +5339,21 @@ class SubagentMigration(BaseModel):
         populate_by_name=True,
     )
     name: str
+
+
+class SubmittedPatchLinePrefix(Enum):
+    context = "context"
+    plus = "plus"
+    minus = "minus"
+
+
+class SubmittedPatchRange(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        populate_by_name=True,
+    )
+    end: Annotated[int, Field(ge=0)]
+    start: Annotated[int, Field(ge=0)]
 
 
 class TerminalInteractionNotification(BaseModel):
@@ -9116,6 +9450,343 @@ class ScheduledTaskSummary(BaseModel):
     schedule: ScheduledTaskSchedule
 
 
+class PythonSelectiveBarrierReason(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        populate_by_name=True,
+    )
+    reason: SelectivePythonBarrierReason
+    type: Annotated[Literal["python"], Field(title="PythonSelectiveBarrierReasonType")]
+
+
+class JavaScriptSelectiveBarrierReason(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        populate_by_name=True,
+    )
+    reason: SelectiveJavaScriptBarrierReason
+    type: Annotated[Literal["javaScript"], Field(title="JavaScriptSelectiveBarrierReasonType")]
+
+
+class SelectiveBarrierReason(
+    RootModel[
+        CarrierSelectiveBarrierReason
+        | PythonSelectiveBarrierReason
+        | JavaScriptSelectiveBarrierReason
+    ]
+):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    root: (
+        CarrierSelectiveBarrierReason
+        | PythonSelectiveBarrierReason
+        | JavaScriptSelectiveBarrierReason
+    )
+
+
+class SelectiveCarrierAssumption(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        populate_by_name=True,
+    )
+    basis: SelectiveCarrierBasis
+    invocation: SourceDescriptionSpan
+    language: SourceDescriptionLanguage
+
+
+class LiteralSelectiveIndexRecipe(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        populate_by_name=True,
+    )
+    evidence: SourceDescriptionSpan
+    type: Annotated[Literal["literal"], Field(title="LiteralSelectiveIndexRecipeType")]
+    value: int
+
+
+class DescriptorSelectiveJavaScriptDependency(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        populate_by_name=True,
+    )
+    descriptor_id: Annotated[int, Field(alias="descriptorId", ge=0)]
+    opened_at: Annotated[SourceDescriptionSpan, Field(alias="openedAt")]
+    type: Annotated[
+        Literal["descriptor"], Field(title="DescriptorSelectiveJavaScriptDependencyType")
+    ]
+
+
+class BindingSelectiveJavaScriptDependency(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        populate_by_name=True,
+    )
+    evidence: SourceDescriptionSpan
+    name: str
+    type: Annotated[Literal["binding"], Field(title="BindingSelectiveJavaScriptDependencyType")]
+    version: Annotated[int, Field(ge=0)]
+
+
+class ReadValueSelectiveJavaScriptDependency(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        populate_by_name=True,
+    )
+    evidence: SourceDescriptionSpan
+    read_id: Annotated[int, Field(alias="readId", ge=0)]
+    type: Annotated[Literal["readValue"], Field(title="ReadValueSelectiveJavaScriptDependencyType")]
+
+
+class SelectiveJavaScriptDependency(
+    RootModel[
+        DescriptorSelectiveJavaScriptDependency
+        | BindingSelectiveJavaScriptDependency
+        | ReadValueSelectiveJavaScriptDependency
+        | EntryWorkingDirectorySelectiveJavaScriptDependency
+        | CapabilitySelectiveJavaScriptDependency
+        | FilesystemEpochSelectiveJavaScriptDependency
+    ]
+):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    root: Annotated[
+        DescriptorSelectiveJavaScriptDependency
+        | BindingSelectiveJavaScriptDependency
+        | ReadValueSelectiveJavaScriptDependency
+        | EntryWorkingDirectorySelectiveJavaScriptDependency
+        | CapabilitySelectiveJavaScriptDependency
+        | FilesystemEpochSelectiveJavaScriptDependency,
+        Field(
+            description="Captured evaluation dependencies, never authority to execute a request."
+        ),
+    ]
+
+
+class LiteralSelectiveJavaScriptTextRecipe(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        populate_by_name=True,
+    )
+    evidence: SourceDescriptionSpan
+    type: Annotated[Literal["literal"], Field(title="LiteralSelectiveJavaScriptTextRecipeType")]
+    value: str
+
+
+class ReadUtf8SelectiveJavaScriptTextRecipe(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        populate_by_name=True,
+    )
+    evidence: SourceDescriptionSpan
+    filesystem_epoch: Annotated[int, Field(alias="filesystemEpoch", ge=0)]
+    read_id: Annotated[int, Field(alias="readId", ge=0)]
+    target: SelectiveTarget
+    type: Annotated[Literal["readUtf8"], Field(title="ReadUtf8SelectiveJavaScriptTextRecipeType")]
+
+
+class TruncateSelectiveJavaScriptWriteEffect(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        populate_by_name=True,
+    )
+    descriptor_id: Annotated[int, Field(alias="descriptorId", ge=0)]
+    opened_at: Annotated[SourceDescriptionSpan, Field(alias="openedAt")]
+    type: Annotated[Literal["truncate"], Field(title="TruncateSelectiveJavaScriptWriteEffectType")]
+
+
+class DescriptorAppendSelectiveJavaScriptWriteEffect(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        populate_by_name=True,
+    )
+    descriptor_id: Annotated[int, Field(alias="descriptorId", ge=0)]
+    opened_at: Annotated[SourceDescriptionSpan, Field(alias="openedAt")]
+    type: Annotated[
+        Literal["descriptorAppend"],
+        Field(title="DescriptorAppendSelectiveJavaScriptWriteEffectType"),
+    ]
+
+
+class DescriptorWriteSelectiveJavaScriptWriteEffect(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        populate_by_name=True,
+    )
+    byte_offset: Annotated[int, Field(alias="byteOffset", ge=0)]
+    descriptor_id: Annotated[int, Field(alias="descriptorId", ge=0)]
+    opened_at: Annotated[SourceDescriptionSpan, Field(alias="openedAt")]
+    position: SelectiveJavaScriptDescriptorPosition
+    type: Annotated[
+        Literal["descriptorWrite"], Field(title="DescriptorWriteSelectiveJavaScriptWriteEffectType")
+    ]
+
+
+class SelectiveJavaScriptWriteEffect(
+    RootModel[
+        OverwriteSelectiveJavaScriptWriteEffect
+        | TruncateSelectiveJavaScriptWriteEffect
+        | DescriptorAppendSelectiveJavaScriptWriteEffect
+        | DescriptorWriteSelectiveJavaScriptWriteEffect
+    ]
+):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    root: Annotated[
+        OverwriteSelectiveJavaScriptWriteEffect
+        | TruncateSelectiveJavaScriptWriteEffect
+        | DescriptorAppendSelectiveJavaScriptWriteEffect
+        | DescriptorWriteSelectiveJavaScriptWriteEffect,
+        Field(
+            description="Conditional byte effects of path writes and exclusively owned descriptors."
+        ),
+    ]
+
+
+class SelectiveLogicalStreamBinding(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        populate_by_name=True,
+    )
+    base_filesystem_epoch: Annotated[int, Field(alias="baseFilesystemEpoch", ge=0)]
+    opened_at: Annotated[SourceDescriptionSpan, Field(alias="openedAt")]
+    revision: Annotated[int, Field(ge=0)]
+    source_id: Annotated[int, Field(alias="sourceId", ge=0)]
+    stream_id: Annotated[int, Field(alias="streamId", ge=0)]
+
+
+class BindingSelectivePythonDependency(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        populate_by_name=True,
+    )
+    evidence: SourceDescriptionSpan
+    name: str
+    type: Annotated[Literal["binding"], Field(title="BindingSelectivePythonDependencyType")]
+    version: Annotated[int, Field(ge=0)]
+
+
+class ReadValueSelectivePythonDependency(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        populate_by_name=True,
+    )
+    evidence: SourceDescriptionSpan
+    read_id: Annotated[int, Field(alias="readId", ge=0)]
+    type: Annotated[Literal["readValue"], Field(title="ReadValueSelectivePythonDependencyType")]
+
+
+class SelectivePythonDependency(
+    RootModel[
+        BindingSelectivePythonDependency
+        | ReadValueSelectivePythonDependency
+        | EntryWorkingDirectorySelectivePythonDependency
+        | CapabilitySelectivePythonDependency
+        | FilesystemEpochSelectivePythonDependency
+    ]
+):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    root: (
+        BindingSelectivePythonDependency
+        | ReadValueSelectivePythonDependency
+        | EntryWorkingDirectorySelectivePythonDependency
+        | CapabilitySelectivePythonDependency
+        | FilesystemEpochSelectivePythonDependency
+    )
+
+
+class SelectivePythonIterationContext(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        populate_by_name=True,
+    )
+    evidence: SourceDescriptionSpan
+    index: Annotated[int, Field(ge=0)]
+    literal_count: Annotated[int, Field(alias="literalCount", ge=0)]
+
+
+class RewoundZeroSelectivePythonStreamPosition(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        populate_by_name=True,
+    )
+    read_evidence: Annotated[SourceDescriptionSpan, Field(alias="readEvidence")]
+    read_id: Annotated[int, Field(alias="readId", ge=0)]
+    seek_evidence: Annotated[SourceDescriptionSpan, Field(alias="seekEvidence")]
+    type: Annotated[
+        Literal["rewoundZero"], Field(title="RewoundZeroSelectivePythonStreamPositionType")
+    ]
+
+
+class SelectivePythonStreamPosition(
+    RootModel[InitialZeroSelectivePythonStreamPosition | RewoundZeroSelectivePythonStreamPosition]
+):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    root: Annotated[
+        InitialZeroSelectivePythonStreamPosition | RewoundZeroSelectivePythonStreamPosition,
+        Field(description="Zero-position proof; read completion alone does not establish rewind."),
+    ]
+
+
+class SelectiveSnapshotReadBinding(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        populate_by_name=True,
+    )
+    encoding: SelectiveTextEncoding
+    filesystem_epoch: Annotated[int, Field(alias="filesystemEpoch", ge=0)]
+    newline: SelectiveSnapshotReadNewline
+    read_id: Annotated[int, Field(alias="readId", ge=0)]
+    source_id: Annotated[int, Field(alias="sourceId", ge=0)]
+    target: SelectiveTarget
+
+
+class SelectiveSnapshotTextProfile(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        populate_by_name=True,
+    )
+    read_newline: Annotated[SelectiveSnapshotReadNewline, Field(alias="readNewline")]
+    runtime_default_encoding: Annotated[
+        SelectiveSnapshotEncoding | None,
+        Field(
+            alias="runtimeDefaultEncoding",
+            description="None preserves an unresolved Python default codec.",
+        ),
+    ] = None
+    write_newline: Annotated[SelectiveSnapshotWriteNewline, Field(alias="writeNewline")]
+
+
+class LiteralSelectiveTextRecipe(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        populate_by_name=True,
+    )
+    evidence: SourceDescriptionSpan
+    type: Annotated[Literal["literal"], Field(title="LiteralSelectiveTextRecipeType")]
+    value: str
+
+
+class ReadSelectiveTextRecipe(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        populate_by_name=True,
+    )
+    encoding: SelectiveTextEncoding
+    evidence: SourceDescriptionSpan
+    filesystem_epoch: Annotated[int, Field(alias="filesystemEpoch", ge=0)]
+    newline: SelectivePythonReadNewline | None = None
+    read_id: Annotated[int, Field(alias="readId", ge=0)]
+    target: SelectiveTarget
+    type: Annotated[Literal["read"], Field(title="ReadSelectiveTextRecipeType")]
+
+
 class ThreadStatusChangedServerNotification(BaseModel):
     model_config = ConfigDict(
         populate_by_name=True,
@@ -9772,6 +10443,36 @@ class SkillsListResponse(BaseModel):
     data: list[SkillsListEntry]
 
 
+class SourceDescription3(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        populate_by_name=True,
+    )
+    disposition: Literal["fallback"]
+    reason: SourceDescriptionFallback
+
+
+class SourceDescriptionReference(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        populate_by_name=True,
+    )
+    evidence: SourceDescriptionSpan
+    kind: SourceDescriptionReferenceKind
+    literal: str | None = None
+
+
+class SourceDescriptionSource(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        populate_by_name=True,
+    )
+    id: Annotated[int, Field(ge=0)]
+    language: SourceDescriptionLanguage
+    parent: SourceDescriptionSpan | None = None
+    text: str
+
+
 class ThreadSpawn(BaseModel):
     model_config = ConfigDict(
         populate_by_name=True,
@@ -9798,6 +10499,34 @@ class SubAgentSource(
         populate_by_name=True,
     )
     root: SubAgentSourceValue | ThreadSpawnSubAgentSource | OtherSubAgentSource
+
+
+class SubmittedPatchEvidence(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        populate_by_name=True,
+    )
+    patch_id: Annotated[int, Field(alias="patchId", ge=0)]
+    range: SubmittedPatchRange
+
+
+class SubmittedPatchLine(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        populate_by_name=True,
+    )
+    evidence: SubmittedPatchEvidence
+    prefix: SubmittedPatchLinePrefix
+    text: SubmittedPatchEvidence
+
+
+class SubmittedPatchPath(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        populate_by_name=True,
+    )
+    evidence: SubmittedPatchEvidence
+    spelling: str
 
 
 class ThreadForkParams(BaseModel):
@@ -11190,6 +11919,80 @@ class ResponseItem(
     )
 
 
+class SelectiveBarrier(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        populate_by_name=True,
+    )
+    evidence: SourceDescriptionSpan
+    reason: SelectiveBarrierReason
+
+
+class SelectiveLogicalStreamPreviewMetadata(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        populate_by_name=True,
+    )
+    accepted_characters_required: Annotated[
+        int,
+        Field(
+            alias="acceptedCharactersRequired",
+            description="Unicode characters accepted before output newline translation.",
+            ge=0,
+        ),
+    ]
+    binding: SelectiveLogicalStreamBinding
+    mode: SelectivePythonStreamMode
+    payload_bytes: Annotated[
+        list[PayloadByte],
+        Field(
+            alias="payloadBytes",
+            description="UTF-8 payload after output newline translation, excluding retained suffix.",
+        ),
+    ]
+    position: SelectivePythonStreamPosition
+    realization: SelectiveLogicalStreamRealization
+    revision_after: Annotated[int, Field(alias="revisionAfter", ge=0)]
+
+
+class SelectiveSnapshotPreview(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        populate_by_name=True,
+    )
+    after: str
+    basis: SelectiveSnapshotBasis
+    before: Annotated[
+        str | None,
+        Field(description="None means captured absence, never unreadable or unavailable content."),
+    ] = None
+    environment_id: Annotated[
+        str,
+        Field(
+            alias="environmentId",
+            description="Capture context is separate from the original source path spelling/cwd.",
+        ),
+    ]
+    filesystem_epoch: Annotated[int, Field(alias="filesystemEpoch", ge=0)]
+    logical_stream: Annotated[
+        SelectiveLogicalStreamPreviewMetadata | None, Field(alias="logicalStream")
+    ] = None
+    read_bindings: Annotated[list[SelectiveSnapshotReadBinding], Field(alias="readBindings")]
+    replay_ordinals: Annotated[
+        list[ReplayOrdinal],
+        Field(
+            alias="replayOrdinals",
+            description="Earlier outer operation ordinals replayed to obtain this operation point.",
+        ),
+    ]
+    resolved_cwd: Annotated[str, Field(alias="resolvedCwd")]
+    resolved_target: Annotated[str, Field(alias="resolvedTarget")]
+    scope: SelectiveSnapshotScope
+    source_id: Annotated[int, Field(alias="sourceId", ge=0)]
+    text_profile: Annotated[SelectiveSnapshotTextProfile, Field(alias="textProfile")]
+    unified_diff: Annotated[str, Field(alias="unifiedDiff")]
+
+
 class ErrorServerNotification(BaseModel):
     model_config = ConfigDict(
         populate_by_name=True,
@@ -11447,6 +12250,55 @@ class SessionSource(RootModel[SessionSourceValue | CustomSessionSource | SubAgen
     root: SessionSourceValue | CustomSessionSource | SubAgentSessionSource
 
 
+class SubmittedPatchChunk(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        populate_by_name=True,
+    )
+    end_of_file: Annotated[SubmittedPatchEvidence | None, Field(alias="endOfFile")] = None
+    lines: list[SubmittedPatchLine]
+    marker: SubmittedPatchEvidence | None = None
+
+
+class SubmittedPatchFile1(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        populate_by_name=True,
+    )
+    kind: Literal["add"]
+    lines: list[SubmittedPatchLine]
+    path: SubmittedPatchPath
+
+
+class SubmittedPatchFile2(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        populate_by_name=True,
+    )
+    kind: Literal["delete"]
+    path: SubmittedPatchPath
+
+
+class SubmittedPatchFile3(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        populate_by_name=True,
+    )
+    chunks: list[SubmittedPatchChunk]
+    kind: Literal["update"]
+    move_to: Annotated[SubmittedPatchPath | None, Field(alias="moveTo")] = None
+    path: SubmittedPatchPath
+
+
+class SubmittedPatchFile(
+    RootModel[SubmittedPatchFile1 | SubmittedPatchFile2 | SubmittedPatchFile3]
+):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    root: SubmittedPatchFile1 | SubmittedPatchFile2 | SubmittedPatchFile3
+
+
 class FunctionCallOutputThreadItem(BaseModel):
     model_config = ConfigDict(
         populate_by_name=True,
@@ -11456,108 +12308,6 @@ class FunctionCallOutputThreadItem(BaseModel):
     namespace: str | None = None
     output: FunctionCallOutputBody
     type: Annotated[Literal["functionCallOutput"], Field(title="FunctionCallOutputThreadItemType")]
-
-
-class ThreadItem(
-    RootModel[
-        UserMessageThreadItem
-        | HookPromptThreadItem
-        | AgentMessageThreadItem
-        | FunctionCallOutputThreadItem
-        | PlanThreadItem
-        | ReasoningThreadItem
-        | CommandExecutionThreadItem
-        | FileChangeThreadItem
-        | McpToolCallThreadItem
-        | DynamicToolCallThreadItem
-        | CollabAgentToolCallThreadItem
-        | SubAgentActivityThreadItem
-        | WebSearchThreadItem
-        | ImageViewThreadItem
-        | SleepThreadItem
-        | ImageGenerationThreadItem
-        | EnteredReviewModeThreadItem
-        | ExitedReviewModeThreadItem
-        | ContextCompactionThreadItem
-    ]
-):
-    model_config = ConfigDict(
-        populate_by_name=True,
-    )
-    root: (
-        UserMessageThreadItem
-        | HookPromptThreadItem
-        | AgentMessageThreadItem
-        | FunctionCallOutputThreadItem
-        | PlanThreadItem
-        | ReasoningThreadItem
-        | CommandExecutionThreadItem
-        | FileChangeThreadItem
-        | McpToolCallThreadItem
-        | DynamicToolCallThreadItem
-        | CollabAgentToolCallThreadItem
-        | SubAgentActivityThreadItem
-        | WebSearchThreadItem
-        | ImageViewThreadItem
-        | SleepThreadItem
-        | ImageGenerationThreadItem
-        | EnteredReviewModeThreadItem
-        | ExitedReviewModeThreadItem
-        | ContextCompactionThreadItem
-    )
-
-
-class ThreadItemEntry(BaseModel):
-    model_config = ConfigDict(
-        populate_by_name=True,
-    )
-    completed_at_ms: Annotated[
-        int | None,
-        Field(
-            alias="completedAtMs",
-            description="Unix timestamp (milliseconds) when the item completed, if recorded by the producer.",
-        ),
-    ] = None
-    item: ThreadItem
-    started_at_ms: Annotated[
-        int | None,
-        Field(
-            alias="startedAtMs",
-            description="Unix timestamp (milliseconds) when the item started, if recorded by the producer.",
-        ),
-    ] = None
-    turn_id: Annotated[str, Field(alias="turnId", description="Turn containing this item.")]
-
-
-class ThreadItemsListResponse(BaseModel):
-    model_config = ConfigDict(
-        populate_by_name=True,
-    )
-    backwards_cursor: Annotated[
-        str | None,
-        Field(
-            alias="backwardsCursor",
-            description="Opaque cursor to pass as `cursor` when reversing `sortDirection`. This is only populated when the page contains at least one item.",
-        ),
-    ] = None
-    data: list[ThreadItemEntry]
-    next_cursor: Annotated[
-        str | None,
-        Field(
-            alias="nextCursor",
-            description="Opaque cursor to pass to the next call to continue after the last item. if None, there are no more items to return.",
-        ),
-    ] = None
-
-
-class ItemThreadTimelineEntry(BaseModel):
-    model_config = ConfigDict(
-        populate_by_name=True,
-    )
-    item: ThreadItem
-    position: Annotated[int, Field(ge=0)]
-    turn_id: Annotated[str, Field(alias="turnId")]
-    type: Annotated[Literal["item"], Field(title="ItemThreadTimelineEntryType")]
 
 
 class TurnCompletedThreadTimelineEntry(BaseModel):
@@ -11574,89 +12324,6 @@ class TurnCompletedThreadTimelineEntry(BaseModel):
     type: Annotated[Literal["turnCompleted"], Field(title="TurnCompletedThreadTimelineEntryType")]
 
 
-class ThreadTimelineEntry(
-    RootModel[
-        ItemThreadTimelineEntry
-        | RealtimeThreadTimelineEntry
-        | TurnStartedThreadTimelineEntry
-        | TurnCompletedThreadTimelineEntry
-    ]
-):
-    model_config = ConfigDict(
-        populate_by_name=True,
-    )
-    root: Annotated[
-        ItemThreadTimelineEntry
-        | RealtimeThreadTimelineEntry
-        | TurnStartedThreadTimelineEntry
-        | TurnCompletedThreadTimelineEntry,
-        Field(description="EXPERIMENTAL - one item or turn boundary in canonical rollout order."),
-    ]
-
-
-class Turn(BaseModel):
-    model_config = ConfigDict(
-        populate_by_name=True,
-    )
-    completed_at: Annotated[
-        int | None,
-        Field(
-            alias="completedAt", description="Unix timestamp (in seconds) when the turn completed."
-        ),
-    ] = None
-    duration_ms: Annotated[
-        int | None,
-        Field(
-            alias="durationMs",
-            description="Duration between turn start and completion in milliseconds, if known.",
-        ),
-    ] = None
-    error: Annotated[
-        TurnError | None, Field(description="Error associated with a failed or interrupted turn.")
-    ] = None
-    id: Annotated[
-        str, Field(description="Identifier for this turn. Codex-generated turn IDs are UUIDv7.")
-    ]
-    items: Annotated[
-        list[ThreadItem], Field(description="Thread items currently included in this turn payload.")
-    ]
-    items_view: Annotated[
-        TurnItemsView | None,
-        Field(
-            alias="itemsView",
-            description="Describes how much of `items` has been loaded for this turn.",
-        ),
-    ] = "full"
-    started_at: Annotated[
-        int | None,
-        Field(alias="startedAt", description="Unix timestamp (in seconds) when the turn started."),
-    ] = None
-    status: TurnStatus
-
-
-class TurnCompletedNotification(BaseModel):
-    model_config = ConfigDict(
-        populate_by_name=True,
-    )
-    thread_id: Annotated[str, Field(alias="threadId")]
-    turn: Turn
-
-
-class TurnStartResponse(BaseModel):
-    model_config = ConfigDict(
-        populate_by_name=True,
-    )
-    turn: Turn
-
-
-class TurnStartedNotification(BaseModel):
-    model_config = ConfigDict(
-        populate_by_name=True,
-    )
-    thread_id: Annotated[str, Field(alias="threadId")]
-    turn: Turn
-
-
 class TurnToolOutput(BaseModel):
     model_config = ConfigDict(
         populate_by_name=True,
@@ -11664,15 +12331,6 @@ class TurnToolOutput(BaseModel):
     name: str
     namespace: str | None = None
     output: FunctionCallOutputBody
-
-
-class TurnsPage(BaseModel):
-    model_config = ConfigDict(
-        populate_by_name=True,
-    )
-    backwards_cursor: Annotated[str | None, Field(alias="backwardsCursor")] = None
-    data: list[Turn]
-    next_cursor: Annotated[str | None, Field(alias="nextCursor")] = None
 
 
 class AdditionalFileSystemPermissions(BaseModel):
@@ -11859,38 +12517,6 @@ class ExternalAgentConfigImportParams(BaseModel):
     ] = None
 
 
-class ItemCompletedNotification(BaseModel):
-    model_config = ConfigDict(
-        populate_by_name=True,
-    )
-    completed_at_ms: Annotated[
-        int,
-        Field(
-            alias="completedAtMs",
-            description="Unix timestamp (in milliseconds) when this item lifecycle completed.",
-        ),
-    ]
-    item: ThreadItem
-    thread_id: Annotated[str, Field(alias="threadId")]
-    turn_id: Annotated[str, Field(alias="turnId")]
-
-
-class ItemStartedNotification(BaseModel):
-    model_config = ConfigDict(
-        populate_by_name=True,
-    )
-    item: ThreadItem
-    started_at_ms: Annotated[
-        int,
-        Field(
-            alias="startedAtMs",
-            description="Unix timestamp (in milliseconds) when this item lifecycle started.",
-        ),
-    ]
-    thread_id: Annotated[str, Field(alias="threadId")]
-    turn_id: Annotated[str, Field(alias="turnId")]
-
-
 class PluginDetail(BaseModel):
     model_config = ConfigDict(
         populate_by_name=True,
@@ -11981,481 +12607,16 @@ class RequestPermissionProfile(BaseModel):
     network: AdditionalNetworkPermissions | None = None
 
 
-class ReviewStartResponse(BaseModel):
+class SubmittedPatch(BaseModel):
     model_config = ConfigDict(
+        extra="forbid",
         populate_by_name=True,
     )
-    review_thread_id: Annotated[
-        str,
-        Field(
-            alias="reviewThreadId",
-            description="Identifies the thread where the review runs.\n\nFor inline reviews, this is the original thread id. For detached reviews, this is the id of the new review thread.",
-        ),
-    ]
-    turn: Turn
-
-
-class TurnStartedServerNotification(BaseModel):
-    model_config = ConfigDict(
-        populate_by_name=True,
-    )
-    emitted_at_ms: Annotated[
-        int | None,
-        Field(
-            alias="emittedAtMs",
-            description="Unix timestamp (in milliseconds) when app-server emitted this notification.",
-        ),
-    ] = None
-    method: Annotated[Literal["turn/started"], Field(title="Turn/startedNotificationMethod")]
-    params: TurnStartedNotification
-
-
-class TurnCompletedServerNotification(BaseModel):
-    model_config = ConfigDict(
-        populate_by_name=True,
-    )
-    emitted_at_ms: Annotated[
-        int | None,
-        Field(
-            alias="emittedAtMs",
-            description="Unix timestamp (in milliseconds) when app-server emitted this notification.",
-        ),
-    ] = None
-    method: Annotated[Literal["turn/completed"], Field(title="Turn/completedNotificationMethod")]
-    params: TurnCompletedNotification
-
-
-class ItemStartedServerNotification(BaseModel):
-    model_config = ConfigDict(
-        populate_by_name=True,
-    )
-    emitted_at_ms: Annotated[
-        int | None,
-        Field(
-            alias="emittedAtMs",
-            description="Unix timestamp (in milliseconds) when app-server emitted this notification.",
-        ),
-    ] = None
-    method: Annotated[Literal["item/started"], Field(title="Item/startedNotificationMethod")]
-    params: ItemStartedNotification
-
-
-class ItemCompletedServerNotification(BaseModel):
-    model_config = ConfigDict(
-        populate_by_name=True,
-    )
-    emitted_at_ms: Annotated[
-        int | None,
-        Field(
-            alias="emittedAtMs",
-            description="Unix timestamp (in milliseconds) when app-server emitted this notification.",
-        ),
-    ] = None
-    method: Annotated[Literal["item/completed"], Field(title="Item/completedNotificationMethod")]
-    params: ItemCompletedNotification
-
-
-class Thread(BaseModel):
-    model_config = ConfigDict(
-        populate_by_name=True,
-    )
-    agent_nickname: Annotated[
-        str | None,
-        Field(
-            alias="agentNickname",
-            description="Optional random unique nickname assigned to an AgentControl-spawned sub-agent.",
-        ),
-    ] = None
-    agent_role: Annotated[
-        str | None,
-        Field(
-            alias="agentRole",
-            description="Optional role (agent_role) assigned to an AgentControl-spawned sub-agent.",
-        ),
-    ] = None
-    cli_version: Annotated[
-        str, Field(alias="cliVersion", description="Version of the CLI that created the thread.")
-    ]
-    created_at: Annotated[
-        int,
-        Field(
-            alias="createdAt",
-            description="Unix timestamp (in seconds) when the thread was created.",
-        ),
-    ]
-    cwd: Annotated[AbsolutePathBuf, Field(description="Working directory captured for the thread.")]
-    ephemeral: Annotated[
-        bool,
-        Field(
-            description="Whether the thread is ephemeral and should not be materialized on disk."
-        ),
-    ]
-    forked_from_id: Annotated[
-        str | None,
-        Field(
-            alias="forkedFromId",
-            description="Source thread id when this thread was created by forking another thread.",
-        ),
-    ] = None
-    git_info: Annotated[
-        GitInfo | None,
-        Field(
-            alias="gitInfo",
-            description="Optional Git metadata captured when the thread was created.",
-        ),
-    ] = None
-    history_mode: Annotated[
-        ThreadHistoryMode | None,
-        Field(
-            alias="historyMode",
-            description="Persisted thread history contract selected when this thread was created.",
-        ),
-    ] = "legacy"
-    id: Annotated[
-        str, Field(description="Identifier for this thread. Codex-generated thread IDs are UUIDv7.")
-    ]
-    model: Annotated[
-        str | None,
-        Field(
-            description="Current configured model when loaded, otherwise the latest persisted model. Null when unavailable. This is not per-turn execution telemetry."
-        ),
-    ] = None
-    model_provider: Annotated[
-        str,
-        Field(
-            alias="modelProvider",
-            description="Model provider used for this thread (for example, 'openai').",
-        ),
-    ]
-    name: Annotated[str | None, Field(description="Optional user-facing thread title.")] = None
-    originator: Annotated[
-        str | None,
-        Field(
-            description="Originator recorded when the thread was created, independent of its current client or executor. Null when the recorded originator is unavailable."
-        ),
-    ] = None
-    parent_thread_id: Annotated[
-        str | None,
-        Field(
-            alias="parentThreadId",
-            description="The ID of the parent thread. This will only be set if this thread is a subagent.",
-        ),
-    ] = None
-    path: Annotated[str | None, Field(description="[UNSTABLE] Path to the thread on disk.")] = None
-    preview: Annotated[
-        str, Field(description="Usually the first user message in the thread, if available.")
-    ]
-    project_id: Annotated[
-        str | None,
-        Field(
-            alias="projectId",
-            description="Canonical project assignment owned by app-server, if any.",
-        ),
-    ] = None
-    reasoning_effort: Annotated[
-        ReasoningEffort | None,
-        Field(
-            alias="reasoningEffort",
-            description="Current configured reasoning effort when loaded, otherwise the latest persisted effort. Null when unset or unavailable. This is not per-turn execution telemetry.",
-        ),
-    ] = None
-    recency_at: Annotated[
-        int | None,
-        Field(
-            alias="recencyAt",
-            description="Unix timestamp (in seconds) used for thread recency ordering.",
-        ),
-    ] = None
-    section: Annotated[
-        ThreadSection | None,
-        Field(description="The independently persisted section selected for this thread, if any."),
-    ] = None
-    section_entered_at: Annotated[
-        int | None,
-        Field(
-            alias="sectionEnteredAt",
-            description="Unix timestamp in seconds when the thread entered its current section.",
-        ),
-    ] = None
-    session_id: Annotated[
-        str,
-        Field(
-            alias="sessionId",
-            description="Session id shared by threads that belong to the same session tree.",
-        ),
-    ]
-    source: Annotated[
-        SessionSource,
-        Field(
-            description="Origin of the thread (CLI, VSCode, codex exec, codex app-server, etc.)."
-        ),
-    ]
-    status: Annotated[ThreadStatus, Field(description="Current runtime status for the thread.")]
-    thread_source: Annotated[
-        ThreadSource | None,
-        Field(
-            alias="threadSource",
-            description="Optional analytics source classification for this thread.",
-        ),
-    ] = None
-    turns: Annotated[
-        list[Turn],
-        Field(
-            description="Only populated on `thread/resume`, `thread/fork`, and `thread/read` (when `includeTurns` is true) responses. For all other responses and notifications returning a Thread, the turns field will be an empty list."
-        ),
-    ]
-    updated_at: Annotated[
-        int,
-        Field(
-            alias="updatedAt",
-            description="Unix timestamp (in seconds) when the thread was last updated.",
-        ),
-    ]
-
-
-class ThreadForkResponse(BaseModel):
-    model_config = ConfigDict(
-        populate_by_name=True,
-    )
-    approval_policy: Annotated[AskForApproval, Field(alias="approvalPolicy")]
-    approvals_reviewer: Annotated[
-        ApprovalsReviewer,
-        Field(
-            alias="approvalsReviewer",
-            description="Reviewer currently used for approval requests on this thread.",
-        ),
-    ]
-    cwd: AbsolutePathBuf
-    disabled_plugin_ids: Annotated[
-        list[str] | None,
-        Field(
-            alias="disabledPluginIds",
-            description="Saved list of disabled plugin IDs. Does not yet filter plugin capabilities.",
-        ),
-    ] = []
-    instruction_sources: Annotated[
-        list[LegacyAppPathString] | None,
-        Field(
-            alias="instructionSources",
-            description="Environment-native paths to instruction source files currently loaded for this thread.",
-        ),
-    ] = []
-    model: str
-    model_provider: Annotated[str, Field(alias="modelProvider")]
-    reasoning_effort: Annotated[ReasoningEffort | None, Field(alias="reasoningEffort")] = None
-    sandbox: Annotated[
-        SandboxPolicy,
-        Field(
-            description="Legacy sandbox policy retained for compatibility. Experimental clients should prefer `activePermissionProfile` for profile provenance."
-        ),
-    ]
-    service_tier: Annotated[str | None, Field(alias="serviceTier")] = None
-    thread: Thread
-
-
-class ThreadListResponse(BaseModel):
-    model_config = ConfigDict(
-        populate_by_name=True,
-    )
-    backwards_cursor: Annotated[
-        str | None,
-        Field(
-            alias="backwardsCursor",
-            description="Opaque cursor to pass as `cursor` when reversing `sortDirection`. This is only populated when the page contains at least one thread. Use it with the opposite `sortDirection`; for timestamp sorts it anchors at the start of the page timestamp so same-second updates are not skipped.",
-        ),
-    ] = None
-    data: list[Thread]
-    next_cursor: Annotated[
-        str | None,
-        Field(
-            alias="nextCursor",
-            description="Opaque cursor to pass to the next call to continue after the last item. if None, there are no more items to return.",
-        ),
-    ] = None
-
-
-class ThreadMetadataUpdateResponse(BaseModel):
-    model_config = ConfigDict(
-        populate_by_name=True,
-    )
-    thread: Thread
-
-
-class ThreadReadResponse(BaseModel):
-    model_config = ConfigDict(
-        populate_by_name=True,
-    )
-    thread: Thread
-
-
-class ThreadResumeResponse(BaseModel):
-    model_config = ConfigDict(
-        populate_by_name=True,
-    )
-    approval_policy: Annotated[AskForApproval, Field(alias="approvalPolicy")]
-    approvals_reviewer: Annotated[
-        ApprovalsReviewer,
-        Field(
-            alias="approvalsReviewer",
-            description="Reviewer currently used for approval requests on this thread.",
-        ),
-    ]
-    collaboration_mode: Annotated[
-        CollaborationMode | None,
-        Field(
-            alias="collaborationMode",
-            description="Effective collaboration mode. Absent when resuming from an older server.",
-        ),
-    ] = None
-    cwd: AbsolutePathBuf
-    disabled_plugin_ids: Annotated[
-        list[str] | None,
-        Field(
-            alias="disabledPluginIds",
-            description="Saved list of disabled plugin IDs. Does not yet filter plugin capabilities.",
-        ),
-    ] = []
-    instruction_sources: Annotated[
-        list[LegacyAppPathString] | None,
-        Field(
-            alias="instructionSources",
-            description="Environment-native paths to instruction source files currently loaded for this thread.",
-        ),
-    ] = []
-    items_backwards_cursor: Annotated[
-        str | None,
-        Field(
-            alias="itemsBackwardsCursor",
-            description='Opaque cursor for hydrating paginated items backwards.\n\nPass this as `cursor` to `thread/items/list` with `sortDirection: "desc"`. The first page includes the item identified by the cursor.',
-        ),
-    ] = None
-    model: str
-    model_provider: Annotated[str, Field(alias="modelProvider")]
-    reasoning_effort: Annotated[ReasoningEffort | None, Field(alias="reasoningEffort")] = None
-    sandbox: Annotated[
-        SandboxPolicy,
-        Field(
-            description="Legacy sandbox policy retained for compatibility. Experimental clients should prefer `activePermissionProfile` for profile provenance."
-        ),
-    ]
-    service_tier: Annotated[str | None, Field(alias="serviceTier")] = None
-    thread: Thread
-    turns_backwards_cursor: Annotated[
-        str | None,
-        Field(
-            alias="turnsBackwardsCursor",
-            description='Opaque cursor for hydrating paginated turns backwards.\n\nPass this as `cursor` to `thread/turns/list` with `sortDirection: "desc"`. The first page includes the turn identified by the cursor.',
-        ),
-    ] = None
-
-
-class ThreadRevertResponse(BaseModel):
-    model_config = ConfigDict(
-        populate_by_name=True,
-    )
-    items_backwards_cursor: Annotated[
-        str | None,
-        Field(
-            alias="itemsBackwardsCursor",
-            description='Opaque cursor for hydrating paginated items backwards.\n\nPass this as `cursor` to `thread/items/list` with `sortDirection: "desc"`. The first page includes the item identified by the cursor.',
-        ),
-    ] = None
-    thread: Annotated[
-        Thread,
-        Field(
-            description="Updated loaded thread metadata. `turns` is always empty; hydrate retained history through `thread/turns/list`."
-        ),
-    ]
-    turns_backwards_cursor: Annotated[
-        str | None,
-        Field(
-            alias="turnsBackwardsCursor",
-            description='Opaque cursor for hydrating paginated turns backwards.\n\nPass this as `cursor` to `thread/turns/list` with `sortDirection: "desc"`. The first page includes the turn identified by the cursor.',
-        ),
-    ] = None
-
-
-class ThreadSearchResult(BaseModel):
-    model_config = ConfigDict(
-        populate_by_name=True,
-    )
-    snippet: str
-    thread: Thread
-
-
-class ThreadStartResponse(BaseModel):
-    model_config = ConfigDict(
-        populate_by_name=True,
-    )
-    approval_policy: Annotated[AskForApproval, Field(alias="approvalPolicy")]
-    approvals_reviewer: Annotated[
-        ApprovalsReviewer,
-        Field(
-            alias="approvalsReviewer",
-            description="Reviewer currently used for approval requests on this thread.",
-        ),
-    ]
-    cwd: AbsolutePathBuf
-    disabled_plugin_ids: Annotated[
-        list[str] | None,
-        Field(
-            alias="disabledPluginIds",
-            description="Saved list of disabled plugin IDs. Does not yet filter plugin capabilities.",
-        ),
-    ] = []
-    instruction_sources: Annotated[
-        list[LegacyAppPathString] | None,
-        Field(
-            alias="instructionSources",
-            description="Environment-native paths to instruction source files currently loaded for this thread.",
-        ),
-    ] = []
-    model: str
-    model_provider: Annotated[str, Field(alias="modelProvider")]
-    reasoning_effort: Annotated[ReasoningEffort | None, Field(alias="reasoningEffort")] = None
-    sandbox: Annotated[
-        SandboxPolicy,
-        Field(
-            description="Legacy sandbox policy retained for compatibility. Experimental clients should prefer `activePermissionProfile` for profile provenance."
-        ),
-    ]
-    service_tier: Annotated[str | None, Field(alias="serviceTier")] = None
-    thread: Thread
-
-
-class ThreadStartedNotification(BaseModel):
-    model_config = ConfigDict(
-        populate_by_name=True,
-    )
-    thread: Thread
-
-
-class ThreadTurnsListResponse(BaseModel):
-    model_config = ConfigDict(
-        populate_by_name=True,
-    )
-    backwards_cursor: Annotated[
-        str | None,
-        Field(
-            alias="backwardsCursor",
-            description="Opaque cursor to pass as `cursor` when reversing `sortDirection`. This is only populated when the page contains at least one turn. Use it with the opposite `sortDirection` to include the anchor turn again and catch updates to that turn.",
-        ),
-    ] = None
-    data: list[Turn]
-    next_cursor: Annotated[
-        str | None,
-        Field(
-            alias="nextCursor",
-            description="Opaque cursor to pass to the next call to continue after the last turn. if None, there are no more turns to return.",
-        ),
-    ] = None
-
-
-class ThreadUnarchiveResponse(BaseModel):
-    model_config = ConfigDict(
-        populate_by_name=True,
-    )
-    thread: Thread
+    argument: SourceDescriptionSpan
+    files: list[SubmittedPatchFile]
+    id: Annotated[int, Field(ge=0)]
+    invocation: SourceDescriptionSpan
+    payload: str
 
 
 class TurnStartParams(BaseModel):
@@ -12920,19 +13081,14 @@ class PluginListResponse(BaseModel):
     marketplaces: list[PluginMarketplaceEntry]
 
 
-class ThreadStartedServerNotification(BaseModel):
+class SelectiveEditDetails3(BaseModel):
     model_config = ConfigDict(
+        extra="forbid",
         populate_by_name=True,
     )
-    emitted_at_ms: Annotated[
-        int | None,
-        Field(
-            alias="emittedAtMs",
-            description="Unix timestamp (in milliseconds) when app-server emitted this notification.",
-        ),
-    ] = None
-    method: Annotated[Literal["thread/started"], Field(title="Thread/startedNotificationMethod")]
-    params: ThreadStartedNotification
+    cwd: str | None = None
+    kind: Literal["patch"]
+    patch: SubmittedPatch
 
 
 class ItemAutoApprovalReviewStartedServerNotification(BaseModel):
@@ -12969,6 +13125,593 @@ class ItemAutoApprovalReviewCompletedServerNotification(BaseModel):
         Field(title="Item/autoApprovalReview/completedNotificationMethod"),
     ]
     params: ItemGuardianApprovalReviewCompletedNotification
+
+
+class SourceDescription1(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        populate_by_name=True,
+    )
+    disposition: Literal["completeSyntax"]
+    patches: list[SubmittedPatch]
+    references: list[SourceDescriptionReference]
+    sources: list[SourceDescriptionSource]
+
+
+class ItemCompletedNotification(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    completed_at_ms: Annotated[
+        int,
+        Field(
+            alias="completedAtMs",
+            description="Unix timestamp (in milliseconds) when this item lifecycle completed.",
+        ),
+    ]
+    item: ThreadItem
+    thread_id: Annotated[str, Field(alias="threadId")]
+    turn_id: Annotated[str, Field(alias="turnId")]
+
+
+class ItemStartedNotification(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    item: ThreadItem
+    started_at_ms: Annotated[
+        int,
+        Field(
+            alias="startedAtMs",
+            description="Unix timestamp (in milliseconds) when this item lifecycle started.",
+        ),
+    ]
+    thread_id: Annotated[str, Field(alias="threadId")]
+    turn_id: Annotated[str, Field(alias="turnId")]
+
+
+class ReviewStartResponse(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    review_thread_id: Annotated[
+        str,
+        Field(
+            alias="reviewThreadId",
+            description="Identifies the thread where the review runs.\n\nFor inline reviews, this is the original thread id. For detached reviews, this is the id of the new review thread.",
+        ),
+    ]
+    turn: Turn
+
+
+class SelectiveEditDetails1(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        populate_by_name=True,
+    )
+    assumptions: list[SelectivePythonAssumption]
+    kind: Literal["python"]
+    prediction: SelectivePythonEdit
+
+
+class SelectiveEditDetails2(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        populate_by_name=True,
+    )
+    assumptions: list[SelectiveJavaScriptAssumption]
+    kind: Literal["javaScript"]
+    prediction: SelectiveJavaScriptEdit
+
+
+class SelectiveEditDetails(
+    RootModel[SelectiveEditDetails1 | SelectiveEditDetails2 | SelectiveEditDetails3]
+):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    root: SelectiveEditDetails1 | SelectiveEditDetails2 | SelectiveEditDetails3
+
+
+class SubstringIndexSelectiveIndexRecipe(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        populate_by_name=True,
+    )
+    evidence: SourceDescriptionSpan
+    input: SelectiveTextRecipe
+    needle: str
+    start: SelectiveIndexRecipe | None = None
+    type: Annotated[
+        Literal["substringIndex"], Field(title="SubstringIndexSelectiveIndexRecipeType")
+    ]
+
+
+class SelectiveIndexRecipe(
+    RootModel[LiteralSelectiveIndexRecipe | SubstringIndexSelectiveIndexRecipe]
+):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    root: Annotated[
+        LiteralSelectiveIndexRecipe | SubstringIndexSelectiveIndexRecipe,
+        Field(
+            description="A frozen Python integer expression, distinct from a JavaScript string index."
+        ),
+    ]
+
+
+class SelectiveJavaScriptEdit(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        populate_by_name=True,
+    )
+    content: SelectiveJavaScriptTextRecipe
+    dependencies: list[SelectiveJavaScriptDependency]
+    evidence: SourceDescriptionSpan
+    ordinal: Annotated[int, Field(ge=0)]
+    predecessor_conditions: Annotated[
+        list[SourceDescriptionSpan], Field(alias="predecessorConditions")
+    ]
+    target: SelectiveTarget
+    write_effect: Annotated[
+        SelectiveJavaScriptWriteEffect,
+        Field(
+            alias="writeEffect",
+            default_factory=lambda: SelectiveJavaScriptWriteEffect(
+                root=OverwriteSelectiveJavaScriptWriteEffect(type="overwrite")
+            ),
+        ),
+    ]
+
+
+class ReplaceFirstSelectiveJavaScriptTextRecipe(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        populate_by_name=True,
+    )
+    evidence: SourceDescriptionSpan
+    input: SelectiveJavaScriptTextRecipe
+    new: str
+    old: str
+    type: Annotated[
+        Literal["replaceFirst"], Field(title="ReplaceFirstSelectiveJavaScriptTextRecipeType")
+    ]
+
+
+class ReplaceAllSelectiveJavaScriptTextRecipe(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        populate_by_name=True,
+    )
+    evidence: SourceDescriptionSpan
+    input: SelectiveJavaScriptTextRecipe
+    new: str
+    old: str
+    type: Annotated[
+        Literal["replaceAll"], Field(title="ReplaceAllSelectiveJavaScriptTextRecipeType")
+    ]
+
+
+class SliceSelectiveJavaScriptTextRecipe(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        populate_by_name=True,
+    )
+    end: Annotated[int | None, Field(ge=0)] = None
+    evidence: SourceDescriptionSpan
+    input: SelectiveJavaScriptTextRecipe
+    start: Annotated[int, Field(ge=0)]
+    type: Annotated[Literal["slice"], Field(title="SliceSelectiveJavaScriptTextRecipeType")]
+
+
+class ConcatSelectiveJavaScriptTextRecipe(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        populate_by_name=True,
+    )
+    evidence: SourceDescriptionSpan
+    left: SelectiveJavaScriptTextRecipe
+    right: SelectiveJavaScriptTextRecipe
+    type: Annotated[Literal["concat"], Field(title="ConcatSelectiveJavaScriptTextRecipeType")]
+
+
+class SelectiveJavaScriptTextRecipe(
+    RootModel[
+        LiteralSelectiveJavaScriptTextRecipe
+        | ReadUtf8SelectiveJavaScriptTextRecipe
+        | ReplaceFirstSelectiveJavaScriptTextRecipe
+        | ReplaceAllSelectiveJavaScriptTextRecipe
+        | SliceSelectiveJavaScriptTextRecipe
+        | ConcatSelectiveJavaScriptTextRecipe
+    ]
+):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    root: Annotated[
+        LiteralSelectiveJavaScriptTextRecipe
+        | ReadUtf8SelectiveJavaScriptTextRecipe
+        | ReplaceFirstSelectiveJavaScriptTextRecipe
+        | ReplaceAllSelectiveJavaScriptTextRecipe
+        | SliceSelectiveJavaScriptTextRecipe
+        | ConcatSelectiveJavaScriptTextRecipe,
+        Field(description="Node string semantics are separate from Python recipes."),
+    ]
+
+
+class TextContainsSelectivePredicateRecipe(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        populate_by_name=True,
+    )
+    evidence: SourceDescriptionSpan
+    haystack: SelectiveTextRecipe
+    needle: SelectiveTextRecipe
+    type: Annotated[
+        Literal["textContains"], Field(title="TextContainsSelectivePredicateRecipeType")
+    ]
+
+
+class TextEqualsSelectivePredicateRecipe(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        populate_by_name=True,
+    )
+    evidence: SourceDescriptionSpan
+    left: SelectiveTextRecipe
+    right: SelectiveTextRecipe
+    type: Annotated[Literal["textEquals"], Field(title="TextEqualsSelectivePredicateRecipeType")]
+
+
+class AndSelectivePredicateRecipe(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        populate_by_name=True,
+    )
+    evidence: SourceDescriptionSpan
+    left: SelectivePredicateRecipe
+    right: SelectivePredicateRecipe
+    type: Annotated[Literal["and"], Field(title="AndSelectivePredicateRecipeType")]
+
+
+class StartsWithSelectivePredicateRecipe(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        populate_by_name=True,
+    )
+    evidence: SourceDescriptionSpan
+    input: SelectiveTextRecipe
+    prefix: str
+    prefix_evidence: Annotated[SourceDescriptionSpan, Field(alias="prefixEvidence")]
+    type: Annotated[Literal["startsWith"], Field(title="StartsWithSelectivePredicateRecipeType")]
+
+
+class EndsWithSelectivePredicateRecipe(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        populate_by_name=True,
+    )
+    evidence: SourceDescriptionSpan
+    input: SelectiveTextRecipe
+    suffix: str
+    suffix_evidence: Annotated[SourceDescriptionSpan, Field(alias="suffixEvidence")]
+    type: Annotated[Literal["endsWith"], Field(title="EndsWithSelectivePredicateRecipeType")]
+
+
+class SelectivePredicateRecipe(
+    RootModel[
+        TextContainsSelectivePredicateRecipe
+        | TextEqualsSelectivePredicateRecipe
+        | AndSelectivePredicateRecipe
+        | StartsWithSelectivePredicateRecipe
+        | EndsWithSelectivePredicateRecipe
+    ]
+):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    root: Annotated[
+        TextContainsSelectivePredicateRecipe
+        | TextEqualsSelectivePredicateRecipe
+        | AndSelectivePredicateRecipe
+        | StartsWithSelectivePredicateRecipe
+        | EndsWithSelectivePredicateRecipe,
+        Field(description="Closed, side-effect-free Python predicates over captured text."),
+    ]
+
+
+class SelectivePredictedEdit(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        populate_by_name=True,
+    )
+    basis: SelectiveEditBasis
+    carrier_assumptions: Annotated[
+        list[SelectiveCarrierAssumption], Field(alias="carrierAssumptions")
+    ]
+    details: SelectiveEditDetails
+    evidence: SourceDescriptionSpan
+    later_context: Annotated[SelectiveLaterContext, Field(alias="laterContext")]
+    ordinal: Annotated[
+        int,
+        Field(
+            description="Ordered across the analyzed call; not an observed execution index.", ge=0
+        ),
+    ]
+    predecessor_conditions: Annotated[
+        list[SourceDescriptionSpan], Field(alias="predecessorConditions")
+    ]
+    snapshot: Annotated[
+        SelectiveSnapshotPreview | None,
+        Field(description="Optional pre-execution snapshot calculation, never an observed edit."),
+    ] = None
+
+
+class SelectivePythonEdit(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        populate_by_name=True,
+    )
+    dependencies: list[SelectivePythonDependency]
+    evidence: SourceDescriptionSpan
+    final_state: Annotated[SelectivePythonFinalState, Field(alias="finalState")]
+    iteration_context: Annotated[
+        list[SelectivePythonIterationContext] | None,
+        Field(
+            alias="iterationContext",
+            description="Source-literal iteration occurrences, outermost first.",
+        ),
+    ] = None
+    operation: SelectivePythonOperation
+    ordinal: Annotated[
+        int, Field(description="Local mutation order, scoped by evidence.sourceId.", ge=0)
+    ]
+    predecessor_conditions: Annotated[
+        list[SourceDescriptionSpan], Field(alias="predecessorConditions")
+    ]
+    target: SelectiveTarget
+
+
+class LogicalWriteSelectivePythonOperation(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        populate_by_name=True,
+    )
+    base_filesystem_epoch: Annotated[int, Field(alias="baseFilesystemEpoch", ge=0)]
+    content: SelectiveTextRecipe
+    encoding: SelectiveTextEncoding
+    mode: SelectivePythonStreamMode
+    newline: SelectivePythonWriteNewline
+    opened_at: Annotated[SourceDescriptionSpan, Field(alias="openedAt")]
+    position: SelectivePythonStreamPosition
+    required_result: Annotated[SelectivePythonWriteResultCondition, Field(alias="requiredResult")]
+    stream_id: Annotated[int, Field(alias="streamId", ge=0)]
+    stream_revision: Annotated[int, Field(alias="streamRevision", ge=0)]
+    type: Annotated[
+        Literal["logicalWrite"], Field(title="LogicalWriteSelectivePythonOperationType")
+    ]
+
+
+class WriteTextSelectivePythonOperation(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        populate_by_name=True,
+    )
+    content: SelectiveTextRecipe
+    encoding: SelectiveTextEncoding
+    newline: SelectivePythonWriteNewline | None = None
+    type: Annotated[Literal["writeText"], Field(title="WriteTextSelectivePythonOperationType")]
+
+
+class SelectivePythonOperation(
+    RootModel[
+        LogicalWriteSelectivePythonOperation
+        | TruncateSelectivePythonOperation
+        | WriteTextSelectivePythonOperation
+    ]
+):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    root: (
+        LogicalWriteSelectivePythonOperation
+        | TruncateSelectivePythonOperation
+        | WriteTextSelectivePythonOperation
+    )
+
+
+class ReplaceSelectiveTextRecipe(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        populate_by_name=True,
+    )
+    count: Annotated[int | None, Field(ge=0)] = None
+    evidence: SourceDescriptionSpan
+    input: SelectiveTextRecipe
+    new: str
+    old: str
+    type: Annotated[Literal["replace"], Field(title="ReplaceSelectiveTextRecipeType")]
+
+
+class ReplaceTextSelectiveTextRecipe(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        populate_by_name=True,
+    )
+    count: Annotated[int | None, Field(ge=0)] = None
+    evidence: SourceDescriptionSpan
+    input: SelectiveTextRecipe
+    new: SelectiveTextRecipe
+    old: SelectiveTextRecipe
+    type: Annotated[Literal["replaceText"], Field(title="ReplaceTextSelectiveTextRecipeType")]
+
+
+class SliceSelectiveTextRecipe(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        populate_by_name=True,
+    )
+    end: SelectiveIndexRecipe | None = None
+    evidence: SourceDescriptionSpan
+    input: SelectiveTextRecipe
+    start: SelectiveIndexRecipe | None = None
+    type: Annotated[Literal["slice"], Field(title="SliceSelectiveTextRecipeType")]
+
+
+class SplitItemSelectiveTextRecipe(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        populate_by_name=True,
+    )
+    evidence: SourceDescriptionSpan
+    index: int
+    input: SelectiveTextRecipe
+    maxsplit: int | None = None
+    separator: str
+    split_evidence: Annotated[SourceDescriptionSpan, Field(alias="splitEvidence")]
+    type: Annotated[Literal["splitItem"], Field(title="SplitItemSelectiveTextRecipeType")]
+
+
+class RstripSelectiveTextRecipe(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        populate_by_name=True,
+    )
+    characters: str
+    evidence: SourceDescriptionSpan
+    input: SelectiveTextRecipe
+    type: Annotated[Literal["rstrip"], Field(title="RstripSelectiveTextRecipeType")]
+
+
+class ConcatSelectiveTextRecipe(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        populate_by_name=True,
+    )
+    evidence: SourceDescriptionSpan
+    left: SelectiveTextRecipe
+    right: SelectiveTextRecipe
+    type: Annotated[Literal["concat"], Field(title="ConcatSelectiveTextRecipeType")]
+
+
+class ConditionalSelectiveTextRecipe(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        populate_by_name=True,
+    )
+    alternative: SelectiveTextRecipe
+    consequence: SelectiveTextRecipe
+    evidence: SourceDescriptionSpan
+    predicate: SelectivePredicateRecipe
+    type: Annotated[Literal["conditional"], Field(title="ConditionalSelectiveTextRecipeType")]
+
+
+class SelectiveTextRecipe(
+    RootModel[
+        LiteralSelectiveTextRecipe
+        | ReadSelectiveTextRecipe
+        | ReplaceSelectiveTextRecipe
+        | ReplaceTextSelectiveTextRecipe
+        | SliceSelectiveTextRecipe
+        | SplitItemSelectiveTextRecipe
+        | RstripSelectiveTextRecipe
+        | ConcatSelectiveTextRecipe
+        | ConditionalSelectiveTextRecipe
+    ]
+):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    root: Annotated[
+        LiteralSelectiveTextRecipe
+        | ReadSelectiveTextRecipe
+        | ReplaceSelectiveTextRecipe
+        | ReplaceTextSelectiveTextRecipe
+        | SliceSelectiveTextRecipe
+        | SplitItemSelectiveTextRecipe
+        | RstripSelectiveTextRecipe
+        | ConcatSelectiveTextRecipe
+        | ConditionalSelectiveTextRecipe,
+        Field(
+            description="Read IDs and epochs are local to evidence.sourceId and frozen evaluation order."
+        ),
+    ]
+
+
+class ThreadStartedServerNotification(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    emitted_at_ms: Annotated[
+        int | None,
+        Field(
+            alias="emittedAtMs",
+            description="Unix timestamp (in milliseconds) when app-server emitted this notification.",
+        ),
+    ] = None
+    method: Annotated[Literal["thread/started"], Field(title="Thread/startedNotificationMethod")]
+    params: ThreadStartedNotification
+
+
+class TurnStartedServerNotification(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    emitted_at_ms: Annotated[
+        int | None,
+        Field(
+            alias="emittedAtMs",
+            description="Unix timestamp (in milliseconds) when app-server emitted this notification.",
+        ),
+    ] = None
+    method: Annotated[Literal["turn/started"], Field(title="Turn/startedNotificationMethod")]
+    params: TurnStartedNotification
+
+
+class TurnCompletedServerNotification(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    emitted_at_ms: Annotated[
+        int | None,
+        Field(
+            alias="emittedAtMs",
+            description="Unix timestamp (in milliseconds) when app-server emitted this notification.",
+        ),
+    ] = None
+    method: Annotated[Literal["turn/completed"], Field(title="Turn/completedNotificationMethod")]
+    params: TurnCompletedNotification
+
+
+class ItemStartedServerNotification(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    emitted_at_ms: Annotated[
+        int | None,
+        Field(
+            alias="emittedAtMs",
+            description="Unix timestamp (in milliseconds) when app-server emitted this notification.",
+        ),
+    ] = None
+    method: Annotated[Literal["item/started"], Field(title="Item/startedNotificationMethod")]
+    params: ItemStartedNotification
+
+
+class ItemCompletedServerNotification(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    emitted_at_ms: Annotated[
+        int | None,
+        Field(
+            alias="emittedAtMs",
+            description="Unix timestamp (in milliseconds) when app-server emitted this notification.",
+        ),
+    ] = None
+    method: Annotated[Literal["item/completed"], Field(title="Item/completedNotificationMethod")]
+    params: ItemCompletedNotification
 
 
 class ServerNotification(
@@ -13152,3 +13895,668 @@ class ServerNotification(
             title="ServerNotification",
         ),
     ]
+
+
+class SourceDescription2(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        populate_by_name=True,
+    )
+    barriers: list[SelectiveBarrier]
+    disposition: Literal["selectiveFindings"]
+    edits: list[SelectivePredictedEdit]
+    sources: list[SourceDescriptionSource]
+
+
+class SourceDescription(RootModel[SourceDescription1 | SourceDescription2 | SourceDescription3]):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    root: Annotated[
+        SourceDescription1 | SourceDescription2 | SourceDescription3,
+        Field(
+            description="Completion means whole-source analysis finished, never that a tool ran."
+        ),
+    ]
+
+
+class Thread(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    agent_nickname: Annotated[
+        str | None,
+        Field(
+            alias="agentNickname",
+            description="Optional random unique nickname assigned to an AgentControl-spawned sub-agent.",
+        ),
+    ] = None
+    agent_role: Annotated[
+        str | None,
+        Field(
+            alias="agentRole",
+            description="Optional role (agent_role) assigned to an AgentControl-spawned sub-agent.",
+        ),
+    ] = None
+    cli_version: Annotated[
+        str, Field(alias="cliVersion", description="Version of the CLI that created the thread.")
+    ]
+    created_at: Annotated[
+        int,
+        Field(
+            alias="createdAt",
+            description="Unix timestamp (in seconds) when the thread was created.",
+        ),
+    ]
+    cwd: Annotated[AbsolutePathBuf, Field(description="Working directory captured for the thread.")]
+    ephemeral: Annotated[
+        bool,
+        Field(
+            description="Whether the thread is ephemeral and should not be materialized on disk."
+        ),
+    ]
+    forked_from_id: Annotated[
+        str | None,
+        Field(
+            alias="forkedFromId",
+            description="Source thread id when this thread was created by forking another thread.",
+        ),
+    ] = None
+    git_info: Annotated[
+        GitInfo | None,
+        Field(
+            alias="gitInfo",
+            description="Optional Git metadata captured when the thread was created.",
+        ),
+    ] = None
+    history_mode: Annotated[
+        ThreadHistoryMode | None,
+        Field(
+            alias="historyMode",
+            description="Persisted thread history contract selected when this thread was created.",
+        ),
+    ] = "legacy"
+    id: Annotated[
+        str, Field(description="Identifier for this thread. Codex-generated thread IDs are UUIDv7.")
+    ]
+    model: Annotated[
+        str | None,
+        Field(
+            description="Current configured model when loaded, otherwise the latest persisted model. Null when unavailable. This is not per-turn execution telemetry."
+        ),
+    ] = None
+    model_provider: Annotated[
+        str,
+        Field(
+            alias="modelProvider",
+            description="Model provider used for this thread (for example, 'openai').",
+        ),
+    ]
+    name: Annotated[str | None, Field(description="Optional user-facing thread title.")] = None
+    originator: Annotated[
+        str | None,
+        Field(
+            description="Originator recorded when the thread was created, independent of its current client or executor. Null when the recorded originator is unavailable."
+        ),
+    ] = None
+    parent_thread_id: Annotated[
+        str | None,
+        Field(
+            alias="parentThreadId",
+            description="The ID of the parent thread. This will only be set if this thread is a subagent.",
+        ),
+    ] = None
+    path: Annotated[str | None, Field(description="[UNSTABLE] Path to the thread on disk.")] = None
+    preview: Annotated[
+        str, Field(description="Usually the first user message in the thread, if available.")
+    ]
+    project_id: Annotated[
+        str | None,
+        Field(
+            alias="projectId",
+            description="Canonical project assignment owned by app-server, if any.",
+        ),
+    ] = None
+    reasoning_effort: Annotated[
+        ReasoningEffort | None,
+        Field(
+            alias="reasoningEffort",
+            description="Current configured reasoning effort when loaded, otherwise the latest persisted effort. Null when unset or unavailable. This is not per-turn execution telemetry.",
+        ),
+    ] = None
+    recency_at: Annotated[
+        int | None,
+        Field(
+            alias="recencyAt",
+            description="Unix timestamp (in seconds) used for thread recency ordering.",
+        ),
+    ] = None
+    section: Annotated[
+        ThreadSection | None,
+        Field(description="The independently persisted section selected for this thread, if any."),
+    ] = None
+    section_entered_at: Annotated[
+        int | None,
+        Field(
+            alias="sectionEnteredAt",
+            description="Unix timestamp in seconds when the thread entered its current section.",
+        ),
+    ] = None
+    session_id: Annotated[
+        str,
+        Field(
+            alias="sessionId",
+            description="Session id shared by threads that belong to the same session tree.",
+        ),
+    ]
+    source: Annotated[
+        SessionSource,
+        Field(
+            description="Origin of the thread (CLI, VSCode, codex exec, codex app-server, etc.)."
+        ),
+    ]
+    status: Annotated[ThreadStatus, Field(description="Current runtime status for the thread.")]
+    thread_source: Annotated[
+        ThreadSource | None,
+        Field(
+            alias="threadSource",
+            description="Optional analytics source classification for this thread.",
+        ),
+    ] = None
+    turns: Annotated[
+        list[Turn],
+        Field(
+            description="Only populated on `thread/resume`, `thread/fork`, and `thread/read` (when `includeTurns` is true) responses. For all other responses and notifications returning a Thread, the turns field will be an empty list."
+        ),
+    ]
+    updated_at: Annotated[
+        int,
+        Field(
+            alias="updatedAt",
+            description="Unix timestamp (in seconds) when the thread was last updated.",
+        ),
+    ]
+
+
+class ThreadForkResponse(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    approval_policy: Annotated[AskForApproval, Field(alias="approvalPolicy")]
+    approvals_reviewer: Annotated[
+        ApprovalsReviewer,
+        Field(
+            alias="approvalsReviewer",
+            description="Reviewer currently used for approval requests on this thread.",
+        ),
+    ]
+    cwd: AbsolutePathBuf
+    disabled_plugin_ids: Annotated[
+        list[str] | None,
+        Field(
+            alias="disabledPluginIds",
+            description="Saved list of disabled plugin IDs. Does not yet filter plugin capabilities.",
+        ),
+    ] = []
+    instruction_sources: Annotated[
+        list[LegacyAppPathString] | None,
+        Field(
+            alias="instructionSources",
+            description="Environment-native paths to instruction source files currently loaded for this thread.",
+        ),
+    ] = []
+    model: str
+    model_provider: Annotated[str, Field(alias="modelProvider")]
+    reasoning_effort: Annotated[ReasoningEffort | None, Field(alias="reasoningEffort")] = None
+    sandbox: Annotated[
+        SandboxPolicy,
+        Field(
+            description="Legacy sandbox policy retained for compatibility. Experimental clients should prefer `activePermissionProfile` for profile provenance."
+        ),
+    ]
+    service_tier: Annotated[str | None, Field(alias="serviceTier")] = None
+    thread: Thread
+
+
+class SourceDescriptionThreadItem(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    call_id: Annotated[str, Field(alias="callId")]
+    description: SourceDescription
+    id: str
+    type: Annotated[Literal["sourceDescription"], Field(title="SourceDescriptionThreadItemType")]
+
+
+class ThreadItem(
+    RootModel[
+        SourceDescriptionThreadItem
+        | UserMessageThreadItem
+        | HookPromptThreadItem
+        | AgentMessageThreadItem
+        | FunctionCallOutputThreadItem
+        | PlanThreadItem
+        | ReasoningThreadItem
+        | CommandExecutionThreadItem
+        | FileChangeThreadItem
+        | McpToolCallThreadItem
+        | DynamicToolCallThreadItem
+        | CollabAgentToolCallThreadItem
+        | SubAgentActivityThreadItem
+        | WebSearchThreadItem
+        | ImageViewThreadItem
+        | SleepThreadItem
+        | ImageGenerationThreadItem
+        | EnteredReviewModeThreadItem
+        | ExitedReviewModeThreadItem
+        | ContextCompactionThreadItem
+    ]
+):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    root: (
+        SourceDescriptionThreadItem
+        | UserMessageThreadItem
+        | HookPromptThreadItem
+        | AgentMessageThreadItem
+        | FunctionCallOutputThreadItem
+        | PlanThreadItem
+        | ReasoningThreadItem
+        | CommandExecutionThreadItem
+        | FileChangeThreadItem
+        | McpToolCallThreadItem
+        | DynamicToolCallThreadItem
+        | CollabAgentToolCallThreadItem
+        | SubAgentActivityThreadItem
+        | WebSearchThreadItem
+        | ImageViewThreadItem
+        | SleepThreadItem
+        | ImageGenerationThreadItem
+        | EnteredReviewModeThreadItem
+        | ExitedReviewModeThreadItem
+        | ContextCompactionThreadItem
+    )
+
+
+class ThreadItemEntry(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    completed_at_ms: Annotated[
+        int | None,
+        Field(
+            alias="completedAtMs",
+            description="Unix timestamp (milliseconds) when the item completed, if recorded by the producer.",
+        ),
+    ] = None
+    item: ThreadItem
+    started_at_ms: Annotated[
+        int | None,
+        Field(
+            alias="startedAtMs",
+            description="Unix timestamp (milliseconds) when the item started, if recorded by the producer.",
+        ),
+    ] = None
+    turn_id: Annotated[str, Field(alias="turnId", description="Turn containing this item.")]
+
+
+class ThreadItemsListResponse(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    backwards_cursor: Annotated[
+        str | None,
+        Field(
+            alias="backwardsCursor",
+            description="Opaque cursor to pass as `cursor` when reversing `sortDirection`. This is only populated when the page contains at least one item.",
+        ),
+    ] = None
+    data: list[ThreadItemEntry]
+    next_cursor: Annotated[
+        str | None,
+        Field(
+            alias="nextCursor",
+            description="Opaque cursor to pass to the next call to continue after the last item. if None, there are no more items to return.",
+        ),
+    ] = None
+
+
+class ThreadListResponse(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    backwards_cursor: Annotated[
+        str | None,
+        Field(
+            alias="backwardsCursor",
+            description="Opaque cursor to pass as `cursor` when reversing `sortDirection`. This is only populated when the page contains at least one thread. Use it with the opposite `sortDirection`; for timestamp sorts it anchors at the start of the page timestamp so same-second updates are not skipped.",
+        ),
+    ] = None
+    data: list[Thread]
+    next_cursor: Annotated[
+        str | None,
+        Field(
+            alias="nextCursor",
+            description="Opaque cursor to pass to the next call to continue after the last item. if None, there are no more items to return.",
+        ),
+    ] = None
+
+
+class ThreadMetadataUpdateResponse(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    thread: Thread
+
+
+class ThreadReadResponse(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    thread: Thread
+
+
+class ThreadResumeResponse(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    approval_policy: Annotated[AskForApproval, Field(alias="approvalPolicy")]
+    approvals_reviewer: Annotated[
+        ApprovalsReviewer,
+        Field(
+            alias="approvalsReviewer",
+            description="Reviewer currently used for approval requests on this thread.",
+        ),
+    ]
+    collaboration_mode: Annotated[
+        CollaborationMode | None,
+        Field(
+            alias="collaborationMode",
+            description="Effective collaboration mode. Absent when resuming from an older server.",
+        ),
+    ] = None
+    cwd: AbsolutePathBuf
+    disabled_plugin_ids: Annotated[
+        list[str] | None,
+        Field(
+            alias="disabledPluginIds",
+            description="Saved list of disabled plugin IDs. Does not yet filter plugin capabilities.",
+        ),
+    ] = []
+    instruction_sources: Annotated[
+        list[LegacyAppPathString] | None,
+        Field(
+            alias="instructionSources",
+            description="Environment-native paths to instruction source files currently loaded for this thread.",
+        ),
+    ] = []
+    items_backwards_cursor: Annotated[
+        str | None,
+        Field(
+            alias="itemsBackwardsCursor",
+            description='Opaque cursor for hydrating paginated items backwards.\n\nPass this as `cursor` to `thread/items/list` with `sortDirection: "desc"`. The first page includes the item identified by the cursor.',
+        ),
+    ] = None
+    model: str
+    model_provider: Annotated[str, Field(alias="modelProvider")]
+    reasoning_effort: Annotated[ReasoningEffort | None, Field(alias="reasoningEffort")] = None
+    sandbox: Annotated[
+        SandboxPolicy,
+        Field(
+            description="Legacy sandbox policy retained for compatibility. Experimental clients should prefer `activePermissionProfile` for profile provenance."
+        ),
+    ]
+    service_tier: Annotated[str | None, Field(alias="serviceTier")] = None
+    thread: Thread
+    turns_backwards_cursor: Annotated[
+        str | None,
+        Field(
+            alias="turnsBackwardsCursor",
+            description='Opaque cursor for hydrating paginated turns backwards.\n\nPass this as `cursor` to `thread/turns/list` with `sortDirection: "desc"`. The first page includes the turn identified by the cursor.',
+        ),
+    ] = None
+
+
+class ThreadRevertResponse(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    items_backwards_cursor: Annotated[
+        str | None,
+        Field(
+            alias="itemsBackwardsCursor",
+            description='Opaque cursor for hydrating paginated items backwards.\n\nPass this as `cursor` to `thread/items/list` with `sortDirection: "desc"`. The first page includes the item identified by the cursor.',
+        ),
+    ] = None
+    thread: Annotated[
+        Thread,
+        Field(
+            description="Updated loaded thread metadata. `turns` is always empty; hydrate retained history through `thread/turns/list`."
+        ),
+    ]
+    turns_backwards_cursor: Annotated[
+        str | None,
+        Field(
+            alias="turnsBackwardsCursor",
+            description='Opaque cursor for hydrating paginated turns backwards.\n\nPass this as `cursor` to `thread/turns/list` with `sortDirection: "desc"`. The first page includes the turn identified by the cursor.',
+        ),
+    ] = None
+
+
+class ThreadSearchResult(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    snippet: str
+    thread: Thread
+
+
+class ThreadStartResponse(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    approval_policy: Annotated[AskForApproval, Field(alias="approvalPolicy")]
+    approvals_reviewer: Annotated[
+        ApprovalsReviewer,
+        Field(
+            alias="approvalsReviewer",
+            description="Reviewer currently used for approval requests on this thread.",
+        ),
+    ]
+    cwd: AbsolutePathBuf
+    disabled_plugin_ids: Annotated[
+        list[str] | None,
+        Field(
+            alias="disabledPluginIds",
+            description="Saved list of disabled plugin IDs. Does not yet filter plugin capabilities.",
+        ),
+    ] = []
+    instruction_sources: Annotated[
+        list[LegacyAppPathString] | None,
+        Field(
+            alias="instructionSources",
+            description="Environment-native paths to instruction source files currently loaded for this thread.",
+        ),
+    ] = []
+    model: str
+    model_provider: Annotated[str, Field(alias="modelProvider")]
+    reasoning_effort: Annotated[ReasoningEffort | None, Field(alias="reasoningEffort")] = None
+    sandbox: Annotated[
+        SandboxPolicy,
+        Field(
+            description="Legacy sandbox policy retained for compatibility. Experimental clients should prefer `activePermissionProfile` for profile provenance."
+        ),
+    ]
+    service_tier: Annotated[str | None, Field(alias="serviceTier")] = None
+    thread: Thread
+
+
+class ThreadStartedNotification(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    thread: Thread
+
+
+class ItemThreadTimelineEntry(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    item: ThreadItem
+    position: Annotated[int, Field(ge=0)]
+    turn_id: Annotated[str, Field(alias="turnId")]
+    type: Annotated[Literal["item"], Field(title="ItemThreadTimelineEntryType")]
+
+
+class ThreadTimelineEntry(
+    RootModel[
+        ItemThreadTimelineEntry
+        | RealtimeThreadTimelineEntry
+        | TurnStartedThreadTimelineEntry
+        | TurnCompletedThreadTimelineEntry
+    ]
+):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    root: Annotated[
+        ItemThreadTimelineEntry
+        | RealtimeThreadTimelineEntry
+        | TurnStartedThreadTimelineEntry
+        | TurnCompletedThreadTimelineEntry,
+        Field(description="EXPERIMENTAL - one item or turn boundary in canonical rollout order."),
+    ]
+
+
+class ThreadTurnsListResponse(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    backwards_cursor: Annotated[
+        str | None,
+        Field(
+            alias="backwardsCursor",
+            description="Opaque cursor to pass as `cursor` when reversing `sortDirection`. This is only populated when the page contains at least one turn. Use it with the opposite `sortDirection` to include the anchor turn again and catch updates to that turn.",
+        ),
+    ] = None
+    data: list[Turn]
+    next_cursor: Annotated[
+        str | None,
+        Field(
+            alias="nextCursor",
+            description="Opaque cursor to pass to the next call to continue after the last turn. if None, there are no more turns to return.",
+        ),
+    ] = None
+
+
+class ThreadUnarchiveResponse(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    thread: Thread
+
+
+class Turn(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    completed_at: Annotated[
+        int | None,
+        Field(
+            alias="completedAt", description="Unix timestamp (in seconds) when the turn completed."
+        ),
+    ] = None
+    duration_ms: Annotated[
+        int | None,
+        Field(
+            alias="durationMs",
+            description="Duration between turn start and completion in milliseconds, if known.",
+        ),
+    ] = None
+    error: Annotated[
+        TurnError | None, Field(description="Error associated with a failed or interrupted turn.")
+    ] = None
+    id: Annotated[
+        str, Field(description="Identifier for this turn. Codex-generated turn IDs are UUIDv7.")
+    ]
+    items: Annotated[
+        list[ThreadItem], Field(description="Thread items currently included in this turn payload.")
+    ]
+    items_view: Annotated[
+        TurnItemsView | None,
+        Field(
+            alias="itemsView",
+            description="Describes how much of `items` has been loaded for this turn.",
+        ),
+    ] = "full"
+    started_at: Annotated[
+        int | None,
+        Field(alias="startedAt", description="Unix timestamp (in seconds) when the turn started."),
+    ] = None
+    status: TurnStatus
+
+
+class TurnCompletedNotification(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    thread_id: Annotated[str, Field(alias="threadId")]
+    turn: Turn
+
+
+class TurnStartResponse(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    turn: Turn
+
+
+class TurnStartedNotification(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    thread_id: Annotated[str, Field(alias="threadId")]
+    turn: Turn
+
+
+class TurnsPage(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    backwards_cursor: Annotated[str | None, Field(alias="backwardsCursor")] = None
+    data: list[Turn]
+    next_cursor: Annotated[str | None, Field(alias="nextCursor")] = None
+
+
+ItemCompletedNotification.model_rebuild()
+ItemStartedNotification.model_rebuild()
+ReviewStartResponse.model_rebuild()
+SelectiveEditDetails1.model_rebuild()
+SelectiveEditDetails2.model_rebuild()
+SubstringIndexSelectiveIndexRecipe.model_rebuild()
+SelectiveJavaScriptEdit.model_rebuild()
+ReplaceFirstSelectiveJavaScriptTextRecipe.model_rebuild()
+ReplaceAllSelectiveJavaScriptTextRecipe.model_rebuild()
+SliceSelectiveJavaScriptTextRecipe.model_rebuild()
+ConcatSelectiveJavaScriptTextRecipe.model_rebuild()
+TextContainsSelectivePredicateRecipe.model_rebuild()
+TextEqualsSelectivePredicateRecipe.model_rebuild()
+AndSelectivePredicateRecipe.model_rebuild()
+StartsWithSelectivePredicateRecipe.model_rebuild()
+EndsWithSelectivePredicateRecipe.model_rebuild()
+SelectivePythonEdit.model_rebuild()
+LogicalWriteSelectivePythonOperation.model_rebuild()
+WriteTextSelectivePythonOperation.model_rebuild()
+ReplaceSelectiveTextRecipe.model_rebuild()
+ReplaceTextSelectiveTextRecipe.model_rebuild()
+SliceSelectiveTextRecipe.model_rebuild()
+SplitItemSelectiveTextRecipe.model_rebuild()
+RstripSelectiveTextRecipe.model_rebuild()
+ConcatSelectiveTextRecipe.model_rebuild()
+ConditionalSelectiveTextRecipe.model_rebuild()
+ThreadStartedServerNotification.model_rebuild()
+TurnStartedServerNotification.model_rebuild()
+TurnCompletedServerNotification.model_rebuild()
+Thread.model_rebuild()
+ThreadTurnsListResponse.model_rebuild()

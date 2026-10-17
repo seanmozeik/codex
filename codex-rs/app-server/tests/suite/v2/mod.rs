@@ -17,6 +17,7 @@ mod bedrock_gov_cloud;
 mod bedrock_setup;
 mod client_metadata;
 mod code_mode_host;
+mod code_mode_source_description;
 mod collaboration_mode_list;
 #[cfg(unix)]
 mod command_exec;

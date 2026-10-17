@@ -594,6 +594,7 @@ def generate_v2_all(schema_dir: Path) -> None:
     _require_nullable_field(
         out_path, "McpResourceReadTarget", r"link_id: Annotated\[\n(?:        .*\n)+    \]"
     )
+    _preserve_javascript_write_effect_default(out_path, schema_dir)
     _preserve_open_enum(out_path, "CodexErrorInfoValue", allow_empty=True)
     _preserve_reasoning_effort_enum(out_path)
     _preserve_thread_source_enum(out_path)
@@ -637,6 +638,60 @@ def _require_nullable_field(out_path: Path, class_name: str, field_pattern: str)
     )
     if count != 1:
         raise RuntimeError(f"Generated {class_name} field did not have the expected nullable shape")
+    out_path.write_text(source[:class_start] + class_source + source[class_end:])
+
+
+def _preserve_javascript_write_effect_default(out_path: Path, schema_dir: Path) -> None:
+    """Preserve Rust's omitted-overwrite default without accepting an explicit null."""
+    schema = json.loads(schema_bundle_path(schema_dir).read_text())
+    definition = schema.get("definitions", {}).get("SelectiveJavaScriptEdit", {})
+    if not isinstance(definition, dict):
+        raise RuntimeError("SelectiveJavaScriptEdit schema is not an object")
+    properties = definition.get("properties", {})
+    if not isinstance(properties, dict):
+        raise RuntimeError("SelectiveJavaScriptEdit schema properties are not an object")
+    if "writeEffect" not in properties:
+        # Older schema bundles predate descriptor effects and need no repair.
+        return
+    if properties["writeEffect"] != {"$ref": "#/definitions/SelectiveJavaScriptWriteEffect"} or (
+        "writeEffect" in definition.get("required", [])
+    ):
+        raise RuntimeError(
+            "SelectiveJavaScriptEdit.writeEffect must be an optional non-null reference"
+        )
+
+    source = out_path.read_text()
+    for name in (
+        "SelectiveJavaScriptEdit",
+        "SelectiveJavaScriptWriteEffect",
+        "OverwriteSelectiveJavaScriptWriteEffect",
+    ):
+        if len(re.findall(rf"^class {name}\(", source, flags=re.MULTILINE)) != 1:
+            raise RuntimeError(f"Generated SDK is missing a unique {name} class")
+    class_start = source.find("class SelectiveJavaScriptEdit(BaseModel):")
+    if class_start == -1:
+        raise RuntimeError("Generated SelectiveJavaScriptEdit is not the expected BaseModel")
+    class_end = source.find("\n\nclass ", class_start)
+    if class_end == -1:
+        class_end = len(source)
+    class_source = source[class_start:class_end]
+    expected = (
+        "    write_effect: Annotated[SelectiveJavaScriptWriteEffect | None, "
+        'Field(alias="writeEffect")] = (\n        None\n    )'
+    )
+    field_count = len(re.findall(r"^    write_effect:", class_source, flags=re.MULTILINE))
+    if class_source.count(expected) != 1 or field_count != 1:
+        raise RuntimeError("Generated SelectiveJavaScriptEdit.write_effect has an unexpected shape")
+    replacement = """    write_effect: Annotated[
+        SelectiveJavaScriptWriteEffect,
+        Field(
+            alias="writeEffect",
+            default_factory=lambda: SelectiveJavaScriptWriteEffect(
+                root=OverwriteSelectiveJavaScriptWriteEffect(type="overwrite")
+            ),
+        ),
+    ]"""
+    class_source = class_source.replace(expected, replacement, 1)
     out_path.write_text(source[:class_start] + class_source + source[class_end:])
 
 

@@ -20,6 +20,9 @@ pub(super) fn evaluate(
     args: &[Value],
     keywords: &BTreeMap<String, Value>,
 ) -> Value {
+    if !state.literal_loop_call(node, &function, args, keywords) {
+        return Value::Unknown;
+    }
     if options::unsupported_callback(&function, args, keywords) {
         state.gap(
             node,
@@ -55,6 +58,11 @@ fn evaluate_member(
     args: &[Value],
     keywords: &BTreeMap<String, Value>,
 ) -> Value {
+    if let Some(value) =
+        super::literal_replace::evaluate(state, node, &receiver, method, args, keywords)
+    {
+        return value;
+    }
     if let Some(value) = super::data::method(&receiver, method) {
         return value;
     }
@@ -177,6 +185,9 @@ fn write(
     state.emit(node, Effect::FileWrite { target, mode });
 }
 fn open(state: &mut State<'_, '_>, node: Node<'_>, path: &Value, mode: Option<&Value>) -> Value {
+    if state.reject_loop_source_binary_open(node, mode) {
+        return Value::Unknown;
+    }
     let target = path.target(state.cwd.as_deref());
     let mode = match mode {
         None => HandleMode::Read,

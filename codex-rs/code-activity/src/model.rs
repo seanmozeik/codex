@@ -106,6 +106,29 @@ pub struct Span {
     pub start_column: usize,
 }
 
+impl Span {
+    /// Records caller-supplied source coordinates without attesting their validity.
+    /// Consumers must compare this identity with producer evidence before use.
+    #[must_use]
+    pub const fn new(
+        source_id: SourceId,
+        start_byte: usize,
+        end_byte: usize,
+        start_line: usize,
+        end_line: usize,
+        start_column: usize,
+    ) -> Self {
+        Self {
+            source_id,
+            start_byte,
+            end_byte,
+            start_line,
+            end_line,
+            start_column,
+        }
+    }
+}
+
 #[derive(Debug, Serialize, PartialEq, Eq)]
 #[serde(rename_all = "camelCase")]
 /// Provenance of an outer or embedded source.

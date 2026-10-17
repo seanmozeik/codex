@@ -16,8 +16,8 @@ use context::CommandContext;
 use literals::literal;
 use tree_sitter::Node;
 mod context;
-mod input;
-mod literals;
+pub(crate) mod input;
+pub(crate) mod literals;
 
 pub fn interpreter_source(argv: &[Option<String>]) -> Option<(crate::Language, &str)> {
     let invocation = input::resolve(argv)?;

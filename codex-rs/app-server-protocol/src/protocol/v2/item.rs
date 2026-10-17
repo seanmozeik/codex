@@ -13,6 +13,7 @@ use crate::TS;
 use crate::protocol::item_builders::CommandExecutionPresentation;
 use crate::protocol::item_builders::convert_patch_changes;
 use crate::protocol::item_builders::review_output_text;
+use crate::protocol::item_builders::source_description_for_display;
 use codex_experimental_api_macros::ExperimentalApi;
 use codex_extension_items::ExtensionItem;
 pub use codex_extension_items::image_generation::ImageGenerationFailure;
@@ -50,6 +51,7 @@ use codex_protocol::protocol::GuardianUserAuthorization as CoreGuardianUserAutho
 use codex_protocol::protocol::PatchApplyStatus as CorePatchApplyStatus;
 use codex_protocol::protocol::ReviewDecision as CoreReviewDecision;
 use codex_protocol::protocol::SubAgentActivityKind as CoreSubAgentActivityKind;
+pub use codex_protocol::source_description::SourceDescription;
 use codex_utils_absolute_path::AbsolutePathBuf;
 use codex_utils_path_uri::LegacyAppPathString;
 use serde::Deserialize;
@@ -234,6 +236,14 @@ impl CommandAction {
 #[ts(tag = "type")]
 #[ts(export_to = "v2/")]
 pub enum ThreadItem {
+    /// Complete submitted syntax. This item's lifecycle describes analysis only.
+    #[serde(rename_all = "camelCase")]
+    #[ts(rename_all = "camelCase")]
+    SourceDescription {
+        id: String,
+        call_id: String,
+        description: SourceDescription,
+    },
     #[serde(rename_all = "camelCase")]
     #[ts(rename_all = "camelCase")]
     UserMessage {
@@ -457,6 +467,7 @@ impl ThreadItem {
             | ThreadItem::Plan { id, .. }
             | ThreadItem::Reasoning { id, .. }
             | ThreadItem::CommandExecution { id, .. }
+            | ThreadItem::SourceDescription { id, .. }
             | ThreadItem::FileChange { id, .. }
             | ThreadItem::McpToolCall { id, .. }
             | ThreadItem::DynamicToolCall { id, .. }
@@ -913,6 +924,11 @@ impl From<CoreTurnItem> for ThreadItem {
                 id: reasoning.id,
                 summary: reasoning.summary_text,
                 content: reasoning.raw_content,
+            },
+            CoreTurnItem::SourceDescription(item) => ThreadItem::SourceDescription {
+                id: item.id,
+                call_id: item.call_id,
+                description: source_description_for_display(item.description),
             },
             CoreTurnItem::CommandExecution(command) => {
                 let presentation = CommandExecutionPresentation::from_raw(

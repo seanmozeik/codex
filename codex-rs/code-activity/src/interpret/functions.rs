@@ -178,6 +178,9 @@ impl<'tree> State<'_, 'tree> {
         keywords: &BTreeMap<String, Value>,
         depth: usize,
     ) -> Value {
+        if !self.literal_loop_call(node, &function, args, keywords) {
+            return Value::Unknown;
+        }
         if let Some(value) = self.callback(node, &function, args, depth) {
             return value;
         }

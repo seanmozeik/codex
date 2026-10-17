@@ -3,6 +3,7 @@ mod execute_handler;
 pub(crate) mod execute_spec;
 mod output;
 mod response_adapter;
+mod source_description;
 mod telemetry;
 mod wait_handler;
 pub(crate) mod wait_spec;

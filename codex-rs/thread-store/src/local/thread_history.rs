@@ -528,6 +528,7 @@ WHERE thread_id = ?
             | ThreadItem::Plan { .. }
             | ThreadItem::Reasoning { .. }
             | ThreadItem::CommandExecution { .. }
+            | ThreadItem::SourceDescription { .. }
             | ThreadItem::FileChange { .. }
             | ThreadItem::McpToolCall { .. }
             | ThreadItem::DynamicToolCall { .. }
