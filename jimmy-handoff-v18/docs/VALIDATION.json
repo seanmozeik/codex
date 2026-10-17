@@ -1,0 +1,33 @@
+{
+  "schema": "jimmyCloudHandoffValidation/v1",
+  "exactSourceTree": "bb5be6c2e2fbd17497e0d6b8571c1e1ff8b17427",
+  "patchApplyCheck": true,
+  "patchTreeEquality": true,
+  "python24SavedReplay": {
+    "cases": 24,
+    "caseErrors": 0
+  },
+  "fresh40SavedReplay": {
+    "rows": 40,
+    "unchanged": 40
+  },
+  "negativeControls": [
+    {
+      "control": "corrupt-byte",
+      "exit": 1,
+      "rejected": true
+    },
+    {
+      "control": "truncated",
+      "exit": 1,
+      "rejected": true
+    }
+  ],
+  "newNativeBuilds": 0,
+  "newAnalyzerRuns": 0,
+  "representedProgramsExecuted": 0,
+  "privateSessionsRead": 0,
+  "networkActions": 0,
+  "checkoutClean": true,
+  "scope": "Transfer and saved-data reproduction checks only; no new parser accuracy or performance experiment."
+}

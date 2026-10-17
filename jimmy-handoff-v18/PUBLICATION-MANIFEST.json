@@ -1,0 +1,1054 @@
+{
+  "files": [
+    {
+      "path": "FIXTURE-MANIFEST.json",
+      "bytes": 4937,
+      "sha256": "23fa4e3a19e0675407d5065dcc3a0e985654cb018297bc7f52d37bca1d01b5c8"
+    },
+    {
+      "path": "docs/NATIVE-COMMANDS.json",
+      "bytes": 3724,
+      "sha256": "786c2972f9dbe0e71b760825c453c01c8a4a2a9bfc6e63529b495eb981bc3bf6"
+    },
+    {
+      "path": "docs/PROJECT-RUST-STANDARDS.md",
+      "bytes": 2117,
+      "sha256": "f93ae212536af89880485dc23a800126c84328575fe7a68dd952b2763b681554"
+    },
+    {
+      "path": "docs/VALIDATION.json",
+      "bytes": 777,
+      "sha256": "30f581492336c517a808f24481bcd32ea9eda17964ac5f4129d581eba4be535a"
+    },
+    {
+      "path": "fixtures/fresh40/cases.jsonl",
+      "bytes": 200989,
+      "sha256": "781a42ce9729dc089b755324a8cdb604b66eb12bf17bbd19e502819504829565"
+    },
+    {
+      "path": "fixtures/fresh40/expected-v18-results.jsonl",
+      "bytes": 74124,
+      "sha256": "9380d911856bd2f36918b1551b02331c413fc37a3ecd4117122d7657108677f2"
+    },
+    {
+      "path": "fixtures/fresh40/gold.jsonl",
+      "bytes": 179408,
+      "sha256": "7c4acfdb17145ba44841edc00e9e7537c0e9a8338235baf27b9bc97aa9435839"
+    },
+    {
+      "path": "fixtures/fresh40/requests.jsonl",
+      "bytes": 23048,
+      "sha256": "2ba7765992874490ccca86f1919aa7996cd3fea424c0959e1552c18a59559e3f"
+    },
+    {
+      "path": "fixtures/python24/ORIGINAL-CONTRACT.md",
+      "bytes": 6680,
+      "sha256": "085f9f5ec5805974d5061d3d3c313881eaddcdfd2034cad26953b90bc94b5d3f"
+    },
+    {
+      "path": "fixtures/python24/author_panel.py",
+      "bytes": 13560,
+      "sha256": "69effc62d60d41ae6b884d2ed6adc0354584b34facf2de51717f06835c12f744"
+    },
+    {
+      "path": "fixtures/python24/expected-v18-results.jsonl",
+      "bytes": 83793,
+      "sha256": "3db0c426e300fb99fb990bde712b3a75eff1a025a683c488c7190fdca52c0a1d"
+    },
+    {
+      "path": "fixtures/python24/gold.jsonl",
+      "bytes": 49725,
+      "sha256": "ca001c7e82b95d25e659b6d5d457a228fa5d2609e9f2ffb6bd60d0d703d18aed"
+    },
+    {
+      "path": "fixtures/python24/requests.jsonl",
+      "bytes": 15711,
+      "sha256": "63300e4f89f38c52774cba6f3a4699943b9899cff74d4b1cb843281fd13a3d93"
+    },
+    {
+      "path": "fixtures/python24/source-proofs.json",
+      "bytes": 129377,
+      "sha256": "45dded897e5b9db8d5d06713fe9166f410f813ab8c0abc0c3f8f0c744f526735"
+    },
+    {
+      "path": "rust-skill/SKILL.md",
+      "bytes": 30250,
+      "sha256": "d3582c6bf5ac32a1385077c773d459ff746b34653d76f0e0e960df4ccf659b4d"
+    },
+    {
+      "path": "rust-skill/references/chapter_01.md",
+      "bytes": 17404,
+      "sha256": "e84c12cae7172c12db37dc4355f8f029e8a6e2c69ef5659cc897168d226cf70a"
+    },
+    {
+      "path": "rust-skill/references/chapter_02.md",
+      "bytes": 7901,
+      "sha256": "17ad0291211ba2c44bcb7dbc75696d80c69e102bf908b879df3ac85a58fcab02"
+    },
+    {
+      "path": "rust-skill/references/chapter_03.md",
+      "bytes": 8724,
+      "sha256": "c26cc3d42e41dd3f24855c98e380af5e08bb2719809cdd0bff09c986c44eb105"
+    },
+    {
+      "path": "rust-skill/references/chapter_04.md",
+      "bytes": 7083,
+      "sha256": "b3d0b8e3644282b03f45f60ad08a0e7065e80a2e4959588d0fcdc690d009f476"
+    },
+    {
+      "path": "rust-skill/references/chapter_05.md",
+      "bytes": 14100,
+      "sha256": "5e661be723c810a5f8744211de3043d8c27f6f42e518fd25e10114cb1e610d5b"
+    },
+    {
+      "path": "rust-skill/references/chapter_06.md",
+      "bytes": 6938,
+      "sha256": "10af28bfd2c935eb5c6731c713226a93ab42b85a609514678c0c720681fcd887"
+    },
+    {
+      "path": "rust-skill/references/chapter_07.md",
+      "bytes": 8238,
+      "sha256": "cc0f9404c0c26724f164f4e1e6b710ae55ccce4fcd732be97767936db43c423f"
+    },
+    {
+      "path": "rust-skill/references/chapter_08.md",
+      "bytes": 11048,
+      "sha256": "18e4e8979e1cf4079e5a385a394a96ccabcde4d26acbfbe3415b98bf0f04f388"
+    },
+    {
+      "path": "rust-skill/references/chapter_09.md",
+      "bytes": 11467,
+      "sha256": "450527aa6b910e887926ce1c2800f91fe664eae2435c08bbb4a21254fb88aba1"
+    },
+    {
+      "path": "rust-skill/rules/anti-clone-excessive.md",
+      "bytes": 2761,
+      "sha256": "ab64e7c9b38344d5397a18264c0205e837a3be761e35058b7dc3ee7ef7c08dec"
+    },
+    {
+      "path": "rust-skill/rules/anti-collect-intermediate.md",
+      "bytes": 3558,
+      "sha256": "f57f5b76e42a3c094ca0a7811f1d940c24ad65b7a4a0c106f6d1e6496b0c3c45"
+    },
+    {
+      "path": "rust-skill/rules/anti-empty-catch.md",
+      "bytes": 3254,
+      "sha256": "6ba0083e8be0ded2961009c091e6a936fb9faea63825fafc41b51f8a0fb1079a"
+    },
+    {
+      "path": "rust-skill/rules/anti-expect-lazy.md",
+      "bytes": 3474,
+      "sha256": "7550982b8c4146c6447cad28ea1f936f12ea79732e5cbba6f92bc8dbf5a0ae00"
+    },
+    {
+      "path": "rust-skill/rules/anti-format-hot-path.md",
+      "bytes": 3675,
+      "sha256": "60ead0c2824fa2151aa638d7dc60b6b2bd764aab543de5e492adf9e75ab57012"
+    },
+    {
+      "path": "rust-skill/rules/anti-index-over-iter.md",
+      "bytes": 3281,
+      "sha256": "2c1dc579686aa5e003ec0f2646afade1c87c296d95d9f17c2be438d07a067644"
+    },
+    {
+      "path": "rust-skill/rules/anti-lock-across-await.md",
+      "bytes": 3345,
+      "sha256": "d504e049550852d2eb7462fe01200250dd53a15854dd9bb0e4f6db0044078c3f"
+    },
+    {
+      "path": "rust-skill/rules/anti-over-abstraction.md",
+      "bytes": 3305,
+      "sha256": "fd6cc9e51136a1605dc9adf5c553d41d7a5202c6b9d553e117e2edc8390c1799"
+    },
+    {
+      "path": "rust-skill/rules/anti-panic-expected.md",
+      "bytes": 3645,
+      "sha256": "8eb35ce3871fc5d8d19e1e2fa1f799e5a2800d6a7005cdeb9b6e2b98bd57f185"
+    },
+    {
+      "path": "rust-skill/rules/anti-premature-optimize.md",
+      "bytes": 3965,
+      "sha256": "6c4e42cdd838394058983bd8a7cd0060b11dcc5a32449fc875846497da435953"
+    },
+    {
+      "path": "rust-skill/rules/anti-string-for-str.md",
+      "bytes": 2673,
+      "sha256": "9e4cdf69f3a9d144f59333b320e75560c69db7b8b858192dd26fea73629be3c7"
+    },
+    {
+      "path": "rust-skill/rules/anti-stringly-typed.md",
+      "bytes": 4178,
+      "sha256": "2c8f37c1d37e9c2a334dc033cf271e9384d9a3d71edc5a133bbd0cfa17474a59"
+    },
+    {
+      "path": "rust-skill/rules/anti-type-erasure.md",
+      "bytes": 3449,
+      "sha256": "75b09bdd991941bae86fbb09a3408bcf5354553bc66be4f2877d099ade04015a"
+    },
+    {
+      "path": "rust-skill/rules/anti-unwrap-abuse.md",
+      "bytes": 3421,
+      "sha256": "a0b358288113158bee58c04ede081e76ea48119f6f9f5573c526e3e5f435f14a"
+    },
+    {
+      "path": "rust-skill/rules/anti-vec-for-slice.md",
+      "bytes": 2548,
+      "sha256": "2fb447c0faddc7db4e1b17a6b1b866a4eef11af97b9eb40591fc9b11e7e01964"
+    },
+    {
+      "path": "rust-skill/rules/api-builder-must-use.md",
+      "bytes": 3915,
+      "sha256": "5ca0d55b9e06e494192e1bfe25efda3391f7acba81e0b58df3616b864938a7c0"
+    },
+    {
+      "path": "rust-skill/rules/api-builder-pattern.md",
+      "bytes": 4633,
+      "sha256": "a19135121e3748e8fb9d347797024f7b017ebfc30026916d90919fb5fb3656e8"
+    },
+    {
+      "path": "rust-skill/rules/api-common-traits.md",
+      "bytes": 4575,
+      "sha256": "e85b187c49a3f2bab36e9124092225f14f0d6d49fb31a05024902ccab04c213f"
+    },
+    {
+      "path": "rust-skill/rules/api-default-impl.md",
+      "bytes": 3886,
+      "sha256": "c57680cb1939d7ba461729d608a828dd5fba61d620b40636d2be1739379c4b6a"
+    },
+    {
+      "path": "rust-skill/rules/api-extension-trait.md",
+      "bytes": 3779,
+      "sha256": "7044e53caeeaa6ef93b4af792bd26a0f13b7d09fc6b9f909aae68c21483c2d2e"
+    },
+    {
+      "path": "rust-skill/rules/api-from-not-into.md",
+      "bytes": 3219,
+      "sha256": "c4dd2f18a2cfd7967cd5a7e4193fa61c76a1ffceac73395e445d516720e386b3"
+    },
+    {
+      "path": "rust-skill/rules/api-impl-asref.md",
+      "bytes": 3698,
+      "sha256": "bde03eb0971674de36339595028342c51478bbb57f6fd3dbed86021d83075057"
+    },
+    {
+      "path": "rust-skill/rules/api-impl-into.md",
+      "bytes": 4088,
+      "sha256": "e8e633861ad298ecedf348380b7503417498c8520ad4a1ed2baa4081b29d94d9"
+    },
+    {
+      "path": "rust-skill/rules/api-must-use.md",
+      "bytes": 3577,
+      "sha256": "069a52140597df71c3ce15218ea1e476d83f1fea615d596027ae8ff97d81731c"
+    },
+    {
+      "path": "rust-skill/rules/api-newtype-safety.md",
+      "bytes": 4024,
+      "sha256": "7c929521716213cd75abde6b64e1d0b39e4e2912b68bcd893db0b39ca0329b0f"
+    },
+    {
+      "path": "rust-skill/rules/api-non-exhaustive.md",
+      "bytes": 3967,
+      "sha256": "be7711f71f3f05fec6f527cf3c98ffcdbf054651012001b163af3d81e3fa4d98"
+    },
+    {
+      "path": "rust-skill/rules/api-parse-dont-validate.md",
+      "bytes": 4247,
+      "sha256": "241752b2517dd12d303f8514931e65f2bf9cb7e7a49baf83dbdaee58bfca039d"
+    },
+    {
+      "path": "rust-skill/rules/api-sealed-trait.md",
+      "bytes": 4745,
+      "sha256": "6b72a2c6890dc605f624bc207d52294e965b5a30aaf4d26b9bae2cd85858f363"
+    },
+    {
+      "path": "rust-skill/rules/api-serde-optional.md",
+      "bytes": 4137,
+      "sha256": "9080cc7674817911b74d6c931bd971372ecfa3867f2c1a813a3975c20953222a"
+    },
+    {
+      "path": "rust-skill/rules/api-typestate.md",
+      "bytes": 4968,
+      "sha256": "dcedc7b398cec8ce7dd136fbd7fa7f5d71c8109c19a7cebc7f3f93dc3b8af8f8"
+    },
+    {
+      "path": "rust-skill/rules/async-bounded-channel.md",
+      "bytes": 4594,
+      "sha256": "30bcb52d58426c65213b35434db4e7ab854a8f5b2cdbd6a273f8cfa0e00b06ef"
+    },
+    {
+      "path": "rust-skill/rules/async-broadcast-pubsub.md",
+      "bytes": 4141,
+      "sha256": "8a6b96f4bd5627aa08601c25bc779c2691ea0f22ddc5276705f66752e329805a"
+    },
+    {
+      "path": "rust-skill/rules/async-cancellation-token.md",
+      "bytes": 4881,
+      "sha256": "83f39b1e38812e7e4417593ee462bb18144b38821191f80d8522320792e1cf3c"
+    },
+    {
+      "path": "rust-skill/rules/async-clone-before-await.md",
+      "bytes": 4015,
+      "sha256": "a3f157b72f21ed2e8fd22400c185e52251853872d6bd760620a8cf7b31c27978"
+    },
+    {
+      "path": "rust-skill/rules/async-join-parallel.md",
+      "bytes": 4069,
+      "sha256": "a0e2fe11baefdcd4c079676d9ade95b6e06dfee87ba12cdddc625e0270402c2c"
+    },
+    {
+      "path": "rust-skill/rules/async-joinset-structured.md",
+      "bytes": 4683,
+      "sha256": "f623520bd36e3214f08dea801adb4cc965c2d900ae2a4b46e262eb3456c1a3cf"
+    },
+    {
+      "path": "rust-skill/rules/async-mpsc-queue.md",
+      "bytes": 4000,
+      "sha256": "66bc260c55aae124611dabdfac90e552d8dd9771ab16d390971d1f8cfb4e0589"
+    },
+    {
+      "path": "rust-skill/rules/async-no-lock-await.md",
+      "bytes": 3920,
+      "sha256": "21884bf1f725152d66b4325d52029a6ce5bc57b7b4d9bfacc141c016a9cddef6"
+    },
+    {
+      "path": "rust-skill/rules/async-oneshot-response.md",
+      "bytes": 4543,
+      "sha256": "3f1bf76dc79e3b2903c99aee8f4b2c5ab2f8cda4ea71964f60e02522344fef2d"
+    },
+    {
+      "path": "rust-skill/rules/async-select-racing.md",
+      "bytes": 4648,
+      "sha256": "5d4606b0bc64b84fdf3239c90cda25ea33d2ff9303ee81b063581c66bdae964e"
+    },
+    {
+      "path": "rust-skill/rules/async-spawn-blocking.md",
+      "bytes": 3717,
+      "sha256": "398a926fe15f08ae831d4058695e4910c624460d7262bd6d6248f517eabea51b"
+    },
+    {
+      "path": "rust-skill/rules/async-tokio-fs.md",
+      "bytes": 4151,
+      "sha256": "531839caaf71d189c7f2cbc040cca75086a567372addf70aa5f9de033f647bcf"
+    },
+    {
+      "path": "rust-skill/rules/async-tokio-runtime.md",
+      "bytes": 4470,
+      "sha256": "bf6e11aaf2f6ff0a70bceee801e3ebecd750ce844228b34c08f9bb141178f848"
+    },
+    {
+      "path": "rust-skill/rules/async-try-join.md",
+      "bytes": 4409,
+      "sha256": "f439708919c289aecd9458bc46356ae3a4de2ce13c0c3050ca807edce3ee9405"
+    },
+    {
+      "path": "rust-skill/rules/async-watch-latest.md",
+      "bytes": 4757,
+      "sha256": "a4e39e51fc6449bd338f9f32458bcba5985448c8887433ed971d0c2c2f4f16af"
+    },
+    {
+      "path": "rust-skill/rules/doc-all-public.md",
+      "bytes": 2909,
+      "sha256": "e3aa06c4bd933b1c6222069b62d1bcd9c23da3eba7f7b235d83cbe1cd8d003e6"
+    },
+    {
+      "path": "rust-skill/rules/doc-cargo-metadata.md",
+      "bytes": 3610,
+      "sha256": "6014d83e0d417686330b81ed77241e01e2e8c37fa994be73d92d71572d035514"
+    },
+    {
+      "path": "rust-skill/rules/doc-errors-section.md",
+      "bytes": 3319,
+      "sha256": "32bff3e8f672cd812c6237565cbf73efa84b758e66b248e9815754426b7808ba"
+    },
+    {
+      "path": "rust-skill/rules/doc-examples-section.md",
+      "bytes": 2934,
+      "sha256": "eb40b4de976f79b82fc476b07b7c1c05eb4f15534ba0a3c08b11bdb38e8393b4"
+    },
+    {
+      "path": "rust-skill/rules/doc-hidden-setup.md",
+      "bytes": 3783,
+      "sha256": "ae17d330a409d721f00784aeb788ae379e4bb14bf2a5c1ac04d1dfb55b1b34e0"
+    },
+    {
+      "path": "rust-skill/rules/doc-intra-links.md",
+      "bytes": 3624,
+      "sha256": "d04ad17569101dd8504fbd65171fc57ab72577fbd0e0028e0b6131dad7f58668"
+    },
+    {
+      "path": "rust-skill/rules/doc-link-types.md",
+      "bytes": 3887,
+      "sha256": "e61c069cf72ce549431b1bc90d010082efcb7865832b0ce377350ec77b045b1b"
+    },
+    {
+      "path": "rust-skill/rules/doc-module-inner.md",
+      "bytes": 2964,
+      "sha256": "7e114eac1675ceffa050453014177520365219bc832949da37fe9331fac726e1"
+    },
+    {
+      "path": "rust-skill/rules/doc-panics-section.md",
+      "bytes": 3287,
+      "sha256": "444af53686e54809706a52aa4da2825043c51210c19eae2cf4d8a2d775e1f318"
+    },
+    {
+      "path": "rust-skill/rules/doc-question-mark.md",
+      "bytes": 3300,
+      "sha256": "ff2e76b2dd0a021045280b11dabfb52a5eaf4f8999e10c359c3de4fc0085b0a0"
+    },
+    {
+      "path": "rust-skill/rules/doc-safety-section.md",
+      "bytes": 4024,
+      "sha256": "ac270d7a975758c0d8f7c678d9b5690abec4b66872cecbc57f0a09894b85027f"
+    },
+    {
+      "path": "rust-skill/rules/err-anyhow-app.md",
+      "bytes": 4336,
+      "sha256": "0e54aacab54b213990a9b0cb0b109444cc80bfc51530e9a5c78bb3213db100dd"
+    },
+    {
+      "path": "rust-skill/rules/err-context-chain.md",
+      "bytes": 3482,
+      "sha256": "efb8f4de050b46100b290e1dcd3ad2921e82c2d9d5050a325672de4353ea18d2"
+    },
+    {
+      "path": "rust-skill/rules/err-custom-type.md",
+      "bytes": 4166,
+      "sha256": "644ebf360b936ec93431af7c44a167503449116761ce39834e3c6e951b0db611"
+    },
+    {
+      "path": "rust-skill/rules/err-doc-errors.md",
+      "bytes": 3929,
+      "sha256": "b88f838103e360efdb5a37f3516f3f4f2fd1135e5edbcad2ac49ce799ca8ac62"
+    },
+    {
+      "path": "rust-skill/rules/err-expect-bugs-only.md",
+      "bytes": 3799,
+      "sha256": "b81b9298e77b5738e5eb07acb1cfbeb4d93be60a200743e132153a655471452a"
+    },
+    {
+      "path": "rust-skill/rules/err-from-impl.md",
+      "bytes": 3846,
+      "sha256": "fdce2f1ae4df9839fc46a6985ca2ffdaba408db0a2dbb36fc70dfebdb43665be"
+    },
+    {
+      "path": "rust-skill/rules/err-lowercase-msg.md",
+      "bytes": 3549,
+      "sha256": "72d815dee55a593cfdac5bf490f27a19e142d03af09f5f4990ab4e9e7b78025d"
+    },
+    {
+      "path": "rust-skill/rules/err-no-unwrap-prod.md",
+      "bytes": 3375,
+      "sha256": "0986e800c3a154f720db16ee0f6cb8555e287b7619a5c27da3bcc076f6ae48b2"
+    },
+    {
+      "path": "rust-skill/rules/err-question-mark.md",
+      "bytes": 3351,
+      "sha256": "fd72ad88af23e742c1ed9b1692b6bbf4aab64792d315c85abe44c5532f7af9fb"
+    },
+    {
+      "path": "rust-skill/rules/err-result-over-panic.md",
+      "bytes": 3836,
+      "sha256": "db86f7361c26667cceb0a48eecace250307233a613622fb78a9955a2087fdcbc"
+    },
+    {
+      "path": "rust-skill/rules/err-source-chain.md",
+      "bytes": 3865,
+      "sha256": "df3add1a3ca36582ed7178abebfc0723c5a6a45dbf7b94fca52ac6a3ff03aa5b"
+    },
+    {
+      "path": "rust-skill/rules/err-thiserror-lib.md",
+      "bytes": 4399,
+      "sha256": "12677d3dc940cd32c74c0b5578257282bc91c7a13850c37bb93220b2745022b2"
+    },
+    {
+      "path": "rust-skill/rules/lint-cargo-metadata.md",
+      "bytes": 3034,
+      "sha256": "7baa074ca9606c6311783a0176edf6392fd34679c23c5ca54bd0a5156c8b40ec"
+    },
+    {
+      "path": "rust-skill/rules/lint-deny-correctness.md",
+      "bytes": 2289,
+      "sha256": "4c7c029fe826c7a3bc8cd01d6ec22ea63ce0393c3cc679b4033662010a49581f"
+    },
+    {
+      "path": "rust-skill/rules/lint-missing-docs.md",
+      "bytes": 3116,
+      "sha256": "b6afb390ecb54f6f9dbfa5d68c4b8f4073e61bc49c05f860480d4e3c0b826ff9"
+    },
+    {
+      "path": "rust-skill/rules/lint-pedantic-selective.md",
+      "bytes": 3637,
+      "sha256": "8e8c871fad2fca34f1c43324f1b3765d357dae0d1e7deed57daefb80969a3d28"
+    },
+    {
+      "path": "rust-skill/rules/lint-rustfmt-check.md",
+      "bytes": 2920,
+      "sha256": "be3f15798d4d3ca07eccd286d937ff1a45672de22a0630e3bb30343a1355ba3b"
+    },
+    {
+      "path": "rust-skill/rules/lint-unsafe-doc.md",
+      "bytes": 3178,
+      "sha256": "306201b67c62f00f0f43e75f94c01a8d9623356d94be46fa204f16874a572136"
+    },
+    {
+      "path": "rust-skill/rules/lint-warn-complexity.md",
+      "bytes": 3263,
+      "sha256": "4cf77d7c810e0084d5569f724fde5e5b64105fc3559592a822992b63b6adcd3a"
+    },
+    {
+      "path": "rust-skill/rules/lint-warn-perf.md",
+      "bytes": 3449,
+      "sha256": "bd642b801ed1266154da15d92ebcda36b09373b34ca25a1b1580db6f922c241d"
+    },
+    {
+      "path": "rust-skill/rules/lint-warn-style.md",
+      "bytes": 3200,
+      "sha256": "235111692f1966b4e361537d7f07f83eb84cab286ee5d293071c9ac7368ebcb2"
+    },
+    {
+      "path": "rust-skill/rules/lint-warn-suspicious.md",
+      "bytes": 3201,
+      "sha256": "9f183789deee516d2aaf794b9cc6141911fc13b43e9c6fca6213d8c8e81062cf"
+    },
+    {
+      "path": "rust-skill/rules/lint-workspace-lints.md",
+      "bytes": 3632,
+      "sha256": "31f38c6c838b0016ff9cd772eb9cd260a3be4990490aba7418ae77eaef64796f"
+    },
+    {
+      "path": "rust-skill/rules/mem-arena-allocator.md",
+      "bytes": 4311,
+      "sha256": "45a81015fc83f238fff64515f9085e02d206757dec78d467d291c561243c30c3"
+    },
+    {
+      "path": "rust-skill/rules/mem-arrayvec.md",
+      "bytes": 3759,
+      "sha256": "e9559589e5717746b440fb73d66d1400744bf60790e612000b423fe6ce806a33"
+    },
+    {
+      "path": "rust-skill/rules/mem-assert-type-size.md",
+      "bytes": 3864,
+      "sha256": "eaf75c39278c7ffe86a4018a7cde9f58779876908bc0d9bc06ffe226aaa87ec4"
+    },
+    {
+      "path": "rust-skill/rules/mem-avoid-format.md",
+      "bytes": 3608,
+      "sha256": "73aeda367c72ab290024d38ce90cfef726500e9d548a854ec9b9a05579d2d325"
+    },
+    {
+      "path": "rust-skill/rules/mem-box-large-variant.md",
+      "bytes": 3887,
+      "sha256": "05c80680557a3e3f1a673d81c59e23c1796364ef7e35892479dc927b8150e82b"
+    },
+    {
+      "path": "rust-skill/rules/mem-boxed-slice.md",
+      "bytes": 3760,
+      "sha256": "e88e887a99680b2b63669b15ded0fbf357cf0b3b6d09224643ca9a82032c6e4b"
+    },
+    {
+      "path": "rust-skill/rules/mem-clone-from.md",
+      "bytes": 3520,
+      "sha256": "e3cb92e4ef61e445c7df30f5940813f0fc956aa90ffbb803bacdbd3d6613ae33"
+    },
+    {
+      "path": "rust-skill/rules/mem-compact-string.md",
+      "bytes": 3768,
+      "sha256": "878e8edfadce6438d73eade685c121d51e9210fe59bdb58f6c3a62c003b616d4"
+    },
+    {
+      "path": "rust-skill/rules/mem-reuse-collections.md",
+      "bytes": 4210,
+      "sha256": "c9ee9ab2fc10917744217dfb5ea89b7ce86fff9f572de6aa2892371e8f07558f"
+    },
+    {
+      "path": "rust-skill/rules/mem-smaller-integers.md",
+      "bytes": 4074,
+      "sha256": "d5ea729c51018a28cdddd9dfe2260ae535510edb3d921e4a0b9402b54608e890"
+    },
+    {
+      "path": "rust-skill/rules/mem-smallvec.md",
+      "bytes": 3596,
+      "sha256": "2a1bb10903a6fade084aef3bf304f265b727d2fdb4f09165a517bc9b00a7d453"
+    },
+    {
+      "path": "rust-skill/rules/mem-thinvec.md",
+      "bytes": 3596,
+      "sha256": "9fd9155ca23bf3bc55d9f2c4d2ab2b46bb6f0308ad278757d1aa78576b0f19cb"
+    },
+    {
+      "path": "rust-skill/rules/mem-with-capacity.md",
+      "bytes": 3761,
+      "sha256": "6e20f7461c314797d7315596726e858d60617965515f69e767e12fa183114aab"
+    },
+    {
+      "path": "rust-skill/rules/mem-write-over-format.md",
+      "bytes": 4010,
+      "sha256": "5c380946433310e7b8b6ef2dd5b4d6902fe007f579cea4edb6199a31d33b4cbb"
+    },
+    {
+      "path": "rust-skill/rules/mem-zero-copy.md",
+      "bytes": 4026,
+      "sha256": "aa145629ebd5a9c2bc8c9b6e88414fee61ff6028bf6cfaee74eff4ae36bd0239"
+    },
+    {
+      "path": "rust-skill/rules/name-acronym-word.md",
+      "bytes": 2859,
+      "sha256": "adf757646953837175f3e8edf19359cb5bf648c534c8c1c04f998efde53ff786"
+    },
+    {
+      "path": "rust-skill/rules/name-as-free.md",
+      "bytes": 2383,
+      "sha256": "a829ffcd96dbd752b31234241f44d02286a06b7b0655808852019c9b7cf7a8d2"
+    },
+    {
+      "path": "rust-skill/rules/name-consts-screaming.md",
+      "bytes": 2255,
+      "sha256": "b3a94463e11d6bf4694848370bf019727120df003ef808ef79491e44e93ea844"
+    },
+    {
+      "path": "rust-skill/rules/name-crate-no-rs.md",
+      "bytes": 2063,
+      "sha256": "d2aaf1f2fdb570883146caf1599f1461d1227d72abe7dffe293dd6a71a68cad6"
+    },
+    {
+      "path": "rust-skill/rules/name-funcs-snake.md",
+      "bytes": 1977,
+      "sha256": "9659a3e6e00c943573f6d6cf8e4324e20894665cf7a367db9b7d1f4f8f762d38"
+    },
+    {
+      "path": "rust-skill/rules/name-into-ownership.md",
+      "bytes": 2779,
+      "sha256": "916b405294504d68cb7510bd6940f812efc5471b0f9b2862f448888492ac5f3b"
+    },
+    {
+      "path": "rust-skill/rules/name-is-has-bool.md",
+      "bytes": 3425,
+      "sha256": "95faa738913e264dbebc71f916ba99388b59c8eae3909b5a79aebdcdec3ec090"
+    },
+    {
+      "path": "rust-skill/rules/name-iter-convention.md",
+      "bytes": 3448,
+      "sha256": "5b6e047dd09143e182149811a9268b8af0a4fae734561d0b3451e237816e3c27"
+    },
+    {
+      "path": "rust-skill/rules/name-iter-method.md",
+      "bytes": 3414,
+      "sha256": "de84122088c8b07b432af3969895aa643f319257ba87d89d93ea99305f5c79f7"
+    },
+    {
+      "path": "rust-skill/rules/name-iter-type-match.md",
+      "bytes": 3690,
+      "sha256": "87d4e5180ffbb9e862a3333bd347e58a197945f25f8a91b7232c28485487669b"
+    },
+    {
+      "path": "rust-skill/rules/name-lifetime-short.md",
+      "bytes": 2615,
+      "sha256": "1547415c226961160a52ac2229506b4400ae5933a63ba6b5453d8fc0a0c28510"
+    },
+    {
+      "path": "rust-skill/rules/name-no-get-prefix.md",
+      "bytes": 3249,
+      "sha256": "a5ba8d117975dcd21ad0af7ddcb3c7d1a3d96619d80163f2acfa6d418b0bf297"
+    },
+    {
+      "path": "rust-skill/rules/name-to-expensive.md",
+      "bytes": 3089,
+      "sha256": "842090709366b5d343a9c4cbc9229cea25306a930b080c6a77b4a646e0bc8526"
+    },
+    {
+      "path": "rust-skill/rules/name-type-param-single.md",
+      "bytes": 2580,
+      "sha256": "f006619bfcd235d65c64891f5896dcf43e50fe9d7783c4282d7ab8939cc3ee20"
+    },
+    {
+      "path": "rust-skill/rules/name-types-camel.md",
+      "bytes": 1798,
+      "sha256": "73321d6f5ed12a3ff23c5051e2faeb7e70ebf0446436c72d3f7862ec2f3b56ed"
+    },
+    {
+      "path": "rust-skill/rules/name-variants-camel.md",
+      "bytes": 1802,
+      "sha256": "c2a1fb987e439b5f910116a3f8e54eccb0d5c75270bccc1583670a330364f4d3"
+    },
+    {
+      "path": "rust-skill/rules/opt-bounds-check.md",
+      "bytes": 4046,
+      "sha256": "dd4e66517494be1504d7edb3650bfe908f631bf3ede000fc116c0806b20afc9b"
+    },
+    {
+      "path": "rust-skill/rules/opt-cache-friendly.md",
+      "bytes": 4648,
+      "sha256": "0ced5ccca71b9a76d912856835017fee688c25d403a4b8ca90f4780a40a61f14"
+    },
+    {
+      "path": "rust-skill/rules/opt-codegen-units.md",
+      "bytes": 3387,
+      "sha256": "6799ea17cb1ad259502e7783b4d5b0a7eeb52cc747b26c073501f593534c7b25"
+    },
+    {
+      "path": "rust-skill/rules/opt-cold-unlikely.md",
+      "bytes": 3551,
+      "sha256": "402ffbeae612c0a7662396311c11a047ed58c15827d65d670caa35f5950e66b4"
+    },
+    {
+      "path": "rust-skill/rules/opt-inline-always-rare.md",
+      "bytes": 3391,
+      "sha256": "c803bdf268d59bfc55dca1877c2a84913c752649b0e15ce139c6ce8a59c23d81"
+    },
+    {
+      "path": "rust-skill/rules/opt-inline-never-cold.md",
+      "bytes": 4309,
+      "sha256": "302b2da8651056be4bc5e59547996ba619801d6bcff47e47412a36c184953c8f"
+    },
+    {
+      "path": "rust-skill/rules/opt-inline-small.md",
+      "bytes": 3644,
+      "sha256": "b85e39be2c7098e1ed538fd8fc43585edf73b3d2038188cf54cf1f22e0388a11"
+    },
+    {
+      "path": "rust-skill/rules/opt-likely-hint.md",
+      "bytes": 3716,
+      "sha256": "3754b03fbb55e1c3d61cf9d3203b0c68925ee2f334645ae211f13a076f2a94cd"
+    },
+    {
+      "path": "rust-skill/rules/opt-lto-release.md",
+      "bytes": 3238,
+      "sha256": "96da375687ec7f3a9f62c412ea9480189aa2535fc2a8444e5f90a90753b7f9ba"
+    },
+    {
+      "path": "rust-skill/rules/opt-pgo-profile.md",
+      "bytes": 4230,
+      "sha256": "761fc928313b59e4c23f8bff0864608d3bf9f41426e0817aecc541a78070af56"
+    },
+    {
+      "path": "rust-skill/rules/opt-simd-portable.md",
+      "bytes": 4033,
+      "sha256": "a3801cb5cb2dd9274f5b39c5892384b91c00ffd3d0cf7f081ca2b5b6982db5ae"
+    },
+    {
+      "path": "rust-skill/rules/opt-target-cpu.md",
+      "bytes": 3717,
+      "sha256": "da72700533802e3702fe851b7a3797d77c9ee3be898140b68022b9da10546a37"
+    },
+    {
+      "path": "rust-skill/rules/own-arc-shared.md",
+      "bytes": 3307,
+      "sha256": "3b1bc6651d85b7b84d0d8f40763be13f4b1e7261c46f2b7270ba755830e2ce13"
+    },
+    {
+      "path": "rust-skill/rules/own-borrow-over-clone.md",
+      "bytes": 2369,
+      "sha256": "9662fdd048e8a62ac3951015e072778d066a764a7c72b3a718eb54d2625966e7"
+    },
+    {
+      "path": "rust-skill/rules/own-clone-explicit.md",
+      "bytes": 3442,
+      "sha256": "85711b63392ac8fdfdddaef20f06878a00038c01052f2f4322eafc9cf1fb06a2"
+    },
+    {
+      "path": "rust-skill/rules/own-copy-small.md",
+      "bytes": 3022,
+      "sha256": "08ebfcadd753da1309126dc3d8b35cffe82bb93e69d3d62611c5f429865ef434"
+    },
+    {
+      "path": "rust-skill/rules/own-cow-conditional.md",
+      "bytes": 3816,
+      "sha256": "3647aad5fec5e225e652f3e9bc1023b4607fde85c16ce1f8a94764ff482e1495"
+    },
+    {
+      "path": "rust-skill/rules/own-lifetime-elision.md",
+      "bytes": 3214,
+      "sha256": "3854b8955d15ba76ca2e1ae35d2495f6e0e56385615e38526beb6cb240317383"
+    },
+    {
+      "path": "rust-skill/rules/own-move-large.md",
+      "bytes": 3577,
+      "sha256": "f177d15da34250d95b9e30219ec19094dbf69d54de7d7e1233796c6868fe6bcc"
+    },
+    {
+      "path": "rust-skill/rules/own-mutex-interior.md",
+      "bytes": 2890,
+      "sha256": "3fc2476227f218e51cbd934ee9999a355cec08069906b0d175d45771370c9777"
+    },
+    {
+      "path": "rust-skill/rules/own-rc-single-thread.md",
+      "bytes": 2148,
+      "sha256": "dd8411d2d2059acd1501a05601676f162403a37325dd2f8fc09e21a2411c9103"
+    },
+    {
+      "path": "rust-skill/rules/own-refcell-interior.md",
+      "bytes": 2504,
+      "sha256": "bfbf35dbd5e4e31c36ad9ee0d8405f9d452e69aa4374488a18fb24e68bb0e35f"
+    },
+    {
+      "path": "rust-skill/rules/own-rwlock-readers.md",
+      "bytes": 3370,
+      "sha256": "29c21efd63a0d09518f5ed9c9ce436a6a58df911b94794750448bd53e5920796"
+    },
+    {
+      "path": "rust-skill/rules/own-slice-over-vec.md",
+      "bytes": 2720,
+      "sha256": "2d8a3df59ae8c5ba76ec49123ad03287be5efffbc5945e414a559275bd6f43ed"
+    },
+    {
+      "path": "rust-skill/rules/perf-black-box-bench.md",
+      "bytes": 3805,
+      "sha256": "63f6c1ba430925f5d6a132db45c5ebbb1935501039d8e0496ca425e8a31483fd"
+    },
+    {
+      "path": "rust-skill/rules/perf-chain-avoid.md",
+      "bytes": 3288,
+      "sha256": "7279aeeb10eaf38e525e7f0d400fe0cd89dce57a681cbb8e0a33c8a8e5c4eaa1"
+    },
+    {
+      "path": "rust-skill/rules/perf-collect-into.md",
+      "bytes": 3229,
+      "sha256": "6900ad15bcdf06a47559f8ccb393eda9aa80ab5ee7f9bc25e6dadb71f6ae78cb"
+    },
+    {
+      "path": "rust-skill/rules/perf-collect-once.md",
+      "bytes": 2885,
+      "sha256": "12098f9aae84285eadd5a400a171b5c2127b03e8350ee98ff8209775a6bcce9e"
+    },
+    {
+      "path": "rust-skill/rules/perf-drain-reuse.md",
+      "bytes": 3753,
+      "sha256": "21c68b5347e8ceea00f516b357870e27e08d969d6bc33a36b52700ef2e7010cb"
+    },
+    {
+      "path": "rust-skill/rules/perf-entry-api.md",
+      "bytes": 3732,
+      "sha256": "c66fab82a6452dcd519c58b79dfb0933a9d2ff38b5971e2bceb733a6957b519d"
+    },
+    {
+      "path": "rust-skill/rules/perf-extend-batch.md",
+      "bytes": 3697,
+      "sha256": "c9e5b18acce9cfd616f272edce0603519befade17be5ebaa987f99320dfb6d82"
+    },
+    {
+      "path": "rust-skill/rules/perf-iter-lazy.md",
+      "bytes": 3268,
+      "sha256": "e0308eb1a8abf7369913ee8e2286f44eb426e25a0083364dd57e03b6f6d4ee95"
+    },
+    {
+      "path": "rust-skill/rules/perf-iter-over-index.md",
+      "bytes": 2771,
+      "sha256": "e67227a0a8c12ab7ea78e3c9f053b554a4b89051761104e35b45ec4acd76ede4"
+    },
+    {
+      "path": "rust-skill/rules/perf-profile-first.md",
+      "bytes": 4038,
+      "sha256": "8fe8e45ff1ac882cf3405be6899ae55f26c97c3cc6fddd2b1bbba80d133735e3"
+    },
+    {
+      "path": "rust-skill/rules/perf-release-profile.md",
+      "bytes": 3800,
+      "sha256": "ad7fd2eea6d62a0882b9c0358efe6549c0b1de503b616d2ff4d5cc1d6bf4ac5a"
+    },
+    {
+      "path": "rust-skill/rules/proj-bin-dir.md",
+      "bytes": 3095,
+      "sha256": "0992d171d8f1503df6d15cd2232b688f9b629aafd3ce522ccce1cf8c797cf7cc"
+    },
+    {
+      "path": "rust-skill/rules/proj-flat-small.md",
+      "bytes": 2841,
+      "sha256": "7d52161f28393619694c27f0f022bd84a99452081e76effbdfe5761a8af6a0c4"
+    },
+    {
+      "path": "rust-skill/rules/proj-lib-main-split.md",
+      "bytes": 3236,
+      "sha256": "cbd20ae9dd051ce48c2aed237c408b090c8a9e1081688c1f9e7a16f544990f10"
+    },
+    {
+      "path": "rust-skill/rules/proj-mod-by-feature.md",
+      "bytes": 3469,
+      "sha256": "8d7585cbfb5f69d6261f2ee8de69d260827f07d45931b7e833a10fdc017610ba"
+    },
+    {
+      "path": "rust-skill/rules/proj-mod-rs-dir.md",
+      "bytes": 2909,
+      "sha256": "49bb91cb97a5ca469d3b94899d134acd814d712b608d10079e78f7932c741dfe"
+    },
+    {
+      "path": "rust-skill/rules/proj-prelude-module.md",
+      "bytes": 3459,
+      "sha256": "07df76c8bbe98d5926f83ce2f740ae99732788f5d4744eeddaab2f6eb0504205"
+    },
+    {
+      "path": "rust-skill/rules/proj-pub-crate-internal.md",
+      "bytes": 3382,
+      "sha256": "008a01dcf8f35fb99f67fe1c2c405ff21eb0e9cac69aab80b9a0760d801e182d"
+    },
+    {
+      "path": "rust-skill/rules/proj-pub-super-parent.md",
+      "bytes": 3044,
+      "sha256": "610537a4c0a102e9b34e54f235b5d1f8f0ba69e8d40557877444ce6ac4a06b11"
+    },
+    {
+      "path": "rust-skill/rules/proj-pub-use-reexport.md",
+      "bytes": 3062,
+      "sha256": "64f7d524b4fd31079cd156151ea1d09a97af4d24bd9e302792d0072522d9cc24"
+    },
+    {
+      "path": "rust-skill/rules/proj-workspace-deps.md",
+      "bytes": 3772,
+      "sha256": "a2317920cc413ae84b51125ce745ecb2f2aaa5b1463a4705e385e68e402b54f9"
+    },
+    {
+      "path": "rust-skill/rules/proj-workspace-large.md",
+      "bytes": 3623,
+      "sha256": "55b5004f713d4e670b0d4dc0d80d3778c6382e683bbcb689f767ac014f8d8e30"
+    },
+    {
+      "path": "rust-skill/rules/test-arrange-act-assert.md",
+      "bytes": 3642,
+      "sha256": "6a27c8dd0847ad497f6b4f6868bc51a7bb9a9e6e9cdf4fff80a8ce37ba74291d"
+    },
+    {
+      "path": "rust-skill/rules/test-cfg-test-module.md",
+      "bytes": 2912,
+      "sha256": "dbcc710e4ed5f8e32e42fc314278dae62d4d8b73504808bdbf88a5262239bdb8"
+    },
+    {
+      "path": "rust-skill/rules/test-criterion-bench.md",
+      "bytes": 3689,
+      "sha256": "db9db4467476d932cbc55440029405643372fc612c35cf2f99522a3d0f9e6573"
+    },
+    {
+      "path": "rust-skill/rules/test-descriptive-names.md",
+      "bytes": 2658,
+      "sha256": "54544c2220c520fd42f3400a15504e316c223ed38dc03c5023531145bca7db72"
+    },
+    {
+      "path": "rust-skill/rules/test-doctest-examples.md",
+      "bytes": 3234,
+      "sha256": "50163a2a92c93c8cc4a067507a46dc37b96f21784e273b96264139b15e140b83"
+    },
+    {
+      "path": "rust-skill/rules/test-fixture-raii.md",
+      "bytes": 3321,
+      "sha256": "ab82464288e5f0e7c8521f33fbecbcc8389a21e59a927a85b14ee187871dd786"
+    },
+    {
+      "path": "rust-skill/rules/test-integration-dir.md",
+      "bytes": 3163,
+      "sha256": "86652ba704915ea5dec2e2043cd8c6e86f09c78700603525c213d31e899fd16a"
+    },
+    {
+      "path": "rust-skill/rules/test-mock-traits.md",
+      "bytes": 4534,
+      "sha256": "b169e37c26b899a655d80b899b675cab7ac163193d893336867ab8f1c71c1dd9"
+    },
+    {
+      "path": "rust-skill/rules/test-mockall-mocking.md",
+      "bytes": 4500,
+      "sha256": "1ef9bd7414aafb7040216b0774358541abf7d9bcc2a00fa62c3aafd06a3a7bbf"
+    },
+    {
+      "path": "rust-skill/rules/test-proptest-properties.md",
+      "bytes": 3611,
+      "sha256": "a5066fc12ffa4244bba6b7f21c11ef599931805a549b598e8c8b6e1f5a24957c"
+    },
+    {
+      "path": "rust-skill/rules/test-should-panic.md",
+      "bytes": 2886,
+      "sha256": "ff852684aa4a4be668223393560a54ccdaa2ef7ad518db72b4738144477b3d72"
+    },
+    {
+      "path": "rust-skill/rules/test-tokio-async.md",
+      "bytes": 3406,
+      "sha256": "d935fb1d99151755d22016004d8dd8ecf83aac96b45446e658a8e95e57c73527"
+    },
+    {
+      "path": "rust-skill/rules/test-use-super.md",
+      "bytes": 2597,
+      "sha256": "a0d4bb9275929cc2df7f3e5d086d3151ac336a7a556fe962a76a72e9498aada7"
+    },
+    {
+      "path": "rust-skill/rules/type-enum-states.md",
+      "bytes": 3926,
+      "sha256": "d1a4935fa47f75dcf6af6e0536057635c007e50f268ea9b05a08510b2129cec3"
+    },
+    {
+      "path": "rust-skill/rules/type-generic-bounds.md",
+      "bytes": 3278,
+      "sha256": "378ac00db1a9509487ee557535d7aebe385d84a1dc9438734a8e65031f6bc286"
+    },
+    {
+      "path": "rust-skill/rules/type-never-diverge.md",
+      "bytes": 2939,
+      "sha256": "beb4f3a2811a4db8d4b91bd7af712eba386b3159f04ceeb2685c93688533d86a"
+    },
+    {
+      "path": "rust-skill/rules/type-newtype-ids.md",
+      "bytes": 3565,
+      "sha256": "1b42a2f2267898e52969bee6470a034f460a91e7537965ed6312f8af223b9a05"
+    },
+    {
+      "path": "rust-skill/rules/type-newtype-validated.md",
+      "bytes": 3534,
+      "sha256": "c770692565686397a069ae2c32098e9bf0f7dba865078a652b2187c750718458"
+    },
+    {
+      "path": "rust-skill/rules/type-no-stringly.md",
+      "bytes": 3254,
+      "sha256": "3d9393d0d3394bdc2a4f45dc31483b325ee14aeb5020fed9ca5b497fa30eaab7"
+    },
+    {
+      "path": "rust-skill/rules/type-option-nullable.md",
+      "bytes": 3235,
+      "sha256": "fef313793530de5b3bd2539f5e42bdca997f8c0784dfc275944e09f99b68e3b0"
+    },
+    {
+      "path": "rust-skill/rules/type-phantom-marker.md",
+      "bytes": 3816,
+      "sha256": "a2e97e545b814ee59d1e543675750224415556d274d8be681ae2a5cd327519c9"
+    },
+    {
+      "path": "rust-skill/rules/type-repr-transparent.md",
+      "bytes": 3324,
+      "sha256": "594cbd72c112ed2d39f894ac4f0ff616c78bc3a42f514d0576ec441852b5e1bb"
+    },
+    {
+      "path": "rust-skill/rules/type-result-fallible.md",
+      "bytes": 3415,
+      "sha256": "ed6d8a6dc6a0c4122fb11e24471e2315bd2978538735e26082511fb8c26686b2"
+    },
+    {
+      "path": "tools/compare_saved.py",
+      "bytes": 1288,
+      "sha256": "3a1c2cd2c117fa48eb13575259f88c18835231f425831818d16cd6b267720760"
+    },
+    {
+      "path": "tools/frozen_python24/artifacts.py",
+      "bytes": 2218,
+      "sha256": "8bad9b584940550d6202d43dda7e52a819c7e4a44e3207febd5a48982692a1ea"
+    },
+    {
+      "path": "tools/frozen_python24/check_artifact.py",
+      "bytes": 7196,
+      "sha256": "cce3eec17c56c13c02155a24ad9382f85cd6e402c7d3396823ad54e79f5ea4e6"
+    },
+    {
+      "path": "tools/frozen_python24/score.py",
+      "bytes": 16874,
+      "sha256": "a305e1a38208db994277ff20680e7aea9683c0943dd613695575967742f6e8ac"
+    },
+    {
+      "path": "tools/score_python24.py",
+      "bytes": 2568,
+      "sha256": "c855e2eceb14cac84ea5ae751f1bcaf2a5476fcb831486f32c886645e12ef347"
+    },
+    {
+      "path": "README.md",
+      "bytes": 5530,
+      "sha256": "b80378f6f046fa77cdeaa7741001a7d47e598f4b00fe0b65f768500d653681f2"
+    },
+    {
+      "path": "SOURCE.json",
+      "bytes": 451,
+      "sha256": "dcdb13bca8a4beb2a7ae303989662cacbdcc81494ee58046e01be7336eaee8d7"
+    }
+  ]
+}

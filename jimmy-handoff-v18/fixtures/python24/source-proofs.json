@@ -1,0 +1,4288 @@
+{
+  "specs": [
+    {
+      "id": "P01",
+      "category": "positive",
+      "effects": [
+        {
+          "afterHex": "",
+          "beforeHex": "6f6c64",
+          "consumedReads": [],
+          "endpoint": "successfulOpenTruncate",
+          "requiredEarlierCompletions": [],
+          "site": "openW",
+          "path": "out",
+          "sourceCall": "open(\"out\", \"w\", encoding=\"utf-8\", newline=\"\")"
+        },
+        {
+          "acceptedCharacterCount": 13,
+          "afterHex": "410a420a430a440d0a450d460a",
+          "beforeHex": "",
+          "consumedReads": [
+            "readA",
+            "readB"
+          ],
+          "endpoint": "logicalStreamProjection",
+          "payloadByteCount": 13,
+          "payloadHex": "410a420a430a440d0a450d460a",
+          "requiredEarlierCompletions": [
+            "readA",
+            "readB",
+            "openW"
+          ],
+          "site": "write",
+          "path": "out",
+          "sourceCall": "writer.write(normalized + preserved)"
+        }
+      ],
+      "barrier": null,
+      "refusal": null,
+      "refusedSites": [],
+      "expectedEdits": [
+        {
+          "ordinal": 0,
+          "basis": "standardApiForecast",
+          "evidence": {
+            "sourceId": 0,
+            "startByte": 188,
+            "endByte": 234,
+            "startLine": 5,
+            "endLine": 5,
+            "startColumn": 6
+          },
+          "details": {
+            "kind": "python",
+            "prediction": {
+              "ordinal": 0,
+              "evidence": {
+                "sourceId": 0,
+                "startByte": 188,
+                "endByte": 234,
+                "startLine": 5,
+                "endLine": 5,
+                "startColumn": 6
+              },
+              "target": {
+                "type": "literal",
+                "path": "out",
+                "cwd": "/authored/v17"
+              },
+              "operation": {
+                "type": "truncate"
+              },
+              "dependencies": [
+                {
+                  "type": "capability",
+                  "assumption": "standardBuiltinOpen"
+                },
+                {
+                  "type": "entryWorkingDirectory",
+                  "cwd": "/authored/v17"
+                },
+                {
+                  "type": "capability",
+                  "assumption": "standardPythonEvaluation"
+                },
+                {
+                  "type": "capability",
+                  "assumption": "noConcurrentMutation"
+                },
+                {
+                  "type": "filesystemEpoch",
+                  "epoch": 0
+                }
+              ],
+              "predecessorConditions": [
+                {
+                  "sourceId": 0,
+                  "startByte": 5,
+                  "endByte": 51,
+                  "startLine": 1,
+                  "endLine": 1,
+                  "startColumn": 6
+                },
+                {
+                  "sourceId": 0,
+                  "startByte": 79,
+                  "endByte": 91,
+                  "startLine": 2,
+                  "endLine": 2,
+                  "startColumn": 18
+                },
+                {
+                  "sourceId": 0,
+                  "startByte": 0,
+                  "endByte": 91,
+                  "startLine": 1,
+                  "endLine": 2,
+                  "startColumn": 1
+                },
+                {
+                  "sourceId": 0,
+                  "startByte": 97,
+                  "endByte": 141,
+                  "startLine": 3,
+                  "endLine": 3,
+                  "startColumn": 6
+                },
+                {
+                  "sourceId": 0,
+                  "startByte": 169,
+                  "endByte": 182,
+                  "startLine": 4,
+                  "endLine": 4,
+                  "startColumn": 17
+                },
+                {
+                  "sourceId": 0,
+                  "startByte": 92,
+                  "endByte": 182,
+                  "startLine": 3,
+                  "endLine": 4,
+                  "startColumn": 1
+                }
+              ],
+              "finalState": "knownLaterTouch"
+            },
+            "assumptions": [
+              "standardPythonEvaluation",
+              "standardBuiltinOpen",
+              "standardTextMethods",
+              "noConcurrentMutation"
+            ]
+          },
+          "predecessorConditions": [],
+          "carrierAssumptions": [],
+          "laterContext": "knownLaterTouch"
+        },
+        {
+          "ordinal": 1,
+          "basis": "standardApiForecast",
+          "evidence": {
+            "sourceId": 0,
+            "startByte": 250,
+            "endByte": 286,
+            "startLine": 6,
+            "endLine": 6,
+            "startColumn": 5
+          },
+          "details": {
+            "kind": "python",
+            "prediction": {
+              "ordinal": 1,
+              "evidence": {
+                "sourceId": 0,
+                "startByte": 250,
+                "endByte": 286,
+                "startLine": 6,
+                "endLine": 6,
+                "startColumn": 5
+              },
+              "target": {
+                "type": "literal",
+                "path": "out",
+                "cwd": "/authored/v17"
+              },
+              "operation": {
+                "type": "logicalWrite",
+                "streamId": 2,
+                "openedAt": {
+                  "sourceId": 0,
+                  "startByte": 188,
+                  "endByte": 234,
+                  "startLine": 5,
+                  "endLine": 5,
+                  "startColumn": 6
+                },
+                "mode": "truncateWrite",
+                "position": {
+                  "type": "initialZero"
+                },
+                "baseFilesystemEpoch": 1,
+                "streamRevision": 0,
+                "content": {
+                  "type": "concat",
+                  "left": {
+                    "type": "read",
+                    "readId": 0,
+                    "target": {
+                      "type": "literal",
+                      "path": "a",
+                      "cwd": "/authored/v17"
+                    },
+                    "evidence": {
+                      "sourceId": 0,
+                      "startByte": 79,
+                      "endByte": 91,
+                      "startLine": 2,
+                      "endLine": 2,
+                      "startColumn": 18
+                    },
+                    "filesystemEpoch": 0,
+                    "encoding": "utf8",
+                    "newline": "universalTranslate"
+                  },
+                  "right": {
+                    "type": "read",
+                    "readId": 1,
+                    "target": {
+                      "type": "literal",
+                      "path": "b",
+                      "cwd": "/authored/v17"
+                    },
+                    "evidence": {
+                      "sourceId": 0,
+                      "startByte": 169,
+                      "endByte": 182,
+                      "startLine": 4,
+                      "endLine": 4,
+                      "startColumn": 17
+                    },
+                    "filesystemEpoch": 0,
+                    "encoding": "utf8",
+                    "newline": "preserve"
+                  },
+                  "evidence": {
+                    "sourceId": 0,
+                    "startByte": 263,
+                    "endByte": 285,
+                    "startLine": 6,
+                    "endLine": 6,
+                    "startColumn": 18
+                  }
+                },
+                "encoding": "utf8",
+                "newline": "preserve",
+                "requiredResult": "fullCharacterCount"
+              },
+              "dependencies": [
+                {
+                  "type": "capability",
+                  "assumption": "standardBuiltinOpen"
+                },
+                {
+                  "type": "entryWorkingDirectory",
+                  "cwd": "/authored/v17"
+                },
+                {
+                  "type": "binding",
+                  "name": "writer",
+                  "version": 5,
+                  "evidence": {
+                    "sourceId": 0,
+                    "startByte": 188,
+                    "endByte": 244,
+                    "startLine": 5,
+                    "endLine": 5,
+                    "startColumn": 6
+                  }
+                },
+                {
+                  "type": "binding",
+                  "name": "first",
+                  "version": 1,
+                  "evidence": {
+                    "sourceId": 0,
+                    "startByte": 5,
+                    "endByte": 60,
+                    "startLine": 1,
+                    "endLine": 1,
+                    "startColumn": 6
+                  }
+                },
+                {
+                  "type": "readValue",
+                  "readId": 0,
+                  "evidence": {
+                    "sourceId": 0,
+                    "startByte": 79,
+                    "endByte": 91,
+                    "startLine": 2,
+                    "endLine": 2,
+                    "startColumn": 18
+                  }
+                },
+                {
+                  "type": "filesystemEpoch",
+                  "epoch": 0
+                },
+                {
+                  "type": "binding",
+                  "name": "normalized",
+                  "version": 2,
+                  "evidence": {
+                    "sourceId": 0,
+                    "startByte": 66,
+                    "endByte": 91,
+                    "startLine": 2,
+                    "endLine": 2,
+                    "startColumn": 5
+                  }
+                },
+                {
+                  "type": "binding",
+                  "name": "second",
+                  "version": 3,
+                  "evidence": {
+                    "sourceId": 0,
+                    "startByte": 97,
+                    "endByte": 151,
+                    "startLine": 3,
+                    "endLine": 3,
+                    "startColumn": 6
+                  }
+                },
+                {
+                  "type": "readValue",
+                  "readId": 1,
+                  "evidence": {
+                    "sourceId": 0,
+                    "startByte": 169,
+                    "endByte": 182,
+                    "startLine": 4,
+                    "endLine": 4,
+                    "startColumn": 17
+                  }
+                },
+                {
+                  "type": "binding",
+                  "name": "preserved",
+                  "version": 4,
+                  "evidence": {
+                    "sourceId": 0,
+                    "startByte": 157,
+                    "endByte": 182,
+                    "startLine": 4,
+                    "endLine": 4,
+                    "startColumn": 5
+                  }
+                },
+                {
+                  "type": "capability",
+                  "assumption": "standardTextMethods"
+                },
+                {
+                  "type": "capability",
+                  "assumption": "standardPythonEvaluation"
+                },
+                {
+                  "type": "capability",
+                  "assumption": "noConcurrentMutation"
+                },
+                {
+                  "type": "filesystemEpoch",
+                  "epoch": 1
+                }
+              ],
+              "predecessorConditions": [
+                {
+                  "sourceId": 0,
+                  "startByte": 5,
+                  "endByte": 51,
+                  "startLine": 1,
+                  "endLine": 1,
+                  "startColumn": 6
+                },
+                {
+                  "sourceId": 0,
+                  "startByte": 79,
+                  "endByte": 91,
+                  "startLine": 2,
+                  "endLine": 2,
+                  "startColumn": 18
+                },
+                {
+                  "sourceId": 0,
+                  "startByte": 0,
+                  "endByte": 91,
+                  "startLine": 1,
+                  "endLine": 2,
+                  "startColumn": 1
+                },
+                {
+                  "sourceId": 0,
+                  "startByte": 97,
+                  "endByte": 141,
+                  "startLine": 3,
+                  "endLine": 3,
+                  "startColumn": 6
+                },
+                {
+                  "sourceId": 0,
+                  "startByte": 169,
+                  "endByte": 182,
+                  "startLine": 4,
+                  "endLine": 4,
+                  "startColumn": 17
+                },
+                {
+                  "sourceId": 0,
+                  "startByte": 92,
+                  "endByte": 182,
+                  "startLine": 3,
+                  "endLine": 4,
+                  "startColumn": 1
+                },
+                {
+                  "sourceId": 0,
+                  "startByte": 188,
+                  "endByte": 234,
+                  "startLine": 5,
+                  "endLine": 5,
+                  "startColumn": 6
+                }
+              ],
+              "finalState": "notEstablished"
+            },
+            "assumptions": [
+              "standardPythonEvaluation",
+              "standardBuiltinOpen",
+              "standardTextMethods",
+              "noConcurrentMutation"
+            ]
+          },
+          "predecessorConditions": [],
+          "carrierAssumptions": [],
+          "laterContext": "unobserved"
+        }
+      ],
+      "sourceSha256": "ec05d2e9d27b27e5f2bb3681e39a2b5672e7efd80f4f6a60cd6b21442ec586ad",
+      "expectedBarriers": []
+    },
+    {
+      "id": "P02",
+      "category": "positive",
+      "effects": [
+        {
+          "acceptedCharacterCount": 8,
+          "afterHex": "580d0a7461696c0a0a",
+          "beforeHex": "676f0d0a7461696c0a",
+          "consumedReads": [
+            "read"
+          ],
+          "endpoint": "logicalStreamProjection",
+          "payloadByteCount": 8,
+          "payloadHex": "580d0a7461696c0a",
+          "requiredEarlierCompletions": [
+            "open",
+            "read",
+            "seek"
+          ],
+          "site": "write",
+          "path": "out",
+          "sourceCall": "writer.write(saved.replace(\"go\", \"X\", 1))"
+        }
+      ],
+      "barrier": null,
+      "refusal": null,
+      "refusedSites": [],
+      "expectedEdits": [
+        {
+          "ordinal": 0,
+          "basis": "standardApiForecast",
+          "evidence": {
+            "sourceId": 0,
+            "startByte": 113,
+            "endByte": 154,
+            "startLine": 4,
+            "endLine": 4,
+            "startColumn": 5
+          },
+          "details": {
+            "kind": "python",
+            "prediction": {
+              "ordinal": 0,
+              "evidence": {
+                "sourceId": 0,
+                "startByte": 113,
+                "endByte": 154,
+                "startLine": 4,
+                "endLine": 4,
+                "startColumn": 5
+              },
+              "target": {
+                "type": "literal",
+                "path": "out",
+                "cwd": "/authored/v17"
+              },
+              "operation": {
+                "type": "logicalWrite",
+                "streamId": 0,
+                "openedAt": {
+                  "sourceId": 0,
+                  "startByte": 5,
+                  "endByte": 52,
+                  "startLine": 1,
+                  "endLine": 1,
+                  "startColumn": 6
+                },
+                "mode": "updateExisting",
+                "position": {
+                  "type": "rewoundZero",
+                  "readId": 0,
+                  "readEvidence": {
+                    "sourceId": 0,
+                    "startByte": 76,
+                    "endByte": 89,
+                    "startLine": 2,
+                    "endLine": 2,
+                    "startColumn": 13
+                  },
+                  "seekEvidence": {
+                    "sourceId": 0,
+                    "startByte": 94,
+                    "endByte": 108,
+                    "startLine": 3,
+                    "endLine": 3,
+                    "startColumn": 5
+                  }
+                },
+                "baseFilesystemEpoch": 0,
+                "streamRevision": 0,
+                "content": {
+                  "type": "replace",
+                  "input": {
+                    "type": "read",
+                    "readId": 0,
+                    "target": {
+                      "type": "literal",
+                      "path": "out",
+                      "cwd": "/authored/v17"
+                    },
+                    "evidence": {
+                      "sourceId": 0,
+                      "startByte": 76,
+                      "endByte": 89,
+                      "startLine": 2,
+                      "endLine": 2,
+                      "startColumn": 13
+                    },
+                    "filesystemEpoch": 0,
+                    "encoding": "utf8",
+                    "newline": "preserve"
+                  },
+                  "old": "go",
+                  "new": "X",
+                  "count": 1,
+                  "evidence": {
+                    "sourceId": 0,
+                    "startByte": 126,
+                    "endByte": 153,
+                    "startLine": 4,
+                    "endLine": 4,
+                    "startColumn": 18
+                  }
+                },
+                "encoding": "utf8",
+                "newline": "preserve",
+                "requiredResult": "fullCharacterCount"
+              },
+              "dependencies": [
+                {
+                  "type": "capability",
+                  "assumption": "standardBuiltinOpen"
+                },
+                {
+                  "type": "entryWorkingDirectory",
+                  "cwd": "/authored/v17"
+                },
+                {
+                  "type": "binding",
+                  "name": "writer",
+                  "version": 1,
+                  "evidence": {
+                    "sourceId": 0,
+                    "startByte": 5,
+                    "endByte": 62,
+                    "startLine": 1,
+                    "endLine": 1,
+                    "startColumn": 6
+                  }
+                },
+                {
+                  "type": "readValue",
+                  "readId": 0,
+                  "evidence": {
+                    "sourceId": 0,
+                    "startByte": 76,
+                    "endByte": 89,
+                    "startLine": 2,
+                    "endLine": 2,
+                    "startColumn": 13
+                  }
+                },
+                {
+                  "type": "filesystemEpoch",
+                  "epoch": 0
+                },
+                {
+                  "type": "binding",
+                  "name": "saved",
+                  "version": 2,
+                  "evidence": {
+                    "sourceId": 0,
+                    "startByte": 68,
+                    "endByte": 89,
+                    "startLine": 2,
+                    "endLine": 2,
+                    "startColumn": 5
+                  }
+                },
+                {
+                  "type": "capability",
+                  "assumption": "standardTextMethods"
+                },
+                {
+                  "type": "capability",
+                  "assumption": "standardPythonEvaluation"
+                },
+                {
+                  "type": "capability",
+                  "assumption": "noConcurrentMutation"
+                }
+              ],
+              "predecessorConditions": [
+                {
+                  "sourceId": 0,
+                  "startByte": 5,
+                  "endByte": 52,
+                  "startLine": 1,
+                  "endLine": 1,
+                  "startColumn": 6
+                },
+                {
+                  "sourceId": 0,
+                  "startByte": 76,
+                  "endByte": 89,
+                  "startLine": 2,
+                  "endLine": 2,
+                  "startColumn": 13
+                },
+                {
+                  "sourceId": 0,
+                  "startByte": 94,
+                  "endByte": 108,
+                  "startLine": 3,
+                  "endLine": 3,
+                  "startColumn": 5
+                }
+              ],
+              "finalState": "notEstablished"
+            },
+            "assumptions": [
+              "standardPythonEvaluation",
+              "standardBuiltinOpen",
+              "standardTextMethods",
+              "noConcurrentMutation"
+            ]
+          },
+          "predecessorConditions": [],
+          "carrierAssumptions": [],
+          "laterContext": "unobserved"
+        }
+      ],
+      "sourceSha256": "e7276817afeb74ee36c9ce8d906bef484de312d493bfed8eac1e7b49344ff70f",
+      "expectedBarriers": []
+    },
+    {
+      "id": "P03",
+      "category": "positive",
+      "effects": [
+        {
+          "acceptedCharacterCount": 1,
+          "afterHex": "c3a9642d7461696c",
+          "beforeHex": "6f6c642d7461696c",
+          "consumedReads": [],
+          "endpoint": "logicalStreamProjection",
+          "payloadByteCount": 2,
+          "payloadHex": "c3a9",
+          "requiredEarlierCompletions": [
+            "open"
+          ],
+          "site": "write",
+          "path": "out",
+          "sourceCall": "writer.write(\"\u00e9\")"
+        }
+      ],
+      "barrier": null,
+      "refusal": null,
+      "refusedSites": [],
+      "expectedEdits": [
+        {
+          "ordinal": 0,
+          "basis": "standardApiForecast",
+          "evidence": {
+            "sourceId": 0,
+            "startByte": 68,
+            "endByte": 86,
+            "startLine": 2,
+            "endLine": 2,
+            "startColumn": 5
+          },
+          "details": {
+            "kind": "python",
+            "prediction": {
+              "ordinal": 0,
+              "evidence": {
+                "sourceId": 0,
+                "startByte": 68,
+                "endByte": 86,
+                "startLine": 2,
+                "endLine": 2,
+                "startColumn": 5
+              },
+              "target": {
+                "type": "literal",
+                "path": "out",
+                "cwd": "/authored/v17"
+              },
+              "operation": {
+                "type": "logicalWrite",
+                "streamId": 0,
+                "openedAt": {
+                  "sourceId": 0,
+                  "startByte": 5,
+                  "endByte": 52,
+                  "startLine": 1,
+                  "endLine": 1,
+                  "startColumn": 6
+                },
+                "mode": "updateExisting",
+                "position": {
+                  "type": "initialZero"
+                },
+                "baseFilesystemEpoch": 0,
+                "streamRevision": 0,
+                "content": {
+                  "type": "literal",
+                  "value": "\u00e9",
+                  "evidence": {
+                    "sourceId": 0,
+                    "startByte": 81,
+                    "endByte": 85,
+                    "startLine": 2,
+                    "endLine": 2,
+                    "startColumn": 18
+                  }
+                },
+                "encoding": "utf8",
+                "newline": "preserve",
+                "requiredResult": "fullCharacterCount"
+              },
+              "dependencies": [
+                {
+                  "type": "capability",
+                  "assumption": "standardBuiltinOpen"
+                },
+                {
+                  "type": "entryWorkingDirectory",
+                  "cwd": "/authored/v17"
+                },
+                {
+                  "type": "binding",
+                  "name": "writer",
+                  "version": 1,
+                  "evidence": {
+                    "sourceId": 0,
+                    "startByte": 5,
+                    "endByte": 62,
+                    "startLine": 1,
+                    "endLine": 1,
+                    "startColumn": 6
+                  }
+                },
+                {
+                  "type": "capability",
+                  "assumption": "standardPythonEvaluation"
+                },
+                {
+                  "type": "capability",
+                  "assumption": "noConcurrentMutation"
+                },
+                {
+                  "type": "filesystemEpoch",
+                  "epoch": 0
+                }
+              ],
+              "predecessorConditions": [
+                {
+                  "sourceId": 0,
+                  "startByte": 5,
+                  "endByte": 52,
+                  "startLine": 1,
+                  "endLine": 1,
+                  "startColumn": 6
+                }
+              ],
+              "finalState": "notEstablished"
+            },
+            "assumptions": [
+              "standardPythonEvaluation",
+              "standardBuiltinOpen",
+              "standardTextMethods",
+              "noConcurrentMutation"
+            ]
+          },
+          "predecessorConditions": [],
+          "carrierAssumptions": [],
+          "laterContext": "unobserved"
+        }
+      ],
+      "sourceSha256": "fdef7d8e766c0b6d1e8d43d7e39ecc3e1b69fc05af43aa67b39848ed51fbd568",
+      "expectedBarriers": []
+    },
+    {
+      "id": "P04",
+      "category": "positive",
+      "effects": [
+        {
+          "acceptedCharacterCount": 0,
+          "afterHex": "",
+          "beforeHex": "",
+          "consumedReads": [],
+          "endpoint": "logicalStreamProjection",
+          "payloadByteCount": 0,
+          "payloadHex": "",
+          "requiredEarlierCompletions": [
+            "open"
+          ],
+          "site": "write",
+          "path": "out",
+          "sourceCall": "writer.write(\"\")"
+        }
+      ],
+      "barrier": null,
+      "refusal": null,
+      "refusedSites": [],
+      "expectedEdits": [
+        {
+          "ordinal": 0,
+          "basis": "standardApiForecast",
+          "evidence": {
+            "sourceId": 0,
+            "startByte": 68,
+            "endByte": 84,
+            "startLine": 2,
+            "endLine": 2,
+            "startColumn": 5
+          },
+          "details": {
+            "kind": "python",
+            "prediction": {
+              "ordinal": 0,
+              "evidence": {
+                "sourceId": 0,
+                "startByte": 68,
+                "endByte": 84,
+                "startLine": 2,
+                "endLine": 2,
+                "startColumn": 5
+              },
+              "target": {
+                "type": "literal",
+                "path": "out",
+                "cwd": "/authored/v17"
+              },
+              "operation": {
+                "type": "logicalWrite",
+                "streamId": 0,
+                "openedAt": {
+                  "sourceId": 0,
+                  "startByte": 5,
+                  "endByte": 52,
+                  "startLine": 1,
+                  "endLine": 1,
+                  "startColumn": 6
+                },
+                "mode": "updateExisting",
+                "position": {
+                  "type": "initialZero"
+                },
+                "baseFilesystemEpoch": 0,
+                "streamRevision": 0,
+                "content": {
+                  "type": "literal",
+                  "value": "",
+                  "evidence": {
+                    "sourceId": 0,
+                    "startByte": 81,
+                    "endByte": 83,
+                    "startLine": 2,
+                    "endLine": 2,
+                    "startColumn": 18
+                  }
+                },
+                "encoding": "utf8",
+                "newline": "preserve",
+                "requiredResult": "fullCharacterCount"
+              },
+              "dependencies": [
+                {
+                  "type": "capability",
+                  "assumption": "standardBuiltinOpen"
+                },
+                {
+                  "type": "entryWorkingDirectory",
+                  "cwd": "/authored/v17"
+                },
+                {
+                  "type": "binding",
+                  "name": "writer",
+                  "version": 1,
+                  "evidence": {
+                    "sourceId": 0,
+                    "startByte": 5,
+                    "endByte": 62,
+                    "startLine": 1,
+                    "endLine": 1,
+                    "startColumn": 6
+                  }
+                },
+                {
+                  "type": "capability",
+                  "assumption": "standardPythonEvaluation"
+                },
+                {
+                  "type": "capability",
+                  "assumption": "noConcurrentMutation"
+                },
+                {
+                  "type": "filesystemEpoch",
+                  "epoch": 0
+                }
+              ],
+              "predecessorConditions": [
+                {
+                  "sourceId": 0,
+                  "startByte": 5,
+                  "endByte": 52,
+                  "startLine": 1,
+                  "endLine": 1,
+                  "startColumn": 6
+                }
+              ],
+              "finalState": "notEstablished"
+            },
+            "assumptions": [
+              "standardPythonEvaluation",
+              "standardBuiltinOpen",
+              "standardTextMethods",
+              "noConcurrentMutation"
+            ]
+          },
+          "predecessorConditions": [],
+          "carrierAssumptions": [],
+          "laterContext": "unobserved"
+        }
+      ],
+      "sourceSha256": "11003bbe6e44fbff27e83366eb20874754f12ce6b907543834de2ced1b054e67",
+      "expectedBarriers": []
+    },
+    {
+      "id": "P05",
+      "category": "legacy",
+      "effects": [
+        {
+          "afterHex": "",
+          "beforeHex": "6f6c64",
+          "consumedReads": [],
+          "endpoint": "successfulOpenTruncate",
+          "requiredEarlierCompletions": [],
+          "site": "open",
+          "path": "out",
+          "sourceCall": "open(\"out\", \"w\", encoding=\"utf-8\")"
+        },
+        {
+          "acceptedCharacterCount": 2,
+          "afterHex": "c3a90a",
+          "beforeHex": "",
+          "consumedReads": [],
+          "endpoint": "legacyCloseFileProjection",
+          "payloadByteCount": 3,
+          "payloadHex": "c3a90a",
+          "requiredEarlierCompletions": [
+            "open",
+            "write"
+          ],
+          "site": "close",
+          "path": "out",
+          "sourceCall": "writer.write(\"\u00e9\\n\")"
+        }
+      ],
+      "barrier": null,
+      "refusal": null,
+      "refusedSites": [],
+      "expectedEdits": [
+        {
+          "ordinal": 0,
+          "basis": "standardApiForecast",
+          "evidence": {
+            "sourceId": 0,
+            "startByte": 5,
+            "endByte": 39,
+            "startLine": 1,
+            "endLine": 1,
+            "startColumn": 6
+          },
+          "details": {
+            "kind": "python",
+            "prediction": {
+              "ordinal": 0,
+              "evidence": {
+                "sourceId": 0,
+                "startByte": 5,
+                "endByte": 39,
+                "startLine": 1,
+                "endLine": 1,
+                "startColumn": 6
+              },
+              "target": {
+                "type": "literal",
+                "path": "out",
+                "cwd": "/authored/v17"
+              },
+              "operation": {
+                "type": "truncate"
+              },
+              "dependencies": [
+                {
+                  "type": "capability",
+                  "assumption": "standardBuiltinOpen"
+                },
+                {
+                  "type": "entryWorkingDirectory",
+                  "cwd": "/authored/v17"
+                },
+                {
+                  "type": "capability",
+                  "assumption": "standardPythonEvaluation"
+                },
+                {
+                  "type": "capability",
+                  "assumption": "noConcurrentMutation"
+                },
+                {
+                  "type": "filesystemEpoch",
+                  "epoch": 0
+                }
+              ],
+              "predecessorConditions": [],
+              "finalState": "knownLaterTouch"
+            },
+            "assumptions": [
+              "standardPythonEvaluation",
+              "standardBuiltinOpen",
+              "standardTextMethods",
+              "noConcurrentMutation"
+            ]
+          },
+          "predecessorConditions": [],
+          "carrierAssumptions": [],
+          "laterContext": "knownLaterTouch"
+        },
+        {
+          "ordinal": 1,
+          "basis": "standardApiForecast",
+          "evidence": {
+            "sourceId": 0,
+            "startByte": 0,
+            "endByte": 75,
+            "startLine": 1,
+            "endLine": 2,
+            "startColumn": 1
+          },
+          "details": {
+            "kind": "python",
+            "prediction": {
+              "ordinal": 1,
+              "evidence": {
+                "sourceId": 0,
+                "startByte": 0,
+                "endByte": 75,
+                "startLine": 1,
+                "endLine": 2,
+                "startColumn": 1
+              },
+              "target": {
+                "type": "literal",
+                "path": "out",
+                "cwd": "/authored/v17"
+              },
+              "operation": {
+                "type": "writeText",
+                "content": {
+                  "type": "literal",
+                  "value": "\u00e9\n",
+                  "evidence": {
+                    "sourceId": 0,
+                    "startByte": 68,
+                    "endByte": 74,
+                    "startLine": 2,
+                    "endLine": 2,
+                    "startColumn": 18
+                  }
+                },
+                "encoding": "utf8"
+              },
+              "dependencies": [
+                {
+                  "type": "capability",
+                  "assumption": "standardBuiltinOpen"
+                },
+                {
+                  "type": "entryWorkingDirectory",
+                  "cwd": "/authored/v17"
+                },
+                {
+                  "type": "binding",
+                  "name": "writer",
+                  "version": 1,
+                  "evidence": {
+                    "sourceId": 0,
+                    "startByte": 5,
+                    "endByte": 49,
+                    "startLine": 1,
+                    "endLine": 1,
+                    "startColumn": 6
+                  }
+                },
+                {
+                  "type": "capability",
+                  "assumption": "standardPythonEvaluation"
+                },
+                {
+                  "type": "capability",
+                  "assumption": "noConcurrentMutation"
+                },
+                {
+                  "type": "filesystemEpoch",
+                  "epoch": 1
+                }
+              ],
+              "predecessorConditions": [
+                {
+                  "sourceId": 0,
+                  "startByte": 5,
+                  "endByte": 39,
+                  "startLine": 1,
+                  "endLine": 1,
+                  "startColumn": 6
+                },
+                {
+                  "sourceId": 0,
+                  "startByte": 55,
+                  "endByte": 75,
+                  "startLine": 2,
+                  "endLine": 2,
+                  "startColumn": 5
+                }
+              ],
+              "finalState": "notEstablished"
+            },
+            "assumptions": [
+              "standardPythonEvaluation",
+              "standardBuiltinOpen",
+              "standardTextMethods",
+              "noConcurrentMutation"
+            ]
+          },
+          "predecessorConditions": [],
+          "carrierAssumptions": [],
+          "laterContext": "unobserved"
+        }
+      ],
+      "sourceSha256": "c17fdd5b5ecedeaccd9bf36c1a872bc816ad4ff902c735bf2f44b1d06a6fd1ae",
+      "expectedBarriers": []
+    },
+    {
+      "id": "P06",
+      "category": "positive",
+      "effects": [
+        {
+          "afterHex": "",
+          "beforeHex": "6f6c64",
+          "consumedReads": [],
+          "endpoint": "successfulOpenTruncate",
+          "requiredEarlierCompletions": [],
+          "site": "open",
+          "path": "out",
+          "sourceCall": "open(\"out\", \"w\", encoding=\"utf-8\", newline=\"\")"
+        },
+        {
+          "acceptedCharacterCount": 7,
+          "afterHex": "410d0a420d430a",
+          "beforeHex": "",
+          "consumedReads": [],
+          "endpoint": "logicalStreamProjection",
+          "payloadByteCount": 7,
+          "payloadHex": "410d0a420d430a",
+          "requiredEarlierCompletions": [
+            "open"
+          ],
+          "site": "write",
+          "path": "out",
+          "sourceCall": "writer.write(\"A\\r\\nB\\rC\\n\")"
+        }
+      ],
+      "barrier": null,
+      "refusal": null,
+      "refusedSites": [],
+      "expectedEdits": [
+        {
+          "ordinal": 0,
+          "basis": "standardApiForecast",
+          "evidence": {
+            "sourceId": 0,
+            "startByte": 5,
+            "endByte": 51,
+            "startLine": 1,
+            "endLine": 1,
+            "startColumn": 6
+          },
+          "details": {
+            "kind": "python",
+            "prediction": {
+              "ordinal": 0,
+              "evidence": {
+                "sourceId": 0,
+                "startByte": 5,
+                "endByte": 51,
+                "startLine": 1,
+                "endLine": 1,
+                "startColumn": 6
+              },
+              "target": {
+                "type": "literal",
+                "path": "out",
+                "cwd": "/authored/v17"
+              },
+              "operation": {
+                "type": "truncate"
+              },
+              "dependencies": [
+                {
+                  "type": "capability",
+                  "assumption": "standardBuiltinOpen"
+                },
+                {
+                  "type": "entryWorkingDirectory",
+                  "cwd": "/authored/v17"
+                },
+                {
+                  "type": "capability",
+                  "assumption": "standardPythonEvaluation"
+                },
+                {
+                  "type": "capability",
+                  "assumption": "noConcurrentMutation"
+                },
+                {
+                  "type": "filesystemEpoch",
+                  "epoch": 0
+                }
+              ],
+              "predecessorConditions": [],
+              "finalState": "knownLaterTouch"
+            },
+            "assumptions": [
+              "standardPythonEvaluation",
+              "standardBuiltinOpen",
+              "standardTextMethods",
+              "noConcurrentMutation"
+            ]
+          },
+          "predecessorConditions": [],
+          "carrierAssumptions": [],
+          "laterContext": "knownLaterTouch"
+        },
+        {
+          "ordinal": 1,
+          "basis": "standardApiForecast",
+          "evidence": {
+            "sourceId": 0,
+            "startByte": 67,
+            "endByte": 94,
+            "startLine": 2,
+            "endLine": 2,
+            "startColumn": 5
+          },
+          "details": {
+            "kind": "python",
+            "prediction": {
+              "ordinal": 1,
+              "evidence": {
+                "sourceId": 0,
+                "startByte": 67,
+                "endByte": 94,
+                "startLine": 2,
+                "endLine": 2,
+                "startColumn": 5
+              },
+              "target": {
+                "type": "literal",
+                "path": "out",
+                "cwd": "/authored/v17"
+              },
+              "operation": {
+                "type": "logicalWrite",
+                "streamId": 0,
+                "openedAt": {
+                  "sourceId": 0,
+                  "startByte": 5,
+                  "endByte": 51,
+                  "startLine": 1,
+                  "endLine": 1,
+                  "startColumn": 6
+                },
+                "mode": "truncateWrite",
+                "position": {
+                  "type": "initialZero"
+                },
+                "baseFilesystemEpoch": 1,
+                "streamRevision": 0,
+                "content": {
+                  "type": "literal",
+                  "value": "A\r\nB\rC\n",
+                  "evidence": {
+                    "sourceId": 0,
+                    "startByte": 80,
+                    "endByte": 93,
+                    "startLine": 2,
+                    "endLine": 2,
+                    "startColumn": 18
+                  }
+                },
+                "encoding": "utf8",
+                "newline": "preserve",
+                "requiredResult": "fullCharacterCount"
+              },
+              "dependencies": [
+                {
+                  "type": "capability",
+                  "assumption": "standardBuiltinOpen"
+                },
+                {
+                  "type": "entryWorkingDirectory",
+                  "cwd": "/authored/v17"
+                },
+                {
+                  "type": "binding",
+                  "name": "writer",
+                  "version": 1,
+                  "evidence": {
+                    "sourceId": 0,
+                    "startByte": 5,
+                    "endByte": 61,
+                    "startLine": 1,
+                    "endLine": 1,
+                    "startColumn": 6
+                  }
+                },
+                {
+                  "type": "capability",
+                  "assumption": "standardPythonEvaluation"
+                },
+                {
+                  "type": "capability",
+                  "assumption": "noConcurrentMutation"
+                },
+                {
+                  "type": "filesystemEpoch",
+                  "epoch": 1
+                }
+              ],
+              "predecessorConditions": [
+                {
+                  "sourceId": 0,
+                  "startByte": 5,
+                  "endByte": 51,
+                  "startLine": 1,
+                  "endLine": 1,
+                  "startColumn": 6
+                }
+              ],
+              "finalState": "notEstablished"
+            },
+            "assumptions": [
+              "standardPythonEvaluation",
+              "standardBuiltinOpen",
+              "standardTextMethods",
+              "noConcurrentMutation"
+            ]
+          },
+          "predecessorConditions": [],
+          "carrierAssumptions": [],
+          "laterContext": "unobserved"
+        }
+      ],
+      "sourceSha256": "4a38b22f994595403e1712b4f295c3df4a89fd2c5753e5ee560ef09056f7780e",
+      "expectedBarriers": []
+    },
+    {
+      "id": "B01",
+      "category": "bindingRefusal",
+      "effects": [
+        {
+          "acceptedCharacterCount": 1,
+          "afterHex": "c3a9642d7461696c",
+          "beforeHex": "6f6c642d7461696c",
+          "consumedReads": [],
+          "endpoint": "logicalStreamProjection",
+          "payloadByteCount": 2,
+          "payloadHex": "c3a9",
+          "requiredEarlierCompletions": [
+            "open"
+          ],
+          "site": "write",
+          "path": "out",
+          "sourceCall": "writer.write(\"\u00e9\")"
+        }
+      ],
+      "barrier": null,
+      "refusal": "missingPresentPreimage",
+      "refusedSites": [
+        "write"
+      ],
+      "expectedEdits": [
+        {
+          "ordinal": 0,
+          "basis": "standardApiForecast",
+          "evidence": {
+            "sourceId": 0,
+            "startByte": 68,
+            "endByte": 86,
+            "startLine": 2,
+            "endLine": 2,
+            "startColumn": 5
+          },
+          "details": {
+            "kind": "python",
+            "prediction": {
+              "ordinal": 0,
+              "evidence": {
+                "sourceId": 0,
+                "startByte": 68,
+                "endByte": 86,
+                "startLine": 2,
+                "endLine": 2,
+                "startColumn": 5
+              },
+              "target": {
+                "type": "literal",
+                "path": "out",
+                "cwd": "/authored/v17"
+              },
+              "operation": {
+                "type": "logicalWrite",
+                "streamId": 0,
+                "openedAt": {
+                  "sourceId": 0,
+                  "startByte": 5,
+                  "endByte": 52,
+                  "startLine": 1,
+                  "endLine": 1,
+                  "startColumn": 6
+                },
+                "mode": "updateExisting",
+                "position": {
+                  "type": "initialZero"
+                },
+                "baseFilesystemEpoch": 0,
+                "streamRevision": 0,
+                "content": {
+                  "type": "literal",
+                  "value": "\u00e9",
+                  "evidence": {
+                    "sourceId": 0,
+                    "startByte": 81,
+                    "endByte": 85,
+                    "startLine": 2,
+                    "endLine": 2,
+                    "startColumn": 18
+                  }
+                },
+                "encoding": "utf8",
+                "newline": "preserve",
+                "requiredResult": "fullCharacterCount"
+              },
+              "dependencies": [
+                {
+                  "type": "capability",
+                  "assumption": "standardBuiltinOpen"
+                },
+                {
+                  "type": "entryWorkingDirectory",
+                  "cwd": "/authored/v17"
+                },
+                {
+                  "type": "binding",
+                  "name": "writer",
+                  "version": 1,
+                  "evidence": {
+                    "sourceId": 0,
+                    "startByte": 5,
+                    "endByte": 62,
+                    "startLine": 1,
+                    "endLine": 1,
+                    "startColumn": 6
+                  }
+                },
+                {
+                  "type": "capability",
+                  "assumption": "standardPythonEvaluation"
+                },
+                {
+                  "type": "capability",
+                  "assumption": "noConcurrentMutation"
+                },
+                {
+                  "type": "filesystemEpoch",
+                  "epoch": 0
+                }
+              ],
+              "predecessorConditions": [
+                {
+                  "sourceId": 0,
+                  "startByte": 5,
+                  "endByte": 52,
+                  "startLine": 1,
+                  "endLine": 1,
+                  "startColumn": 6
+                }
+              ],
+              "finalState": "notEstablished"
+            },
+            "assumptions": [
+              "standardPythonEvaluation",
+              "standardBuiltinOpen",
+              "standardTextMethods",
+              "noConcurrentMutation"
+            ]
+          },
+          "predecessorConditions": [],
+          "carrierAssumptions": [],
+          "laterContext": "unobserved"
+        }
+      ],
+      "sourceSha256": "fdef7d8e766c0b6d1e8d43d7e39ecc3e1b69fc05af43aa67b39848ed51fbd568",
+      "expectedBarriers": []
+    },
+    {
+      "id": "B02",
+      "category": "bindingRefusal",
+      "effects": [
+        {
+          "acceptedCharacterCount": 8,
+          "afterHex": "580d0a7461696c0a0a",
+          "beforeHex": "676f0d0a7461696c0a",
+          "consumedReads": [
+            "read"
+          ],
+          "endpoint": "logicalStreamProjection",
+          "payloadByteCount": 8,
+          "payloadHex": "580d0a7461696c0a",
+          "requiredEarlierCompletions": [
+            "open",
+            "read",
+            "seek"
+          ],
+          "site": "write",
+          "path": "out",
+          "sourceCall": "writer.write(saved.replace(\"go\", \"X\", 1))"
+        }
+      ],
+      "barrier": null,
+      "refusal": "readBindingEpochMismatch",
+      "refusedSites": [
+        "write"
+      ],
+      "expectedEdits": [
+        {
+          "ordinal": 0,
+          "basis": "standardApiForecast",
+          "evidence": {
+            "sourceId": 0,
+            "startByte": 113,
+            "endByte": 154,
+            "startLine": 4,
+            "endLine": 4,
+            "startColumn": 5
+          },
+          "details": {
+            "kind": "python",
+            "prediction": {
+              "ordinal": 0,
+              "evidence": {
+                "sourceId": 0,
+                "startByte": 113,
+                "endByte": 154,
+                "startLine": 4,
+                "endLine": 4,
+                "startColumn": 5
+              },
+              "target": {
+                "type": "literal",
+                "path": "out",
+                "cwd": "/authored/v17"
+              },
+              "operation": {
+                "type": "logicalWrite",
+                "streamId": 0,
+                "openedAt": {
+                  "sourceId": 0,
+                  "startByte": 5,
+                  "endByte": 52,
+                  "startLine": 1,
+                  "endLine": 1,
+                  "startColumn": 6
+                },
+                "mode": "updateExisting",
+                "position": {
+                  "type": "rewoundZero",
+                  "readId": 0,
+                  "readEvidence": {
+                    "sourceId": 0,
+                    "startByte": 76,
+                    "endByte": 89,
+                    "startLine": 2,
+                    "endLine": 2,
+                    "startColumn": 13
+                  },
+                  "seekEvidence": {
+                    "sourceId": 0,
+                    "startByte": 94,
+                    "endByte": 108,
+                    "startLine": 3,
+                    "endLine": 3,
+                    "startColumn": 5
+                  }
+                },
+                "baseFilesystemEpoch": 0,
+                "streamRevision": 0,
+                "content": {
+                  "type": "replace",
+                  "input": {
+                    "type": "read",
+                    "readId": 0,
+                    "target": {
+                      "type": "literal",
+                      "path": "out",
+                      "cwd": "/authored/v17"
+                    },
+                    "evidence": {
+                      "sourceId": 0,
+                      "startByte": 76,
+                      "endByte": 89,
+                      "startLine": 2,
+                      "endLine": 2,
+                      "startColumn": 13
+                    },
+                    "filesystemEpoch": 0,
+                    "encoding": "utf8",
+                    "newline": "preserve"
+                  },
+                  "old": "go",
+                  "new": "X",
+                  "count": 1,
+                  "evidence": {
+                    "sourceId": 0,
+                    "startByte": 126,
+                    "endByte": 153,
+                    "startLine": 4,
+                    "endLine": 4,
+                    "startColumn": 18
+                  }
+                },
+                "encoding": "utf8",
+                "newline": "preserve",
+                "requiredResult": "fullCharacterCount"
+              },
+              "dependencies": [
+                {
+                  "type": "capability",
+                  "assumption": "standardBuiltinOpen"
+                },
+                {
+                  "type": "entryWorkingDirectory",
+                  "cwd": "/authored/v17"
+                },
+                {
+                  "type": "binding",
+                  "name": "writer",
+                  "version": 1,
+                  "evidence": {
+                    "sourceId": 0,
+                    "startByte": 5,
+                    "endByte": 62,
+                    "startLine": 1,
+                    "endLine": 1,
+                    "startColumn": 6
+                  }
+                },
+                {
+                  "type": "readValue",
+                  "readId": 0,
+                  "evidence": {
+                    "sourceId": 0,
+                    "startByte": 76,
+                    "endByte": 89,
+                    "startLine": 2,
+                    "endLine": 2,
+                    "startColumn": 13
+                  }
+                },
+                {
+                  "type": "filesystemEpoch",
+                  "epoch": 0
+                },
+                {
+                  "type": "binding",
+                  "name": "saved",
+                  "version": 2,
+                  "evidence": {
+                    "sourceId": 0,
+                    "startByte": 68,
+                    "endByte": 89,
+                    "startLine": 2,
+                    "endLine": 2,
+                    "startColumn": 5
+                  }
+                },
+                {
+                  "type": "capability",
+                  "assumption": "standardTextMethods"
+                },
+                {
+                  "type": "capability",
+                  "assumption": "standardPythonEvaluation"
+                },
+                {
+                  "type": "capability",
+                  "assumption": "noConcurrentMutation"
+                }
+              ],
+              "predecessorConditions": [
+                {
+                  "sourceId": 0,
+                  "startByte": 5,
+                  "endByte": 52,
+                  "startLine": 1,
+                  "endLine": 1,
+                  "startColumn": 6
+                },
+                {
+                  "sourceId": 0,
+                  "startByte": 76,
+                  "endByte": 89,
+                  "startLine": 2,
+                  "endLine": 2,
+                  "startColumn": 13
+                },
+                {
+                  "sourceId": 0,
+                  "startByte": 94,
+                  "endByte": 108,
+                  "startLine": 3,
+                  "endLine": 3,
+                  "startColumn": 5
+                }
+              ],
+              "finalState": "notEstablished"
+            },
+            "assumptions": [
+              "standardPythonEvaluation",
+              "standardBuiltinOpen",
+              "standardTextMethods",
+              "noConcurrentMutation"
+            ]
+          },
+          "predecessorConditions": [],
+          "carrierAssumptions": [],
+          "laterContext": "unobserved"
+        }
+      ],
+      "sourceSha256": "e7276817afeb74ee36c9ce8d906bef484de312d493bfed8eac1e7b49344ff70f",
+      "expectedBarriers": []
+    },
+    {
+      "id": "B03",
+      "category": "bindingRefusal",
+      "effects": [
+        {
+          "acceptedCharacterCount": 8,
+          "afterHex": "580d0a7461696c0a0a",
+          "beforeHex": "676f0d0a7461696c0a",
+          "consumedReads": [
+            "read"
+          ],
+          "endpoint": "logicalStreamProjection",
+          "payloadByteCount": 8,
+          "payloadHex": "580d0a7461696c0a",
+          "requiredEarlierCompletions": [
+            "open",
+            "read",
+            "seek"
+          ],
+          "site": "write",
+          "path": "out",
+          "sourceCall": "writer.write(saved.replace(\"go\", \"X\", 1))"
+        }
+      ],
+      "barrier": null,
+      "refusal": "readSourceIdentityMismatch",
+      "refusedSites": [
+        "write"
+      ],
+      "expectedEdits": [
+        {
+          "ordinal": 0,
+          "basis": "standardApiForecast",
+          "evidence": {
+            "sourceId": 0,
+            "startByte": 113,
+            "endByte": 154,
+            "startLine": 4,
+            "endLine": 4,
+            "startColumn": 5
+          },
+          "details": {
+            "kind": "python",
+            "prediction": {
+              "ordinal": 0,
+              "evidence": {
+                "sourceId": 0,
+                "startByte": 113,
+                "endByte": 154,
+                "startLine": 4,
+                "endLine": 4,
+                "startColumn": 5
+              },
+              "target": {
+                "type": "literal",
+                "path": "out",
+                "cwd": "/authored/v17"
+              },
+              "operation": {
+                "type": "logicalWrite",
+                "streamId": 0,
+                "openedAt": {
+                  "sourceId": 0,
+                  "startByte": 5,
+                  "endByte": 52,
+                  "startLine": 1,
+                  "endLine": 1,
+                  "startColumn": 6
+                },
+                "mode": "updateExisting",
+                "position": {
+                  "type": "rewoundZero",
+                  "readId": 0,
+                  "readEvidence": {
+                    "sourceId": 0,
+                    "startByte": 76,
+                    "endByte": 89,
+                    "startLine": 2,
+                    "endLine": 2,
+                    "startColumn": 13
+                  },
+                  "seekEvidence": {
+                    "sourceId": 0,
+                    "startByte": 94,
+                    "endByte": 108,
+                    "startLine": 3,
+                    "endLine": 3,
+                    "startColumn": 5
+                  }
+                },
+                "baseFilesystemEpoch": 0,
+                "streamRevision": 0,
+                "content": {
+                  "type": "replace",
+                  "input": {
+                    "type": "read",
+                    "readId": 0,
+                    "target": {
+                      "type": "literal",
+                      "path": "out",
+                      "cwd": "/authored/v17"
+                    },
+                    "evidence": {
+                      "sourceId": 0,
+                      "startByte": 76,
+                      "endByte": 89,
+                      "startLine": 2,
+                      "endLine": 2,
+                      "startColumn": 13
+                    },
+                    "filesystemEpoch": 0,
+                    "encoding": "utf8",
+                    "newline": "preserve"
+                  },
+                  "old": "go",
+                  "new": "X",
+                  "count": 1,
+                  "evidence": {
+                    "sourceId": 0,
+                    "startByte": 126,
+                    "endByte": 153,
+                    "startLine": 4,
+                    "endLine": 4,
+                    "startColumn": 18
+                  }
+                },
+                "encoding": "utf8",
+                "newline": "preserve",
+                "requiredResult": "fullCharacterCount"
+              },
+              "dependencies": [
+                {
+                  "type": "capability",
+                  "assumption": "standardBuiltinOpen"
+                },
+                {
+                  "type": "entryWorkingDirectory",
+                  "cwd": "/authored/v17"
+                },
+                {
+                  "type": "binding",
+                  "name": "writer",
+                  "version": 1,
+                  "evidence": {
+                    "sourceId": 0,
+                    "startByte": 5,
+                    "endByte": 62,
+                    "startLine": 1,
+                    "endLine": 1,
+                    "startColumn": 6
+                  }
+                },
+                {
+                  "type": "readValue",
+                  "readId": 0,
+                  "evidence": {
+                    "sourceId": 0,
+                    "startByte": 76,
+                    "endByte": 89,
+                    "startLine": 2,
+                    "endLine": 2,
+                    "startColumn": 13
+                  }
+                },
+                {
+                  "type": "filesystemEpoch",
+                  "epoch": 0
+                },
+                {
+                  "type": "binding",
+                  "name": "saved",
+                  "version": 2,
+                  "evidence": {
+                    "sourceId": 0,
+                    "startByte": 68,
+                    "endByte": 89,
+                    "startLine": 2,
+                    "endLine": 2,
+                    "startColumn": 5
+                  }
+                },
+                {
+                  "type": "capability",
+                  "assumption": "standardTextMethods"
+                },
+                {
+                  "type": "capability",
+                  "assumption": "standardPythonEvaluation"
+                },
+                {
+                  "type": "capability",
+                  "assumption": "noConcurrentMutation"
+                }
+              ],
+              "predecessorConditions": [
+                {
+                  "sourceId": 0,
+                  "startByte": 5,
+                  "endByte": 52,
+                  "startLine": 1,
+                  "endLine": 1,
+                  "startColumn": 6
+                },
+                {
+                  "sourceId": 0,
+                  "startByte": 76,
+                  "endByte": 89,
+                  "startLine": 2,
+                  "endLine": 2,
+                  "startColumn": 13
+                },
+                {
+                  "sourceId": 0,
+                  "startByte": 94,
+                  "endByte": 108,
+                  "startLine": 3,
+                  "endLine": 3,
+                  "startColumn": 5
+                }
+              ],
+              "finalState": "notEstablished"
+            },
+            "assumptions": [
+              "standardPythonEvaluation",
+              "standardBuiltinOpen",
+              "standardTextMethods",
+              "noConcurrentMutation"
+            ]
+          },
+          "predecessorConditions": [],
+          "carrierAssumptions": [],
+          "laterContext": "unobserved"
+        }
+      ],
+      "sourceSha256": "e7276817afeb74ee36c9ce8d906bef484de312d493bfed8eac1e7b49344ff70f",
+      "expectedBarriers": []
+    },
+    {
+      "id": "B04",
+      "category": "bindingRefusal",
+      "effects": [
+        {
+          "acceptedCharacterCount": 8,
+          "afterHex": "580d0a7461696c0a0a",
+          "beforeHex": "676f0d0a7461696c0a",
+          "consumedReads": [
+            "read"
+          ],
+          "endpoint": "logicalStreamProjection",
+          "payloadByteCount": 8,
+          "payloadHex": "580d0a7461696c0a",
+          "requiredEarlierCompletions": [
+            "open",
+            "read",
+            "seek"
+          ],
+          "site": "write",
+          "path": "out",
+          "sourceCall": "writer.write(saved.replace(\"go\", \"X\", 1))"
+        }
+      ],
+      "barrier": null,
+      "refusal": "readNewlineContractMismatch",
+      "refusedSites": [
+        "write"
+      ],
+      "expectedEdits": [
+        {
+          "ordinal": 0,
+          "basis": "standardApiForecast",
+          "evidence": {
+            "sourceId": 0,
+            "startByte": 113,
+            "endByte": 154,
+            "startLine": 4,
+            "endLine": 4,
+            "startColumn": 5
+          },
+          "details": {
+            "kind": "python",
+            "prediction": {
+              "ordinal": 0,
+              "evidence": {
+                "sourceId": 0,
+                "startByte": 113,
+                "endByte": 154,
+                "startLine": 4,
+                "endLine": 4,
+                "startColumn": 5
+              },
+              "target": {
+                "type": "literal",
+                "path": "out",
+                "cwd": "/authored/v17"
+              },
+              "operation": {
+                "type": "logicalWrite",
+                "streamId": 0,
+                "openedAt": {
+                  "sourceId": 0,
+                  "startByte": 5,
+                  "endByte": 52,
+                  "startLine": 1,
+                  "endLine": 1,
+                  "startColumn": 6
+                },
+                "mode": "updateExisting",
+                "position": {
+                  "type": "rewoundZero",
+                  "readId": 0,
+                  "readEvidence": {
+                    "sourceId": 0,
+                    "startByte": 76,
+                    "endByte": 89,
+                    "startLine": 2,
+                    "endLine": 2,
+                    "startColumn": 13
+                  },
+                  "seekEvidence": {
+                    "sourceId": 0,
+                    "startByte": 94,
+                    "endByte": 108,
+                    "startLine": 3,
+                    "endLine": 3,
+                    "startColumn": 5
+                  }
+                },
+                "baseFilesystemEpoch": 0,
+                "streamRevision": 0,
+                "content": {
+                  "type": "replace",
+                  "input": {
+                    "type": "read",
+                    "readId": 0,
+                    "target": {
+                      "type": "literal",
+                      "path": "out",
+                      "cwd": "/authored/v17"
+                    },
+                    "evidence": {
+                      "sourceId": 0,
+                      "startByte": 76,
+                      "endByte": 89,
+                      "startLine": 2,
+                      "endLine": 2,
+                      "startColumn": 13
+                    },
+                    "filesystemEpoch": 0,
+                    "encoding": "utf8",
+                    "newline": "preserve"
+                  },
+                  "old": "go",
+                  "new": "X",
+                  "count": 1,
+                  "evidence": {
+                    "sourceId": 0,
+                    "startByte": 126,
+                    "endByte": 153,
+                    "startLine": 4,
+                    "endLine": 4,
+                    "startColumn": 18
+                  }
+                },
+                "encoding": "utf8",
+                "newline": "preserve",
+                "requiredResult": "fullCharacterCount"
+              },
+              "dependencies": [
+                {
+                  "type": "capability",
+                  "assumption": "standardBuiltinOpen"
+                },
+                {
+                  "type": "entryWorkingDirectory",
+                  "cwd": "/authored/v17"
+                },
+                {
+                  "type": "binding",
+                  "name": "writer",
+                  "version": 1,
+                  "evidence": {
+                    "sourceId": 0,
+                    "startByte": 5,
+                    "endByte": 62,
+                    "startLine": 1,
+                    "endLine": 1,
+                    "startColumn": 6
+                  }
+                },
+                {
+                  "type": "readValue",
+                  "readId": 0,
+                  "evidence": {
+                    "sourceId": 0,
+                    "startByte": 76,
+                    "endByte": 89,
+                    "startLine": 2,
+                    "endLine": 2,
+                    "startColumn": 13
+                  }
+                },
+                {
+                  "type": "filesystemEpoch",
+                  "epoch": 0
+                },
+                {
+                  "type": "binding",
+                  "name": "saved",
+                  "version": 2,
+                  "evidence": {
+                    "sourceId": 0,
+                    "startByte": 68,
+                    "endByte": 89,
+                    "startLine": 2,
+                    "endLine": 2,
+                    "startColumn": 5
+                  }
+                },
+                {
+                  "type": "capability",
+                  "assumption": "standardTextMethods"
+                },
+                {
+                  "type": "capability",
+                  "assumption": "standardPythonEvaluation"
+                },
+                {
+                  "type": "capability",
+                  "assumption": "noConcurrentMutation"
+                }
+              ],
+              "predecessorConditions": [
+                {
+                  "sourceId": 0,
+                  "startByte": 5,
+                  "endByte": 52,
+                  "startLine": 1,
+                  "endLine": 1,
+                  "startColumn": 6
+                },
+                {
+                  "sourceId": 0,
+                  "startByte": 76,
+                  "endByte": 89,
+                  "startLine": 2,
+                  "endLine": 2,
+                  "startColumn": 13
+                },
+                {
+                  "sourceId": 0,
+                  "startByte": 94,
+                  "endByte": 108,
+                  "startLine": 3,
+                  "endLine": 3,
+                  "startColumn": 5
+                }
+              ],
+              "finalState": "notEstablished"
+            },
+            "assumptions": [
+              "standardPythonEvaluation",
+              "standardBuiltinOpen",
+              "standardTextMethods",
+              "noConcurrentMutation"
+            ]
+          },
+          "predecessorConditions": [],
+          "carrierAssumptions": [],
+          "laterContext": "unobserved"
+        }
+      ],
+      "sourceSha256": "e7276817afeb74ee36c9ce8d906bef484de312d493bfed8eac1e7b49344ff70f",
+      "expectedBarriers": []
+    },
+    {
+      "id": "B05",
+      "category": "bindingRefusal",
+      "effects": [
+        {
+          "afterHex": "",
+          "beforeHex": "6f6c64",
+          "consumedReads": [],
+          "endpoint": "successfulOpenTruncate",
+          "requiredEarlierCompletions": [],
+          "site": "open",
+          "path": "out",
+          "sourceCall": "open(\"out\", \"w\", encoding=\"utf-8\", newline=\"\")"
+        },
+        {
+          "acceptedCharacterCount": 7,
+          "afterHex": "410d0a420d430a",
+          "beforeHex": "",
+          "consumedReads": [],
+          "endpoint": "logicalStreamProjection",
+          "payloadByteCount": 7,
+          "payloadHex": "410d0a420d430a",
+          "requiredEarlierCompletions": [
+            "open"
+          ],
+          "site": "write",
+          "path": "out",
+          "sourceCall": "writer.write(\"A\\r\\nB\\rC\\n\")"
+        }
+      ],
+      "barrier": null,
+      "refusal": "writeNewlineContractMismatch",
+      "refusedSites": [
+        "write"
+      ],
+      "expectedEdits": [
+        {
+          "ordinal": 0,
+          "basis": "standardApiForecast",
+          "evidence": {
+            "sourceId": 0,
+            "startByte": 5,
+            "endByte": 51,
+            "startLine": 1,
+            "endLine": 1,
+            "startColumn": 6
+          },
+          "details": {
+            "kind": "python",
+            "prediction": {
+              "ordinal": 0,
+              "evidence": {
+                "sourceId": 0,
+                "startByte": 5,
+                "endByte": 51,
+                "startLine": 1,
+                "endLine": 1,
+                "startColumn": 6
+              },
+              "target": {
+                "type": "literal",
+                "path": "out",
+                "cwd": "/authored/v17"
+              },
+              "operation": {
+                "type": "truncate"
+              },
+              "dependencies": [
+                {
+                  "type": "capability",
+                  "assumption": "standardBuiltinOpen"
+                },
+                {
+                  "type": "entryWorkingDirectory",
+                  "cwd": "/authored/v17"
+                },
+                {
+                  "type": "capability",
+                  "assumption": "standardPythonEvaluation"
+                },
+                {
+                  "type": "capability",
+                  "assumption": "noConcurrentMutation"
+                },
+                {
+                  "type": "filesystemEpoch",
+                  "epoch": 0
+                }
+              ],
+              "predecessorConditions": [],
+              "finalState": "knownLaterTouch"
+            },
+            "assumptions": [
+              "standardPythonEvaluation",
+              "standardBuiltinOpen",
+              "standardTextMethods",
+              "noConcurrentMutation"
+            ]
+          },
+          "predecessorConditions": [],
+          "carrierAssumptions": [],
+          "laterContext": "knownLaterTouch"
+        },
+        {
+          "ordinal": 1,
+          "basis": "standardApiForecast",
+          "evidence": {
+            "sourceId": 0,
+            "startByte": 67,
+            "endByte": 94,
+            "startLine": 2,
+            "endLine": 2,
+            "startColumn": 5
+          },
+          "details": {
+            "kind": "python",
+            "prediction": {
+              "ordinal": 1,
+              "evidence": {
+                "sourceId": 0,
+                "startByte": 67,
+                "endByte": 94,
+                "startLine": 2,
+                "endLine": 2,
+                "startColumn": 5
+              },
+              "target": {
+                "type": "literal",
+                "path": "out",
+                "cwd": "/authored/v17"
+              },
+              "operation": {
+                "type": "logicalWrite",
+                "streamId": 0,
+                "openedAt": {
+                  "sourceId": 0,
+                  "startByte": 5,
+                  "endByte": 51,
+                  "startLine": 1,
+                  "endLine": 1,
+                  "startColumn": 6
+                },
+                "mode": "truncateWrite",
+                "position": {
+                  "type": "initialZero"
+                },
+                "baseFilesystemEpoch": 1,
+                "streamRevision": 0,
+                "content": {
+                  "type": "literal",
+                  "value": "A\r\nB\rC\n",
+                  "evidence": {
+                    "sourceId": 0,
+                    "startByte": 80,
+                    "endByte": 93,
+                    "startLine": 2,
+                    "endLine": 2,
+                    "startColumn": 18
+                  }
+                },
+                "encoding": "utf8",
+                "newline": "preserve",
+                "requiredResult": "fullCharacterCount"
+              },
+              "dependencies": [
+                {
+                  "type": "capability",
+                  "assumption": "standardBuiltinOpen"
+                },
+                {
+                  "type": "entryWorkingDirectory",
+                  "cwd": "/authored/v17"
+                },
+                {
+                  "type": "binding",
+                  "name": "writer",
+                  "version": 1,
+                  "evidence": {
+                    "sourceId": 0,
+                    "startByte": 5,
+                    "endByte": 61,
+                    "startLine": 1,
+                    "endLine": 1,
+                    "startColumn": 6
+                  }
+                },
+                {
+                  "type": "capability",
+                  "assumption": "standardPythonEvaluation"
+                },
+                {
+                  "type": "capability",
+                  "assumption": "noConcurrentMutation"
+                },
+                {
+                  "type": "filesystemEpoch",
+                  "epoch": 1
+                }
+              ],
+              "predecessorConditions": [
+                {
+                  "sourceId": 0,
+                  "startByte": 5,
+                  "endByte": 51,
+                  "startLine": 1,
+                  "endLine": 1,
+                  "startColumn": 6
+                }
+              ],
+              "finalState": "notEstablished"
+            },
+            "assumptions": [
+              "standardPythonEvaluation",
+              "standardBuiltinOpen",
+              "standardTextMethods",
+              "noConcurrentMutation"
+            ]
+          },
+          "predecessorConditions": [],
+          "carrierAssumptions": [],
+          "laterContext": "unobserved"
+        }
+      ],
+      "sourceSha256": "4a38b22f994595403e1712b4f295c3df4a89fd2c5753e5ee560ef09056f7780e",
+      "expectedBarriers": []
+    },
+    {
+      "id": "B06",
+      "category": "bindingRefusal",
+      "effects": [
+        {
+          "acceptedCharacterCount": 1,
+          "afterHex": "c3a9ac58",
+          "beforeHex": "e282ac58",
+          "consumedReads": [],
+          "endpoint": "logicalStreamProjection",
+          "payloadByteCount": 2,
+          "payloadHex": "c3a9",
+          "requiredEarlierCompletions": [
+            "open"
+          ],
+          "site": "write",
+          "path": "out",
+          "sourceCall": "writer.write(\"\u00e9\")"
+        }
+      ],
+      "barrier": null,
+      "refusal": "invalidUtf8AfterOverlay",
+      "refusedSites": [
+        "write"
+      ],
+      "expectedEdits": [
+        {
+          "ordinal": 0,
+          "basis": "standardApiForecast",
+          "evidence": {
+            "sourceId": 0,
+            "startByte": 68,
+            "endByte": 86,
+            "startLine": 2,
+            "endLine": 2,
+            "startColumn": 5
+          },
+          "details": {
+            "kind": "python",
+            "prediction": {
+              "ordinal": 0,
+              "evidence": {
+                "sourceId": 0,
+                "startByte": 68,
+                "endByte": 86,
+                "startLine": 2,
+                "endLine": 2,
+                "startColumn": 5
+              },
+              "target": {
+                "type": "literal",
+                "path": "out",
+                "cwd": "/authored/v17"
+              },
+              "operation": {
+                "type": "logicalWrite",
+                "streamId": 0,
+                "openedAt": {
+                  "sourceId": 0,
+                  "startByte": 5,
+                  "endByte": 52,
+                  "startLine": 1,
+                  "endLine": 1,
+                  "startColumn": 6
+                },
+                "mode": "updateExisting",
+                "position": {
+                  "type": "initialZero"
+                },
+                "baseFilesystemEpoch": 0,
+                "streamRevision": 0,
+                "content": {
+                  "type": "literal",
+                  "value": "\u00e9",
+                  "evidence": {
+                    "sourceId": 0,
+                    "startByte": 81,
+                    "endByte": 85,
+                    "startLine": 2,
+                    "endLine": 2,
+                    "startColumn": 18
+                  }
+                },
+                "encoding": "utf8",
+                "newline": "preserve",
+                "requiredResult": "fullCharacterCount"
+              },
+              "dependencies": [
+                {
+                  "type": "capability",
+                  "assumption": "standardBuiltinOpen"
+                },
+                {
+                  "type": "entryWorkingDirectory",
+                  "cwd": "/authored/v17"
+                },
+                {
+                  "type": "binding",
+                  "name": "writer",
+                  "version": 1,
+                  "evidence": {
+                    "sourceId": 0,
+                    "startByte": 5,
+                    "endByte": 62,
+                    "startLine": 1,
+                    "endLine": 1,
+                    "startColumn": 6
+                  }
+                },
+                {
+                  "type": "capability",
+                  "assumption": "standardPythonEvaluation"
+                },
+                {
+                  "type": "capability",
+                  "assumption": "noConcurrentMutation"
+                },
+                {
+                  "type": "filesystemEpoch",
+                  "epoch": 0
+                }
+              ],
+              "predecessorConditions": [
+                {
+                  "sourceId": 0,
+                  "startByte": 5,
+                  "endByte": 52,
+                  "startLine": 1,
+                  "endLine": 1,
+                  "startColumn": 6
+                }
+              ],
+              "finalState": "notEstablished"
+            },
+            "assumptions": [
+              "standardPythonEvaluation",
+              "standardBuiltinOpen",
+              "standardTextMethods",
+              "noConcurrentMutation"
+            ]
+          },
+          "predecessorConditions": [],
+          "carrierAssumptions": [],
+          "laterContext": "unobserved"
+        }
+      ],
+      "sourceSha256": "fdef7d8e766c0b6d1e8d43d7e39ecc3e1b69fc05af43aa67b39848ed51fbd568",
+      "expectedBarriers": []
+    },
+    {
+      "id": "S01",
+      "category": "prefix",
+      "effects": [
+        {
+          "acceptedCharacterCount": 1,
+          "afterHex": "c3a9642d7461696c",
+          "beforeHex": "6f6c642d7461696c",
+          "consumedReads": [],
+          "endpoint": "logicalStreamProjection",
+          "payloadByteCount": 2,
+          "payloadHex": "c3a9",
+          "requiredEarlierCompletions": [
+            "open"
+          ],
+          "site": "write",
+          "path": "out",
+          "sourceCall": "writer.write(\"\u00e9\")"
+        }
+      ],
+      "barrier": "barrier",
+      "refusal": null,
+      "refusedSites": [],
+      "expectedEdits": [
+        {
+          "ordinal": 0,
+          "basis": "standardApiForecast",
+          "evidence": {
+            "sourceId": 0,
+            "startByte": 68,
+            "endByte": 86,
+            "startLine": 2,
+            "endLine": 2,
+            "startColumn": 5
+          },
+          "details": {
+            "kind": "python",
+            "prediction": {
+              "ordinal": 0,
+              "evidence": {
+                "sourceId": 0,
+                "startByte": 68,
+                "endByte": 86,
+                "startLine": 2,
+                "endLine": 2,
+                "startColumn": 5
+              },
+              "target": {
+                "type": "literal",
+                "path": "out",
+                "cwd": "/authored/v17"
+              },
+              "operation": {
+                "type": "logicalWrite",
+                "streamId": 0,
+                "openedAt": {
+                  "sourceId": 0,
+                  "startByte": 5,
+                  "endByte": 52,
+                  "startLine": 1,
+                  "endLine": 1,
+                  "startColumn": 6
+                },
+                "mode": "updateExisting",
+                "position": {
+                  "type": "initialZero"
+                },
+                "baseFilesystemEpoch": 0,
+                "streamRevision": 0,
+                "content": {
+                  "type": "literal",
+                  "value": "\u00e9",
+                  "evidence": {
+                    "sourceId": 0,
+                    "startByte": 81,
+                    "endByte": 85,
+                    "startLine": 2,
+                    "endLine": 2,
+                    "startColumn": 18
+                  }
+                },
+                "encoding": "utf8",
+                "newline": "preserve",
+                "requiredResult": "fullCharacterCount"
+              },
+              "dependencies": [
+                {
+                  "type": "capability",
+                  "assumption": "standardBuiltinOpen"
+                },
+                {
+                  "type": "entryWorkingDirectory",
+                  "cwd": "/authored/v17"
+                },
+                {
+                  "type": "binding",
+                  "name": "writer",
+                  "version": 1,
+                  "evidence": {
+                    "sourceId": 0,
+                    "startByte": 5,
+                    "endByte": 62,
+                    "startLine": 1,
+                    "endLine": 1,
+                    "startColumn": 6
+                  }
+                },
+                {
+                  "type": "capability",
+                  "assumption": "standardPythonEvaluation"
+                },
+                {
+                  "type": "capability",
+                  "assumption": "noConcurrentMutation"
+                },
+                {
+                  "type": "filesystemEpoch",
+                  "epoch": 0
+                }
+              ],
+              "predecessorConditions": [
+                {
+                  "sourceId": 0,
+                  "startByte": 5,
+                  "endByte": 52,
+                  "startLine": 1,
+                  "endLine": 1,
+                  "startColumn": 6
+                }
+              ],
+              "finalState": "opaqueSuccessor"
+            },
+            "assumptions": [
+              "standardPythonEvaluation",
+              "standardBuiltinOpen",
+              "standardTextMethods",
+              "noConcurrentMutation"
+            ]
+          },
+          "predecessorConditions": [],
+          "carrierAssumptions": [],
+          "laterContext": "opaqueSuffix"
+        }
+      ],
+      "sourceSha256": "ec4fb47ad4b468543918639adc7dc8d7e65aa68e698c5d1b821103b697f86034",
+      "expectedBarriers": [
+        {
+          "evidence": {
+            "sourceId": 0,
+            "startByte": 91,
+            "endByte": 108,
+            "startLine": 3,
+            "endLine": 3,
+            "startColumn": 5
+          },
+          "reason": "unsupportedOperation"
+        }
+      ]
+    },
+    {
+      "id": "S02",
+      "category": "prefix",
+      "effects": [
+        {
+          "acceptedCharacterCount": 1,
+          "afterHex": "c3a9642d7461696c",
+          "beforeHex": "6f6c642d7461696c",
+          "consumedReads": [],
+          "endpoint": "logicalStreamProjection",
+          "payloadByteCount": 2,
+          "payloadHex": "c3a9",
+          "requiredEarlierCompletions": [
+            "open"
+          ],
+          "site": "write",
+          "path": "out",
+          "sourceCall": "writer.write(\"\u00e9\")"
+        }
+      ],
+      "barrier": "barrier",
+      "refusal": null,
+      "refusedSites": [],
+      "expectedEdits": [
+        {
+          "ordinal": 0,
+          "basis": "standardApiForecast",
+          "evidence": {
+            "sourceId": 0,
+            "startByte": 68,
+            "endByte": 86,
+            "startLine": 2,
+            "endLine": 2,
+            "startColumn": 5
+          },
+          "details": {
+            "kind": "python",
+            "prediction": {
+              "ordinal": 0,
+              "evidence": {
+                "sourceId": 0,
+                "startByte": 68,
+                "endByte": 86,
+                "startLine": 2,
+                "endLine": 2,
+                "startColumn": 5
+              },
+              "target": {
+                "type": "literal",
+                "path": "out",
+                "cwd": "/authored/v17"
+              },
+              "operation": {
+                "type": "logicalWrite",
+                "streamId": 0,
+                "openedAt": {
+                  "sourceId": 0,
+                  "startByte": 5,
+                  "endByte": 52,
+                  "startLine": 1,
+                  "endLine": 1,
+                  "startColumn": 6
+                },
+                "mode": "updateExisting",
+                "position": {
+                  "type": "initialZero"
+                },
+                "baseFilesystemEpoch": 0,
+                "streamRevision": 0,
+                "content": {
+                  "type": "literal",
+                  "value": "\u00e9",
+                  "evidence": {
+                    "sourceId": 0,
+                    "startByte": 81,
+                    "endByte": 85,
+                    "startLine": 2,
+                    "endLine": 2,
+                    "startColumn": 18
+                  }
+                },
+                "encoding": "utf8",
+                "newline": "preserve",
+                "requiredResult": "fullCharacterCount"
+              },
+              "dependencies": [
+                {
+                  "type": "capability",
+                  "assumption": "standardBuiltinOpen"
+                },
+                {
+                  "type": "entryWorkingDirectory",
+                  "cwd": "/authored/v17"
+                },
+                {
+                  "type": "binding",
+                  "name": "writer",
+                  "version": 1,
+                  "evidence": {
+                    "sourceId": 0,
+                    "startByte": 5,
+                    "endByte": 62,
+                    "startLine": 1,
+                    "endLine": 1,
+                    "startColumn": 6
+                  }
+                },
+                {
+                  "type": "capability",
+                  "assumption": "standardPythonEvaluation"
+                },
+                {
+                  "type": "capability",
+                  "assumption": "noConcurrentMutation"
+                },
+                {
+                  "type": "filesystemEpoch",
+                  "epoch": 0
+                }
+              ],
+              "predecessorConditions": [
+                {
+                  "sourceId": 0,
+                  "startByte": 5,
+                  "endByte": 52,
+                  "startLine": 1,
+                  "endLine": 1,
+                  "startColumn": 6
+                }
+              ],
+              "finalState": "opaqueSuccessor"
+            },
+            "assumptions": [
+              "standardPythonEvaluation",
+              "standardBuiltinOpen",
+              "standardTextMethods",
+              "noConcurrentMutation"
+            ]
+          },
+          "predecessorConditions": [],
+          "carrierAssumptions": [],
+          "laterContext": "opaqueSuffix"
+        }
+      ],
+      "sourceSha256": "1d153449424dbf5640647fd2e6d78131d63520fd778e3ef7eea18cf90748e452",
+      "expectedBarriers": [
+        {
+          "evidence": {
+            "sourceId": 0,
+            "startByte": 91,
+            "endByte": 104,
+            "startLine": 3,
+            "endLine": 3,
+            "startColumn": 5
+          },
+          "reason": "unsupportedOperation"
+        }
+      ]
+    },
+    {
+      "id": "S03",
+      "category": "prefix",
+      "effects": [
+        {
+          "acceptedCharacterCount": 1,
+          "afterHex": "c3a9642d7461696c",
+          "beforeHex": "6f6c642d7461696c",
+          "consumedReads": [],
+          "endpoint": "logicalStreamProjection",
+          "payloadByteCount": 2,
+          "payloadHex": "c3a9",
+          "requiredEarlierCompletions": [
+            "open"
+          ],
+          "site": "write",
+          "path": "out",
+          "sourceCall": "writer.write(\"\u00e9\")"
+        }
+      ],
+      "barrier": "barrier",
+      "refusal": null,
+      "refusedSites": [],
+      "expectedEdits": [
+        {
+          "ordinal": 0,
+          "basis": "standardApiForecast",
+          "evidence": {
+            "sourceId": 0,
+            "startByte": 68,
+            "endByte": 86,
+            "startLine": 2,
+            "endLine": 2,
+            "startColumn": 5
+          },
+          "details": {
+            "kind": "python",
+            "prediction": {
+              "ordinal": 0,
+              "evidence": {
+                "sourceId": 0,
+                "startByte": 68,
+                "endByte": 86,
+                "startLine": 2,
+                "endLine": 2,
+                "startColumn": 5
+              },
+              "target": {
+                "type": "literal",
+                "path": "out",
+                "cwd": "/authored/v17"
+              },
+              "operation": {
+                "type": "logicalWrite",
+                "streamId": 0,
+                "openedAt": {
+                  "sourceId": 0,
+                  "startByte": 5,
+                  "endByte": 52,
+                  "startLine": 1,
+                  "endLine": 1,
+                  "startColumn": 6
+                },
+                "mode": "updateExisting",
+                "position": {
+                  "type": "initialZero"
+                },
+                "baseFilesystemEpoch": 0,
+                "streamRevision": 0,
+                "content": {
+                  "type": "literal",
+                  "value": "\u00e9",
+                  "evidence": {
+                    "sourceId": 0,
+                    "startByte": 81,
+                    "endByte": 85,
+                    "startLine": 2,
+                    "endLine": 2,
+                    "startColumn": 18
+                  }
+                },
+                "encoding": "utf8",
+                "newline": "preserve",
+                "requiredResult": "fullCharacterCount"
+              },
+              "dependencies": [
+                {
+                  "type": "capability",
+                  "assumption": "standardBuiltinOpen"
+                },
+                {
+                  "type": "entryWorkingDirectory",
+                  "cwd": "/authored/v17"
+                },
+                {
+                  "type": "binding",
+                  "name": "writer",
+                  "version": 1,
+                  "evidence": {
+                    "sourceId": 0,
+                    "startByte": 5,
+                    "endByte": 62,
+                    "startLine": 1,
+                    "endLine": 1,
+                    "startColumn": 6
+                  }
+                },
+                {
+                  "type": "capability",
+                  "assumption": "standardPythonEvaluation"
+                },
+                {
+                  "type": "capability",
+                  "assumption": "noConcurrentMutation"
+                },
+                {
+                  "type": "filesystemEpoch",
+                  "epoch": 0
+                }
+              ],
+              "predecessorConditions": [
+                {
+                  "sourceId": 0,
+                  "startByte": 5,
+                  "endByte": 52,
+                  "startLine": 1,
+                  "endLine": 1,
+                  "startColumn": 6
+                }
+              ],
+              "finalState": "opaqueSuccessor"
+            },
+            "assumptions": [
+              "standardPythonEvaluation",
+              "standardBuiltinOpen",
+              "standardTextMethods",
+              "noConcurrentMutation"
+            ]
+          },
+          "predecessorConditions": [],
+          "carrierAssumptions": [],
+          "laterContext": "opaqueSuffix"
+        }
+      ],
+      "sourceSha256": "73de55cf8b14d669a41a93d8a3635802d283951358f465d5fc5984fe4ee4dc7c",
+      "expectedBarriers": [
+        {
+          "evidence": {
+            "sourceId": 0,
+            "startByte": 91,
+            "endByte": 98,
+            "startLine": 3,
+            "endLine": 3,
+            "startColumn": 5
+          },
+          "reason": "unknownName"
+        }
+      ]
+    },
+    {
+      "id": "S04",
+      "category": "semanticBarrier",
+      "effects": [],
+      "barrier": "barrier",
+      "refusal": null,
+      "refusedSites": [],
+      "expectedEdits": [],
+      "sourceSha256": "7ba8a5b17b501371b0e68dc0a9559faf20d5912dd8da8626f1928e8be9dc5ac6",
+      "expectedBarriers": [
+        {
+          "evidence": {
+            "sourceId": 0,
+            "startByte": 68,
+            "endByte": 82,
+            "startLine": 2,
+            "endLine": 2,
+            "startColumn": 5
+          },
+          "reason": "unsupportedOperation"
+        }
+      ]
+    },
+    {
+      "id": "S05",
+      "category": "semanticBarrier",
+      "effects": [],
+      "barrier": "barrier",
+      "refusal": null,
+      "refusedSites": [],
+      "expectedEdits": [],
+      "sourceSha256": "d1ae880764e6d5c90a92b5b5d2408b5dcb0ff0b5e9ecf7b26f2790bbe52de93f",
+      "expectedBarriers": [
+        {
+          "evidence": {
+            "sourceId": 0,
+            "startByte": 94,
+            "endByte": 111,
+            "startLine": 3,
+            "endLine": 3,
+            "startColumn": 5
+          },
+          "reason": "unsupportedOperation"
+        }
+      ]
+    },
+    {
+      "id": "S06",
+      "category": "semanticBarrier",
+      "effects": [],
+      "barrier": "barrier",
+      "refusal": null,
+      "refusedSites": [],
+      "expectedEdits": [],
+      "sourceSha256": "e657612aa987a35687ce43e32a858a24a66b968d58f8be5b85e7482d3c4cbd2c",
+      "expectedBarriers": [
+        {
+          "evidence": {
+            "sourceId": 0,
+            "startByte": 68,
+            "endByte": 82,
+            "startLine": 2,
+            "endLine": 2,
+            "startColumn": 5
+          },
+          "reason": "escapingHandle"
+        }
+      ]
+    },
+    {
+      "id": "S07",
+      "category": "semanticBarrier",
+      "effects": [],
+      "barrier": "barrier",
+      "refusal": null,
+      "refusedSites": [],
+      "expectedEdits": [],
+      "sourceSha256": "66ae8916ec2f9e87ef4fba4f22bb0465bac55fbf72c2d56f82d4828a8ac179fe",
+      "expectedBarriers": [
+        {
+          "evidence": {
+            "sourceId": 0,
+            "startByte": 77,
+            "endByte": 88,
+            "startLine": 2,
+            "endLine": 2,
+            "startColumn": 14
+          },
+          "reason": "unsupportedOperation"
+        }
+      ]
+    },
+    {
+      "id": "S08",
+      "category": "semanticBarrier",
+      "effects": [],
+      "barrier": "barrier",
+      "refusal": null,
+      "refusedSites": [],
+      "expectedEdits": [],
+      "sourceSha256": "56247649d1a674df35745f0d10175e39a74dba5dec3e874e590607785c21f4e4",
+      "expectedBarriers": [
+        {
+          "evidence": {
+            "sourceId": 0,
+            "startByte": 68,
+            "endByte": 158,
+            "startLine": 2,
+            "endLine": 3,
+            "startColumn": 5
+          },
+          "reason": "unsupportedOperation"
+        }
+      ]
+    },
+    {
+      "id": "S09",
+      "category": "semanticBarrier",
+      "effects": [],
+      "barrier": "barrier",
+      "refusal": null,
+      "refusedSites": [],
+      "expectedEdits": [],
+      "sourceSha256": "8eb06ede6568b3d781948d9b252ee5a82961768e28c2716850fa4da89f635150",
+      "expectedBarriers": [
+        {
+          "evidence": {
+            "sourceId": 0,
+            "startByte": 5,
+            "endByte": 51,
+            "startLine": 1,
+            "endLine": 1,
+            "startColumn": 6
+          },
+          "reason": "unsupportedOperation"
+        }
+      ]
+    },
+    {
+      "id": "P07",
+      "category": "positive",
+      "effects": [
+        {
+          "afterHex": "",
+          "beforeHex": "6f6c64",
+          "consumedReads": [],
+          "endpoint": "successfulOpenTruncate",
+          "requiredEarlierCompletions": [],
+          "site": "open",
+          "path": "out",
+          "sourceCall": "open(\"out\", \"w\", encoding=\"utf-8\", newline=None)"
+        },
+        {
+          "acceptedCharacterCount": 2,
+          "afterHex": "c3a90d0a",
+          "beforeHex": "",
+          "consumedReads": [],
+          "endpoint": "logicalStreamProjection",
+          "payloadByteCount": 3,
+          "payloadHex": "c3a90a",
+          "requiredEarlierCompletions": [
+            "open"
+          ],
+          "site": "write",
+          "path": "out",
+          "sourceCall": "writer.write(\"\u00e9\\n\")"
+        }
+      ],
+      "barrier": null,
+      "refusal": null,
+      "refusedSites": [],
+      "expectedEdits": [
+        {
+          "ordinal": 0,
+          "basis": "standardApiForecast",
+          "evidence": {
+            "sourceId": 0,
+            "startByte": 5,
+            "endByte": 53,
+            "startLine": 1,
+            "endLine": 1,
+            "startColumn": 6
+          },
+          "details": {
+            "kind": "python",
+            "prediction": {
+              "ordinal": 0,
+              "evidence": {
+                "sourceId": 0,
+                "startByte": 5,
+                "endByte": 53,
+                "startLine": 1,
+                "endLine": 1,
+                "startColumn": 6
+              },
+              "target": {
+                "type": "literal",
+                "path": "out",
+                "cwd": "/authored/v17"
+              },
+              "operation": {
+                "type": "truncate"
+              },
+              "dependencies": [
+                {
+                  "type": "capability",
+                  "assumption": "standardBuiltinOpen"
+                },
+                {
+                  "type": "entryWorkingDirectory",
+                  "cwd": "/authored/v17"
+                },
+                {
+                  "type": "capability",
+                  "assumption": "standardPythonEvaluation"
+                },
+                {
+                  "type": "capability",
+                  "assumption": "noConcurrentMutation"
+                },
+                {
+                  "type": "filesystemEpoch",
+                  "epoch": 0
+                }
+              ],
+              "predecessorConditions": [],
+              "finalState": "knownLaterTouch"
+            },
+            "assumptions": [
+              "standardPythonEvaluation",
+              "standardBuiltinOpen",
+              "standardTextMethods",
+              "noConcurrentMutation"
+            ]
+          },
+          "predecessorConditions": [],
+          "carrierAssumptions": [],
+          "laterContext": "knownLaterTouch"
+        },
+        {
+          "ordinal": 1,
+          "basis": "standardApiForecast",
+          "evidence": {
+            "sourceId": 0,
+            "startByte": 69,
+            "endByte": 89,
+            "startLine": 2,
+            "endLine": 2,
+            "startColumn": 5
+          },
+          "details": {
+            "kind": "python",
+            "prediction": {
+              "ordinal": 1,
+              "evidence": {
+                "sourceId": 0,
+                "startByte": 69,
+                "endByte": 89,
+                "startLine": 2,
+                "endLine": 2,
+                "startColumn": 5
+              },
+              "target": {
+                "type": "literal",
+                "path": "out",
+                "cwd": "/authored/v17"
+              },
+              "operation": {
+                "type": "logicalWrite",
+                "streamId": 0,
+                "openedAt": {
+                  "sourceId": 0,
+                  "startByte": 5,
+                  "endByte": 53,
+                  "startLine": 1,
+                  "endLine": 1,
+                  "startColumn": 6
+                },
+                "mode": "truncateWrite",
+                "position": {
+                  "type": "initialZero"
+                },
+                "baseFilesystemEpoch": 1,
+                "streamRevision": 0,
+                "content": {
+                  "type": "literal",
+                  "value": "\u00e9\n",
+                  "evidence": {
+                    "sourceId": 0,
+                    "startByte": 82,
+                    "endByte": 88,
+                    "startLine": 2,
+                    "endLine": 2,
+                    "startColumn": 18
+                  }
+                },
+                "encoding": "utf8",
+                "newline": "runtimeDefault",
+                "requiredResult": "fullCharacterCount"
+              },
+              "dependencies": [
+                {
+                  "type": "capability",
+                  "assumption": "standardBuiltinOpen"
+                },
+                {
+                  "type": "entryWorkingDirectory",
+                  "cwd": "/authored/v17"
+                },
+                {
+                  "type": "binding",
+                  "name": "writer",
+                  "version": 1,
+                  "evidence": {
+                    "sourceId": 0,
+                    "startByte": 5,
+                    "endByte": 63,
+                    "startLine": 1,
+                    "endLine": 1,
+                    "startColumn": 6
+                  }
+                },
+                {
+                  "type": "capability",
+                  "assumption": "standardPythonEvaluation"
+                },
+                {
+                  "type": "capability",
+                  "assumption": "noConcurrentMutation"
+                },
+                {
+                  "type": "filesystemEpoch",
+                  "epoch": 1
+                }
+              ],
+              "predecessorConditions": [
+                {
+                  "sourceId": 0,
+                  "startByte": 5,
+                  "endByte": 53,
+                  "startLine": 1,
+                  "endLine": 1,
+                  "startColumn": 6
+                }
+              ],
+              "finalState": "notEstablished"
+            },
+            "assumptions": [
+              "standardPythonEvaluation",
+              "standardBuiltinOpen",
+              "standardTextMethods",
+              "noConcurrentMutation"
+            ]
+          },
+          "predecessorConditions": [],
+          "carrierAssumptions": [],
+          "laterContext": "unobserved"
+        }
+      ],
+      "sourceSha256": "e96bda03ce34c9bc0f7778608aa0d4283765cf9a810519200b8fab4226c933b2",
+      "expectedBarriers": []
+    },
+    {
+      "id": "P08",
+      "category": "positive",
+      "effects": [
+        {
+          "afterHex": "",
+          "beforeHex": "6f6c64",
+          "consumedReads": [],
+          "endpoint": "successfulOpenTruncate",
+          "requiredEarlierCompletions": [],
+          "site": "open",
+          "path": "out",
+          "sourceCall": "open(\"out\", \"w\", encoding=\"utf-8\", newline=\"\\r\\n\")"
+        },
+        {
+          "acceptedCharacterCount": 7,
+          "afterHex": "410d420d0a430d0d0a",
+          "beforeHex": "",
+          "consumedReads": [
+            "readA",
+            "readB",
+            "readC"
+          ],
+          "endpoint": "logicalStreamProjection",
+          "payloadByteCount": 7,
+          "payloadHex": "410d420a430d0a",
+          "requiredEarlierCompletions": [
+            "readA",
+            "readB",
+            "readC",
+            "open"
+          ],
+          "site": "write",
+          "path": "out",
+          "sourceCall": "writer.write(a + b + c)"
+        }
+      ],
+      "barrier": null,
+      "refusal": null,
+      "refusedSites": [],
+      "expectedEdits": [
+        {
+          "ordinal": 0,
+          "basis": "standardApiForecast",
+          "evidence": {
+            "sourceId": 0,
+            "startByte": 258,
+            "endByte": 308,
+            "startLine": 7,
+            "endLine": 7,
+            "startColumn": 6
+          },
+          "details": {
+            "kind": "python",
+            "prediction": {
+              "ordinal": 0,
+              "evidence": {
+                "sourceId": 0,
+                "startByte": 258,
+                "endByte": 308,
+                "startLine": 7,
+                "endLine": 7,
+                "startColumn": 6
+              },
+              "target": {
+                "type": "literal",
+                "path": "out",
+                "cwd": "/authored/v17"
+              },
+              "operation": {
+                "type": "truncate"
+              },
+              "dependencies": [
+                {
+                  "type": "capability",
+                  "assumption": "standardBuiltinOpen"
+                },
+                {
+                  "type": "entryWorkingDirectory",
+                  "cwd": "/authored/v17"
+                },
+                {
+                  "type": "capability",
+                  "assumption": "standardPythonEvaluation"
+                },
+                {
+                  "type": "capability",
+                  "assumption": "noConcurrentMutation"
+                },
+                {
+                  "type": "filesystemEpoch",
+                  "epoch": 0
+                }
+              ],
+              "predecessorConditions": [
+                {
+                  "sourceId": 0,
+                  "startByte": 5,
+                  "endByte": 51,
+                  "startLine": 1,
+                  "endLine": 1,
+                  "startColumn": 6
+                },
+                {
+                  "sourceId": 0,
+                  "startByte": 70,
+                  "endByte": 82,
+                  "startLine": 2,
+                  "endLine": 2,
+                  "startColumn": 9
+                },
+                {
+                  "sourceId": 0,
+                  "startByte": 0,
+                  "endByte": 82,
+                  "startLine": 1,
+                  "endLine": 2,
+                  "startColumn": 1
+                },
+                {
+                  "sourceId": 0,
+                  "startByte": 88,
+                  "endByte": 134,
+                  "startLine": 3,
+                  "endLine": 3,
+                  "startColumn": 6
+                },
+                {
+                  "sourceId": 0,
+                  "startByte": 154,
+                  "endByte": 167,
+                  "startLine": 4,
+                  "endLine": 4,
+                  "startColumn": 9
+                },
+                {
+                  "sourceId": 0,
+                  "startByte": 83,
+                  "endByte": 167,
+                  "startLine": 3,
+                  "endLine": 4,
+                  "startColumn": 1
+                },
+                {
+                  "sourceId": 0,
+                  "startByte": 173,
+                  "endByte": 221,
+                  "startLine": 5,
+                  "endLine": 5,
+                  "startColumn": 6
+                },
+                {
+                  "sourceId": 0,
+                  "startByte": 240,
+                  "endByte": 252,
+                  "startLine": 6,
+                  "endLine": 6,
+                  "startColumn": 9
+                },
+                {
+                  "sourceId": 0,
+                  "startByte": 168,
+                  "endByte": 252,
+                  "startLine": 5,
+                  "endLine": 6,
+                  "startColumn": 1
+                }
+              ],
+              "finalState": "knownLaterTouch"
+            },
+            "assumptions": [
+              "standardPythonEvaluation",
+              "standardBuiltinOpen",
+              "standardTextMethods",
+              "noConcurrentMutation"
+            ]
+          },
+          "predecessorConditions": [],
+          "carrierAssumptions": [],
+          "laterContext": "knownLaterTouch"
+        },
+        {
+          "ordinal": 1,
+          "basis": "standardApiForecast",
+          "evidence": {
+            "sourceId": 0,
+            "startByte": 324,
+            "endByte": 347,
+            "startLine": 8,
+            "endLine": 8,
+            "startColumn": 5
+          },
+          "details": {
+            "kind": "python",
+            "prediction": {
+              "ordinal": 1,
+              "evidence": {
+                "sourceId": 0,
+                "startByte": 324,
+                "endByte": 347,
+                "startLine": 8,
+                "endLine": 8,
+                "startColumn": 5
+              },
+              "target": {
+                "type": "literal",
+                "path": "out",
+                "cwd": "/authored/v17"
+              },
+              "operation": {
+                "type": "logicalWrite",
+                "streamId": 3,
+                "openedAt": {
+                  "sourceId": 0,
+                  "startByte": 258,
+                  "endByte": 308,
+                  "startLine": 7,
+                  "endLine": 7,
+                  "startColumn": 6
+                },
+                "mode": "truncateWrite",
+                "position": {
+                  "type": "initialZero"
+                },
+                "baseFilesystemEpoch": 1,
+                "streamRevision": 0,
+                "content": {
+                  "type": "concat",
+                  "left": {
+                    "type": "concat",
+                    "left": {
+                      "type": "read",
+                      "readId": 0,
+                      "target": {
+                        "type": "literal",
+                        "path": "a",
+                        "cwd": "/authored/v17"
+                      },
+                      "evidence": {
+                        "sourceId": 0,
+                        "startByte": 70,
+                        "endByte": 82,
+                        "startLine": 2,
+                        "endLine": 2,
+                        "startColumn": 9
+                      },
+                      "filesystemEpoch": 0,
+                      "encoding": "utf8",
+                      "newline": "preserve"
+                    },
+                    "right": {
+                      "type": "read",
+                      "readId": 1,
+                      "target": {
+                        "type": "literal",
+                        "path": "b",
+                        "cwd": "/authored/v17"
+                      },
+                      "evidence": {
+                        "sourceId": 0,
+                        "startByte": 154,
+                        "endByte": 167,
+                        "startLine": 4,
+                        "endLine": 4,
+                        "startColumn": 9
+                      },
+                      "filesystemEpoch": 0,
+                      "encoding": "utf8",
+                      "newline": "preserve"
+                    },
+                    "evidence": {
+                      "sourceId": 0,
+                      "startByte": 337,
+                      "endByte": 342,
+                      "startLine": 8,
+                      "endLine": 8,
+                      "startColumn": 18
+                    }
+                  },
+                  "right": {
+                    "type": "read",
+                    "readId": 2,
+                    "target": {
+                      "type": "literal",
+                      "path": "c",
+                      "cwd": "/authored/v17"
+                    },
+                    "evidence": {
+                      "sourceId": 0,
+                      "startByte": 240,
+                      "endByte": 252,
+                      "startLine": 6,
+                      "endLine": 6,
+                      "startColumn": 9
+                    },
+                    "filesystemEpoch": 0,
+                    "encoding": "utf8",
+                    "newline": "preserve"
+                  },
+                  "evidence": {
+                    "sourceId": 0,
+                    "startByte": 337,
+                    "endByte": 346,
+                    "startLine": 8,
+                    "endLine": 8,
+                    "startColumn": 18
+                  }
+                },
+                "encoding": "utf8",
+                "newline": "crLf",
+                "requiredResult": "fullCharacterCount"
+              },
+              "dependencies": [
+                {
+                  "type": "capability",
+                  "assumption": "standardBuiltinOpen"
+                },
+                {
+                  "type": "entryWorkingDirectory",
+                  "cwd": "/authored/v17"
+                },
+                {
+                  "type": "binding",
+                  "name": "writer",
+                  "version": 7,
+                  "evidence": {
+                    "sourceId": 0,
+                    "startByte": 258,
+                    "endByte": 318,
+                    "startLine": 7,
+                    "endLine": 7,
+                    "startColumn": 6
+                  }
+                },
+                {
+                  "type": "binding",
+                  "name": "first",
+                  "version": 1,
+                  "evidence": {
+                    "sourceId": 0,
+                    "startByte": 5,
+                    "endByte": 60,
+                    "startLine": 1,
+                    "endLine": 1,
+                    "startColumn": 6
+                  }
+                },
+                {
+                  "type": "readValue",
+                  "readId": 0,
+                  "evidence": {
+                    "sourceId": 0,
+                    "startByte": 70,
+                    "endByte": 82,
+                    "startLine": 2,
+                    "endLine": 2,
+                    "startColumn": 9
+                  }
+                },
+                {
+                  "type": "filesystemEpoch",
+                  "epoch": 0
+                },
+                {
+                  "type": "binding",
+                  "name": "a",
+                  "version": 2,
+                  "evidence": {
+                    "sourceId": 0,
+                    "startByte": 66,
+                    "endByte": 82,
+                    "startLine": 2,
+                    "endLine": 2,
+                    "startColumn": 5
+                  }
+                },
+                {
+                  "type": "binding",
+                  "name": "second",
+                  "version": 3,
+                  "evidence": {
+                    "sourceId": 0,
+                    "startByte": 88,
+                    "endByte": 144,
+                    "startLine": 3,
+                    "endLine": 3,
+                    "startColumn": 6
+                  }
+                },
+                {
+                  "type": "readValue",
+                  "readId": 1,
+                  "evidence": {
+                    "sourceId": 0,
+                    "startByte": 154,
+                    "endByte": 167,
+                    "startLine": 4,
+                    "endLine": 4,
+                    "startColumn": 9
+                  }
+                },
+                {
+                  "type": "binding",
+                  "name": "b",
+                  "version": 4,
+                  "evidence": {
+                    "sourceId": 0,
+                    "startByte": 150,
+                    "endByte": 167,
+                    "startLine": 4,
+                    "endLine": 4,
+                    "startColumn": 5
+                  }
+                },
+                {
+                  "type": "capability",
+                  "assumption": "standardTextMethods"
+                },
+                {
+                  "type": "binding",
+                  "name": "third",
+                  "version": 5,
+                  "evidence": {
+                    "sourceId": 0,
+                    "startByte": 173,
+                    "endByte": 230,
+                    "startLine": 5,
+                    "endLine": 5,
+                    "startColumn": 6
+                  }
+                },
+                {
+                  "type": "readValue",
+                  "readId": 2,
+                  "evidence": {
+                    "sourceId": 0,
+                    "startByte": 240,
+                    "endByte": 252,
+                    "startLine": 6,
+                    "endLine": 6,
+                    "startColumn": 9
+                  }
+                },
+                {
+                  "type": "binding",
+                  "name": "c",
+                  "version": 6,
+                  "evidence": {
+                    "sourceId": 0,
+                    "startByte": 236,
+                    "endByte": 252,
+                    "startLine": 6,
+                    "endLine": 6,
+                    "startColumn": 5
+                  }
+                },
+                {
+                  "type": "capability",
+                  "assumption": "standardPythonEvaluation"
+                },
+                {
+                  "type": "capability",
+                  "assumption": "noConcurrentMutation"
+                },
+                {
+                  "type": "filesystemEpoch",
+                  "epoch": 1
+                }
+              ],
+              "predecessorConditions": [
+                {
+                  "sourceId": 0,
+                  "startByte": 5,
+                  "endByte": 51,
+                  "startLine": 1,
+                  "endLine": 1,
+                  "startColumn": 6
+                },
+                {
+                  "sourceId": 0,
+                  "startByte": 70,
+                  "endByte": 82,
+                  "startLine": 2,
+                  "endLine": 2,
+                  "startColumn": 9
+                },
+                {
+                  "sourceId": 0,
+                  "startByte": 0,
+                  "endByte": 82,
+                  "startLine": 1,
+                  "endLine": 2,
+                  "startColumn": 1
+                },
+                {
+                  "sourceId": 0,
+                  "startByte": 88,
+                  "endByte": 134,
+                  "startLine": 3,
+                  "endLine": 3,
+                  "startColumn": 6
+                },
+                {
+                  "sourceId": 0,
+                  "startByte": 154,
+                  "endByte": 167,
+                  "startLine": 4,
+                  "endLine": 4,
+                  "startColumn": 9
+                },
+                {
+                  "sourceId": 0,
+                  "startByte": 83,
+                  "endByte": 167,
+                  "startLine": 3,
+                  "endLine": 4,
+                  "startColumn": 1
+                },
+                {
+                  "sourceId": 0,
+                  "startByte": 173,
+                  "endByte": 221,
+                  "startLine": 5,
+                  "endLine": 5,
+                  "startColumn": 6
+                },
+                {
+                  "sourceId": 0,
+                  "startByte": 240,
+                  "endByte": 252,
+                  "startLine": 6,
+                  "endLine": 6,
+                  "startColumn": 9
+                },
+                {
+                  "sourceId": 0,
+                  "startByte": 168,
+                  "endByte": 252,
+                  "startLine": 5,
+                  "endLine": 6,
+                  "startColumn": 1
+                },
+                {
+                  "sourceId": 0,
+                  "startByte": 258,
+                  "endByte": 308,
+                  "startLine": 7,
+                  "endLine": 7,
+                  "startColumn": 6
+                }
+              ],
+              "finalState": "notEstablished"
+            },
+            "assumptions": [
+              "standardPythonEvaluation",
+              "standardBuiltinOpen",
+              "standardTextMethods",
+              "noConcurrentMutation"
+            ]
+          },
+          "predecessorConditions": [],
+          "carrierAssumptions": [],
+          "laterContext": "unobserved"
+        }
+      ],
+      "sourceSha256": "13ba47e795fd3694a2bcc45eb120a7a5e1f2b3cc572670a9e9935da32fa6bc6d",
+      "expectedBarriers": []
+    },
+    {
+      "id": "P09",
+      "category": "positive",
+      "effects": [
+        {
+          "afterHex": "",
+          "beforeHex": "6f6c64",
+          "consumedReads": [],
+          "endpoint": "successfulOpenTruncate",
+          "requiredEarlierCompletions": [],
+          "site": "open",
+          "path": "out",
+          "sourceCall": "open(\"out\", \"w\", encoding=\"utf-8\", newline=\"\\r\")"
+        },
+        {
+          "acceptedCharacterCount": 3,
+          "afterHex": "0d0d0d",
+          "beforeHex": "",
+          "consumedReads": [],
+          "endpoint": "logicalStreamProjection",
+          "payloadByteCount": 3,
+          "payloadHex": "0a0d0a",
+          "requiredEarlierCompletions": [
+            "open"
+          ],
+          "site": "write",
+          "path": "out",
+          "sourceCall": "writer.write(\"\\n\\r\\n\")"
+        }
+      ],
+      "barrier": null,
+      "refusal": null,
+      "refusedSites": [],
+      "expectedEdits": [
+        {
+          "ordinal": 0,
+          "basis": "standardApiForecast",
+          "evidence": {
+            "sourceId": 0,
+            "startByte": 5,
+            "endByte": 53,
+            "startLine": 1,
+            "endLine": 1,
+            "startColumn": 6
+          },
+          "details": {
+            "kind": "python",
+            "prediction": {
+              "ordinal": 0,
+              "evidence": {
+                "sourceId": 0,
+                "startByte": 5,
+                "endByte": 53,
+                "startLine": 1,
+                "endLine": 1,
+                "startColumn": 6
+              },
+              "target": {
+                "type": "literal",
+                "path": "out",
+                "cwd": "/authored/v17"
+              },
+              "operation": {
+                "type": "truncate"
+              },
+              "dependencies": [
+                {
+                  "type": "capability",
+                  "assumption": "standardBuiltinOpen"
+                },
+                {
+                  "type": "entryWorkingDirectory",
+                  "cwd": "/authored/v17"
+                },
+                {
+                  "type": "capability",
+                  "assumption": "standardPythonEvaluation"
+                },
+                {
+                  "type": "capability",
+                  "assumption": "noConcurrentMutation"
+                },
+                {
+                  "type": "filesystemEpoch",
+                  "epoch": 0
+                }
+              ],
+              "predecessorConditions": [],
+              "finalState": "knownLaterTouch"
+            },
+            "assumptions": [
+              "standardPythonEvaluation",
+              "standardBuiltinOpen",
+              "standardTextMethods",
+              "noConcurrentMutation"
+            ]
+          },
+          "predecessorConditions": [],
+          "carrierAssumptions": [],
+          "laterContext": "knownLaterTouch"
+        },
+        {
+          "ordinal": 1,
+          "basis": "standardApiForecast",
+          "evidence": {
+            "sourceId": 0,
+            "startByte": 69,
+            "endByte": 91,
+            "startLine": 2,
+            "endLine": 2,
+            "startColumn": 5
+          },
+          "details": {
+            "kind": "python",
+            "prediction": {
+              "ordinal": 1,
+              "evidence": {
+                "sourceId": 0,
+                "startByte": 69,
+                "endByte": 91,
+                "startLine": 2,
+                "endLine": 2,
+                "startColumn": 5
+              },
+              "target": {
+                "type": "literal",
+                "path": "out",
+                "cwd": "/authored/v17"
+              },
+              "operation": {
+                "type": "logicalWrite",
+                "streamId": 0,
+                "openedAt": {
+                  "sourceId": 0,
+                  "startByte": 5,
+                  "endByte": 53,
+                  "startLine": 1,
+                  "endLine": 1,
+                  "startColumn": 6
+                },
+                "mode": "truncateWrite",
+                "position": {
+                  "type": "initialZero"
+                },
+                "baseFilesystemEpoch": 1,
+                "streamRevision": 0,
+                "content": {
+                  "type": "literal",
+                  "value": "\n\r\n",
+                  "evidence": {
+                    "sourceId": 0,
+                    "startByte": 82,
+                    "endByte": 90,
+                    "startLine": 2,
+                    "endLine": 2,
+                    "startColumn": 18
+                  }
+                },
+                "encoding": "utf8",
+                "newline": "cr",
+                "requiredResult": "fullCharacterCount"
+              },
+              "dependencies": [
+                {
+                  "type": "capability",
+                  "assumption": "standardBuiltinOpen"
+                },
+                {
+                  "type": "entryWorkingDirectory",
+                  "cwd": "/authored/v17"
+                },
+                {
+                  "type": "binding",
+                  "name": "writer",
+                  "version": 1,
+                  "evidence": {
+                    "sourceId": 0,
+                    "startByte": 5,
+                    "endByte": 63,
+                    "startLine": 1,
+                    "endLine": 1,
+                    "startColumn": 6
+                  }
+                },
+                {
+                  "type": "capability",
+                  "assumption": "standardPythonEvaluation"
+                },
+                {
+                  "type": "capability",
+                  "assumption": "noConcurrentMutation"
+                },
+                {
+                  "type": "filesystemEpoch",
+                  "epoch": 1
+                }
+              ],
+              "predecessorConditions": [
+                {
+                  "sourceId": 0,
+                  "startByte": 5,
+                  "endByte": 53,
+                  "startLine": 1,
+                  "endLine": 1,
+                  "startColumn": 6
+                }
+              ],
+              "finalState": "notEstablished"
+            },
+            "assumptions": [
+              "standardPythonEvaluation",
+              "standardBuiltinOpen",
+              "standardTextMethods",
+              "noConcurrentMutation"
+            ]
+          },
+          "predecessorConditions": [],
+          "carrierAssumptions": [],
+          "laterContext": "unobserved"
+        }
+      ],
+      "sourceSha256": "768c173363133e9d3370443477147b11066959f2546c9050f9ee5b1710bdd3bf",
+      "expectedBarriers": []
+    }
+  ]
+}

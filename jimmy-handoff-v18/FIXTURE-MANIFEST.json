@@ -1,0 +1,101 @@
+{
+  "schema": "jimmyAuthoredTransfer/v1",
+  "files": [
+    {
+      "path": "fixtures/python24/requests.jsonl",
+      "bytes": 15711,
+      "sha256": "63300e4f89f38c52774cba6f3a4699943b9899cff74d4b1cb843281fd13a3d93",
+      "origin": "Frozen authored V17 wire requests, reused unchanged for V18",
+      "originalSHA256": "63300e4f89f38c52774cba6f3a4699943b9899cff74d4b1cb843281fd13a3d93"
+    },
+    {
+      "path": "fixtures/python24/expected-v18-results.jsonl",
+      "bytes": 83793,
+      "sha256": "3db0c426e300fb99fb990bde712b3a75eff1a025a683c488c7190fdca52c0a1d",
+      "origin": "Saved V18 inert analyzer output on authored fixtures; elapsedNs removed; behavior reference, not gold",
+      "originalSHA256": "ea16246eb963eea39a97e98308a46ddb917b6728154571ff9b9343c84f4f4f56"
+    },
+    {
+      "path": "fixtures/fresh40/requests.jsonl",
+      "bytes": 23048,
+      "sha256": "2ba7765992874490ccca86f1919aa7996cd3fea424c0959e1552c18a59559e3f",
+      "origin": "Frozen authored V17 wire requests, reused unchanged for V18",
+      "originalSHA256": "2ba7765992874490ccca86f1919aa7996cd3fea424c0959e1552c18a59559e3f"
+    },
+    {
+      "path": "fixtures/fresh40/expected-v18-results.jsonl",
+      "bytes": 74124,
+      "sha256": "9380d911856bd2f36918b1551b02331c413fc37a3ecd4117122d7657108677f2",
+      "origin": "Saved V18 inert analyzer output on authored fixtures; elapsedNs removed; behavior reference, not gold",
+      "originalSHA256": "8931d2da439311ce98f085d512d2e4d53b9675086d259753959835a180db0520"
+    },
+    {
+      "path": "fixtures/python24/gold.jsonl",
+      "bytes": 49725,
+      "sha256": "ca001c7e82b95d25e659b6d5d457a228fa5d2609e9f2ffb6bd60d0d703d18aed",
+      "origin": "Independent authored neutral endpoint expectations",
+      "originalSHA256": "ca001c7e82b95d25e659b6d5d457a228fa5d2609e9f2ffb6bd60d0d703d18aed"
+    },
+    {
+      "path": "fixtures/python24/ORIGINAL-CONTRACT.md",
+      "bytes": 6680,
+      "sha256": "085f9f5ec5805974d5061d3d3c313881eaddcdfd2034cad26953b90bc94b5d3f",
+      "origin": "Original preimplementation panel contract; chronology retained",
+      "originalSHA256": "085f9f5ec5805974d5061d3d3c313881eaddcdfd2034cad26953b90bc94b5d3f"
+    },
+    {
+      "path": "fixtures/python24/author_panel.py",
+      "bytes": 13560,
+      "sha256": "69effc62d60d41ae6b884d2ed6adc0354584b34facf2de51717f06835c12f744",
+      "origin": "Literal-data/byte-algebra author; not needed to replay",
+      "originalSHA256": "69effc62d60d41ae6b884d2ed6adc0354584b34facf2de51717f06835c12f744"
+    },
+    {
+      "path": "fixtures/python24/source-proofs.json",
+      "bytes": 129377,
+      "sha256": "45dded897e5b9db8d5d06713fe9166f410f813ab8c0abc0c3f8f0c744f526735",
+      "origin": "Exact 24 authored proof objects selected by fixture ID; other panel objects and metadata omitted",
+      "originalSHA256": "1a7fd6799f7860f844fd38ea950f99e2f22fba9d104895d3ea8063a4b893533c"
+    },
+    {
+      "path": "fixtures/fresh40/cases.jsonl",
+      "bytes": 200989,
+      "sha256": "781a42ce9729dc089b755324a8cdb604b66eb12bf17bbd19e502819504829565",
+      "origin": "Original Fresh40 authored corpus/gold, unchanged by V17 wire binding additions",
+      "originalSHA256": "781a42ce9729dc089b755324a8cdb604b66eb12bf17bbd19e502819504829565"
+    },
+    {
+      "path": "fixtures/fresh40/gold.jsonl",
+      "bytes": 179408,
+      "sha256": "7c4acfdb17145ba44841edc00e9e7537c0e9a8338235baf27b9bc97aa9435839",
+      "origin": "Original Fresh40 authored corpus/gold, unchanged by V17 wire binding additions",
+      "originalSHA256": "7c4acfdb17145ba44841edc00e9e7537c0e9a8338235baf27b9bc97aa9435839"
+    },
+    {
+      "path": "tools/frozen_python24/score.py",
+      "bytes": 16874,
+      "sha256": "a305e1a38208db994277ff20680e7aea9683c0943dd613695575967742f6e8ac",
+      "origin": "Frozen V17 saved-data checker; new cloud adapter calls panel-only functions, not historical CLI",
+      "originalSHA256": "a305e1a38208db994277ff20680e7aea9683c0943dd613695575967742f6e8ac"
+    },
+    {
+      "path": "tools/frozen_python24/artifacts.py",
+      "bytes": 2218,
+      "sha256": "8bad9b584940550d6202d43dda7e52a819c7e4a44e3207febd5a48982692a1ea",
+      "origin": "Frozen V17 saved-data checker; new cloud adapter calls panel-only functions, not historical CLI",
+      "originalSHA256": "8bad9b584940550d6202d43dda7e52a819c7e4a44e3207febd5a48982692a1ea"
+    },
+    {
+      "path": "tools/frozen_python24/check_artifact.py",
+      "bytes": 7196,
+      "sha256": "cce3eec17c56c13c02155a24ad9382f85cd6e402c7d3396823ad54e79f5ea4e6",
+      "origin": "Frozen V17 saved-data checker; new cloud adapter calls panel-only functions, not historical CLI",
+      "originalSHA256": "cce3eec17c56c13c02155a24ad9382f85cd6e402c7d3396823ad54e79f5ea4e6"
+    }
+  ],
+  "populationSample": false,
+  "freshHoldout": false,
+  "privateSessionData": false,
+  "capturedProgramsExecuted": false,
+  "sourceCandidate": "5e3cd24283b1e3d3c3abfa8892c66ce3e0555b65"
+}

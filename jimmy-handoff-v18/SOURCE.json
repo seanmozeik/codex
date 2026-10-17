@@ -1,0 +1,11 @@
+{
+  "schema": "jimmyReviewedPublication/v1",
+  "repository": "seanmozeik/codex",
+  "branch": "sean/jimmy-cloud-v18",
+  "publicBase": "4ce650a1ac114be91904eb9f1919b5c9fcde92ab",
+  "originalSourceRevisionReference": "5e3cd24283b1e3d3c3abfa8892c66ce3e0555b65",
+  "sourceCommit": "7fdd2f756dc6b3866d6f1d13656b3058e543c17f",
+  "sourceTree": "bb5be6c2e2fbd17497e0d6b8571c1e1ff8b17427",
+  "privateHistoryIncluded": false,
+  "privateContextIncluded": false
+}
